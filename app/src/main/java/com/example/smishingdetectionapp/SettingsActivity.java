@@ -1,26 +1,27 @@
 package com.example.smishingdetectionapp;
 
-import android.view.View;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
-import com.example.smishingdetectionapp.news.NewsAdapter;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.concurrent.Executor;
-
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -34,11 +35,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-
         nav.setSelectedItemId(R.id.nav_settings);
-
         nav.setOnItemSelectedListener(menuItem -> {
-
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -73,7 +71,6 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(this, ReportingActivity.class));
             finish();
         });
-        //Notification button to switch to notification page
 
         // Help button to switch to Help page
         Button helpBtn = findViewById(R.id.helpBtn);
@@ -89,8 +86,6 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
         Button aboutUsBtn = findViewById(R.id.aboutUsBtn);
         aboutUsBtn.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, AboutUsActivity.class);
@@ -103,19 +98,47 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //Feedback Button to switch to Feedback page
+        // Feedback Button to switch to Feedback page
         Button feedbackBtn = findViewById(R.id.feedbackBtn);
         feedbackBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, FeedbackActivity.class));
             finish();
         });
-        //Forum Button to switch to Forum page
+
+        // Forum Button to switch to Forum page
         Button forumBtn = findViewById(R.id.forumBtn);
         forumBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ForumActivity.class));
             finish();
         });
+
+        // ─────────────────────────────────────────────────────────
+        // 1. Find the Switch in activity_settings.xml
+        Switch darkModeSwitch = findViewById(R.id.darkModeSwitch);
+
+        // 2. Load user preference from SharedPreferences
+        SharedPreferences sharedPref = getSharedPreferences("user_settings", MODE_PRIVATE);
+        boolean isDarkModeEnabled = sharedPref.getBoolean("dark_mode_enabled", false);
+
+        // 3. Set the Switch to the saved state
+        darkModeSwitch.setChecked(isDarkModeEnabled);
+
+        // 4. Listen for Switch changes and update the theme
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                // Save the preference
+                sharedPref.edit().putBoolean("dark_mode_enabled", isChecked).apply();
+            }
+        });
+        // ─────────────────────────────────────────────────────────
     }
+
     // Trigger biometric authentication with timeout
     private void triggerBiometricAuthenticationWithTimeout() {
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
@@ -165,10 +188,10 @@ public class SettingsActivity extends AppCompatActivity {
     // Start a timeout timer for authentication
     private void startTimeoutTimer() {
         new Handler().postDelayed(() -> {
-            if (!isAuthenticated) { // If authentication hasn't occurred within the timeout
+            if (!isAuthenticated) {
                 notifyUser("Authentication timed out. Redirecting to Settings...");
-                biometricPrompt.cancelAuthentication(); // Cancel the ongoing authentication
-                redirectToSettingsActivity(); // Redirect to SettingsActivity on timeout
+                biometricPrompt.cancelAuthentication();
+                redirectToSettingsActivity();
             }
         }, TIMEOUT_MILLIS);
     }
@@ -177,14 +200,14 @@ public class SettingsActivity extends AppCompatActivity {
     private void redirectToSettingsActivity() {
         Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
         startActivity(intent);
-        finish(); // Ensure the current activity is closed
+        finish();
     }
 
     // Open AccountActivity
     private void openAccountActivity() {
         Intent intent = new Intent(SettingsActivity.this, AccountActivity.class);
         startActivity(intent);
-        finish(); // Close SettingsActivity if AccountActivity is opened
+        finish();
     }
 
     // Show a toast message
@@ -198,4 +221,3 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-

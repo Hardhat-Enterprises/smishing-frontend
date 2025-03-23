@@ -49,10 +49,10 @@
 
         <Button
             android:id="@+id/accountBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="188dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/account_btn"
@@ -62,8 +62,8 @@
 
         <Button
             android:id="@+id/filteringBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/buttons_rounded"
@@ -75,9 +75,9 @@
 
         <Button
             android:id="@+id/notificationsBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="200dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="188dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
@@ -89,8 +89,8 @@
 
         <Button
             android:id="@+id/reportBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_rounded"
@@ -102,10 +102,10 @@
 
         <Button
             android:id="@+id/helpBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/help_btn"
@@ -115,8 +115,8 @@
 
         <Button
             android:id="@+id/aboutMeBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/buttons_rounded"
@@ -124,14 +124,13 @@
             android:text="@string/about_btn"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/helpBtn"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
 
 
         <Button
             android:id="@+id/aboutUsBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="18dp"
             android:background="@drawable/buttons_rounded"
@@ -146,10 +145,10 @@
 
         <Button
             android:id="@+id/feedbackBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginTop="176dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/feedback"
@@ -159,17 +158,16 @@
 
         <Button
             android:id="@+id/forumBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="220dp"
+            android:layout_width="169dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="224dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/forums"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
-
+            app:layout_constraintTop_toBottomOf="@+id/aboutUsBtn" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -177,6 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/accountBtn"
             app:layout_constraintTop_toTopOf="@+id/accountBtn"
             app:srcCompat="@drawable/account_user_svg" />
@@ -194,16 +193,16 @@
 
         <Button
             android:id="@+id/chatAssistantBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
+            android:layout_width="164dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="140dp"
+            android:layout_marginEnd="228dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/chat_assistant_btn"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/aboutMeBtn" />
 
         <ImageView
             android:id="@+id/imageView7"
@@ -235,27 +234,27 @@
             app:layout_constraintTop_toTopOf="@+id/notificationsBtn"
             app:srcCompat="@drawable/notification_svg1" />
 
-<!--        <Button-->
-<!--            android:id="@+id/YourReportBtn"-->
-<!--            android:layout_width="175dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_marginStart="28dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:background="@drawable/buttons_rounded"-->
-<!--            android:text="Your Reports"-->
-<!--            android:textSize="20sp"-->
-<!--            android:gravity="bottom"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/helpBtn"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />-->
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView11"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginEnd="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/YourReportBtn"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/YourReportBtn"-->
-<!--            app:srcCompat="@drawable/outline_archive_24" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/YourReportBtn"-->
+        <!--            android:layout_width="175dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            android:layout_marginStart="28dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:background="@drawable/buttons_rounded"-->
+        <!--            android:text="Your Reports"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:gravity="bottom"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/helpBtn"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView11"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="4dp"-->
+        <!--            android:layout_marginEnd="4dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/YourReportBtn"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/YourReportBtn"-->
+        <!--            app:srcCompat="@drawable/outline_archive_24" />-->
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"
@@ -265,6 +264,16 @@
             app:layout_constraintEnd_toEndOf="@+id/aboutMeBtn"
             app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
             app:srcCompat="@drawable/outline_arrow_outward_24" />
+
+        <Switch
+            android:id="@+id/darkModeSwitch"
+            android:layout_width="113dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="44dp"
+            android:text="Switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
