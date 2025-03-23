@@ -53,6 +53,7 @@ public class QuizesActivity extends AppCompatActivity {
 
 
         Collections.shuffle(questionBank);
+        questionBank = questionBank.subList(0, 5); // Pick 5 random questions
 
 
         userAnswers = new ArrayList<>(Collections.nCopies(questionBank.size(), -1));
@@ -95,6 +96,20 @@ public class QuizesActivity extends AppCompatActivity {
         questionBank.add(new Question("How can you identify a smishing attempt?", new String[]{"Unexpected SMS with suspicious links", "Messages from known contacts", "Plain text messages"}, 0));
         questionBank.add(new Question("What should you do if you receive a phishing email?", new String[]{"Report it and avoid clicking any links", "Reply immediately", "Delete it without reporting"}, 0));
         questionBank.add(new Question("What does HTTPS indicate?", new String[]{"Secure website connection", "Fake website", "Malware link"}, 0));
+        
+        // New questions
+        questionBank.add(new Question("Which action helps prevent smishing?", new String[]{"Avoid clicking unknown SMS links", "Always reply to unknown SMS", "Give personal info in messages"}, 0));
+        questionBank.add(new Question("What’s a sign of a smishing message?", new String[]{"Urgent tone with a link", "From your contact list", "Proper grammar"}, 0));
+        questionBank.add(new Question("Smishing is mostly delivered via?", new String[]{"Text Messages", "Emails", "Phone Calls"}, 0));
+        questionBank.add(new Question("Who is most likely to fall for smishing?", new String[]{"Unaware users", "Cybersecurity experts", "Bank managers"}, 0));
+        questionBank.add(new Question("A legitimate bank message will usually:", new String[]{"Not ask for passwords", "Ask for PIN", "Ask for OTP"}, 0));
+        questionBank.add(new Question("Which one is safe to click?", new String[]{"Link from verified app notification", "Random SMS link", "Unknown sender’s URL"}, 0));
+        questionBank.add(new Question("Smishing messages aim to:", new String[]{"Steal credentials", "Help security", "Inform public"}, 0));
+        questionBank.add(new Question("When unsure about a message, you should:", new String[]{"Contact the institution directly", "Click the link to check", "Reply asking who it is"}, 0));
+        questionBank.add(new Question("What does a shortened URL in SMS often indicate?", new String[]{"Possible fraud link", "Verified site", "Encrypted page"}, 0));
+        questionBank.add(new Question("What should you do if you clicked a smishing link?", new String[]{"Disconnect and scan device", "Ignore it", "Reply to sender"}, 0));
+
+        
     }
 
     private void displayQuestion() {
