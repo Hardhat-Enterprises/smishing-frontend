@@ -1,0 +1,173 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.preference",
+    "module": "preference",
+    "version": "1.2.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment-ktx",
+          "version": {
+            "requires": "1.3.6"
+          }
+        },
+        {
+          "group": "androidx.recyclerview",
+          "module": "recyclerview",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.slidingpanelayout",
+          "module": "slidingpanelayout",
+          "version": {
+            "requires": "1.2.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "preference-1.2.0.aar",
+          "url": "preference-1.2.0.aar",
+          "size": 257007,
+          "sha512": "fae2a059c03d7d700d29e1709206ef56961bc84b533f596af15231159d90e56f24817fcb710c240ad3f7eb34c2dd99d62b8f0890f814c0b697ae7fc25521773f",
+          "sha256": "c6fea18e055df05e407384a34d78a009f381af0529db6a7622ab2334b72fed7b",
+          "sha1": "df7907f8a5389f29d3a8f7c07c41d7924b54ab1c",
+          "md5": "9e1b36fa03513c341fe90d386f289ad5"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment-ktx",
+          "version": {
+            "requires": "1.3.6"
+          }
+        },
+        {
+          "group": "androidx.recyclerview",
+          "module": "recyclerview",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.slidingpanelayout",
+          "module": "slidingpanelayout",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "preference-1.2.0.aar",
+          "url": "preference-1.2.0.aar",
+          "size": 257007,
+          "sha512": "fae2a059c03d7d700d29e1709206ef56961bc84b533f596af15231159d90e56f24817fcb710c240ad3f7eb34c2dd99d62b8f0890f814c0b697ae7fc25521773f",
+          "sha256": "c6fea18e055df05e407384a34d78a009f381af0529db6a7622ab2334b72fed7b",
+          "sha1": "df7907f8a5389f29d3a8f7c07c41d7924b54ab1c",
+          "md5": "9e1b36fa03513c341fe90d386f289ad5"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "preference-1.2.0-sources.jar",
+          "url": "preference-1.2.0-sources.jar",
+          "size": 114087,
+          "sha512": "8a045014d37872b90cbdefda05cfb79cd84347daa71953a2bd47784d4086e067eab8363aab19beb5284f4aacee07afc3cc968787fa471b1d2c9fc6f0e6d00654",
+          "sha256": "64189e2dbff342748aab39137e2932939c80a9a9d419a5b307e58f7e409e82da",
+          "sha1": "ea34e83a4931eaa12ec078439d10c32e24b67478",
+          "md5": "450421ee8d71839926ac085a215206e7"
+        }
+      ]
+    }
+  ]
+}

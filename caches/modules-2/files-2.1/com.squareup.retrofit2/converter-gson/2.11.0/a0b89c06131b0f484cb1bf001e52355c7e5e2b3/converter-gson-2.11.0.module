@@ -1,0 +1,112 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup.retrofit2",
+    "module": "converter-gson",
+    "version": "2.11.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-gson-2.11.0.jar",
+          "url": "converter-gson-2.11.0.jar",
+          "size": 4553,
+          "sha512": "afc55693d5c39317a052c9fe6c989a85c1ac71e55f84ca14ff2bddf2e66cb28b483b6d9e3293d4a3ca31fd39b3e2ba2b774f93c468e7a9adb39f31859f565828",
+          "sha256": "3d2b4b668909468465c5776430b57232275d0165513f20fc96b0cfe4aa531326",
+          "sha1": "9d1fe9d1662de0548e08e293041140a8e4026f81",
+          "md5": "0a5729d06133e4fdf6d484fda465b5c3"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-gson-2.11.0.jar",
+          "url": "converter-gson-2.11.0.jar",
+          "size": 4553,
+          "sha512": "afc55693d5c39317a052c9fe6c989a85c1ac71e55f84ca14ff2bddf2e66cb28b483b6d9e3293d4a3ca31fd39b3e2ba2b774f93c468e7a9adb39f31859f565828",
+          "sha256": "3d2b4b668909468465c5776430b57232275d0165513f20fc96b0cfe4aa531326",
+          "sha1": "9d1fe9d1662de0548e08e293041140a8e4026f81",
+          "md5": "0a5729d06133e4fdf6d484fda465b5c3"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "converter-gson-2.11.0-sources.jar",
+          "url": "converter-gson-2.11.0-sources.jar",
+          "size": 4086,
+          "sha512": "63d1cdc57ccd16f04544a75f260286b53aea40bfc464435922c0484493c0d3b54f710f69779427dc246c5cb0959165621aacb8111e9077831aea9d5a58ce944a",
+          "sha256": "1438285b8a2312d842c170ec3dbc034a6eed495b9fc84fd2a2aac87abda4f9d7",
+          "sha1": "4bdd51518a12394cd5b1adeac899a14669609fc1",
+          "md5": "1d1d570e3b997c5ad740b35cca2b2202"
+        }
+      ]
+    }
+  ]
+}

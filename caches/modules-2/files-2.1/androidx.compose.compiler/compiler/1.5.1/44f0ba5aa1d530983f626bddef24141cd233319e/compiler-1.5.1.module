@@ -1,0 +1,134 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.compose.compiler",
+    "module": "compiler",
+    "version": "1.5.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-hosted",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        },
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-daemon",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        }
+      ],
+      "files": [
+        {
+          "name": "compiler-1.5.1.jar",
+          "url": "compiler-1.5.1.jar",
+          "size": 1050903,
+          "sha512": "d343d58bda6b8e1bbf9604007cb42bcf94b97e3b612171027e3003b8c26e80fb22eed2b8b462f6129a50f8c38dbde58cb0601f9a3fb0550739c969f77238b431",
+          "sha256": "b4ff8abe298d70466b8b202898fee1b0949512962bdb8c95cf77c0907afe53f0",
+          "sha1": "2df7032eec187317f8ac0c565a733cea10f55e13",
+          "md5": "3be04e6fde0e0768901520fde661fa42"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-hosted",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        },
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-daemon",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        }
+      ],
+      "files": [
+        {
+          "name": "compiler-1.5.1.jar",
+          "url": "compiler-1.5.1.jar",
+          "size": 1050903,
+          "sha512": "d343d58bda6b8e1bbf9604007cb42bcf94b97e3b612171027e3003b8c26e80fb22eed2b8b462f6129a50f8c38dbde58cb0601f9a3fb0550739c969f77238b431",
+          "sha256": "b4ff8abe298d70466b8b202898fee1b0949512962bdb8c95cf77c0907afe53f0",
+          "sha1": "2df7032eec187317f8ac0c565a733cea10f55e13",
+          "md5": "3be04e6fde0e0768901520fde661fa42"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-hosted",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        },
+        {
+          "group": "androidx.compose.compiler",
+          "module": "compiler-daemon",
+          "version": {
+            "requires": "1.5.1"
+          },
+          "reason": "compiler is in atomic group androidx.compose.compiler"
+        }
+      ],
+      "files": [
+        {
+          "name": "compiler-1.5.1-sources.jar",
+          "url": "compiler-1.5.1-sources.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

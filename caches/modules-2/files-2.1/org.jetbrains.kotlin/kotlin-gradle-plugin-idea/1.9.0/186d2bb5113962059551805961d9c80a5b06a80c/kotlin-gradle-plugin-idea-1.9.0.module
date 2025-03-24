@@ -1,0 +1,236 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.jetbrains.kotlin",
+    "module": "kotlin-gradle-plugin-idea",
+    "version": "1.9.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "publishedCompile",
+      "attributes": {
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-tooling-core",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-annotations",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "publishedRuntime",
+      "attributes": {
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-tooling-core",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-annotations",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-tooling-core",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-annotations",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-gradle-plugin-idea-1.9.0.jar",
+          "url": "kotlin-gradle-plugin-idea-1.9.0.jar",
+          "size": 167824,
+          "sha512": "d360f094f3582842a1f44b421b00b059ccac5fb12b6119f7ee2d17e3c470d7407ce2e2afafc076852612a27d7d4755d1260bb69f90ba346279b1b4022d9e9bfb",
+          "sha256": "0bb26ccee372afb9b584f2857e87cc2f3f532b62a4f7fa457558f3afc3abe995",
+          "sha1": "5538265e4961666c769825f4543ab445cbc45bdc",
+          "md5": "97f94f39aaa54865431e04d3e1d29349"
+        }
+      ]
+    },
+    {
+      "name": "testFixturesApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-idea",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-gradle-plugin-idea-1.9.0-test-fixtures.jar",
+          "url": "kotlin-gradle-plugin-idea-1.9.0-test-fixtures.jar",
+          "size": 90138,
+          "sha512": "cc83422ba3c5da525c420bcc5515aac7d4710b894caf84a334c3ab7eee2a19a1ee71edd8b83a801a13b7468f820a2a53ca9ec4aeffcdf030785e1e18cf2c1a62",
+          "sha256": "3008f781e7ad90fcb01dcd9dea96e0f64cb8f1b3184f94f8a7d8cd1de1a5b1f2",
+          "sha1": "af6020bc0aa902bb438e69aa0eca58438111136b",
+          "md5": "3528df49ff18e537c8e8d2a1c65b6781"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-gradle-plugin-idea-test-fixtures",
+          "version": "1.9.0"
+        }
+      ]
+    },
+    {
+      "name": "testFixturesRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-tooling-core",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-idea-proto",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-test-junit",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin-idea",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlin-gradle-plugin-idea-1.9.0-test-fixtures.jar",
+          "url": "kotlin-gradle-plugin-idea-1.9.0-test-fixtures.jar",
+          "size": 90138,
+          "sha512": "cc83422ba3c5da525c420bcc5515aac7d4710b894caf84a334c3ab7eee2a19a1ee71edd8b83a801a13b7468f820a2a53ca9ec4aeffcdf030785e1e18cf2c1a62",
+          "sha256": "3008f781e7ad90fcb01dcd9dea96e0f64cb8f1b3184f94f8a7d8cd1de1a5b1f2",
+          "sha1": "af6020bc0aa902bb438e69aa0eca58438111136b",
+          "md5": "3528df49ff18e537c8e8d2a1c65b6781"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "name": "kotlin-gradle-plugin-idea-test-fixtures",
+          "version": "1.9.0"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "kotlin-gradle-plugin-idea-1.9.0-javadoc.jar",
+          "url": "kotlin-gradle-plugin-idea-1.9.0-javadoc.jar",
+          "size": 261,
+          "sha512": "747d2f00a7f5f379582e33e452f30f3a25732a510971d9ed5161355bf7ef0fc507fef30883960dbfc780d36b6e8215fba01086b4ee053358805686e2f2c1aa85",
+          "sha256": "69e1a62e5752ca3f43fb1607f161379bbe88b64af89c1a543c126160adf7cc53",
+          "sha1": "5b8f86fea035328fc9e8c660773037a3401ce25f",
+          "md5": "e7e9f45eb9d74540092920528bb0abf0"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "kotlin-gradle-plugin-idea-1.9.0-sources.jar",
+          "url": "kotlin-gradle-plugin-idea-1.9.0-sources.jar",
+          "size": 25356,
+          "sha512": "9df7546a4b9778501ea63448670a69aad3ea48044b65c075d867a6e3a997879b6fa4054103b395bfc196d05684a83437a2b17eee4fb8c24b9ac9c11eb3675db4",
+          "sha256": "aecf58ce76c09341781baf58481fd32f30930bebca5440c5e34a9652b1479316",
+          "sha1": "017b475b79ab0b686f46e03c15034d4cff9b5214",
+          "md5": "0097ce595f43149765afbd3a27a65d86"
+        }
+      ]
+    }
+  ]
+}

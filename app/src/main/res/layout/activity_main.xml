@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:paddingTop="4dp"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
@@ -28,19 +29,19 @@
         <Button
             android:id="@+id/detections_btn"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="124dp"
+            android:layout_marginBottom="128dp"
             android:background="@drawable/buttons_rounded"
-            android:drawableLeft="@drawable/bell_svg"
+            android:drawableStart="@drawable/bell_svg"
             android:paddingStart="105dp"
             android:paddingEnd="125dp"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -55,55 +56,108 @@
             app:srcCompat="@drawable/hardhat_logo"
             android:contentDescription="@string/logo_description"/>
 
+
         <TextView
-            android:id="@+id/DashboardText"
+            android:id="@+id/welcome_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Welcome back, user"
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+
+        <TextView
+            android:id="@+id/greetingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/app_name"
             android:textSize="32sp"
             android:textStyle="bold"
+            android:textColor="@color/navy_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
-            android:textColor="@color/navy_blue"/>
+            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"/>
+
 
         <TextView
             android:id="@+id/new_detections"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="36dp"
             android:background="@drawable/counter_buttons"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="New Detections: 0"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
+
 
         <TextView
             android:id="@+id/total_detections"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="36dp"
             android:background="@drawable/counter_buttons"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Total Detections:0"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
+            android:id="@+id/last_updated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Updated: Just Now"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/detections_btn"/>
+
+
+        <TextView
             android:id="@+id/information_box"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/buttons_rounded"
+            android:background="#E0F7FA"
+            android:drawableStart="@drawable/ic_info"
+            android:drawablePadding="8dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="6dp"
+            android:padding="16dp"
+            android:text="🔎 Stay alert! Phishing scams often look real. Always verify links and report suspicious messages."
+            android:textColor="#004D40"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.845" />
 
         <TextView
             android:id="@+id/new_counter"
@@ -168,11 +222,14 @@
             android:id="@+id/information_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="4dp"
             android:text="Information"
-            app:layout_constraintStart_toStartOf="@+id/information_box"
-            app:layout_constraintTop_toTopOf="@+id/information_box" />
+            android:textColor="@color/navy_blue"
+            android:textStyle="bold"
+            android:textsize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/information_box" />
 
         <ImageView
             android:id="@+id/imageView3"
