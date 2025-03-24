@@ -1,0 +1,9 @@
+androidx.navigation.fragment
+attr defaultNavHost
+dimen sliding_pane_detail_pane_width
+id nav_host_fragment_container
+id sliding_pane_detail_container
+id sliding_pane_layout
+styleable DialogFragmentNavigator android_name
+styleable FragmentNavigator android_name
+styleable NavHostFragment defaultNavHost

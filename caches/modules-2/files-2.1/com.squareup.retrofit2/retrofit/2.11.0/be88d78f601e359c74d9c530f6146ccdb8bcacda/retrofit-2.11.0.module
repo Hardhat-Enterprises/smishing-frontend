@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup.retrofit2",
+    "module": "retrofit",
+    "version": "2.11.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "3.14.9"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "retrofit-2.11.0.jar",
+          "url": "retrofit-2.11.0.jar",
+          "size": 131868,
+          "sha512": "24ceb5ac93c85fbc719a9fa1505efaff607b01c1127305737668565bb7aeac1a07b354aa10539f81e7397a422d65a80c69a20e3a4e57a87708b742c3d1c1688a",
+          "sha256": "9f4fbbce70728584fbeed38d4061f36d4477e89bca74b4e2ac8aeb6819b0fe43",
+          "sha1": "6ca8c6caf842271f3232e075519fe04081ef7069",
+          "md5": "bb518c7b3078881a452b5e82e14f571e"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "3.14.9"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "retrofit-2.11.0.jar",
+          "url": "retrofit-2.11.0.jar",
+          "size": 131868,
+          "sha512": "24ceb5ac93c85fbc719a9fa1505efaff607b01c1127305737668565bb7aeac1a07b354aa10539f81e7397a422d65a80c69a20e3a4e57a87708b742c3d1c1688a",
+          "sha256": "9f4fbbce70728584fbeed38d4061f36d4477e89bca74b4e2ac8aeb6819b0fe43",
+          "sha1": "6ca8c6caf842271f3232e075519fe04081ef7069",
+          "md5": "bb518c7b3078881a452b5e82e14f571e"
+        }
+      ]
+    }
+  ]
+}

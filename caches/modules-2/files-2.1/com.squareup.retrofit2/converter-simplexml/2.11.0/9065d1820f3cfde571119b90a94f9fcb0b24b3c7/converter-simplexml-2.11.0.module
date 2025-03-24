@@ -1,0 +1,112 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup.retrofit2",
+    "module": "converter-simplexml",
+    "version": "2.11.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "org.simpleframework",
+          "module": "simple-xml",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-simplexml-2.11.0.jar",
+          "url": "converter-simplexml-2.11.0.jar",
+          "size": 4922,
+          "sha512": "4549fc95861fe7b5ea832fb0ce24bf9910c0de5af37ef3c8d17594a40ea61e2c4871cd142bc31ffa2679e827524f79c5a9f782a7d41b1cf6c2cd18e7ff51bc25",
+          "sha256": "077a7ee9893f8c579b5fa8bd5bb56bcebf2e45d988af0a17023e83a5325f5a2b",
+          "sha1": "c71c620a159abe3a3b29b6bb56cc81b334b92e3e",
+          "md5": "90859b5cd8dfb9550e6c616f09c51a5b"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "2.11.0"
+          }
+        },
+        {
+          "group": "org.simpleframework",
+          "module": "simple-xml",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-simplexml-2.11.0.jar",
+          "url": "converter-simplexml-2.11.0.jar",
+          "size": 4922,
+          "sha512": "4549fc95861fe7b5ea832fb0ce24bf9910c0de5af37ef3c8d17594a40ea61e2c4871cd142bc31ffa2679e827524f79c5a9f782a7d41b1cf6c2cd18e7ff51bc25",
+          "sha256": "077a7ee9893f8c579b5fa8bd5bb56bcebf2e45d988af0a17023e83a5325f5a2b",
+          "sha1": "c71c620a159abe3a3b29b6bb56cc81b334b92e3e",
+          "md5": "90859b5cd8dfb9550e6c616f09c51a5b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "converter-simplexml-2.11.0-sources.jar",
+          "url": "converter-simplexml-2.11.0-sources.jar",
+          "size": 4157,
+          "sha512": "6e3db4c4c2aecc3c02105720a2eff106d6ab65b047bcc25917ca7f78c700570c5cee97b838d6d2be1a0d8c812287104d988bf37637c2bf16974a2e1742bb419a",
+          "sha256": "9573b8e96d169e107ea0bac106276288ceb87e3b9a17fada1674ac38439928ff",
+          "sha1": "8fde5ca2db26fd3311bd9a65a640e56aec9c4670",
+          "md5": "0aeeb577c9d56406305daf97f7dcc826"
+        }
+      ]
+    }
+  ]
+}

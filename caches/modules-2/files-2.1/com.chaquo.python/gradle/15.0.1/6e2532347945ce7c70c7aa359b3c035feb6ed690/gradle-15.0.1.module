@@ -1,0 +1,120 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.chaquo.python",
+    "module": "gradle",
+    "version": "15.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "gradle-15.0.1.jar",
+          "url": "gradle-15.0.1.jar",
+          "size": 2661939,
+          "sha512": "35eb20157f24a5dfddefda616c9e7b39326178ae10c60a673f0d0e5a1ec92fc809066d67ca21859266947c82768c30719dde6ef25d31d424d0ac287bc15428b4",
+          "sha256": "8cef43d5c0823c09d4f813144df05c9b48e4e703fb5920dc20a62b30759075ec",
+          "sha1": "1c35e07cc438630769c06529518139d8f679e93a",
+          "md5": "34ccaeb67b20e94cba647cb2de6397bf"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.apache.commons",
+          "module": "commons-compress",
+          "version": {
+            "requires": "1.18"
+          }
+        },
+        {
+          "group": "org.json",
+          "module": "json",
+          "version": {
+            "requires": "20160810"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-15.0.1.jar",
+          "url": "gradle-15.0.1.jar",
+          "size": 2661939,
+          "sha512": "35eb20157f24a5dfddefda616c9e7b39326178ae10c60a673f0d0e5a1ec92fc809066d67ca21859266947c82768c30719dde6ef25d31d424d0ac287bc15428b4",
+          "sha256": "8cef43d5c0823c09d4f813144df05c9b48e4e703fb5920dc20a62b30759075ec",
+          "sha1": "1c35e07cc438630769c06529518139d8f679e93a",
+          "md5": "34ccaeb67b20e94cba647cb2de6397bf"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-15.0.1-javadoc.jar",
+          "url": "gradle-15.0.1-javadoc.jar",
+          "size": 308893,
+          "sha512": "eebc9ffff0555822b4365de041b344c7baa340a6b226f3cd2c47f5fb875cacaeb2374d87dfa57474bd3a364bca2d2ee7f6f5a69793f99932865a1033bc7cd37c",
+          "sha256": "fb94208d2c0b3b6821b1791bf2faa1bcfc4a356c08d425a2f0dda29cc70452ee",
+          "sha1": "b344b409c2d41291383dadb3b75ba87295174580",
+          "md5": "c186815e6cef967f2d1a1c45a7b1464b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-15.0.1-sources.jar",
+          "url": "gradle-15.0.1-sources.jar",
+          "size": 175797,
+          "sha512": "055e6d931353b8bfd8bc5aece68217fc670b307b3f7de74833ce2d180519551c7ef1e7fb66d5750093fafe5dd0f618fe116595091c456c9b040e9cc3032dd9ee",
+          "sha256": "3f445265b6a066986fc883e105175f50f1adecd92e8638bb8374905cd4745d33",
+          "sha1": "c4c77ce7c0654b3e77866d85b15da9b2ef748fa4",
+          "md5": "8f052c5f0077eac60b1a90575fd8357c"
+        }
+      ]
+    }
+  ]
+}

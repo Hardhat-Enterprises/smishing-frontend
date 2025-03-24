@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="6128938260108474660" name="bottom_sheet_collapse_description">"கீழ்ப்புறச் சீட்டைச் சுருக்கும்"</string>
+    <string msgid="1918297411568599192" name="bottom_sheet_dismiss_description">"கீழ்ப்புறச் சீட்டை நிராகரிக்கும்"</string>
+    <string msgid="7772321844937772780" name="bottom_sheet_drag_handle_description">"இழுப்பதற்கான ஹேண்டில்"</string>
+    <string msgid="4324434199045499117" name="bottom_sheet_expand_description">"கீழ்ப்புறச் சீட்டை விரிவாக்கும்"</string>
+    <string msgid="5389587048670450460" name="collapsed">"சுருக்கப்பட்டது"</string>
+    <string msgid="3499643850558715142" name="date_input_headline">"உள்ளிட்ட தேதி"</string>
+    <string msgid="8562356184193964298" name="date_input_headline_description">"உள்ளிட்ட தேதி: %1$s"</string>
+    <string msgid="5281836720766682161" name="date_input_invalid_for_pattern">"எதிர்பார்க்கப்படும் பேட்டர்னுடன் தேதி பொருந்தவில்லை: %1$s"</string>
+    <string msgid="6114792992433444995" name="date_input_invalid_not_allowed">"இந்தத் தேதி அனுமதிக்கப்படவில்லை: %1$s"</string>
+    <string msgid="8434112129235255568" name="date_input_invalid_year_range">"இந்தத் தேதி %1$s - %2$s ஆண்டு வரம்பிற்குள் இல்லை"</string>
+    <string msgid="5194825853981987218" name="date_input_label">"தேதி"</string>
+    <string msgid="5722931102250207748" name="date_input_no_input_description">"ஏதுமில்லை"</string>
+    <string msgid="3010396677286327048" name="date_input_title">"தேதியைத் தேர்வுசெய்யுங்கள்"</string>
+    <string msgid="2846784065735639969" name="date_picker_headline">"தேர்ந்தெடுக்கப்பட்ட தேதி"</string>
+    <string msgid="4627306862713137085" name="date_picker_headline_description">"தற்போது %1$s தேர்வுசெய்யப்பட்டுள்ளது"</string>
+    <string msgid="5152441868029453612" name="date_picker_navigate_to_year_description">"%1$sக்குச் செல்லும்"</string>
+    <string msgid="5724377114289981899" name="date_picker_no_selection_description">"ஏதுமில்லை"</string>
+    <string msgid="8911933542023210271" name="date_picker_scroll_to_earlier_years">"முந்தைய ஆண்டுகளைப் பார்க்க ஸ்க்ரோல் செய்யுங்கள்"</string>
+    <string msgid="3226341140390493774" name="date_picker_scroll_to_later_years">"பிந்தைய ஆண்டுகளைப் பார்க்க ஸ்க்ரோல் செய்யுங்கள்"</string>
+    <string msgid="9029369254443419167" name="date_picker_switch_to_calendar_mode">"கேலெண்டர் உள்ளீட்டு முறைக்கு மாற்று"</string>
+    <string msgid="145089358343568971" name="date_picker_switch_to_day_selection">"ஆண்டைத் தேர்வுசெய்ய ஸ்வைப் செய்யுங்கள் அல்லது தேதியைத் தேர்வுசெய்யும் பக்கத்திற்கு மீண்டும் செல்ல தட்டுங்கள்"</string>
+    <string msgid="1496750567914156598" name="date_picker_switch_to_input_mode">"எழுத்து உள்ளீட்டு முறைக்கு மாற்று"</string>
+    <string msgid="8313783187901412102" name="date_picker_switch_to_next_month">"அடுத்த மாதத்திற்கு மாற்று"</string>
+    <string msgid="7596294429748914881" name="date_picker_switch_to_previous_month">"முந்தைய மாதத்திற்கு மாற்று"</string>
+    <string msgid="3412370019845183965" name="date_picker_switch_to_year_selection">"ஆண்டைத் தேர்ந்தெடுக்கும் விருப்பத்திற்கு மாற்று"</string>
+    <string msgid="9208721003668059792" name="date_picker_title">"தேதியைத் தேர்ந்தெடுக்கவும்"</string>
+    <string msgid="4775802721403526937" name="date_picker_today_description">"இன்று"</string>
+    <string msgid="8140324713311804736" name="date_picker_year_picker_pane_title">"ஆண்டைத் தேர்வுசெய்யும் பக்கம் காட்டப்படுகிறது"</string>
+    <string msgid="1891592555781755601" name="date_range_input_invalid_range_input">"தவறான தேதி வரம்பை உள்ளிட்டுள்ளீர்கள்"</string>
+    <string msgid="2366412111888449406" name="date_range_input_title">"தேதிகளை உள்ளிடுங்கள்"</string>
+    <string msgid="9048690781645835833" name="date_range_picker_day_in_range">"வரம்பிற்குள் உள்ளது"</string>
+    <string msgid="4766270708882012148" name="date_range_picker_end_headline">"முடிவுத் தேதி"</string>
+    <string msgid="51495506931835470" name="date_range_picker_scroll_to_next_month">"அடுத்த மாதத்தைப் பார்க்க ஸ்க்ரோல் செய்யுங்கள்"</string>
+    <string msgid="4371570854614540700" name="date_range_picker_scroll_to_previous_month">"முந்தைய மாதத்தைப் பார்க்க ஸ்க்ரோல் செய்யுங்கள்"</string>
+    <string msgid="5759491386723090559" name="date_range_picker_start_headline">"தொடக்கத் தேதி"</string>
+    <string msgid="690080476639943577" name="date_range_picker_title">"தேதிகளைத் தேர்ந்தெடுங்கள்"</string>
+    <string msgid="4057925834421392736" name="dialog">"உரையாடல்"</string>
+    <string msgid="5974471714631304645" name="expanded">"விரிக்கப்பட்டது"</string>
+    <string msgid="6420018528474762666" name="search_bar_search">"தேடலாம்"</string>
+    <string msgid="3962933905051144957" name="snackbar_dismiss">"மூடும்"</string>
+    <string msgid="7189888345201419934" name="suggestions_available">"பரிந்துரைகள் கீழே கிடைக்கும்"</string>
+    <string msgid="5096144640014509074" name="time_picker_am">"AM"</string>
+    <string msgid="7241191970823415723" name="time_picker_hour">"மணிநேரம்"</string>
+    <string msgid="4149641012513526783" name="time_picker_hour_24h_suffix">"%1$d மணிநேரம்"</string>
+    <string msgid="6081676287789101196" name="time_picker_hour_selection">"மணிநேரத்தைத் தேர்ந்தெடுக்கலாம்"</string>
+    <string msgid="6952032626122080528" name="time_picker_hour_suffix">"%1$d மணி"</string>
+    <string msgid="5298761125390275834" name="time_picker_hour_text_field">"மணிநேரத்திற்கு"</string>
+    <string msgid="6116528647594005945" name="time_picker_minute">"நிமிடம்"</string>
+    <string msgid="8494777394375441602" name="time_picker_minute_selection">"நிமிடங்களைத் தேர்ந்தெடுக்கலாம்"</string>
+    <string msgid="3206486707779478173" name="time_picker_minute_suffix">"%1$d நிமிடங்கள்"</string>
+    <string msgid="994099543833979061" name="time_picker_minute_text_field">"நிமிடங்களுக்கு"</string>
+    <string msgid="7352665290700284516" name="time_picker_period_toggle_description">"AM/PM என்பதைத் தேர்ந்தெடுக்கலாம்"</string>
+    <string msgid="2232702812657998674" name="time_picker_pm">"PM"</string>
+    <string msgid="2732804537909054941" name="tooltip_long_press_label">"உதவிக்குறிப்பைக் காட்டு"</string>
+    <string msgid="8191239805703103845" name="tooltip_pane_description">"உதவிக்குறிப்பு"</string>
+</resources>

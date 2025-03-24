@@ -1,0 +1,229 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.compose.animation",
+    "module": "animation",
+    "version": "1.5.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidxSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "androidx-multiplatform-docs"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-core",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-tooling-internal",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-graphics",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "animation-1.5.0-multiplatform-sources.jar",
+          "url": "animation-1.5.0-multiplatform-sources.jar",
+          "size": 43945,
+          "sha512": "a3e2a91dec04a755a355c9df17d485e06efaa06bace65a87807ab887898e1a77026041073650ad3bb82000aaa912747b8c147264afc745c47ddf591c213aea05",
+          "sha256": "5a11a8a6a6237dd7ea618f3c4240875eba7986f0ad10935ee21966e66a153cce",
+          "sha1": "010e70c0f3352d25d6fd03a1cbd700602061304e",
+          "md5": "e3de5a8b34f43d73086b5c0138a44bd3"
+        }
+      ]
+    },
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-core",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation-layout",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui-geometry",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-core",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-tooling-internal",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-graphics",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "animation-metadata-1.5.0.jar",
+          "url": "animation-1.5.0.jar",
+          "size": 724,
+          "sha512": "acd1bd45acbd8146f934b153e32d1d77c402e90435385a67112090b0ba86bae419dc92d783521ad151fbf46af7fbe421f98bc81d1589f7f755b399b74b4f505b",
+          "sha256": "28a43ab8fba64e55bcd20126b8ed55f5ab4e8f927f749d46b6fbd1f75af04d7e",
+          "sha1": "b2e2c197371669b3250023f0e450ed1ec07efa4e",
+          "md5": "828ddef516bc2934dac77d2dfaeb3fcc"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-core",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-tooling-internal",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation-graphics",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "animation-kotlin-1.5.0-sources.jar",
+          "url": "animation-1.5.0-sources.jar",
+          "size": 39848,
+          "sha512": "521cf92bbc6f8938c56a2e15b97525c118001e2d37acabaa452debf4f540ca45de19c8eafbd48ba3b404ea1a327a86f2f3d1bac79205d6714cbc4d32f4ced156",
+          "sha256": "b7e71fd8c8d3042d93397f5e58d9dd9d1d114fd177509520046a23efd18e3d34",
+          "sha1": "74f0ac95668d2d3f92138de05f1c515261b72427",
+          "md5": "39f8dc20faad343cc5d1511047da4564"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../animation-android/1.5.0/animation-android-1.5.0.module",
+        "group": "androidx.compose.animation",
+        "module": "animation-android",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../animation-android/1.5.0/animation-android-1.5.0.module",
+        "group": "androidx.compose.animation",
+        "module": "animation-android",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../animation-android/1.5.0/animation-android-1.5.0.module",
+        "group": "androidx.compose.animation",
+        "module": "animation-android",
+        "version": "1.5.0"
+      }
+    }
+  ]
+}

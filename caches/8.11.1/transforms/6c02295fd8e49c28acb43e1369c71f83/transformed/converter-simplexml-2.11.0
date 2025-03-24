@@ -1,0 +1,4 @@
+retrofit2.converter.simplexml.SimpleXmlConverterFactory
+retrofit2.converter.simplexml.SimpleXmlRequestBodyConverter
+retrofit2.converter.simplexml.SimpleXmlResponseBodyConverter
+retrofit2.converter.simplexml.package-info

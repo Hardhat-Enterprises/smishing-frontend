@@ -1,0 +1,11 @@
+androidx.navigation
+attr action
+attr data
+attr dataPattern
+attr graph
+attr navGraph
+attr targetPackage
+id nav_controller_view_tag
+styleable ActivityNavigator action android_name data dataPattern targetPackage
+styleable NavHost navGraph
+styleable NavInclude graph

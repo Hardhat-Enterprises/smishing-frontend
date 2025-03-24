@@ -1,0 +1,137 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup.okhttp3",
+    "module": "okhttp",
+    "version": "4.9.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.5",
+      "buildId": "ewnqysochzbgzbqmeiq4u3fhha"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "okhttp-4.9.0.jar",
+          "url": "okhttp-4.9.0.jar",
+          "size": 791329,
+          "sha512": "7f142bcf9acae0796d65b75e6ae7ff8fa8983b1f96fd951ba95b1c274afbc9818ed5cbd2930d7fcb71072fd0e0fba573691e3ecf7773d6fbb9280aaf9c911c0e",
+          "sha256": "dbc2bb04ecb002b9f4046263ccad996f4a3d3c59a0cc98837e300a6700571f7c",
+          "sha1": "08e17601d3bdc8cf57902c154de021931d2c27c1",
+          "md5": "d67e576d60d23d71ed877257641be339"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "okhttp-4.9.0.jar",
+          "url": "okhttp-4.9.0.jar",
+          "size": 791329,
+          "sha512": "7f142bcf9acae0796d65b75e6ae7ff8fa8983b1f96fd951ba95b1c274afbc9818ed5cbd2930d7fcb71072fd0e0fba573691e3ecf7773d6fbb9280aaf9c911c0e",
+          "sha256": "dbc2bb04ecb002b9f4046263ccad996f4a3d3c59a0cc98837e300a6700571f7c",
+          "sha1": "08e17601d3bdc8cf57902c154de021931d2c27c1",
+          "md5": "d67e576d60d23d71ed877257641be339"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "okhttp-4.9.0-javadoc.jar",
+          "url": "okhttp-4.9.0-javadoc.jar",
+          "size": 261,
+          "sha512": "aac44ac9c5df37a49adb08b335286dec964d5efa08759ad06e32545b0ee69616155a43eefbb9c13ab204e7f4aba52342f58306aa59ea3a1dbf911823e0cccae1",
+          "sha256": "29f03ee4f0c1456f71ae8597624fc755a97c260d816d4304c4a1fcbfd53f3585",
+          "sha1": "4ca8d94fa22e52bb3c642affe9a9b1d523af4112",
+          "md5": "888c698b7a10d8938a7ba8d29f1b3a40"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "okhttp-4.9.0-sources.jar",
+          "url": "okhttp-4.9.0-sources.jar",
+          "size": 363135,
+          "sha512": "51b6c90d0124a98b8e80ca983e1f141df6ca3604961224fd2e1f103957afda8769f1c620a4c18533eb9ce463f7e8383ba4013d53b584b6b4d366054b61d2dbf2",
+          "sha256": "a528ee33aa5af370e3294f2e1848a6318b61b3d0551e3c6b0edd1335e71e8d59",
+          "sha1": "bebb4329b442a942e3c549dc538b34da193222f3",
+          "md5": "b03d37433476312e08c3f35ce0e46188"
+        }
+      ]
+    }
+  ]
+}

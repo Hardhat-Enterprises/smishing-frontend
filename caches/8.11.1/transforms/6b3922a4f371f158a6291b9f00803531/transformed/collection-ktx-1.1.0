@@ -1,0 +1,13 @@
+androidx.collection.ArrayMapKt
+androidx.collection.ArraySetKt
+androidx.collection.LongSparseArrayKt
+androidx.collection.LongSparseArrayKt$keyIterator$1
+androidx.collection.LongSparseArrayKt$valueIterator$1
+androidx.collection.LruCacheKt
+androidx.collection.LruCacheKt$lruCache$1
+androidx.collection.LruCacheKt$lruCache$2
+androidx.collection.LruCacheKt$lruCache$3
+androidx.collection.LruCacheKt$lruCache$4
+androidx.collection.SparseArrayKt
+androidx.collection.SparseArrayKt$keyIterator$1
+androidx.collection.SparseArrayKt$valueIterator$1

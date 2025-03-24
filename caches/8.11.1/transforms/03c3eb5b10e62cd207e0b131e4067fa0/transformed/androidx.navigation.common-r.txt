@@ -1,0 +1,23 @@
+androidx.navigation.common
+attr action
+attr argType
+attr destination
+attr enterAnim
+attr exitAnim
+attr launchSingleTop
+attr mimeType
+attr nullable
+attr popEnterAnim
+attr popExitAnim
+attr popUpTo
+attr popUpToInclusive
+attr popUpToSaveState
+attr restoreState
+attr route
+attr startDestination
+attr uri
+styleable NavAction android_id destination enterAnim exitAnim launchSingleTop popEnterAnim popExitAnim popUpTo popUpToInclusive popUpToSaveState restoreState
+styleable NavArgument android_defaultValue android_name argType nullable
+styleable NavDeepLink action android_autoVerify mimeType uri
+styleable NavGraphNavigator startDestination
+styleable Navigator android_id android_label route

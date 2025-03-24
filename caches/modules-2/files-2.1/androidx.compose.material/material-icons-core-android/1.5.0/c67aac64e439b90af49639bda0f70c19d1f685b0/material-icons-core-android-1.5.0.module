@@ -1,0 +1,222 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../material-icons-core/1.5.0/material-icons-core-1.5.0.module",
+    "group": "androidx.compose.material",
+    "module": "material-icons-core",
+    "version": "1.5.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-icons-extended",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-ripple",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "material-icons-core-release.aar",
+          "url": "material-icons-core-android-1.5.0.aar",
+          "size": 717609,
+          "sha512": "da4bee4b670a83a2697c6ec4cb1e8ab190207043f574f790116f26232eb6ae8b8133271a71eb53100027818ded732c45506e44e49da76b1ffb54bdd1c9480539",
+          "sha256": "5616114ff54398e60ab2d2a5d7d823b845fc4165c002bc1120f69f1920f0f1e0",
+          "sha1": "0b37f8b962bcba9e8e191c4bab28bc4fc1ac1489",
+          "md5": "4d3f8e4a5c715bcf642d0f4df7b2fd42"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "version": {
+            "requires": "1.5.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.21"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.8.21"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-icons-extended",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-ripple",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "material-icons-core-release.aar",
+          "url": "material-icons-core-android-1.5.0.aar",
+          "size": 717609,
+          "sha512": "da4bee4b670a83a2697c6ec4cb1e8ab190207043f574f790116f26232eb6ae8b8133271a71eb53100027818ded732c45506e44e49da76b1ffb54bdd1c9480539",
+          "sha256": "5616114ff54398e60ab2d2a5d7d823b845fc4165c002bc1120f69f1920f0f1e0",
+          "sha1": "0b37f8b962bcba9e8e191c4bab28bc4fc1ac1489",
+          "md5": "4d3f8e4a5c715bcf642d0f4df7b2fd42"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-icons-extended",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material-ripple",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "material-icons-core-android-1.5.0-sources.jar",
+          "url": "material-icons-core-android-1.5.0-sources.jar",
+          "size": 245508,
+          "sha512": "14905fd8a0a3e679a92cf0650d82ada3294b49fe27ac7d1a607b0587244b381f4c591f63f5df5c4466a879eada76ee55b1dd2fc1eddc0a41640d6340fdb1a57f",
+          "sha256": "48729ddeaa4270ce03e67a8a017ac6af4fb7ec988496ec87d1a5f9c5957aad4a",
+          "sha1": "0e8bea2a68a490251b0c0c672cbf16bbcac861dc",
+          "md5": "2dfcae2b1db00005e5e62eefdc988de1"
+        }
+      ]
+    }
+  ]
+}

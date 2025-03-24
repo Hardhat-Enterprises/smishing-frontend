@@ -1,0 +1,213 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.compose.runtime",
+    "module": "runtime",
+    "version": "1.5.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidxSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "androidx-multiplatform-docs"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-livedata",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava2",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava3",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-saveable",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "runtime-1.5.0-multiplatform-sources.jar",
+          "url": "runtime-1.5.0-multiplatform-sources.jar",
+          "size": 342172,
+          "sha512": "491fee6a12ad9fcbf9378edd6642f6768b45120fe0706f3bb3831dacf12bb07f1067e5d1c8c27dac67c3e72ff3d4e14899fefa452f0538fe10a088e9afcbd0a0",
+          "sha256": "610c804785875b890fd2ce32e53c2b3cf71fb61b467c9c481785b08c499b1a7c",
+          "sha1": "bac1f9b0c28dba936c1c80d422f0b6053b2f1c73",
+          "md5": "0cf648f3d8813b58959bc52eae63d2bb"
+        }
+      ]
+    },
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-livedata",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava2",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava3",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-saveable",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "runtime-metadata-1.5.0.jar",
+          "url": "runtime-1.5.0.jar",
+          "size": 660,
+          "sha512": "b2f9847ad3b9e240fe027dd4b7bae0977964c709907294254b4906a8a4786c1c7b4d1d191aa7593985c5baac302772dcbf2933dc7173324ab645131182260d53",
+          "sha256": "1dd30ce8cca076140ed92ee748c1d35a4ac46b9da435406e353208a07267996d",
+          "sha1": "b5c589b0e46d99e25aebe48839215aaec925ae55",
+          "md5": "ba41245ca2b526249e40016327115655"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-livedata",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava2",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-rxjava3",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.compose.runtime",
+          "module": "runtime-saveable",
+          "version": {
+            "requires": "1.5.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "runtime-kotlin-1.5.0-sources.jar",
+          "url": "runtime-1.5.0-sources.jar",
+          "size": 321503,
+          "sha512": "b1bf04ba6b15ddf478c096c043ee4066f94e2c22a46d33b42e7a47546badc34a94de145d1a072c4fe5210c894f59ebc1ab1b39434dd8fd5d0ed5c790559afc68",
+          "sha256": "f3f37eeb3a5f874984a854b65c70e7bf75373c95df62d9eba93f244768d91e46",
+          "sha1": "addae3a44c10a9d166cc6f4171ddf3ada120fc60",
+          "md5": "b3e3627307513581e23386c19de0a23a"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../runtime-android/1.5.0/runtime-android-1.5.0.module",
+        "group": "androidx.compose.runtime",
+        "module": "runtime-android",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../runtime-android/1.5.0/runtime-android-1.5.0.module",
+        "group": "androidx.compose.runtime",
+        "module": "runtime-android",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../runtime-android/1.5.0/runtime-android-1.5.0.module",
+        "group": "androidx.compose.runtime",
+        "module": "runtime-android",
+        "version": "1.5.0"
+      }
+    }
+  ]
+}
