@@ -114,6 +114,48 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 />
+            <TextView
+                android:id="@+id/caseStudyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Explore Real-World Case Studies"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/caseStudyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons_rounded"
+                android:padding="12dp"
+                android:text="View Case Studies"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/progressTrackerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Track Your Learning Progress"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/learningProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="50"
+                android:max="100"
+                android:progressTint="@color/baby_blue"
+                android:layout_marginTop="8dp"/>
+
+
+
 
         </LinearLayout>
     </ScrollView>
