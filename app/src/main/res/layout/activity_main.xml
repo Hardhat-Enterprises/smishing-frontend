@@ -237,6 +237,17 @@
             app:layout_constraintTop_toBottomOf="@+id/detections_btn"
             tools:ignore="MissingConstraints" />
 
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/info_icon"
+            app:layout_constraintTop_toBottomOf="@id/information_text"
+            app:layout_constraintStart_toStartOf="@id/information_box"
+            app:layout_constraintEnd_toEndOf="@id/information_box"
+            app:layout_constraintBottom_toBottomOf="@id/information_box"
+            app:srcCompat="@drawable/tick" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
