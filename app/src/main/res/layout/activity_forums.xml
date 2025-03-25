@@ -70,17 +70,28 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
+    <!-- Character Counter TextView -->
+    <TextView
+        android:id="@+id/charCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutTop"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="0/200"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/linearLayoutTop"
+        android:layout_below="@id/charCountTextView"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:clipToPadding="false"
         android:paddingVertical="8dp"
         tools:ignore="NotSibling" />
-
-
 
 </RelativeLayout>

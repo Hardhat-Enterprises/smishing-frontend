@@ -2,6 +2,9 @@ package com.example.smishingdetectionapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter; // ADDED FOR CHARACTER LIMIT
+import android.text.TextWatcher;  // ADDED FOR CHARACTER COUNTER
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ForumActivity extends AppCompatActivity {
+
+    // ADDED FOR CHARACTER LIMIT
+    private static final int MAX_LENGTH = 200;
 
     private List<CommunityPost> posts = new ArrayList<>();
     private CommunityPostAdapter adapter;
@@ -44,10 +50,34 @@ public class ForumActivity extends AppCompatActivity {
         adapter = new CommunityPostAdapter(posts);
         recyclerView.setAdapter(adapter);
 
-
         // Submit new post functionality
         EditText userThoughtsInput = findViewById(R.id.userThoughtsInput);
         Button submitThoughtsButton = findViewById(R.id.submitThoughtsButton);
+
+        // ADDED FOR CHARACTER LIMIT: This restricts input to 200 characters
+        userThoughtsInput.setFilters(new InputFilter[]{
+                new InputFilter.LengthFilter(MAX_LENGTH)
+        });
+
+        // ADDED FOR LIVE CHARACTER COUNTER: Update counter as user types
+        final TextView charCountTextView = findViewById(R.id.charCountTextView);
+        userThoughtsInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed here
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int currentLength = s.length();
+                charCountTextView.setText(currentLength + "/" + MAX_LENGTH);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No action needed here
+            }
+        });
 
         submitThoughtsButton.setOnClickListener(v -> {
             String content = userThoughtsInput.getText().toString().trim();
@@ -59,7 +89,6 @@ public class ForumActivity extends AppCompatActivity {
                 Toast.makeText(this, "Post added successfully!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     // Adapter for RecyclerView
@@ -75,7 +104,8 @@ public class ForumActivity extends AppCompatActivity {
         @Override
         public CommunityPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             // Inflate the updated item layout for community posts (item_community_post.xml)
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_community_post, parent, false);
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_community_post, parent, false);
             return new CommunityPostViewHolder(view);
         }
 
@@ -112,13 +142,11 @@ public class ForumActivity extends AppCompatActivity {
             TextView title;
             TextView content;
             RecyclerView commentsRecyclerView; // Nested RecyclerView for comments
-            EditText addCommentInput; // Input field for new comments
-            Button addCommentButton; // Button to add a new comment
+            EditText addCommentInput;          // Input field for new comments
+            Button addCommentButton;           // Button to add a new comment
 
             public CommunityPostViewHolder(@NonNull View itemView) {
                 super(itemView);
-
-                // Reference the views from the updated item layout
                 title = itemView.findViewById(R.id.post_title);
                 content = itemView.findViewById(R.id.post_content);
                 commentsRecyclerView = itemView.findViewById(R.id.comments_recycler_view);
@@ -141,7 +169,8 @@ public class ForumActivity extends AppCompatActivity {
         @Override
         public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             // Inflate a simple item layout for comments (e.g., item_comment.xml)
-            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(android.R.layout.simple_list_item_1, parent, false);
             return new CommentViewHolder(view);
         }
 
@@ -166,6 +195,4 @@ public class ForumActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
