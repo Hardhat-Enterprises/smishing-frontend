@@ -288,4 +288,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="word_count_format">Words: %1$d/%2$d</string>
+    <string name="feedback_success">Feedback submitted successfully!</string>
+    <string name="feedback_failure">Failed to submit feedback. Please try again.</string>
+    <string name="word_limit_warning">⚠️ Word limit exceeded</string>
+
+
 </resources>
