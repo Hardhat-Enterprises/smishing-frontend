@@ -74,7 +74,7 @@
             android:layout_width="175dp"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
@@ -84,7 +84,7 @@
             android:layout_width="175dp"
             android:layout_height="100dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -96,7 +96,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/buttons_rounded"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
@@ -220,17 +220,19 @@
 
         <Button
             android:id="@+id/learn_more_btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="124dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/buttons_rounded"
-            android:text="Learn More About Smishing"
-            android:textColor="@android:color/black"
+            android:text="@string/learn_more_about_smishing"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detections_btn"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
