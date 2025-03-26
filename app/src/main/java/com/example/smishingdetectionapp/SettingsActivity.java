@@ -1,5 +1,6 @@
 package com.example.smishingdetectionapp;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,14 +65,12 @@ public class SettingsActivity extends AppCompatActivity {
         Button filteringBtn = findViewById(R.id.filteringBtn);
         filteringBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, SmishingRulesActivity.class));
-            finish();
         });
 
         // Report button to switch to reporting page
         Button reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ReportingActivity.class));
-            finish();
         });
         //Notification button to switch to notification page
 
@@ -79,7 +78,6 @@ public class SettingsActivity extends AppCompatActivity {
         Button helpBtn = findViewById(R.id.helpBtn);
         helpBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, HelpActivity.class));
-            finish();
         });
 
         // About Me button to switch to AboutMeActivity
@@ -107,13 +105,11 @@ public class SettingsActivity extends AppCompatActivity {
         Button feedbackBtn = findViewById(R.id.feedbackBtn);
         feedbackBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, FeedbackActivity.class));
-            finish();
         });
         //Forum Button to switch to Forum page
         Button forumBtn = findViewById(R.id.forumBtn);
         forumBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ForumActivity.class));
-            finish();
         });
     }
     // Trigger biometric authentication with timeout
@@ -197,5 +193,6 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificationActivity.class);
         startActivity(intent);
     }
+
 }
 

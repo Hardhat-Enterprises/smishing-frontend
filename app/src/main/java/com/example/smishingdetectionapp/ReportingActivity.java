@@ -5,6 +5,8 @@ import com.google.android.gms.tasks.Task;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -123,6 +125,7 @@ public class ReportingActivity extends SharedActivity {
         phonenumber.addTextChangedListener(afterTextChangedListener);
         message.addTextChangedListener(afterTextChangedListener);
     }
+
 
     // Helper function to validate phone number
     private boolean isValidPhoneNumber(String phoneNumber) {

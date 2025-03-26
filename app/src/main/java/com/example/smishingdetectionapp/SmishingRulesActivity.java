@@ -1,5 +1,6 @@
 package com.example.smishingdetectionapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -31,4 +32,5 @@ public class SmishingRulesActivity extends SharedActivity {
         });
 
     }
+
 }

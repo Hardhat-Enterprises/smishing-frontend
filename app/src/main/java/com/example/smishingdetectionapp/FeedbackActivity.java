@@ -1,5 +1,6 @@
 package com.example.smishingdetectionapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,7 +12,11 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class FeedbackActivity extends AppCompatActivity {
 
@@ -76,4 +81,5 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
     }
+
 }

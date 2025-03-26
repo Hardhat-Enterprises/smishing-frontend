@@ -1,5 +1,6 @@
 package com.example.smishingdetectionapp.detections;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +31,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.smishingdetectionapp.EducationActivity;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -211,4 +213,5 @@ public class DetectionsActivity extends AppCompatActivity {
         });
 
     }
+
 }
