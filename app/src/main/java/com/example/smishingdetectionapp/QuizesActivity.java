@@ -3,6 +3,7 @@ package com.example.smishingdetectionapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -15,7 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuizesActivity extends AppCompatActivity {
-
 
     class Question {
         String questionText;
@@ -34,7 +34,6 @@ public class QuizesActivity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private int score = 0;
 
-
     private TextView questionTextView;
     private RadioGroup optionsGroup;
     private Button nextButton;
@@ -44,40 +43,36 @@ public class QuizesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        // 1) Find the custom back button and set its click listener
+        ImageButton quizBackButton = findViewById(R.id.quiz_back);
+        quizBackButton.setOnClickListener(v -> {
+            // This calls the system back behavior
+            onBackPressed();
+        });
+
         questionTextView = findViewById(R.id.questionText);
         optionsGroup = findViewById(R.id.optionsGroup);
         nextButton = findViewById(R.id.nextButton);
 
-
         initializeQuestionBank();
-
-
         Collections.shuffle(questionBank);
 
-
         userAnswers = new ArrayList<>(Collections.nCopies(questionBank.size(), -1));
-
-
         displayQuestion();
 
-
         nextButton.setOnClickListener(v -> {
-
             int selectedOptionId = optionsGroup.getCheckedRadioButtonId();
             if (selectedOptionId == -1) {
                 Toast.makeText(this, "Please select an answer before proceeding!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-
             int selectedOptionIndex = optionsGroup.indexOfChild(findViewById(selectedOptionId));
             userAnswers.set(currentQuestionIndex, selectedOptionIndex);
-
 
             if (selectedOptionIndex == questionBank.get(currentQuestionIndex).correctOptionIndex) {
                 score++;
             }
-
 
             currentQuestionIndex++;
             if (currentQuestionIndex < questionBank.size()) {
@@ -98,19 +93,16 @@ public class QuizesActivity extends AppCompatActivity {
     }
 
     private void displayQuestion() {
-
         optionsGroup.clearCheck();
         optionsGroup.removeAllViews();
-
 
         Question currentQuestion = questionBank.get(currentQuestionIndex);
         questionTextView.setText((currentQuestionIndex + 1) + ". " + currentQuestion.questionText);
 
-
         for (int i = 0; i < currentQuestion.options.length; i++) {
             RadioButton optionButton = new RadioButton(this);
             optionButton.setText(currentQuestion.options[i]);
-            optionButton.setId(i); // Set unique ID for each option
+            optionButton.setId(i);
             optionsGroup.addView(optionButton);
         }
     }
@@ -119,7 +111,6 @@ public class QuizesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuizResultActivity.class);
         intent.putExtra("score", score);
         intent.putExtra("totalQuestions", questionBank.size());
-
 
         ArrayList<String> questions = new ArrayList<>();
         ArrayList<String[]> options = new ArrayList<>();
