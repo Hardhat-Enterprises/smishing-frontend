@@ -1,6 +1,5 @@
 package com.example.smishingdetectionapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,8 +22,8 @@ public class FeedbackActivity extends AppCompatActivity {
         // Initialize the back button to go back to the previous screen
         ImageButton report_back = findViewById(R.id.feedback_back);
         report_back.setOnClickListener(v -> {
-                    startActivity(new Intent(this, SettingsActivity.class));
-                    finish();
+            // Instead of launching SettingsActivity, simply finish() to return to the previous screen
+            finish();
         });
 
         // Initialize input fields and submit button
@@ -63,7 +62,7 @@ public class FeedbackActivity extends AppCompatActivity {
             String feedback = feedbackInput.getText().toString();
             float rating = ratingBar.getRating();
 
-            // Simulating feedback submission (You can replace this with actual database or API code)
+            // Simulating feedback submission (Replace this with your actual database or API code)
             boolean isInserted = DatabaseAccess.sendFeedback(name, feedback, rating);
             if (isInserted) {
                 // Clear input fields after successful submission
