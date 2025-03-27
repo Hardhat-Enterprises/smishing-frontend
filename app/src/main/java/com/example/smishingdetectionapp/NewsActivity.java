@@ -1,7 +1,9 @@
 package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.NetworkCapabilities;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,7 +28,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity implements SelectListener{
+public class NewsActivity extends SharedActivity implements SelectListener{
     RecyclerView recyclerView;
     NewsAdapter adapter;
     NewsRequestManager manager;
@@ -65,42 +69,68 @@ public class NewsActivity extends AppCompatActivity implements SelectListener{
         });
 
 
-            // Initialize ProgressBar and set it visible before fetching data
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.VISIBLE);
+        // Initialize ProgressBar and set it visible before fetching data
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
-            // Initialize NewsRequestManager and fetch RSS feed data
-            manager = new NewsRequestManager(this);
-            manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
-                @Override
-                public void onFetchData(List<RSSFeedModel.Article> list, String message) {
-                    showNews(list);
-                    progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
-                }
+        // Initialize NewsRequestManager and fetch RSS feed data
+        manager = new NewsRequestManager(this);
+        manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
+            @Override
+            public void onFetchData(List<RSSFeedModel.Article> list, String message) {
+                showNews(list);
+                progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
+            }
 
-                @Override
-                public void onError(String message) {
-                    errorMessage.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
-                }
+            @Override
+            public void onError(String message) {
+                errorMessage.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
+            }
 
-                // Method to display the fetched news articles in the RecyclerView
-                private void showNews(List<RSSFeedModel.Article> list) {
-                    recyclerView = findViewById(R.id.news_recycler_view);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
-                    adapter = new NewsAdapter(list, NewsActivity.this); // Corrected this reference
-                    recyclerView.setAdapter(adapter);
-                }
-            });
-            
+            // Method to display the fetched news articles in the RecyclerView
+            private void showNews(List<RSSFeedModel.Article> list) {
+                recyclerView = findViewById(R.id.news_recycler_view);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
+                adapter = new NewsAdapter(list, NewsActivity.this); // Corrected this reference
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
         // Set up the refresh button click listener
         refreshButton.setOnClickListener(v -> {
-            loadData(); // Reload the data when the refresh button is pressed
+            if (isNetworkConnected()) {
+                // Toast.makeText(this, "Connected to Wi-Fi or Mobile Data", Toast.LENGTH_SHORT).show();
+                loadData();
+            } else {
+                Toast.makeText(this, "You Have Lost Network Connection", Toast.LENGTH_SHORT).show();
+            }
         });
-        }
+
+    }
 
     // This is for the refresh button
+    private boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivityManager != null) {
+            NetworkCapabilities capabilities =
+                    connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+
+            if (capabilities != null) {
+                // Check for both Wi-Fi and Mobile Data transport capabilities
+                return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
+            }
+        }
+        return false; // No network connection
+    }
+
+
+
+
     private void loadData() {
         progressBar.setVisibility(View.VISIBLE);
         manager = new NewsRequestManager(this);

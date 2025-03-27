@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Post Title -->
+    <TextView
+        android:id="@+id/post_title"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Post Content -->
+    <TextView
+        android:id="@+id/post_content"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/content" />
+
+    <!-- Comments Section -->
+    <TextView
+        android:id="@+id/comments_label"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/community_comments"
+        android:textStyle="bold" />
+
+    <!-- List of Comments -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:layout_marginTop="8dp" />
+
+    <!-- Add Comment Input -->
+    <EditText
+        android:id="@+id/add_comment_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_community_comment"
+        android:layout_marginTop="12dp"
+        android:inputType="text"
+        android:autofillHints="none" />
+
+    <!-- Submit Comment Button -->
+    <Button
+        android:id="@+id/add_comment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/navy_blue"
+        android:text="@string/submit_community_comment"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

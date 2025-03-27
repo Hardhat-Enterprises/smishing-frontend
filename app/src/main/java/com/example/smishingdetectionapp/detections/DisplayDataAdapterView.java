@@ -32,8 +32,6 @@ public class DisplayDataAdapterView extends CursorAdapter {
         TextView MessageTextView = view.findViewById(R.id.detectionMessageText);
         TextView DateTextView = view.findViewById(R.id.detectionDateText);
 
-        int _id =
-                cursor.getColumnIndex(DatabaseAccess.DatabaseOpenHelper.KEY_ROWID);
         int Phone_Number =
                 cursor.getColumnIndex(DatabaseAccess.DatabaseOpenHelper.KEY_PHONENUMBER);
         int Message =

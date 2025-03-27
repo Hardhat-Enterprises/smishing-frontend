@@ -35,9 +35,9 @@ public class PopupPW extends DialogFragment {
         View v = inflater.inflate(R.layout.popup_password, container, false);
 
         // Initialize UI elements
-        editTextCurrentPassword = v.findViewById(R.id.editTextTextPassword);
-        editTextNewPassword = v.findViewById(R.id.editTextTextPassword2);
-        editTextConfirmPassword = v.findViewById(R.id.editTextTextPassword3);
+        editTextCurrentPassword = v.findViewById(R.id.editTextTextCurrentPassword);
+        editTextNewPassword = v.findViewById(R.id.editTextTextPassword);
+        editTextConfirmPassword = v.findViewById(R.id.editTextTextPassword2);
         changePW = v.findViewById(R.id.change_pwBtn);
 
         // Get the arguments to determine the mode

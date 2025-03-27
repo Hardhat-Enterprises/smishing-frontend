@@ -10,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SmishingRulesActivity extends AppCompatActivity {
+public class SmishingRulesActivity extends SharedActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

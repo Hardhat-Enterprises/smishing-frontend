@@ -1,69 +1,103 @@
 package com.example.smishingdetectionapp.ui.account;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
-import androidx.annotation.Nullable;
-
+import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.ui.login.LoginActivity;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class PopupDEL extends BottomSheetDialogFragment {
+import java.util.Calendar;
+import java.util.Date;
 
+public class PopupDEL extends AppCompatActivity {
 
-    @Override //onCreateView defines the fragment view activity
-    public View onCreateView(LayoutInflater inflater, @Nullable
-    ViewGroup container, @Nullable Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.popup_delete_account,
-                container, false);
+    private EditText passwordEditText;
+    private Button confirmDelYesBtn, confirmDelNoBtn;
 
-        //Action for when Yes to delete account is clicked
-        Button del_accYes = v.findViewById(R.id.confirmDelYesBtn);//defining the button
-        del_accYes.setOnClickListener(v1 -> {
-            Intent intent = new Intent(getContext(), LoginActivity.class);//switches to login page
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.popup_delete_account);
+
+        passwordEditText = findViewById(R.id.del_accPW);
+        confirmDelYesBtn = findViewById(R.id.confirmDelYesBtn);
+        confirmDelNoBtn = findViewById(R.id.confirmDelNoBtn);
+
+        confirmDelNoBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(com.example.smishingdetectionapp.ui.account.PopupDEL.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            dismiss();//closes the popup page
-            Toast.makeText(getContext(), "Account successfully deleted.", Toast.LENGTH_LONG).show();
+            finish();
         });
 
-        //Action for cancelling the account delete
-        Button del_accNo = v.findViewById(R.id.confirmDelNoBtn);
-        del_accNo.setOnClickListener(v1 -> {
-            dismiss();
-        });
+        confirmDelYesBtn.setOnClickListener(view -> handleAccountDeletion());
 
-        //Listener for the text boxes. listens for whether they have contents or not.
-        final EditText del_accPW = v.findViewById(R.id.del_accPW);
-        TextWatcher afterTextChangedListener = new TextWatcher() {
+        passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                String userPW = del_accPW.getText().toString();
-                //enables the account delete confirm button when text is entered.
-                del_accYes.setEnabled(!userPW.isEmpty());
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                confirmDelYesBtn.setEnabled(!TextUtils.isEmpty(s));
             }
-        };
-        del_accPW.addTextChangedListener(afterTextChangedListener);
+        });
+    }
 
-        return v;
+    private void handleAccountDeletion() {
+        String enteredPassword = passwordEditText.getText().toString();
+
+        if (TextUtils.isEmpty(enteredPassword)) {
+            Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (isPasswordValid(enteredPassword)) {
+            disableAccountFor30Days();
+        } else {
+            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isPasswordValid(String password) {
+        String storedPassword = getStoredPassword(); // Get the stored password (you can set a mock password)
+        return password.equals(storedPassword); // Compare with the entered password
+    }
+    private String getStoredPassword() {
+        return "userPassword"; // Placeholder: Replace this with actual stored password or DB retrieval logic
+    }
+
+    private void disableAccountFor30Days() {
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_MONTH, 30);
+        Date deletionDate = calendar.getTime();
+
+        saveAccountStatus("disabled");
+        saveDeletionDate(deletionDate);
+
+        Toast.makeText(this, "Account will be deleted on " + deletionDate, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(com.example.smishingdetectionapp.ui.account.PopupDEL.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void saveAccountStatus(String status) {
+        // Placeholder for saving account status in the database
+    }
+
+    private void saveDeletionDate(Date deletionDate) {
+        // Placeholder for saving the deletion date in the database
     }
 }

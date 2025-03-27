@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/report_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_button" />
+
+
+            <ImageView
+                android:id="@+id/HardhatLogo"
+                android:layout_width="112dp"
+                android:layout_height="106dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/hardhat_logo" />
+
+            <TextView
+                android:id="@+id/ReportText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/help_page"
+                android:textColor="@color/navy_blue"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+
+            <RelativeLayout
+                android:id="@+id/rv_2"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/counter_buttons"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ReportText">
+
+                <ImageView
+                    android:id="@+id/iv_phone"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/circle_background"
+                    android:padding="10dp"
+                    android:src="@drawable/phone_icon" />
+
+                <TextView
+                    android:id="@+id/new_detections"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_phone"
+                    android:layout_alignTop="@id/iv_phone"
+                    android:layout_alignBottom="@id/rv_2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Call Us"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="NotSibling" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/counter_buttons"
+                app:layout_constraintBottom_toBottomOf="@+id/rv_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/rv_2">
+
+                <ImageView
+                    android:id="@+id/iv_email"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/circle_background"
+                    android:padding="10dp"
+                    android:src="@drawable/email_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_email"
+                    android:layout_alignTop="@id/iv_email"
+                    android:layout_alignBottom="@id/rv_2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Mail Us"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="NotSibling" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_3"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/counter_buttons"
+                app:layout_constraintEnd_toEndOf="@+id/rv_1"
+                app:layout_constraintStart_toStartOf="@+id/rv_2"
+                app:layout_constraintTop_toBottomOf="@+id/rv_2">
+
+                <ImageView
+                    android:id="@+id/iv_faq"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/circle_background"
+                    android:padding="10dp"
+                    android:src="@drawable/faq_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_faq"
+                    android:layout_alignTop="@id/iv_faq"
+                    android:layout_alignBottom="@id/rv_2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="FAQ"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="NotSibling" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rv_4"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/counter_buttons"
+                app:layout_constraintEnd_toEndOf="@+id/rv_3"
+                app:layout_constraintStart_toStartOf="@+id/rv_3"
+                app:layout_constraintTop_toBottomOf="@+id/rv_3">
+
+                <ImageView
+                    android:id="@+id/iv_feedback"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/circle_background"
+                    android:padding="10dp"
+                    android:src="@drawable/feedback_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_feedback"
+                    android:layout_alignTop="@id/iv_feedback"
+                    android:layout_alignBottom="@id/rv_2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Feedback"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="NotSibling" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/box1"
+                android:layout_width="0dp"
+                android:layout_height="210dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/buttons_rounded"
+                android:gravity="top|start"
+                android:text="@string/what_is_the_app_for"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ReportText"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/box2"
+                android:layout_width="0dp"
+                android:layout_height="210dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/buttons_rounded"
+                android:gravity="top|start"
+                android:text="How to use the app?"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/box1"
+                tools:ignore="HardcodedText,RtlCompat" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50121653" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="87dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

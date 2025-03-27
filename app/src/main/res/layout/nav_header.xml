@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+    android:background="@color/baby_blue"
+    android:padding="16dp"
+    android:gravity="bottom">
+
+    <ImageView
+        android:id="@+id/header_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/hardhat_logo"
+        android:layout_gravity="center"
+        android:contentDescription="Header Logo" />
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Hardhat"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pnTitle"
                 android:textColor="@color/navy_blue"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,7 +51,19 @@
             android:layout_height="wrap_content"
             android:text="@string/msgTitle"
             android:textColor="@color/navy_blue"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="end"
+            android:text="Delete"
+            android:backgroundTint="@color/red"
+            android:textColor="@android:color/white" />
+
 
         <TextView
             android:id="@+id/detectionMessageText"
@@ -76,7 +89,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dateTitle"
                 android:textColor="@color/navy_blue"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
 
             <TextView
                 android:id="@+id/detectionDateText"

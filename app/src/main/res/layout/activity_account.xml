@@ -8,6 +8,19 @@
     tools:context=".ui.account.AccountActivity">
 
     <Button
+        android:id="@+id/buttonSessionTimeout2"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/session_timeoutBtn"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dark_modeBtn" />
+
+    <Button
         android:id="@+id/passwordBtn"
         android:layout_width="175dp"
         android:layout_height="100dp"
@@ -76,13 +89,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/account_page"
+        android:textColor="@color/navy_blue"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
-        android:textColor="@color/navy_blue"/>
+        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
     <ImageButton
         android:id="@+id/account_back"
@@ -116,10 +129,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@color/navy_blue"
         app:layout_constraintBottom_toTopOf="@+id/account_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/navy_blue"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSignOut"
@@ -134,6 +147,20 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pinBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/pin_changeBtn"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

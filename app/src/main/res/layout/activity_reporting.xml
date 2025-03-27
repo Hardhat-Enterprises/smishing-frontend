@@ -16,6 +16,7 @@
         android:autofillHints="Smishing Message"
         android:gravity="top|start"
         android:inputType="text"
+        android:maxLength="255"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:autofillHints="Phone Number"
+        android:hint="e.g +61435992164 or +3553211165"
+        android:maxLength="15"
         android:ems="10"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,4 +107,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
+
+    <ImageButton
+        android:id="@+id/report_menu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

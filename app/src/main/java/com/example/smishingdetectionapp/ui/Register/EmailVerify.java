@@ -80,6 +80,7 @@ public class EmailVerify extends AppCompatActivity {
         verificationCodeInput = findViewById(R.id.verifytext);
         verifyButton = findViewById(R.id.confirmBtn);
 
+        /*
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +100,17 @@ public class EmailVerify extends AppCompatActivity {
                 }
             }
         });
+         */
+
+        // Bypass the email verification for testing purposes
+        verifyButton.setOnClickListener(v -> {
+            // Show a message indicating the verification is skipped
+            Snackbar.make(binding.getRoot(), "Email verified successfully (bypassed for testing).", Snackbar.LENGTH_LONG).show();
+            completeSignup();  // Proceed with signup
+        });
     }
 
+    /*
     private void completeSignup() {
         HashMap<String, String> map = new HashMap<>();
         map.put("FullName", fullName);
@@ -130,4 +140,16 @@ public class EmailVerify extends AppCompatActivity {
             }
         });
     }
+
+     */
+    // Bypassing verification for testing purposes
+    private void completeSignup() {
+        // Directly simulate a successful signup
+        Snackbar.make(binding.getRoot(), "Registration successful (bypassed).", Snackbar.LENGTH_LONG).show();
+
+        // After successful registration, navigate to MainActivity
+        Intent intent = new Intent(EmailVerify.this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

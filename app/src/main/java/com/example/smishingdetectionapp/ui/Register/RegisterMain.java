@@ -1,13 +1,10 @@
 package com.example.smishingdetectionapp.ui.Register;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.smishingdetectionapp.BuildConfig;
 import com.example.smishingdetectionapp.DataBase.Retrofitinterface;
 import com.example.smishingdetectionapp.DataBase.SignupResponse;
-
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.TermsAndConditionsActivity;
 import com.example.smishingdetectionapp.databinding.ActivitySignupBinding;
@@ -30,14 +26,15 @@ import java.util.regex.Pattern;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterMain extends AppCompatActivity {
 
+    private static final int TERMS_REQUEST_CODE = 1001;  // Unique request code for terms acceptance
     private ActivitySignupBinding binding;
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
@@ -47,56 +44,65 @@ public class RegisterMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Set up view binding
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Initialize Retrofit
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         retrofitinterface = retrofit.create(Retrofitinterface.class);
 
-        ImageButton imageButton = findViewById(R.id.signup_back);
-        imageButton.setOnClickListener(v -> {
+        // Set up back button
+        ImageButton backButton = findViewById(R.id.signup_back);
+        backButton.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
+        // Link Terms and Conditions
         TextView termsTextView = findViewById(R.id.terms_conditions);
         termsTextView.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterMain.this, TermsAndConditionsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, TERMS_REQUEST_CODE);
         });
 
-        CheckBox termsCheckbox = findViewById(R.id.terms_conditions_checkbox);
+        // Set up register button
         Button registerButton = findViewById(R.id.registerBtn);
         registerButton.setEnabled(false);
 
-        termsCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            registerButton.setEnabled(isChecked);
-        });
+        // Set up registration logic
+        registerButton.setOnClickListener(v -> {
+            String fullName = binding.fullNameInput.getText().toString();
+            String phoneNumber = binding.pnInput.getText().toString();
+            String email = binding.emailInput.getText().toString();
+            String password = binding.pwInput.getText().toString();
 
-        binding.registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fullName = binding.fullNameInput.getText().toString();
-                String phoneNumber = binding.pnInput.getText().toString();
-                String email = binding.emailInput.getText().toString();
-                String password = binding.pwInput.getText().toString();
-
-                HashMap<String, String> map = new HashMap<>();
-
-                if (validateInput(fullName, phoneNumber, email, password)) {
-                    validateAndCheckEmail(fullName, phoneNumber, email, password);
-                }
+            if (validateInput(fullName, phoneNumber, email, password)) {
+                validateAndCheckEmail(fullName, phoneNumber, email, password);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Check if we are handling the result from the Terms and Conditions activity
+        if (requestCode == TERMS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Terms accepted, enable the register button
+                Button registerButton = findViewById(R.id.registerBtn);
+                registerButton.setEnabled(true);
+            }
+        }
+    }
+
     private String generateVerificationCode() {
         Random random = new Random();
-        int code = 100000 + random.nextInt(900000); // Generates a random 6-digit code
+        int code = 100000 + random.nextInt(900000); // Generate a random 6-digit code
         return String.valueOf(code);
     }
 
@@ -133,93 +139,88 @@ public class RegisterMain extends AppCompatActivity {
             Snackbar.make(binding.getRoot(), "Passwords do not match.", Snackbar.LENGTH_LONG).show();
             return false;
         }
-
         if (!password.matches(".*\\d.*")) {
-            Snackbar.make(binding.getRoot(), "Please add number to password", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Password must include a number.", Snackbar.LENGTH_LONG).show();
             return false;
         }
-
         if (!password.matches(".*[A-Z].*")) {
-            Snackbar.make(binding.getRoot(), "Please add Upper case to password", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Password must include an uppercase letter.", Snackbar.LENGTH_LONG).show();
             return false;
         }
-
         if (!password.matches(".*[a-z].*")) {
-            Snackbar.make(binding.getRoot(), "Please add lower case to password", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Password must include a lowercase letter.", Snackbar.LENGTH_LONG).show();
             return false;
         }
-
         if (!password.matches(".*[!@#$%^&*+=?-].*")) {
-            Snackbar.make(binding.getRoot(), "Please add special character to password ", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Password must include a special character.", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
         return true;
     }
+
+    /*
     private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
-        if (isValidEmailAddress(email)) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("email", email);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("email", email);
 
-            // Step 2: Check if the email exists in the database via an API call
-            Call<SignupResponse> call = retrofitinterface.checkEmail(map);
-            call.enqueue(new Callback<SignupResponse>() {
-                @Override
-                public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
-                    if (response.isSuccessful()) {
-                        // Email does not exist, proceed with verification
-                        String verificationCode = generateVerificationCode(); // Generate the 6-digit code
-                        sendVerificationEmail(email, verificationCode); // Send email
+        Call<SignupResponse> call = retrofitinterface.checkEmail(map);
+        call.enqueue(new Callback<SignupResponse>() {
+            @Override
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                if (response.isSuccessful()) {
+                    String verificationCode = generateVerificationCode();
+                    sendVerificationEmail(email, verificationCode);
 
-                        map.put("Code", verificationCode);
-                        // Navigate to the EmailVerify page with the email and verification code
-                        Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
-                        intent.putExtra("fullName", fullName);
-                        intent.putExtra("phoneNumber", phoneNumber);
-                        intent.putExtra("email", email);
-                        intent.putExtra("password", password);
-                        intent.putExtra("code", verificationCode);
-                        startActivity(intent);
-
-
-                    } else if (response.code() == 409) {
-                        // Email already exists
-                        Snackbar.make(binding.getRoot(), "Email already exists.", Snackbar.LENGTH_LONG).show();
-
-                    } else {
-                        // Some other error
-                        Snackbar.make(binding.getRoot(), "Error checking email. Please try again.", Snackbar.LENGTH_LONG).show();
-
-                    }
+                    Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
+                    intent.putExtra("fullName", fullName);
+                    intent.putExtra("phoneNumber", phoneNumber);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    intent.putExtra("code", verificationCode);
+                    startActivity(intent);
+                } else if (response.code() == 409) {
+                    Snackbar.make(binding.getRoot(), "Email already exists.", Snackbar.LENGTH_LONG).show();
+                } else {
+                    Snackbar.make(binding.getRoot(), "Error checking email. Please try again.", Snackbar.LENGTH_LONG).show();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<SignupResponse> call, Throwable t) {
-                    Snackbar.make(binding.getRoot(), "Network error. Please try again.", Snackbar.LENGTH_LONG).show();
-                }
-            });
-        } else {
-            Snackbar.make(binding.getRoot(), "Invalid email address.", Snackbar.LENGTH_LONG).show();
-        }
+            @Override
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
+                Snackbar.make(binding.getRoot(), "Network error. Please try again.", Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
+     */
+    // Bypassing verification for testing purposes
+    private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
+        // Instead of calling the server, simulate a successful email check
+        String verificationCode = generateVerificationCode();
+
+        // Simulate sending the verification code via email
+        sendVerificationEmail(email, verificationCode);
+
+        // Skip the network call and directly navigate to the email verification screen
+        Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
+        intent.putExtra("fullName", fullName);
+        intent.putExtra("phoneNumber", phoneNumber);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+        intent.putExtra("code", verificationCode);
+        startActivity(intent);
+    }
+
+
     private boolean isValidEmailAddress(String email) {
-
-
-        boolean result = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
             emailAddr.validate();
 
-            String emailPattern = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*"
-                    + "@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-
-            if (!Pattern.matches(emailPattern, email) || email.contains("..") || email.startsWith(".") || email.endsWith(".")) {
-                result = false;
-            }
+            String emailPattern = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+            return Pattern.matches(emailPattern, email) && !email.contains("..") && !email.startsWith(".") && !email.endsWith(".");
         } catch (AddressException ex) {
-            result = false;
+            return false;
         }
-
-        return result;
     }
 }

@@ -16,9 +16,10 @@
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
-        app:itemActiveIndicatorStyle="@android:color/transparent"
         android:theme="@style/Theme.SmishingDetectionApp"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,15 +31,16 @@
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="75dp"
+            android:layout_marginBottom="124dp"
             android:background="@drawable/buttons_rounded"
-            android:text="@string/detectionsBtn"
-            android:textSize="20sp"
             android:drawableLeft="@drawable/bell_svg"
             android:paddingStart="105dp"
             android:paddingEnd="125dp"
+            android:text="@string/detectionsBtn"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -71,8 +73,8 @@
             android:id="@+id/new_detections"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
@@ -81,8 +83,8 @@
             android:id="@+id/total_detections"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -93,13 +95,15 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="200dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/buttons_rounded"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/new_counter"
@@ -213,6 +217,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/learn_more_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Learn More About Smishing"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detections_btn"
+            tools:ignore="MissingConstraints" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

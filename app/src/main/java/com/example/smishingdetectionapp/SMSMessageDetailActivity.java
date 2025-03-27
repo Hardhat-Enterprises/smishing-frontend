@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.sms.model.SMSMessage;
 
-public class SMSMessageDetailActivity extends AppCompatActivity {
+public class SMSMessageDetailActivity extends SharedActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

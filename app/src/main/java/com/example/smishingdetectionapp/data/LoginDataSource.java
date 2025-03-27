@@ -26,4 +26,11 @@ public class LoginDataSource {
     public void logout() {
         // TODO: revoke authentication
     }
+    private String storedPin = "123456"; // replace with secure storage
+    public boolean verifyPin(String pin) {
+        return storedPin.equals(pin);
+    }
+    public void savePin(String pin) {
+        storedPin = pin;
+    }
 }

@@ -1,4 +1,8 @@
 <resources>
+    <!-- Existing strings -->
+    <string name="back">Back</string>
+    <string name="back_button_description">Back</string>
+    <string name="continue_button">Continue</string>
     <string name="app_name">Smishing Detection</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,6 +16,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="toggle_password_visibility">Toggle password visibility</string>
     <string name="action_login_in">Login</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -21,6 +26,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="logo_description">App Logo</string>
+    <string name="chat_assistant_btn">Chat Assistant</string>
+    <string name="chat_assistant_page">Chat Assistant</string>
 
     <!-- Error messages -->
     <string name="no_network_message">No available network. Please check your internet connection or try again later</string>
@@ -29,6 +36,7 @@
     <string name="login_page">Login</string>
     <string name="detections_str">Detections</string>
     <string name="menu_news">News</string>
+    <string name="play_alert_text">Play Alert Text</string>
     <string name="menu_Cyber_news">ACCC Scamwatch News</string>
     <string name="menu_settings">Settings</string>
     <string name="account_page">Account</string>
@@ -50,6 +58,39 @@
     <string name="dark_modeBtn">Dark mode</string>
     <string name="delete_accountBtn">Delete account</string>
     <string name="sign_outBtn">Sign out</string>
+    <string name="session_timeoutBtn">Session Timeout</string>
+    <string name="pin_changeBtn">Pin</string>
+
+    <string name="terms_and_conditions">
+    &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+
+    &lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; The app is provided on an as is basis, with no guarantees of accuracy or availability.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; You are responsible for ensuring you use the services in accordance with applicable laws.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; Unauthorized reproduction, modification, or distribution of this app or its content is strictly prohibited.&lt;br/&gt;
+    &lt;b&gt;5.&lt;/b&gt; We reserve the right to modify or discontinue the app without notice.&lt;br/&gt;
+    &lt;b&gt;6.&lt;/b&gt; We respect your privacy and commit to protecting your data as per the privacy policy outlined herein.&lt;br/&gt;
+    &lt;b&gt;7.&lt;/b&gt; Your personal data will only be used for purposes that you have explicitly agreed to.&lt;br/&gt;
+    &lt;b&gt;8.&lt;/b&gt; Any disputes arising from the use of this app will be subject to the jurisdiction of [Your Location].&lt;br/&gt;&lt;br/&gt;
+
+    &lt;b&gt;PRIVACY POLICY&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+
+    &lt;b&gt;1.&lt;/b&gt; We collect data to enhance your experience and improve our services.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; Your data will never be sold or shared with third parties without your consent, except as required by law.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; Cookies may be used to personalize content and ads.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; By continuing to use the app, you consent to our use of cookies.&lt;br/&gt;&lt;br/&gt;
+
+    &lt;b&gt;DISCLAIMER&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+
+    &lt;b&gt;1.&lt;/b&gt; This app is provided as-is without any warranties of any kind.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; We do not guarantee uninterrupted or error-free use of the app.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; We are not liable for any damages resulting from the use of this app.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; Always use caution when interacting with unknown parties through the app.&lt;br/&gt;&lt;br/&gt;
+
+    Please scroll to the bottom to continue.
+</string>
+
+
 
     <!-- Password Change Window Strings -->
     <string name="change_password_page">Change Password</string>
@@ -101,12 +142,14 @@
 
     <!-- Register Page Strings -->
     <string name="name_label">Full Name</string>
+    <string name="pin_label">Pin</string>
     <string name="email_label">Email</string>
+    <string name="Pin_label">Pin</string>
     <string name="pn_register_label">Phone Number</string>
     <string name="pw_register_label">Password</string>
     <string name="pw2_register_label">Confirm Password</string>
     <string name="register_btn">Register</string>
-    <string name="terms_and_conditions">View Terms and Conditions</string>
+    <string name="view_terms_and_conditions">Click here to accept the terms and complete registration.</string>
     <string name="agree_terms_and_conditions">I agree to the terms and conditions</string>
 
     <!-- Detection Page Strings -->
@@ -118,7 +161,7 @@
     <string name="new_icon">info</string>
     <string name="time_icon">info</string>
 
-    <!--Notification Page Strings-->
+    <!-- Notification Page Strings -->
     <string name="notification_header">Notifications</string>
     <string name="news_notification_title">News Updates</string>
     <string name="smishing_detection_notification_title">Smishing Detections</string>
@@ -156,69 +199,92 @@
     <string name="what_is_the_app_for">What is the app for?</string>
     <string name="how_to_use_the_app">how_to_use_the_app?</string>
 
-    <!-- Settings Activity Title EXAMPLE-->
+    <!-- Settings Activity Title EXAMPLE -->
     <string name="title_activity_settings">SettingsActivity</string>
 
-    <!-- Preference Titles EXAMPLE-->
+    <!-- Preference Titles EXAMPLE -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
 
-    <!-- Messages Preferences EXAMPLE-->
+    <!-- Messages Preferences EXAMPLE -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
 
-    <!-- Sync Preferences EXAMPLE-->
+    <!-- Sync Preferences EXAMPLE -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_signup">SignupActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- News Page Strings -->
-    <string name="api_key">a882bbf5f21b40a3b145509fe1f58e33</string>
+
+
+    <!-- Added strings -->
+    <string name="terms_and_conditions_content">Your terms and conditions content here.</string>
+    <string name="helpful">Helpful</string>
+    <string name="not_helpful">Not Helpful</string>
+
+    <!-- Missing strings -->
+    <string name="phone_label">Phone Number</string>
     <string name="refresh">Refresh</string>
-    <string name="click_to_read_more">Click to Read More</string>
-
-    <!-- SMS Page Strings -->
+    <string name="empty_sms">No SMS messages found</string>
     <string name="message_details">Message Details</string>
-    <string name="message_sender">Message Sender</string>
+    <string name="message_sender">Sender</string>
     <string name="message_body">Message Body</string>
-    <string name="dummy_smishing_report">This SMS message contains some text that might indicate it is a scam! Please beware!</string>
-    <string name="empty_sms">There are no SMS messages.</string>
 
-    <!-- Terms and Conditions Content -->
-    <string name="terms_and_conditions_content">
-        <![CDATA[
-        <h2>Terms and Conditions</h2>
-        <ul>
-            <li><strong>Privacy Policy</strong><br>
-            We collect and process your SMS messages solely for the purpose of scanning and detecting potential spam and smishing attempts. Your SMS data will be stored securely on your device and will not be shared with any third parties without your explicit consent.</li>
-            <li><strong>User Consent and Control</strong><br>
-            By using this app, you grant us permission to access and scan your SMS messages for the purpose of detecting potential spam and smishing attempts. You can revoke this permission or delete your data at any time by uninstalling the app or clearing its data from your device\'s settings.</li>
-            <li><strong>Data Security</strong><br>
-            We implement reasonable and appropriate security measures to protect your SMS data from unauthorized access, alteration, disclosure, or destruction. This includes encryption, secure storage, and access controls. We adhere to international security standards where applicable.</li>
-            <li><strong>Data Retention and Deletion</strong><br>
-            We retain your SMS data only for the duration necessary to perform the spam and smishing detection functionality. Your data will be automatically deleted when you uninstall the app or clear its data from your device\'s settings.</li>
-            <li><strong>Accuracy and Performance</strong><br>
-            While we strive for accuracy in detecting spam and smishing, we cannot guarantee that all spam will be detected and that there will be no false positives. Users are advised to use their judgment in handling messages flagged by the app.</li>
-            <li><strong>User Responsibilities</strong><br>
-            You agree to use this app only for lawful purposes and in compliance with all applicable laws and regulations. You shall not reverse engineer, disassemble, or otherwise attempt to derive the source code of the app. You shall not use this app for any illegal or harmful activities.</li>
-            <li><strong>Limitations of Liability</strong><br>
-            To the maximum extent permitted by applicable law, we disclaim all warranties and shall not be liable for any damages or losses arising from your use of this app, including but not limited to direct, indirect, incidental, consequential, or punitive damages.</li>
-            <li><strong>Third-Party Services</strong><br>
-            We may utilize third-party services to enhance the functionality of this app. Any data shared with third-party services will be handled in accordance with our privacy policy.</li>
-            <li><strong>Intellectual Property Rights</strong><br>
-            The app and its original content, features, and functionality are owned by the developer and are protected by international copyright and other intellectual property laws.</li>
-            <li><strong>Indemnification</strong><br>
-            You agree to indemnify and hold harmless the app developers and licensors against any claims or lawsuits, including attorneys\' fees, arising from your misuse of the app or violation of these terms.</li>
-            <li><strong>Updates and Changes</strong><br>
-            We reserve the right to modify or update these terms and conditions at any time. Any substantial changes will be communicated to you, and your continued use of the app after such changes constitutes your acceptance of the updated terms and conditions.</li>
-            <li><strong>Governing Law and Jurisdiction</strong><br>
-            These terms and conditions shall be governed by and construed in accordance with the laws of Australia. Any disputes arising from or relating to these terms and conditions shall be subject to the exclusive jurisdiction of the courts in Australia.</li>
-        </ul>
-        ]]>
+    <string name="go_to_quizzes">Go to Quizzes</string>
+    <string name="learn_more_about_smishing">Learn More About Smishing</string>
+
+    <string name="dummy_smishing_report">This is a dummy smishing report</string>
+    <string name="click_to_read_more">Click to read more</string>
+
+    <string name="reportLog"> My Reports </string>
+    <string name="number">Number</string>
+    <string name="spammsg">Message</string>
+    <string name="reportDate">Date</string>
+    <string name="savedReportsMenu">Saved Reports</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="rate_your_experience">Rate your experience</string>
+    <string name="enter_feedback">Enter feedback</string>
+    <string name="enter_email">Enter email</string>
+    <string name="name">Name</string>
+    <string name="image_description">image_description</string>
+    <string name="submit_feedback">Submit_feedback</string>
+    <string name="forums">Forums</string>
+    <string name="community_forum">Community Forum</string>
+    <string name="create_forum_topic">Create Forum Topic</string>
+    <string name="back_button">Back</string>
+    <string name="search_bar">Search Bar</string>
+    <string name="forum_1">Forum 1</string>
+    <string name="forum_title">Forum Title</string>
+    <string name="forum_description">Forum Description</string>
+    <string name="share_your_thoughts">Share your thoughts...</string>
+    <string name="submit">Submit</string>
+    <string name="comments">Comments</string>
+    <string name="add_a_comment">Add a comment...</string>
+    <string name="submit_comment">Submit Comment</string>
+    <string name="empty_forum">There are no forums.\nStart a new one today!</string>
+    <string name="start_a_new_post">Start a new post</string>
+    <string name="submitfeedback">Submit Feedback</string>
+    <string name="community">Community</string>
+
+    <!-- community post -->
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="community_comments">Comments</string>
+    <string name="add_community_comment">Add a comment...</string>
+    <string name="submit_community_comment">Submit Comment</string>
+
+    <string name="confirm_delete_account_title">Hello there</string>
+    <string name="delete_account_warning_message">
+    You have selected delete account. Are you sure about this?
+    If you choose to delete your account, we will disable it for 30 days.
+    If you choose to reactivate your account, login within 30 days.
     </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 </resources>

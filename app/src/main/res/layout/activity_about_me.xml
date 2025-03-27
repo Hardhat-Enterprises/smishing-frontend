@@ -34,32 +34,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Privacy Policy"
+        android:textColor="@color/navy_blue"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_logo"
-        android:textColor="@color/navy_blue"/>
+        app:layout_constraintTop_toBottomOf="@+id/about_logo" />
 
-    <TextView
-        android:id="@+id/about_details"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="0dp"
-        android:layout_height="210dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/buttons_rounded"
-        android:text="Privacy policy of Smishing Detection App. can be found in the Website below.
-        https://usmanajazkhan.wixsite.com/smisshing-detection/post/smishing-detection-privacy-policy"
-        android:textSize="18sp"
-        android:autoLink="web"
-        android:linksClickable="true"
-        android:textColorLink="@color/black"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/about_me_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_me_text"
-        tools:ignore="RtlCompat" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/privacy_policy_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:lineSpacingExtra="4dp"
+            android:text="Welcome to the Smishing Detection App!\n\nThis Privacy Policy outlines how we collect, use, and protect your data:\n\n1. Data Collection: We gather personal information only as necessary to enhance your experience. This includes device details, usage logs, and optional user inputs.\n\n2. Data Usage: Your information helps us improve functionality and deliver better features. We use data strictly for intended purposes and never share or sell it without your consent.\n\n3. Security: We prioritize the security of your data and employ modern safeguards to protect it from unauthorized access.\n\n4. Third-Party Services: Some features may utilize third-party APIs or integrations. While we ensure compliance, these services may have their own privacy terms.\n\n5. Policy Updates: This Privacy Policy may change as we evolve. Updates will be posted within the app. Continued use implies acceptance of changes.\n\nIf you have questions or concerns, please contact us at s224504216@deakin.edu.au.\n\nThank you for using Smishing Detection App!" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

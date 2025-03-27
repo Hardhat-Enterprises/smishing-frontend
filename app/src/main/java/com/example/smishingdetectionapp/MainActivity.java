@@ -2,16 +2,14 @@ package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
-import android.Manifest;
+import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,12 +18,15 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
+import com.example.smishingdetectionapp.ui.login.LoginActivity;
+
+
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
-    private TextView total_count;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -71,23 +72,34 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
+        Button learnMoreButton = findViewById(R.id.learn_more_btn);
+        learnMoreButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EducationActivity.class);
+            startActivity(intent);
+        });
+
+
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
+        //setting counter from result
+        TextView total_count;
+        total_count = findViewById(R.id.total_counter);
+        total_count.setText(""+databaseAccess.getCounter());
+        //closing the connection
+        //databaseAccess.close();
+        //TODO: Add functionality for new detections.
 
         // Setting counter from the result
-        total_count = findViewById(R.id.total_counter);
-        total_count.setText("" + databaseAccess.getCounter());
+        //TextView total_count = findViewById(R.id.total_counter);
+        //total_count.setText("" + databaseAccess.getCounter());
 
         // Closing the connection
         databaseAccess.close();
+
     }
 
     private boolean areNotificationsEnabled() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS}, 1);
-        }
-
         return NotificationManagerCompat.from(this).areNotificationsEnabled();
     }
 

@@ -1,152 +1,81 @@
-
-
 package com.example.smishingdetectionapp;
 
-import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
-import android.telephony.SmsMessage;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smishingdetectionapp.sms.SMSAdapter;
 import com.example.smishingdetectionapp.sms.SMSClickListener;
 import com.example.smishingdetectionapp.sms.model.SMSMessage;
+import com.example.smishingdetectionapp.sms.SMSExtractor;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SmsActivity extends AppCompatActivity implements SMSClickListener {
-    private static final String TAG = "SmsActivity";
-    private static final String CHANNEL_ID = "smishing_alert_channel";
-    private static final int READ_SMS_PERMISSION_CODE = 1;
-    private static final int NOTIFICATION_ID = 1001;
-    private static final int PERMISSION_REQUEST_CODE = 123;
-
+public class SmsActivity extends SharedActivity implements SMSClickListener {
     private ArrayList<SMSMessage> smsMessageList = new ArrayList<>();
-    private RecyclerView smsRecyclerView;
-    private SMSAdapter smsAdapter;
-    private TextView noSMSMessagesText;
+    private static final int READ_SMS_PERMISSION_CODE = 1;
 
-    private BroadcastReceiver smsReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(intent.getAction())) {
-                SmsMessage[] messages = extractSmsMessages(intent);
-                if (messages != null) {
-                    for (SmsMessage sms : messages) {
-                        if (sms != null) {
-                            String sender = sms.getDisplayOriginatingAddress();
-                            String messageBody = sms.getMessageBody();
-
-                            if (sender != null && messageBody != null) {
-                                SMSMessage smsMessage = new SMSMessage(sender, messageBody);
-                                smsMessageList.add(smsMessage);
-                                smsAdapter.updateMessagesList(smsMessageList);
-
-                                // Check if message is suspicious and show notification
-                                if (SmishingDetector.isSmishingMessage(messageBody.toLowerCase())) {
-                                    showNotification(context, sender, messageBody);
-                                }
-                            } else {
-                                Log.e(TAG, "Sender or message body is null");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    };
-
+    RecyclerView smsRecyclerView; // Holds the recyclerview which displays the sms messages list
+    SMSAdapter smsAdapter;
+    TextView noSMSMessagesText;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sms);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        ImageButton back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(v -> {
+            finish();
+        });
 
         noSMSMessagesText = findViewById(R.id.no_messages_text);
         smsRecyclerView = findViewById(R.id.messages_recycler_view);
-        smsRecyclerView.setHasFixedSize(true);
-        smsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        smsAdapter = new SMSAdapter(this);
+        smsRecyclerView.setHasFixedSize(true); // Set to improve performance since changes in content do not change layout size
+        smsRecyclerView.setLayoutManager(new LinearLayoutManager(this)); // Set layout manager for RecyclerView
+        smsAdapter = new SMSAdapter(this); // Initialize the adapter with context
         smsRecyclerView.setAdapter(smsAdapter);
+        SMSExtractor smsExtractor = new SMSExtractor(getApplicationContext());
 
-        // Check if activity was started from notification
-        Intent intent = getIntent();
-        String sender = intent.getStringExtra("SMS_SENDER");
-        String messageBody = intent.getStringExtra("SMS_BODY");
-
-        if (sender != null && messageBody != null) {
-            // If sender and message body are present, open the details activity directly
-            openSMSMessageDetailActivity(sender, messageBody);
+        //checking the sms read permission on runtime
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            //requesting permission if not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.READ_SMS}, READ_SMS_PERMISSION_CODE);
         } else {
-            // Otherwise, handle the regular case of showing all messages
-            // Register receiver for incoming SMS
-            registerReceiver(smsReceiver, new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION));
-
-            // Check SMS permission
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS}, READ_SMS_PERMISSION_CODE);
-            } else {
-                // Extract and display all messages
-                getInboxMessages();
-            }
+            smsAdapter.updateMessagesList(smsExtractor.extractAllMessages());
         }
     }
 
-    // New helper method to open SMS details
-    private void openSMSMessageDetailActivity(String sender, String messageBody) {
-        Intent detailIntent = new Intent(SmsActivity.this, SMSMessageDetailActivity.class);
-        detailIntent.putExtra("SMS_SENDER", sender);
-        detailIntent.putExtra("SMS_BODY", messageBody);
-        startActivity(detailIntent);
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(smsReceiver);
-    }
-
-    private SmsMessage[] extractSmsMessages(Intent intent) {
-        Object[] pdus = (Object[]) intent.getExtras().get("pdus");
-        if (pdus == null) {
-            Log.e(TAG, "No PDUs found in the intent");
-            return null;
-        }
-
-        SmsMessage[] messages = new SmsMessage[pdus.length];
-        String format = intent.getStringExtra("format");
-        for (int i = 0; i < pdus.length; i++) {
-            messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i], format);
-        }
-
-        return messages;
-    }
-
+    /**
+     * get all the inbox messages
+     */
     private void getInboxMessages() {
         ContentResolver contentResolver = getContentResolver();
         Uri inboxUri = Uri.parse("content://sms/inbox");
@@ -161,10 +90,10 @@ public class SmsActivity extends AppCompatActivity implements SMSClickListener {
             do {
                 String sender = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
                 String body = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
-                SMSMessage smsMessage = new SMSMessage(sender, body);
-                smsMessageList.add(smsMessage);
+                SMSMessage smsMessage = new SMSMessage(sender, body);//create Message object
+                smsMessageList.add(smsMessage); // add to the list
+                smsAdapter.updateMessagesList(smsMessageList);
             } while (cursor.moveToNext());
-            smsAdapter.updateMessagesList(smsMessageList);
             noSMSMessagesText.setVisibility(View.GONE);
         } else {
             noSMSMessagesText.setVisibility(View.VISIBLE);
@@ -175,40 +104,22 @@ public class SmsActivity extends AppCompatActivity implements SMSClickListener {
         }
     }
 
-    private void showNotification(Context context, String sender, String messageBody) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Smishing Alerts", NotificationManager.IMPORTANCE_HIGH);
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        Intent intent = new Intent(context, SmsActivity.class);
-        intent.putExtra("SMS_SENDER", sender);
-        intent.putExtra("SMS_BODY", messageBody);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.hardhat_logo)
-                .setContentTitle("Suspicious Message Detected")
-                .setContentText("Possible phishing message from " + sender)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-            notificationManager.notify((int) System.currentTimeMillis(), builder.build());
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, PERMISSION_REQUEST_CODE);
-        }
+    @Override
+    public void OnMessageClicked(com.example.smishingdetectionapp.sms.model.SMSMessage message) {
+        Intent intent = new Intent(SmsActivity.this, SMSMessageDetailActivity.class);
+        intent.putExtra("SMS_MESSAGE", message);
+        startActivity(intent);
     }
 
-
-public void OnMessageClicked(com.example.smishingdetectionapp.sms.model.SMSMessage message) {
-    Intent intent = new Intent(SmsActivity.this, SMSMessageDetailActivity.class);
-    intent.putExtra("SMS_MESSAGE", message);
-    startActivity(intent);
-}
+    /**
+     * permission receiver
+     * @param requestCode The request code passed in {@link #requestPermissions(String[], int)}
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *     which is either {@link android.content.pm.PackageManager#PERMISSION_GRANTED}
+     *     or {@link android.content.pm.PackageManager#PERMISSION_DENIED}. Never null.
+     *
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -220,4 +131,3 @@ public void OnMessageClicked(com.example.smishingdetectionapp.sms.model.SMSMessa
         }
     }
 }
-

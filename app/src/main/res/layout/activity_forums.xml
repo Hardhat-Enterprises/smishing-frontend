@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/activity_horizontal_margin">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/forum_back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@null"
+        android:contentDescription="@string/image_description"
+        app:srcCompat="@drawable/back_button" />
+
+    <!-- Hardhat Logo -->
+    <ImageView
+        android:id="@+id/hardhatLogo"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_below="@id/forum_back_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/logo_description"
+        app:srcCompat="@drawable/hardhat_logo" />
+
+    <!-- Community Forum Header -->
+    <TextView
+        android:id="@+id/communityForumHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hardhatLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:text="@string/community"
+        android:textColor="@color/navy_blue"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <!-- Input and Submit Button Container -->
+    <LinearLayout
+        android:id="@+id/linearLayoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/communityForumHeader"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/userThoughtsInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/share_your_thoughts"
+            android:padding="10dp"
+            android:inputType="text"
+            android:autofillHints="none" />
+
+        <Button
+            android:id="@+id/submitThoughtsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/submit"
+            android:backgroundTint="@color/navy_blue"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linearLayoutTop"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:clipToPadding="false"
+        android:paddingVertical="8dp"
+        tools:ignore="NotSibling" />
+
+
+
+</RelativeLayout>
