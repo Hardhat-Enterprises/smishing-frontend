@@ -1,0 +1,11 @@
+{
+  "main": "DB_Connection.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
+    "morgan": "^1.10.0"
+  }
+}

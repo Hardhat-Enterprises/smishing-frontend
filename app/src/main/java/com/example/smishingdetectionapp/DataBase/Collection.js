@@ -20,8 +20,8 @@ const userSchema = new Schema({
         required: true
     },
     Code: { type: String },
-
-
+    isVerified: { type: Boolean, default: false }
+});
 
 
 // Hashes the Passwords
