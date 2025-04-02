@@ -17,18 +17,18 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="toggle_password_visibility">Show/Hide Password</string>
     <string name="action_login_in">Login</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up">Register</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="logo_description">App Logo</string>
-    <string name="chat_assistant_btn">Chat Assistant</string>
-    <string name="chat_assistant_page">Chat Assistant</string>
+    <string name="chat_assistant_btn">Get Support</string>
+    <string name="chat_assistant_page">Support Chat</string>
 
     <!-- Error messages -->
     <string name="no_network_message">No available network. Please check your internet connection or try again later</string>
@@ -36,7 +36,7 @@
     <!-- Page Titles -->
     <string name="login_page">Login</string>
     <string name="detections_str">Detections</string>
-    <string name="menu_news">News</string>
+    <string name="menu_news">News &amp; Updates</string>
     <string name="play_alert_text">Play Alert Text</string>
     <string name="menu_Cyber_news">ACCC Scamwatch News</string>
     <string name="menu_settings">Settings</string>
@@ -48,19 +48,19 @@
     <string name="sms_page">SMS Messages</string>
 
     <!-- Main Dashboard Strings -->
-    <string name="detectionsBtn">Detections</string>
+    <string name="detectionsBtn">View Detections</string>
     <string name="new_detectionsTxt">New detections</string>
     <string name="total_detectionsTxt">Total detections</string>
 
     <!-- Account Settings Page Buttons -->
-    <string name="password_changeBtn">Password</string>
-    <string name="phone_changeBtn">Phone</string>
-    <string name="email_changeBtn">Email</string>
-    <string name="dark_modeBtn">Dark mode</string>
+    <string name="password_changeBtn">Change Password</string>
+    <string name="phone_changeBtn">Change Phone</string>
+    <string name="email_changeBtn">Change Email</string>
+    <string name="dark_modeBtn">Toggle Dark mode</string>
     <string name="delete_accountBtn">Delete account</string>
     <string name="sign_outBtn">Sign out</string>
-    <string name="session_timeoutBtn">Session Timeout</string>
-    <string name="pin_changeBtn">Pin</string>
+    <string name="session_timeoutBtn">Session Timeout settings</string>
+    <string name="pin_changeBtn">Change Pin code</string>
 
     <string name="terms_and_conditions">
     &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
