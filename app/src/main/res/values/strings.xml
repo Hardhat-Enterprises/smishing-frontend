@@ -61,6 +61,7 @@
     <string name="sign_outBtn">Sign out</string>
     <string name="session_timeoutBtn">Session Timeout</string>
     <string name="pin_changeBtn">Pin</string>
+    <string name="always_underline_links">Always Underline Links</string>
 
     <string name="terms_and_conditions">
     &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
@@ -134,6 +135,13 @@
     <string name="report_btn">Report</string>
     <string name="help_btn">Help</string>
     <string name="about_btn">Privacy Policy</string>
+
+    <!-- Settings Headers -->
+    <string name="notifications_text">Notifications</string>
+    <string name="filtering_text">Filtering</string>
+    <string name="accessibility_text">Accessibility</string>
+    <string name="Forums_and_Report">Forums and Reporting</string>
+    <string name="MoreInfoandSupport">More Info and Support</string>
 
     <!-- Filtering Rules Strings -->
     <string name="keywords_label">Keywords</string>
@@ -287,5 +295,7 @@
     </string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="account_details">Account Details</string>
+    <string name="about_us">About Us</string>
 
 </resources>
