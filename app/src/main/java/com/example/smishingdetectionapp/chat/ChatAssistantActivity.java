@@ -41,7 +41,16 @@ public class ChatAssistantActivity extends AppCompatActivity {
             initializeViews();
             setupRecyclerView();
             setupClickListeners();
-            
+
+
+        // Display welcome message when support chat opens
+            ChatMessage welcomeMessage = new ChatMessage("Hello! I’m here to help protect you from scams.", ChatMessage.BOT_MESSAGE);
+            chatAdapter.addMessage(welcomeMessage);
+
+            ChatMessage followUpMessage = new ChatMessage("I can help you with 'reports' or 'detections'. Try asking for 'today's reports' or 'all detections'.", ChatMessage.BOT_MESSAGE);
+            chatAdapter.addMessage(followUpMessage);
+
+
 
         } catch (Exception e) {
             // Log error and close activity if initialization fails
