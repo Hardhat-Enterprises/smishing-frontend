@@ -297,5 +297,11 @@
     <string name="no">No</string>
     <string name="account_details">Account Details</string>
     <string name="about_us">About Us</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="newest_to_oldest">Newest to Oldest</string>
+    <string name="oldest_to_newest">Oldest to Newest</string>
+    <string name="sort_by">Sort By</string>
+    <string name="password_and_security">Password and Security</string>
+    <string name="account_details_text">Account Details</string>
 
 </resources>

@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/accountBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -91,12 +91,12 @@
                 android:focusable="true"
                 android:gravity="start|center_vertical"
                 android:padding="12dp"
-                android:text="Account Details"
+                android:text="@string/account_details_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/accountSettingsHeader" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/passwordBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 android:focusable="true"
                 android:gravity="start|center_vertical"
                 android:padding="12dp"
-                android:text="Password and Security"
+                android:text="@string/password_and_security"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/accountBtn" />
@@ -232,7 +232,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/open_notification_settings_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -275,30 +275,30 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="366dp"
-                android:text="Sort By"
+                android:text="@string/sort_by"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filtering_text" />
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/OldToNewRB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="243dp"
-                android:text="Oldest to Newest"
+                android:text="@string/oldest_to_newest"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/NewToOldRB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="243dp"
-                android:text="Newest to Oldest"
+                android:text="@string/newest_to_oldest"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/OldToNewRB" />
@@ -333,7 +333,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
                 android:paddingVertical="8dp"
-                android:text="Dark Mode"
+                android:text="@string/dark_mode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -377,7 +377,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/forumBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -394,7 +394,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Forums_and_Report" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/reportBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -434,7 +434,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/helpBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -451,7 +451,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/MoreInfoandSupport" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/chatAssistantBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -468,7 +468,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/aboutMeBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -485,7 +485,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chatAssistantBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/feedbackBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -502,7 +502,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/aboutMeBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/aboutUsBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -519,7 +519,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/feedbackBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSignOut"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
