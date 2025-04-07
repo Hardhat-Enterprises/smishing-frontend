@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
@@ -26,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
+    private boolean isBackPressed = false;
 
 
     @SuppressLint("SetTextI18n")
@@ -51,12 +53,10 @@ public class MainActivity extends SharedActivity {
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else if (id == R.id.nav_settings) {
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             }
             return false;
@@ -69,7 +69,6 @@ public class MainActivity extends SharedActivity {
         Button detections_btn = findViewById(R.id.detections_btn);
         detections_btn.setOnClickListener(v -> {
             startActivity(new Intent(this, DetectionsActivity.class));
-            finish();
         });
 
         Button learnMoreButton = findViewById(R.id.learn_more_btn);
@@ -96,6 +95,26 @@ public class MainActivity extends SharedActivity {
 
         // Closing the connection
         databaseAccess.close();
+
+    }
+
+    //tap again to exit override. only closes app if back pressed while alert is on screen
+    @Override
+    public void onBackPressed() {
+        if(isBackPressed)
+        {
+            super.onBackPressed();
+            return;
+        }
+        Toast.makeText(this, "press back again to exit", Toast.LENGTH_SHORT).show();
+        isBackPressed = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressed = false;
+            }
+        }, 2000);
 
     }
 
