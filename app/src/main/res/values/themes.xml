@@ -1,49 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.SmishingDetectionApp.er" parent="Theme.AppCompat">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/baby_blue</item>
         <item name="colorPrimaryVariant">@color/baby_blue</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
 
-   <style name="Theme.SmishingDetectionApp.NoActionBar">
+    <style name="Theme.SmishingDetectionApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.SmishingDetectionApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.SmishingDetectionApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="Theme.Smishing" parent="Theme.MaterialComponents.Light" />
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.SmishingDetectionApp" parent="Theme.Material3.DayNight.NoActionBar">
-         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/baby_blue</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <!-- This is the Dialog Theme -->
         <item name="android:textColor">@color/navy_blue</item>
-        <item name="colorAccent">@color/navy_blue</item> <!-- Color for the dialog buttons and other accents -->
+        <item name="colorAccent">@color/navy_blue</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/AlertDialogButtonStyle</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/AlertDialogButtonStyle</item>
     </style>
 
     <style name="AlertDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/black</item> <!-- Set to your desired button text color -->
+        <item name="android:textColor">@color/black</item>
     </style>
-
-
-
-
 
 </resources>

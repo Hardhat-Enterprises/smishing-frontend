@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000"
+    android:interpolator="@android:interpolator/anticipate_overshoot">
+
+    <!-- Rotation: slight swing -->
+    <propertyValuesHolder
+        android:propertyName="rotation"
+        android:valueType="floatType"
+        android:valueFrom="-20.0"
+        android:valueTo="0.0" />
+
+    <!-- Scale: elegant pop in -->
+    <propertyValuesHolder
+        android:propertyName="scaleX"
+        android:valueType="floatType"
+        android:valueFrom="0.65"
+        android:valueTo="1.0" />
+
+    <propertyValuesHolder
+        android:propertyName="scaleY"
+        android:valueType="floatType"
+        android:valueFrom="0.65"
+        android:valueTo="1.0" />
+
+    <!-- Fade In -->
+    <propertyValuesHolder
+        android:propertyName="alpha"
+        android:valueType="floatType"
+        android:valueFrom="0.0"
+        android:valueTo="1.0" />
+
+    <!-- Vertical rise -->
+    <propertyValuesHolder
+        android:propertyName="translationY"
+        android:valueType="floatType"
+        android:valueFrom="70"
+        android:valueTo="0" />
+
+    <!-- Horizontal sway -->
+    <propertyValuesHolder
+        android:propertyName="translationX"
+        android:valueType="floatType"
+        android:valueFrom="-30"
+        android:valueTo="0" />
+
+</objectAnimator>
