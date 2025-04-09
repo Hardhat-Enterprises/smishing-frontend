@@ -97,7 +97,9 @@
     <string name="change_password_page">Change Password</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
+    <string name="change_langugae">Change Language</string>
     <string name="confirm_new_password">Confirm Password</string>
+
 
     <!-- Email Change Window Strings -->
     <string name="change_email_page">Change Email</string>

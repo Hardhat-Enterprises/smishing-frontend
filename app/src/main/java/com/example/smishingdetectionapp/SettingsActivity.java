@@ -115,6 +115,13 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(this, ForumActivity.class));
             finish();
         });
+
+        //Change Language Button to switch to Forum page
+        Button changeLangBtn = findViewById(R.id.changeLanguage);
+        changeLangBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, ForumActivity.class));
+            finish();
+        });
     }
     // Trigger biometric authentication with timeout
     private void triggerBiometricAuthenticationWithTimeout() {

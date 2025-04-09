@@ -17,7 +17,7 @@ android {
     defaultConfig {
         ndk {
             // On Apple silicon, you can omit x86_64.
-            abiFilters += listOf("arm64-v8a", "x86_64")
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
         }
         applicationId = "com.example.smishingdetectionapp"
         minSdk = 24
