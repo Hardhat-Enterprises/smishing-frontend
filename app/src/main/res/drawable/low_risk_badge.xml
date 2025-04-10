@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Vertical gradient from light green to medium green -->
+            <gradient
+                android:startColor="#A5D6A7"
+                android:endColor="#66BB6A"
+                android:angle="90" />
+            <!-- Increased corner radius for a softer look -->
+            <corners android:radius="12dp" />
+            <!-- A subtle dark stroke to outline the badge -->
+            <stroke
+                android:width="1dp"
+                android:color="#388E3C" />
+            <!-- Internal padding for content spacing -->
+            <padding
+                android:left="8dp"
+                android:top="4dp"
+                android:right="8dp"
+                android:bottom="4dp" />
+        </shape>
+    </item>
+</ripple>
