@@ -7,24 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <!-- Bottom Navigation at the bottom -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/baby_blue"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        android:theme="@style/Theme.SmishingDetectionApp"
-        app:menu="@menu/activity_main_drawer" />
 
     <!-- ConstraintLayout above the BottomNavigationView -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation">
+        >
 
         <!-- For simplicity, a LinearLayout inside the ConstraintLayout -->
         <LinearLayout

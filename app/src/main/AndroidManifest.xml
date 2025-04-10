@@ -78,6 +78,8 @@
         <activity
             android:name=".NewsActivity"
             android:exported="false" />
+        <activity android:name=".RiskScoringActivity"
+            android:exported="false"/>
         <activity
             android:name=".ReportingActivity"
             android:exported="false" />
