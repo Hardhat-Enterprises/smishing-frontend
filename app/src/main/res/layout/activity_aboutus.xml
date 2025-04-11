@@ -27,7 +27,7 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/hardhat_logo"
+                android:src="@drawable/smishinglogo1"
                 android:contentDescription="App Logo" />
 
 

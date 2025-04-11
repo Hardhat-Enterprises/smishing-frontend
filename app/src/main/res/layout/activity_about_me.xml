@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/smishinglogo1" />
 
     <TextView
         android:id="@+id/about_me_text"

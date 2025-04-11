@@ -21,12 +21,12 @@
     <ImageView
         android:id="@+id/hardhatLogo"
         android:layout_width="112dp"
-        android:layout_height="106dp"
+        android:layout_height="115dp"
         android:layout_below="@id/forum_back_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:contentDescription="@string/logo_description"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/smishinglogo1" />
 
     <!-- Community Forum Header -->
     <TextView
