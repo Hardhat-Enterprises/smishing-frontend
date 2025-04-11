@@ -74,14 +74,17 @@ public class FeedbackActivity extends AppCompatActivity {
         feedbackInput.addTextChangedListener(textWatcher);
 
         ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
+            int stars = (int) rating;
+
             String message = "";
-            switch ((int) rating) {
+            switch (stars) {
                 case 1: message = "😞 Very Bad"; break;
                 case 2: message = "😕 Bad"; break;
                 case 3: message = "😐 Okay"; break;
                 case 4: message = "🙂 Good"; break;
                 case 5: message = "🤩 Excellent"; break;
             }
+
             showRatingPopup(message);
         });
 
