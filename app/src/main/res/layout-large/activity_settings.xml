@@ -1,0 +1,270 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/baby_blue"
+        app:itemBackground="@color/baby_blue"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:menu="@menu/activity_main_drawer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/HardhatLogo"
+            android:layout_width="112dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hardhat_logo" />
+
+        <TextView
+            android:id="@+id/SettingsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/menu_settings"
+            android:textColor="@color/navy_blue"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+
+        <Button
+            android:id="@+id/accountBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/account_btn"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/filteringBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/filtering_btn"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accountBtn" />
+
+        <Button
+            android:id="@+id/notificationsBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:onClick="openNotificationsActivity"
+            android:text="@string/notifications_btn"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/reportBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/report_btn"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notificationsBtn" />
+
+        <Button
+            android:id="@+id/helpBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/help_btn"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filteringBtn" />
+
+        <Button
+            android:id="@+id/aboutMeBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/about_btn"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helpBtn"/>
+
+
+
+        <Button
+            android:id="@+id/aboutUsBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="About Us"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/helpBtn"
+            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
+
+
+        <Button
+            android:id="@+id/feedbackBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/feedback"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
+
+        <Button
+            android:id="@+id/forumBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/forums"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/accountBtn"
+            app:layout_constraintTop_toTopOf="@+id/accountBtn"
+            app:srcCompat="@drawable/account_user_svg" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/reportBtn"
+            app:layout_constraintTop_toTopOf="@+id/reportBtn"
+            app:srcCompat="@drawable/report_svg" />
+
+
+        <Button
+            android:id="@+id/chatAssistantBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="140dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="@string/chat_assistant_btn"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/filteringBtn"
+            app:layout_constraintTop_toTopOf="@+id/filteringBtn"
+            app:srcCompat="@drawable/filter_svg" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/helpBtn"
+            app:layout_constraintTop_toTopOf="@+id/helpBtn"
+            app:srcCompat="@drawable/help_svg" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/notificationsBtn"
+            app:layout_constraintTop_toTopOf="@+id/notificationsBtn"
+            app:srcCompat="@drawable/notification_svg1" />
+
+<!--        <Button-->
+<!--            android:id="@+id/YourReportBtn"-->
+<!--            android:layout_width="175dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginStart="28dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/buttons_rounded"-->
+<!--            android:text="Your Reports"-->
+<!--            android:textSize="20sp"-->
+<!--            android:gravity="bottom"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/helpBtn"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView11"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/YourReportBtn"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/YourReportBtn"-->
+<!--            app:srcCompat="@drawable/outline_archive_24" />-->
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/aboutMeBtn"
+            app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
+            app:srcCompat="@drawable/outline_arrow_outward_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
