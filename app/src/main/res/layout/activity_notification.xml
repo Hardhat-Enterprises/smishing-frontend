@@ -77,7 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/smishing_notification_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -86,23 +86,23 @@
         android:paddingVertical="8dp"
         android:text="@string/smishing_detection_notification_title"
         android:textSize="20sp"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detection_alerts_header"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/spam_notification_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="@string/spam_detection_notification_title"
         android:textSize="20sp"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintTop_toBottomOf="@+id/smishing_notification_switch"
@@ -134,15 +134,15 @@
 
     <!-- Push Group -->
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/news_notification_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="@string/news_notification_title"
         android:textSize="20sp"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintTop_toBottomOf="@+id/push_notifications_header"
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/incident_report_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -159,8 +159,8 @@
         android:layout_marginEnd="28dp"
         android:paddingVertical="8dp"
         android:text="@string/incident_reports"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -194,14 +194,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/update_notification_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="@string/update_notifications"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
@@ -210,15 +210,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
     android:id="@+id/backup_reminder_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="@string/backup_reminder"
         android:textSize="20sp"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintTop_toBottomOf="@+id/update_notification_switch"
@@ -226,15 +226,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <Switch
         android:id="@+id/password_security_check_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="@string/password_security_check"
         android:textSize="20sp"
-        app:thumbTint="#2C5E74"
-        app:trackTint="#901B355D"
+        android:thumbTint="#09435C"
+        android:trackTint="#1B355D"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintTop_toBottomOf="@+id/backup_reminder_switch"
