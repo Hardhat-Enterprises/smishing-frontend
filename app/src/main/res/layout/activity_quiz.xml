@@ -19,6 +19,7 @@
         android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/back_button_alt"
         app:srcCompat="@drawable/back_button" />
 
 
@@ -28,6 +29,7 @@
         android:layout_height="120dp"
         android:importantForAccessibility="no"
         android:src="@drawable/hardhat_logo"
+        android:contentDescription="@string/hardhat_logo_alt"
         app:layout_constraintBottom_toTopOf="@+id/questionText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.463"

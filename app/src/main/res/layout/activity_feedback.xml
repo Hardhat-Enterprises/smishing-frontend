@@ -27,7 +27,7 @@
         android:layout_height="106dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/logo_description"
+        android:contentDescription="@string/hardhat_logo_alt"
         app:srcCompat="@drawable/hardhat_logo" />
 
     <!-- Feedback Header -->

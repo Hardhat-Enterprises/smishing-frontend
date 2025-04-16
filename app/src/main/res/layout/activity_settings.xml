@@ -570,6 +570,7 @@
                 android:layout_marginEnd="3dp"
                 app:layout_constraintEnd_toEndOf="@+id/accountBtn"
                 app:layout_constraintTop_toTopOf="@+id/accountBtn"
+                android:contentDescription="@string/account_user_svg_alt"
                 app:srcCompat="@drawable/account_user_svg" />
 
             <ImageView
@@ -578,6 +579,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/report_svg_alt"
                 app:layout_constraintEnd_toEndOf="@+id/reportBtn"
                 app:layout_constraintTop_toTopOf="@+id/reportBtn"
                 app:srcCompat="@drawable/report_svg" />
@@ -588,6 +590,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="-130dp"
+                android:contentDescription="@string/filter_svg_alt"
                 app:layout_constraintEnd_toEndOf="@+id/filtering_text"
                 app:layout_constraintTop_toTopOf="@+id/textView9"
                 app:srcCompat="@drawable/filter_svg" />
@@ -618,6 +621,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/passwordBtn"
                 app:layout_constraintTop_toTopOf="@+id/passwordBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
@@ -627,6 +631,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/forumBtn"
                 app:layout_constraintTop_toTopOf="@+id/forumBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
@@ -636,6 +641,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/aboutMeBtn"
                 app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
@@ -645,6 +651,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/aboutUsBtn"
                 app:layout_constraintTop_toTopOf="@+id/aboutUsBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
@@ -655,6 +662,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/feedbackBtn"
                 app:layout_constraintTop_toTopOf="@+id/feedbackBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
@@ -665,10 +673,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="4dp"
+                android:contentDescription="@string/outline_arrow_outward_24_alt"
                 app:layout_constraintEnd_toEndOf="@+id/chatAssistantBtn"
                 app:layout_constraintTop_toTopOf="@+id/chatAssistantBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
-
 
             <!--        <Button-->
             <!--            android:id="@+id/YourReportBtn"-->

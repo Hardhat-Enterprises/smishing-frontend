@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/hardhat_logo"
-            android:contentDescription="@string/logo_description"/>
+            android:contentDescription="@string/hardhat_logo_alt"/>
 
         <TextView
             android:id="@+id/DashboardText"
@@ -162,7 +162,7 @@
             app:layout_constraintEnd_toEndOf="@+id/total_detections"
             app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:srcCompat="@drawable/baseline_access_time_24"
-            android:contentDescription="@string/time_icon"/>
+            android:contentDescription="@string/baseline_access_time_24_alt"/>
 
         <TextView
             android:id="@+id/information_text"
@@ -183,7 +183,7 @@
             app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintTop_toTopOf="@+id/information_box"
             app:srcCompat="@drawable/icon_information"
-            android:contentDescription="@string/info_icon"/>
+            android:contentDescription="@string/icon_information_alt"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -194,7 +194,7 @@
             app:layout_constraintEnd_toEndOf="@+id/new_detections"
             app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:srcCompat="@drawable/new_5_svg"
-            android:contentDescription="@string/new_icon"
+            android:contentDescription="@string/hardhat_logo_alt"
             app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
         <Button

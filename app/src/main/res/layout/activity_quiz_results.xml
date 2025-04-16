@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/logoImage2"
+            android:contentDescription="@string/hardhat_logo_alt"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"

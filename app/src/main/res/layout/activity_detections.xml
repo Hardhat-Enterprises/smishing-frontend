@@ -12,6 +12,7 @@
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/hardhat_logo_alt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
         android:background="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/back_button_alt"
         app:srcCompat="@drawable/back_button" />
 
     <ListView
@@ -79,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/filter_svg_alt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchTextBox"
         app:layout_constraintTop_toBottomOf="@+id/DetectionsText"
