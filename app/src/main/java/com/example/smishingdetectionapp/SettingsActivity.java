@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
@@ -56,19 +57,18 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         });
 
-        // Account button to switch to account page with biometric authentication
-        Button accountBtn = findViewById(R.id.accountBtn);
+        ConstraintLayout accountBtn = findViewById(R.id.accountBtn);
         accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
 
         //Filtering button to switch to Smishing rules page
-        Button filteringBtn = findViewById(R.id.filteringBtn);
+        ConstraintLayout filteringBtn = findViewById(R.id.filteringBtn);
         filteringBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, SmishingRulesActivity.class));
             finish();
         });
 
         // Report button to switch to reporting page
-        Button reportBtn = findViewById(R.id.reportBtn);
+        ConstraintLayout reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ReportingActivity.class));
             finish();
@@ -76,14 +76,14 @@ public class SettingsActivity extends AppCompatActivity {
         //Notification button to switch to notification page
 
         // Help button to switch to Help page
-        Button helpBtn = findViewById(R.id.helpBtn);
+        ConstraintLayout helpBtn = findViewById(R.id.helpBtn);
         helpBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, HelpActivity.class));
             finish();
         });
 
         // About Me button to switch to AboutMeActivity
-        Button aboutMeButton = findViewById(R.id.aboutMeBtn);
+        ConstraintLayout aboutMeButton = findViewById(R.id.aboutMeBtn);
         aboutMeButton.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, AboutMeActivity.class);
             startActivity(intent);
@@ -91,26 +91,26 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        Button aboutUsBtn = findViewById(R.id.aboutUsBtn);
+        ConstraintLayout aboutUsBtn = findViewById(R.id.aboutUsBtn);
         aboutUsBtn.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, AboutUsActivity.class);
             startActivity(intent);
         });
 
-        Button chatAssistantBtn = findViewById(R.id.chatAssistantBtn);
+        ConstraintLayout chatAssistantBtn = findViewById(R.id.chatAssistantBtn);
         chatAssistantBtn.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, ChatAssistantActivity.class);
             startActivity(intent);
         });
 
         //Feedback Button to switch to Feedback page
-        Button feedbackBtn = findViewById(R.id.feedbackBtn);
+        ConstraintLayout feedbackBtn = findViewById(R.id.feedbackBtn);
         feedbackBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, FeedbackActivity.class));
             finish();
         });
         //Forum Button to switch to Forum page
-        Button forumBtn = findViewById(R.id.forumBtn);
+        ConstraintLayout forumBtn = findViewById(R.id.forumBtn);
         forumBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, ForumActivity.class));
             finish();
