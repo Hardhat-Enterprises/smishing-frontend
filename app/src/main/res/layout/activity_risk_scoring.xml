@@ -1,76 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".RiskScoringActivity"
+    android:background="#FAFAFA">
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/back_button"
+        android:contentDescription="Back" />
 
-    <!-- ConstraintLayout above the BottomNavigationView -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
 
-        <!-- For simplicity, a LinearLayout inside the ConstraintLayout -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
+        <ImageView
+            android:id="@+id/HardhatLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/hardhat_logo" />
 
-            <!-- Title of the screen -->
-            <ImageView
-                android:id="@+id/HardhatLogo"
-                android:layout_width="112dp"
-                android:layout_height="106dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/hardhat_logo" />
+        <TextView
+            android:id="@+id/riskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message Risk Scoring"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="20dp" />
 
-            <TextView
-                android:id="@+id/riskTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Message Risk Scoring"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="20dp" />
+        <TextView
+            android:id="@+id/riskBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Risk Level: High"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/low_risk_badge"
+            android:padding="14dp"
+            android:layout_marginBottom="20dp" />
 
-            <!-- Risk Level Badge -->
-            <TextView
-                android:id="@+id/riskBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Risk Level: Low"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:background="@drawable/low_risk_badge"
-                android:padding="16dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:layout_marginBottom="16dp" />
 
-            <!-- Progress Bar for Risk Score -->
-            <ProgressBar
-                android:id="@+id/riskMeter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="50"
-                android:progressTint="@color/colorAccent"
-                android:layout_marginBottom="20dp" />
+        <ProgressBar
+            android:id="@+id/riskMeter"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="@color/colorAccent"
+            android:layout_marginBottom="16dp" />
 
-            <!-- Display the Risk Percentage -->
-            <TextView
-                android:id="@+id/riskScorePercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50%"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <TextView
+            android:id="@+id/riskScorePercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="18sp"
+            android:textColor="#212121" />
+    </LinearLayout>
 </RelativeLayout>

@@ -118,7 +118,8 @@
             android:id="@+id/aboutMeBtn"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/about_btn"
@@ -146,8 +147,8 @@
             android:id="@+id/feedbackBtn"
             android:layout_width="175dp"
             android:layout_height="100dp"
-            android:layout_marginStart="232dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/feedback"
@@ -155,29 +156,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
 
-
         <Button
             android:id="@+id/forumBtn"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="272dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="181dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="216dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/buttons_rounded"
             android:gravity="bottom|start"
             android:text="@string/forums"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
-
-        <Button
-            android:id="@+id/changeLanguage"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="116dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/buttons_rounded"
-            android:gravity="bottom|start"
-            android:text="@string/change_langugae"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/helpBtn" />

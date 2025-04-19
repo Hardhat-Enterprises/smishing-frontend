@@ -20,4 +20,5 @@
 
  <!-- Added Resource for colorAccent -->
  <color name="colorAccent">#FF4081</color>
+ <color name="colorPrimary">#3F51B5</color> <!-- Deep Indigo -->
 </resources>

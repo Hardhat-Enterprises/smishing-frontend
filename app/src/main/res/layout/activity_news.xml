@@ -71,7 +71,14 @@
             android:id="@+id/riskScoringButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Risk Scoring"/>
+            android:text="Risk Scoring"
+            android:backgroundTint="@color/baby_blue"
+            android:textColor="@android:color/black"
+            android:elevation="4dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
