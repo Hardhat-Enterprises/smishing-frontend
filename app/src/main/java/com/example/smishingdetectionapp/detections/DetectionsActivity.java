@@ -1,30 +1,22 @@
 package com.example.smishingdetectionapp.detections;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -34,79 +26,13 @@ import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class DetectionsActivity extends AppCompatActivity {
 
     private ListView detectionLV;
-    DatabaseAccess databaseAccess;
-
-    public void searchDB(String search){
-        String searchQuery = ("SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message Like '%" + search + "%' OR Date Like '%" + search + "%'");
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    //Sorting Oldest Date to Newest Date
-    public void sortONDB(){
-        String searchQuery = ("SELECT * FROM Detections ORDER BY Date ASC");
-
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    //Sorting Newest Date to Oldest Date
-    public void sortNODB(){
-        String searchQuery = ("SELECT * FROM Detections ORDER BY Date DESC");
-
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void refreshList(){
-        String searchQuery = ("SELECT * FROM Detections");
-
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void DeleteRow(String id) {
-        DatabaseAccess.db.delete("Detections", "_id" + "=" + id, null);
-
-    }
-
-    //Saving checked state of radio buttons in the filter popup.
-    private void saveRadioButtonState(String key, boolean isChecked) {
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, isChecked);
-        editor.apply();
-    }
-
-    //function used to clear checked state of radio buttons
-    private void clearRadioButtonState() {
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-    }
-
-    //clears checked state of radio buttons when app is closed.
-    @Override
-    protected void onStop() {
-        super.onStop();
-        clearRadioButtonState();
-    }
+    private DatabaseAccess databaseAccess;
+    private DetectionsAdapter adapter;
+    private CheckBox selectAllCheckbox;
+    private Button deleteSelectedBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,96 +45,134 @@ public class DetectionsActivity extends AppCompatActivity {
             return insets;
         });
 
-        //Back button to go back to main dashboard
-        ImageButton detections_back = findViewById(R.id.detections_back);
-        detections_back.setOnClickListener(v -> {
+        // Back button
+        ImageButton detectionsBack = findViewById(R.id.detections_back);
+        detectionsBack.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-            clearRadioButtonState(); //clears checked state of radio buttons when returning to app dashboard.
         });
 
-        //Defining and populating listview from database.
-        detectionLV = findViewById(R.id.lvDetectionsList);
-        databaseAccess = new DatabaseAccess(getApplicationContext());
+        // Open database
+        databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-        final SimpleCursorAdapter simpleCursorAdapter = databaseAccess.populateDetectionList();
-        detectionLV.setAdapter(simpleCursorAdapter);
 
+        // ListView + custom adapter
+        detectionLV = findViewById(R.id.lvDetectionsList);
+        adapter = new DetectionsAdapter(this, databaseAccess.getAllDetections());
+        detectionLV.setAdapter(adapter);
+
+        // Select All / Delete Selected UI
+        selectAllCheckbox = findViewById(R.id.selectAllCheckbox);
+        deleteSelectedBtn    = findViewById(R.id.deleteSelectedBtn);
+
+        selectAllCheckbox.setOnCheckedChangeListener((btn, isChecked) -> {
+            if (isChecked) adapter.selectAll();
+            else adapter.clearSelection();
+        });
+
+        deleteSelectedBtn.setOnClickListener(v -> {
+            for (Integer id : adapter.getSelectedIds()) {
+                databaseAccess.DeleteRow(String.valueOf(id));
+            }
+            adapter.clearSelection();
+            selectAllCheckbox.setChecked(false);
+            adapter.changeCursor(databaseAccess.getAllDetections());
+            Toast.makeText(this, "Deleted selected detections!", Toast.LENGTH_SHORT).show();
+        });
+
+        // Search box
         EditText detSearch = findViewById(R.id.searchTextBox);
         detSearch.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String search = s.toString();
-                searchDB(search);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                String q = s.toString();
+                String sql = "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC";
+                Cursor cursor = DatabaseAccess.db.rawQuery(sql, new String[]{"%"+q+"%","%"+q+"%","%"+q+"%"});
+                adapter.changeCursor(cursor);
             }
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
+        // Filter popup (unchanged)
+        SharedPreferences prefs = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            //determining which activity to show when filter button is clicked.
             View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheet);
-            bottomSheetDialog.show();
+            BottomSheetDialog dialog = new BottomSheetDialog(DetectionsActivity.this);
+            dialog.setContentView(bottomSheet);
+            dialog.show();
 
-            //defining radio buttons in the PopupFilter window.
-            RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
-            RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
+            RadioButton oldToNew = bottomSheet.findViewById(R.id.OldToNewRB);
+            RadioButton newToOld = bottomSheet.findViewById(R.id.NewToOldRB);
 
-            //default value of radio buttons before saving preference.
-            OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
-            NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
+            oldToNew.setChecked(prefs.getBoolean("OldToNewRB", false));
+            newToOld.setChecked(prefs.getBoolean("NewToOldRB", false));
 
-            OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);//unchecks other radio button when this one is checked.
-                    sortONDB();//uses sort function
+            oldToNew.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (oldToNew.isChecked()) {
+                    newToOld.setChecked(false);
+                    sortONDB();
                 }
-                saveRadioButtonState("OldToNewRB", isChecked); //saves the radio button checked state.
+                prefs.edit().putBoolean("OldToNewRB", isChecked).apply();
             });
-            NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(NewToOldRB.isChecked()) {
-                    OldToNewRB.setChecked(false);
+            newToOld.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (newToOld.isChecked()) {
+                    oldToNew.setChecked(false);
                     sortNODB();
                 }
-                saveRadioButtonState("NewToOldRB", isChecked);
+                prefs.edit().putBoolean("NewToOldRB", isChecked).apply();
             });
-
         });
 
+        // Long‑press delete (unchanged)
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
-            View bottomSheetDel = getLayoutInflater().inflate(R.layout.popup_deleteitem, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheetDel);
-            bottomSheetDialog.show();
+            View bottom = getLayoutInflater().inflate(R.layout.popup_deleteitem, null);
+            BottomSheetDialog dlg = new BottomSheetDialog(DetectionsActivity.this);
+            dlg.setContentView(bottom);
+            dlg.show();
 
-            Button Cancel = bottomSheetDel.findViewById(R.id.delItemCancel);
-            Button Confirm = bottomSheetDel.findViewById(R.id.DelItemConfirm);
+            Button cancel = bottom.findViewById(R.id.delItemCancel);
+            Button confirm = bottom.findViewById(R.id.DelItemConfirm);
 
-            Cancel.setOnClickListener(v -> bottomSheetDialog.dismiss());
-
-            Confirm.setOnClickListener(v -> {
-                DeleteRow(String.valueOf(id));
+            cancel.setOnClickListener(v -> dlg.dismiss());
+            confirm.setOnClickListener(v -> {
+                databaseAccess.DeleteRow(String.valueOf(id));
                 refreshList();
-                bottomSheetDialog.dismiss();
+                dlg.dismiss();
                 Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
             });
 
-
             return true;
         });
+    }
 
+    // Search / sort / refresh now drive the same adapter:
+    public void searchDB(String search) {
+        String q = "%" + search + "%";
+        String sql = "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC";
+        Cursor c = DatabaseAccess.db.rawQuery(sql, new String[]{q, q, q});
+        adapter.changeCursor(c);
+    }
+
+    public void sortONDB() {
+        Cursor c = DatabaseAccess.db.rawQuery("SELECT * FROM Detections ORDER BY Date ASC", null);
+        adapter.changeCursor(c);
+    }
+
+    public void sortNODB() {
+        Cursor c = DatabaseAccess.db.rawQuery("SELECT * FROM Detections ORDER BY Date DESC", null);
+        adapter.changeCursor(c);
+    }
+
+    public void refreshList() {
+        adapter.changeCursor(databaseAccess.getAllDetections());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getSharedPreferences("RadioPrefs", MODE_PRIVATE).edit().clear().apply();
     }
 }
