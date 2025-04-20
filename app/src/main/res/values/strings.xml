@@ -156,6 +156,7 @@
     <!-- Detection Page Strings -->
     <string name="pnTitle">Phone: </string>
     <string name="msgTitle">Message: </string>
+    <string name="msgStatus">Status: </string>
     <string name="dateTitle">Date: </string>
 
     <string name="info_icon">info</string>

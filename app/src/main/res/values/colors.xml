@@ -16,4 +16,6 @@
     <color name="azure">#F0FFFF</color>
     <color name="red">#FFFF0000</color>
  <color name="cream">#F5EDD6</color>
+
+ <color name="green">#4CAF50</color>
 </resources>

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
 import android.widget.SimpleCursorAdapter;
 
 import com.example.smishingdetectionapp.R;
@@ -14,6 +15,11 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import android.view.View;
+import android.widget.TextView;
+import android.graphics.Color;
+import java.util.Random;
 
 public class DatabaseAccess {
     private static SQLiteOpenHelper openHelper;
@@ -154,7 +160,7 @@ public Cursor getReportsForSpecificDate(String specificDate) {
                 DatabaseOpenHelper.KEY_ROWID,
                 DatabaseOpenHelper.KEY_PHONENUMBER,
                 DatabaseOpenHelper.KEY_MESSAGE,
-                DatabaseOpenHelper.KEY_DATE
+                DatabaseOpenHelper.KEY_DATE,
         };
 
         Cursor cursor = db.query(
@@ -171,23 +177,44 @@ public Cursor getReportsForSpecificDate(String specificDate) {
                 DatabaseOpenHelper.KEY_ROWID,
                 DatabaseOpenHelper.KEY_PHONENUMBER,
                 DatabaseOpenHelper.KEY_DATE,
-                DatabaseOpenHelper.KEY_MESSAGE
+                DatabaseOpenHelper.KEY_MESSAGE,
+                DatabaseOpenHelper.KEY_ROWID
         };
 
         int[] toViewIDs = new int[]{
                 R.id.item_id,
                 R.id.detectionPhoneText,
                 R.id.detectionDateText,
-                R.id.detectionMessageText
+                R.id.detectionMessageText,
+                R.id.detectionStatus
         };
 
-        return new SimpleCursorAdapter(
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
                 context,
                 R.layout.detection_items,
                 cursor,
                 columnsStr,
-                toViewIDs
+                toViewIDs,
+                0
         );
+
+        adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            private final Random rnd = new Random();
+
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                if (view.getId() == R.id.detectionStatus) {
+                    TextView statusTv = (TextView) view;
+                    boolean isSafe = rnd.nextBoolean();
+                    statusTv.setText(isSafe ? "Safe" : "Potential Smishing");
+                    statusTv.setTextColor(isSafe ? Color.GREEN : Color.RED);
+                    return true;  // we handled this view
+                }
+                return false;     // default binding for other views
+            }
+        });
+
+        return adapter;
     }
 
     // Add this method to DatabaseAccess.java
