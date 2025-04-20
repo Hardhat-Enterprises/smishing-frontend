@@ -47,21 +47,18 @@ public class DetectionsActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Back button
         ImageButton back = findViewById(R.id.detections_back);
         back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 
-        // Open DB and set up adapter
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
         detectionLV = findViewById(R.id.lvDetectionsList);
         adapter = new DetectionsAdapter(this, databaseAccess.getAllDetections());
         detectionLV.setAdapter(adapter);
 
-        // Select All / Delete Selected
         selectAllCheckbox = findViewById(R.id.selectAllCheckbox);
         deleteSelectedBtn    = findViewById(R.id.deleteSelectedBtn);
 
@@ -103,7 +100,6 @@ public class DetectionsActivity extends AppCompatActivity {
             }
         });
 
-        // Search
         EditText detSearch = findViewById(R.id.searchTextBox);
         detSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s,int st,int c,int a){}
@@ -119,7 +115,6 @@ public class DetectionsActivity extends AppCompatActivity {
             }
         });
 
-        // Filter popup (unchanged)
         SharedPreferences prefs = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
@@ -150,7 +145,6 @@ public class DetectionsActivity extends AppCompatActivity {
             });
         });
 
-        // Single‑item delete on long‑press with confirmation
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
             new AlertDialog.Builder(this)
                     .setTitle("Confirm Delete")
@@ -166,7 +160,6 @@ public class DetectionsActivity extends AppCompatActivity {
         });
     }
 
-    // Refresh / search / sort helpers
     public void searchDB(String search) {
         String q = "%" + search + "%";
         Cursor c = DatabaseAccess.db.rawQuery(
