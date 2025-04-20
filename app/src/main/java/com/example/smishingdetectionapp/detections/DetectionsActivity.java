@@ -3,6 +3,7 @@ package com.example.smishingdetectionapp.detections;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -40,58 +42,80 @@ public class DetectionsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detections);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
             return insets;
         });
 
         // Back button
-        ImageButton detectionsBack = findViewById(R.id.detections_back);
-        detectionsBack.setOnClickListener(v -> {
+        ImageButton back = findViewById(R.id.detections_back);
+        back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 
-        // Open database
+        // Open DB and set up adapter
         databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-
-        // ListView + custom adapter
         detectionLV = findViewById(R.id.lvDetectionsList);
         adapter = new DetectionsAdapter(this, databaseAccess.getAllDetections());
         detectionLV.setAdapter(adapter);
 
-        // Select All / Delete Selected UI
+        // Select All / Delete Selected
         selectAllCheckbox = findViewById(R.id.selectAllCheckbox);
         deleteSelectedBtn    = findViewById(R.id.deleteSelectedBtn);
 
         selectAllCheckbox.setOnCheckedChangeListener((btn, isChecked) -> {
             if (isChecked) adapter.selectAll();
-            else adapter.clearSelection();
+            else          adapter.clearSelection();
         });
 
         deleteSelectedBtn.setOnClickListener(v -> {
-            for (Integer id : adapter.getSelectedIds()) {
-                databaseAccess.DeleteRow(String.valueOf(id));
+            if (adapter.getSelectedIds().isEmpty()) {
+                Toast.makeText(this, "No detections selected", Toast.LENGTH_SHORT).show();
+                return;
             }
-            adapter.clearSelection();
-            selectAllCheckbox.setChecked(false);
-            adapter.changeCursor(databaseAccess.getAllDetections());
-            Toast.makeText(this, "Deleted selected detections!", Toast.LENGTH_SHORT).show();
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete the selected detections?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete", (dlg, which) -> {
+                        for (Integer id : adapter.getSelectedIds()) {
+                            databaseAccess.DeleteRow(String.valueOf(id));
+                        }
+                        adapter.clearSelection();
+                        selectAllCheckbox.setChecked(false);
+                        adapter.changeCursor(databaseAccess.getAllDetections());
+                        Toast.makeText(this, "Deleted selected detections!", Toast.LENGTH_SHORT).show();
+                    })
+                    .create();
+
+            dialog.show();
+
+            Button cancelBtn = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+            if (cancelBtn != null) {
+                cancelBtn.setTextColor(Color.BLACK);
+            }
+
+            Button deleteBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            if (deleteBtn != null) {
+                deleteBtn.setTextColor(Color.RED);
+            }
         });
 
-        // Search box
+        // Search
         EditText detSearch = findViewById(R.id.searchTextBox);
         detSearch.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
+            @Override public void beforeTextChanged(CharSequence s,int st,int c,int a){}
+            @Override public void afterTextChanged(Editable s){}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String q = s.toString();
-                String sql = "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC";
-                Cursor cursor = DatabaseAccess.db.rawQuery(sql, new String[]{"%"+q+"%","%"+q+"%","%"+q+"%"});
-                adapter.changeCursor(cursor);
+            public void onTextChanged(CharSequence s, int st, int b, int c) {
+                String q = "%" + s.toString() + "%";
+                Cursor cur = DatabaseAccess.db.rawQuery(
+                        "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC",
+                        new String[]{q,q,q});
+                adapter.changeCursor(cur);
             }
         });
 
@@ -99,70 +123,67 @@ public class DetectionsActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
-            BottomSheetDialog dialog = new BottomSheetDialog(DetectionsActivity.this);
-            dialog.setContentView(bottomSheet);
-            dialog.show();
+            View sheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
+            BottomSheetDialog dlg = new BottomSheetDialog(this);
+            dlg.setContentView(sheet);
+            dlg.show();
 
-            RadioButton oldToNew = bottomSheet.findViewById(R.id.OldToNewRB);
-            RadioButton newToOld = bottomSheet.findViewById(R.id.NewToOldRB);
+            RadioButton oldToNew = sheet.findViewById(R.id.OldToNewRB);
+            RadioButton newToOld = sheet.findViewById(R.id.NewToOldRB);
 
             oldToNew.setChecked(prefs.getBoolean("OldToNewRB", false));
             newToOld.setChecked(prefs.getBoolean("NewToOldRB", false));
 
-            oldToNew.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (oldToNew.isChecked()) {
+            oldToNew.setOnCheckedChangeListener((bView, checked) -> {
+                if (checked) {
                     newToOld.setChecked(false);
                     sortONDB();
                 }
-                prefs.edit().putBoolean("OldToNewRB", isChecked).apply();
+                prefs.edit().putBoolean("OldToNewRB", checked).apply();
             });
-            newToOld.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (newToOld.isChecked()) {
+            newToOld.setOnCheckedChangeListener((bView, checked) -> {
+                if (checked) {
                     oldToNew.setChecked(false);
                     sortNODB();
                 }
-                prefs.edit().putBoolean("NewToOldRB", isChecked).apply();
+                prefs.edit().putBoolean("NewToOldRB", checked).apply();
             });
         });
 
-        // Long‑press delete (unchanged)
+        // Single‑item delete on long‑press with confirmation
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
-            View bottom = getLayoutInflater().inflate(R.layout.popup_deleteitem, null);
-            BottomSheetDialog dlg = new BottomSheetDialog(DetectionsActivity.this);
-            dlg.setContentView(bottom);
-            dlg.show();
-
-            Button cancel = bottom.findViewById(R.id.delItemCancel);
-            Button confirm = bottom.findViewById(R.id.DelItemConfirm);
-
-            cancel.setOnClickListener(v -> dlg.dismiss());
-            confirm.setOnClickListener(v -> {
-                databaseAccess.DeleteRow(String.valueOf(id));
-                refreshList();
-                dlg.dismiss();
-                Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
-            });
-
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete this detection?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete", (dlg, which) -> {
+                        databaseAccess.DeleteRow(String.valueOf(id));
+                        refreshList();
+                        Toast.makeText(this, "Detection Deleted!", Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
             return true;
         });
     }
 
-    // Search / sort / refresh now drive the same adapter:
+    // Refresh / search / sort helpers
     public void searchDB(String search) {
         String q = "%" + search + "%";
-        String sql = "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC";
-        Cursor c = DatabaseAccess.db.rawQuery(sql, new String[]{q, q, q});
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC",
+                new String[]{q,q,q});
         adapter.changeCursor(c);
     }
 
     public void sortONDB() {
-        Cursor c = DatabaseAccess.db.rawQuery("SELECT * FROM Detections ORDER BY Date ASC", null);
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections ORDER BY Date ASC", null);
         adapter.changeCursor(c);
     }
 
     public void sortNODB() {
-        Cursor c = DatabaseAccess.db.rawQuery("SELECT * FROM Detections ORDER BY Date DESC", null);
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections ORDER BY Date DESC", null);
         adapter.changeCursor(c);
     }
 
