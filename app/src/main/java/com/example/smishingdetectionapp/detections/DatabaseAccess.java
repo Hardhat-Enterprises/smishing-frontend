@@ -206,7 +206,7 @@ public Cursor getReportsForSpecificDate(String specificDate) {
                 if (view.getId() == R.id.detectionStatus) {
                     TextView statusTv = (TextView) view;
                     boolean isSafe = rnd.nextBoolean();
-                    statusTv.setText(isSafe ? "Safe" : "Potential Smishing");
+                    statusTv.setText(isSafe ? "Safe" : "Suspicious");
                     statusTv.setTextColor(isSafe ? Color.GREEN : Color.RED);
                     return true;  // we handled this view
                 }
