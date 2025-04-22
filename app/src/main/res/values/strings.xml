@@ -10,7 +10,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
+    <string name="menu_detections">Detections</string>
     <string name="menu_home">Home</string>
 
     <string name="title_activity_login">LoginActivity</string>
@@ -90,7 +90,6 @@
 
     Please scroll to the bottom to continue.
 </string>
-
 
 
     <!-- Password Change Window Strings -->
@@ -219,7 +218,6 @@
     <string name="title_activity_signup">SignupActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
     <!-- Added strings -->

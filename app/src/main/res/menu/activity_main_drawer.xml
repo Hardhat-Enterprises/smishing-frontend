@@ -3,7 +3,11 @@
         <item
             android:id="@+id/nav_home"
             android:title="@string/menu_home"
-            android:icon="@drawable/icons8_home_48" />
+            android:icon="@drawable/baseline_home_24" />
+        <item
+            android:id="@+id/nav_detections"
+            android:title="@string/menu_detections"
+            android:icon="@drawable/baseline_announcement_24" />
         <item
             android:id="@+id/nav_news"
             android:title="@string/menu_news"

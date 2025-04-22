@@ -11,14 +11,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.smishingdetectionapp.Settings.SettingsFragment;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
+import com.example.smishingdetectionapp.detections.DetectionsFragment;
+import com.example.smishingdetectionapp.news.NewsFragment;
+import com.example.smishingdetectionapp.ui.home.HomeFragment;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 
 
@@ -28,6 +35,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private boolean isBackPressed = false;
+    private final Fragment Home = new HomeFragment();
+    private final Fragment News = new NewsFragment();
+    private final Fragment Settings = new SettingsFragment();
+    private final Fragment Detections = new DetectionsFragment();
 
 
     @SuppressLint("SetTextI18n")
@@ -36,9 +47,7 @@ public class MainActivity extends SharedActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_news, R.id.nav_settings)
-                .build();
+        replaceFragment(Home);
 
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog();
@@ -46,17 +55,19 @@ public class MainActivity extends SharedActivity {
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setSelectedItemId(R.id.nav_home);
-        nav.setOnItemSelectedListener(menuItem -> {
+            nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
+                nav.setActivated(true);
+                return true;
+            } else if (id == R.id.nav_detections) {
+                replaceFragment(Detections);
                 return true;
             } else if (id == R.id.nav_news) {
-                startActivity(new Intent(getApplicationContext(), NewsActivity.class));
-                overridePendingTransition(0, 0);
+                replaceFragment(News);
                 return true;
             } else if (id == R.id.nav_settings) {
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                overridePendingTransition(0, 0);
+                replaceFragment(Settings);
                 return true;
             }
             return false;
@@ -118,6 +129,14 @@ public class MainActivity extends SharedActivity {
 
     }
 
+    //takes current fragment and replaces it with new
+    public void replaceFragment(Fragment fragment)
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction().setReorderingAllowed(true);
+        ft.replace(R.id.frame_layout,fragment);
+        ft.commit();
+    }
     private boolean areNotificationsEnabled() {
         return NotificationManagerCompat.from(this).areNotificationsEnabled();
     }

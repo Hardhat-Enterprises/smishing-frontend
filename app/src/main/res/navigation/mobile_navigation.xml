@@ -10,5 +10,21 @@
         android:name="com.example.smishingdetectionapp.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.smishingdetectionapp.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/nav_detections"
+        android:name="com.example.smishingdetectionapp.detections.DetectionsFragment"
+        android:label="@string/menu_detections"
+        tools:layout="@layout/fragment_detections" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.smishingdetectionapp.Settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
 
 </navigation>

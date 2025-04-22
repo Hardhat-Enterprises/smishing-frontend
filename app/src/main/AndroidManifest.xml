@@ -76,7 +76,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewsActivity"
+            android:name=".news.NewsActivity"
             android:exported="false" />
         <activity
             android:name=".ReportingActivity"
@@ -93,7 +93,7 @@
         <activity android:name=".detections.YourReportsActivity" android:exported="false"/>
       
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Settings.SettingsActivity"
             android:exported="false" /> <!-- Set LoginActivity as the launcher activity -->
         <activity
             android:name=".ui.login.LoginActivity"
