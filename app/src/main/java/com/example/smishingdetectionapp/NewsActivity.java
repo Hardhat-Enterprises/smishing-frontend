@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smishingdetectionapp.dashboard.DashboardActivity;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
 import com.example.smishingdetectionapp.news.NewsAdapter;
 import com.example.smishingdetectionapp.news.NewsRequestManager;
@@ -54,6 +55,11 @@ public class NewsActivity extends SharedActivity implements SelectListener{
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;

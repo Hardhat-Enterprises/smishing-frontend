@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.smishingdetectionapp.dashboard.DashboardActivity;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
@@ -35,7 +36,7 @@ public class MainActivity extends SharedActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_news, R.id.nav_settings)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_dashboard, R.id.nav_news, R.id.nav_settings)
                 .build();
 
         if (!areNotificationsEnabled()) {
@@ -47,6 +48,11 @@ public class MainActivity extends SharedActivity {
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
+                return true;
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));

@@ -4,6 +4,11 @@
             android:id="@+id/nav_home"
             android:title="@string/menu_home"
             android:icon="@drawable/icons8_home_48" />
+
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_monitoring"
+                android:title="Analytics Dashboard" />
         <item
             android:id="@+id/nav_news"
             android:title="@string/menu_news"
