@@ -1,4 +1,21 @@
 <resources>
     <dimen name="fab_margin">48dp</dimen>
     <dimen name="activity_horizontal_margin">48dp</dimen>
+    <!-- Adjusted margins for landscape mode -->
+    <!-- On landscape, you might want smaller vertical margins because of reduced height -->
+    <dimen name="activity_vertical_margin">12dp</dimen>
+
+    <!-- Adjust margins for universal use if necessary -->
+    <!-- For example, if you want a slightly larger medium margin in landscape -->
+    <dimen name="margin_medium">20dp</dimen>
+
+    <!-- Specific adjustments for the onboarding/intro screen -->
+    <!-- Since your ImageView uses margin_top and intro_image_height, you might want to adjust these -->
+    <dimen name="margin_top">10dp</dimen>
+    <!-- Reduce the image height to make sure it fits without being cut off on a landscape tablet -->
+    <dimen name="intro_image_height">280dp</dimen>
+
+    <!-- Optional: Adjust other dimensions if your design requires -->
+    <!-- For instance, if the login logo or other elements need a different size in landscape mode -->
+    <dimen name="login_logo_size">100dp</dimen>
 </resources>

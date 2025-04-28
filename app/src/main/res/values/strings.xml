@@ -18,6 +18,7 @@
     <string name="prompt_password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="action_welcome_to_screen">Welcome Back</string>
     <string name="action_login_in">Login</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -289,5 +290,6 @@
     </string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="login_with_pin">Login with PIN</string>
 
 </resources>
