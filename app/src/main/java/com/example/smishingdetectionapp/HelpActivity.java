@@ -62,13 +62,11 @@ public class HelpActivity extends SharedActivity {
 
         // FAQ
         RelativeLayout rv3 = findViewById(R.id.rv_3);
-        rv3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the click event here
-                Toast.makeText(HelpActivity.this, "Faq", Toast.LENGTH_SHORT).show();
-            }
+        rv3.setOnClickListener(v -> {
+            Intent intent = new Intent(HelpActivity.this, FaqActivity.class);
+            startActivity(intent);
         });
+
 
         //Feedback
         RelativeLayout rv4 = findViewById(R.id.rv_4);

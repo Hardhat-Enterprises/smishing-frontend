@@ -92,7 +92,6 @@
 </string>
 
 
-
     <!-- Password Change Window Strings -->
     <string name="change_password_page">Change Password</string>
     <string name="current_password">Current Password</string>
@@ -219,7 +218,6 @@
     <string name="title_activity_signup">SignupActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
     <!-- Added strings -->
