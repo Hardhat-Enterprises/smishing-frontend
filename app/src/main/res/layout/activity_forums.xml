@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/back_button" />
 
     <!-- Hardhat Logo -->
-    <ImageView
+     <ImageView
         android:id="@+id/hardhatLogo"
         android:layout_width="112dp"
         android:layout_height="106dp"
@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:contentDescription="@string/hardhat_logo_alt"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/new_logo" />
 
     <!-- Community Forum Header -->
     <TextView

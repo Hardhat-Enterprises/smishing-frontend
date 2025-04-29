@@ -22,16 +22,17 @@
         app:srcCompat="@drawable/back_button" />
 
     <!-- Logo -->
-    <ImageView
+   <ImageView
         android:id="@+id/logo"
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="32dp"
         android:contentDescription="@string/hardhat_logo_alt"
-        android:src="@drawable/hardhat_logo"
+        android:src="@drawable/new_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <!-- Title -->
     <TextView

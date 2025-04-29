@@ -21,14 +21,14 @@
             android:orientation="vertical">
 
 
-            <ImageView
+             <ImageView
                 android:id="@+id/logoImageView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/hardhat_logo"
-                android:contentDescription="@string/hardhat_logo_alt"/>
+                android:src="@drawable/new_logo"
+                android:contentDescription="@string/hardhat_logo_alt" />
 
 
             <TextView

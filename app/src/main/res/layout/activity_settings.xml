@@ -15,6 +15,9 @@
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
 
@@ -27,9 +30,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:layout_height="wrap_content">
 
+            <!-- Top Logo -->
             <ImageView
                 android:id="@+id/HardhatLogo"
                 android:layout_width="112dp"
@@ -39,22 +42,24 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/hardhat_logo" />
+                app:srcCompat="@drawable/new_logo"
+                android:contentDescription="@string/hardhat_logo_alt" />
 
+            <!-- Settings Title -->
             <TextView
                 android:id="@+id/SettingsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/menu_settings"
+                android:textColor="@color/navy_blue"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                android:textColor="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Divider -->
             <View
                 android:id="@+id/divider1"
                 android:layout_width="0dp"
@@ -63,10 +68,11 @@
                 android:layout_marginEnd="28dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/SettingsText"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SettingsText" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Account Section Header -->
             <TextView
                 android:id="@+id/accountSettingsHeader"
                 android:layout_width="wrap_content"
@@ -76,56 +82,48 @@
                 android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Account Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/accountBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="start|center_vertical"
                 android:padding="12dp"
                 android:text="@string/account_details_text"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountSettingsHeader"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/accountSettingsHeader" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Password Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/passwordBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
-                android:paddingVertical="8dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:drawablePadding="8dp"
-                android:focusable="true"
-                android:gravity="start|center_vertical"
                 android:padding="12dp"
                 android:text="@string/password_and_security"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/accountBtn" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Divider -->
             <View
                 android:id="@+id/divider2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="8dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordBtn" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp" />
 
+            <!-- Notifications Header -->
             <TextView
                 android:id="@+id/notifications_text"
                 android:layout_width="wrap_content"
@@ -135,49 +133,43 @@
                 android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Notification Switches -->
             <Switch
                 android:id="@+id/smishing_notification_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
-                android:paddingVertical="8dp"
                 android:text="@string/smishing_detection_notification_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@id/notifications_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notifications_text"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Switch
                 android:id="@+id/spam_notification_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/spam_detection_notification_title"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/smishing_notification_switch"
+                android:text="@string/spam_detection_notification_title"
+                app:layout_constraintTop_toBottomOf="@id/smishing_notification_switch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Switch
                 android:id="@+id/news_notification_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/news_notification_title"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/spam_notification_switch"
+                android:text="@string/news_notification_title"
+                app:layout_constraintTop_toBottomOf="@id/spam_notification_switch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Switch
                 android:id="@+id/incident_report_switch"

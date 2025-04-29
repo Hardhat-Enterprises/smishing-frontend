@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
     private String BASE_URL = BuildConfig.SERVERIP;
+    private boolean isPasswordVisible = false;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -186,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /*
         // Password visibility toggle
         togglePasswordVisibility.setOnClickListener(v -> {
             boolean isPasswordVisible = passwordEditText.getTransformationMethod() == null;
@@ -198,6 +200,26 @@ public class LoginActivity extends AppCompatActivity {
             }
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
+    }*/
+
+        togglePasswordVisibility.setOnClickListener(v -> {
+            if (isPasswordVisible) {
+                // Hide password
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility_hover); // lighter icon
+                isPasswordVisible = false;
+            } else {
+                // Show password
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility); // darker icon
+                isPasswordVisible = true;
+            }
+
+            // cursor stays at end of input
+            passwordEditText.setSelection(passwordEditText.getText().length());
+        });
+
+
     }
 
     // Google Sign-In

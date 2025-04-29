@@ -20,7 +20,7 @@
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/hardhat_logo" />
+            app:srcCompat="@drawable/new_logo" />
 
         <TextView
             android:id="@+id/scoreText"
