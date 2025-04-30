@@ -108,7 +108,18 @@
     <string name="view_terms_and_conditions">Click here to accept the terms and complete registration.</string>
     <string name="agree_terms_and_conditions">I agree to the terms and conditions</string>
 
-    <!-- Notifications -->
+    <!-- Detection Page Strings -->
+    <string name="delete_text">Delete</string>
+    <string name="pnTitle">Number: </string>
+    <string name="msgTitle">Message: </string>
+    <string name="dateTitle">Date: </string>
+
+    <!-- Notification Page Strings -->
+    <string name="info_icon">info</string>
+    <string name="new_icon">info</string>
+    <string name="time_icon">info</string>
+    <string name="notification_header">Notifications</string>
+
     <string name="news_notification_title">News Updates</string>
     <string name="smishing_detection_notification_title">Smishing Detections</string>
     <string name="spam_detection_notification_title">Spam Detections</string>
