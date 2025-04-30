@@ -19,5 +19,8 @@
  <color name="cream">#F5EDD6</color>
  <color name="green">#4CAF50</color>
  <color name="Dark_blue">#05445E</color>
-  
+
+ <color name="greenn">#66BB6A</color>
+ <color name="orange">#FFEB3B</color>
+ <color name="redd">#EF5350</color>
 </resources>

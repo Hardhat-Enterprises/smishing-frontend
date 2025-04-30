@@ -35,8 +35,10 @@ public class HelpActivity extends SharedActivity {
 
         // Back button: finish activity
         ImageButton helpBack = findViewById(R.id.help_back);
-        helpBack.setOnClickListener(v -> finish());
-
+        helpBack.setOnClickListener(v -> {
+            startActivity(new Intent(this, SettingsActivity.class));
+            finish();
+        });
 
         // Menu button: handle as needed
         ImageButton helpMenu = findViewById(R.id.help_menu);

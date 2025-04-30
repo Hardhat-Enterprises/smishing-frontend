@@ -72,7 +72,7 @@
                 android:layout_height="72dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/hardhat_logo" />
+                app:srcCompat="@drawable/new_logo" />
 
             <!-- Subtitle / Description -->
             <TextView

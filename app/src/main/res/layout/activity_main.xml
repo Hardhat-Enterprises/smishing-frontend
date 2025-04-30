@@ -33,18 +33,28 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="124dp"
             android:background="@drawable/buttons_rounded"
-            android:drawableLeft="@drawable/bell_svg"
-            android:paddingStart="105dp"
-            android:paddingEnd="125dp"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/scanner_btn"
+            android:layout_width="182dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="124dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Risk Scanner"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detections_btn" />
 
         <ImageView
             android:id="@+id/HardhatLogo"

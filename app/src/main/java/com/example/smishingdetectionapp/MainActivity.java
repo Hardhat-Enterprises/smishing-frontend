@@ -19,6 +19,8 @@ import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
+import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
+
 
 
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
@@ -76,6 +78,11 @@ public class MainActivity extends SharedActivity {
         learnMoreButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
+        });
+        Button scanner_btn = findViewById(R.id.scanner_btn);
+        scanner_btn.setOnClickListener(v -> {
+            startActivity(new Intent(this, RiskScannerTCActivity.class));
+            finish();
         });
 
 
