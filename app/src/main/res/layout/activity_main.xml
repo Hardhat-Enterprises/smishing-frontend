@@ -20,9 +20,7 @@
         app:itemHorizontalTranslationEnabled="false"
         app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
-        app:menu="@menu/activity_main_drawer" >
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/activity_main_drawer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,31 +31,40 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="124dp"
             android:background="@drawable/buttons_rounded"
-            android:drawableLeft="@drawable/bell_svg"
-            android:paddingStart="105dp"
-            android:paddingEnd="125dp"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
-       <ImageView
-    android:id="@+id/HardhatLogo"
-    android:layout_width="112dp"
-    android:layout_height="106dp"
-    android:layout_marginTop="20dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:srcCompat="@drawable/new_logo"
-    android:contentDescription="@string/hardhat_logo_alt"/>
+        <Button
+            android:id="@+id/scanner_btn"
+            android:layout_width="182dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="124dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Risk Scanner"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detections_btn" />
 
+        <ImageView
+            android:id="@+id/HardhatLogo"
+            android:layout_width="112dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/new_logo"
+            android:contentDescription="@string/logo_description" />
 
         <TextView
             android:id="@+id/DashboardText"
@@ -207,12 +214,9 @@
             android:layout_height="111dp"
             android:layout_marginStart="149dp"
             android:layout_marginTop="16dp"
-
-
             android:layout_marginEnd="150dp"
             android:alpha="0"
             android:autoText="true"
-
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="@+id/HardhatLogo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -235,7 +239,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detections_btn"
             tools:ignore="MissingConstraints" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
