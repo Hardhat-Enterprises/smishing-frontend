@@ -30,7 +30,7 @@ public class DisplayDataAdapterView extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         int position = cursor.getPosition();
 
-        TextView numberTextView = view.findViewById(R.id.detectionNumber);
+        TextView numberTextView = view.findViewById(R.id.detectionPhoneLabel);
         TextView phoneTextView = view.findViewById(R.id.detectionPhoneText);
         TextView messageTextView = view.findViewById(R.id.detectionMessageText);
         TextView dateTextView = view.findViewById(R.id.detectionDateText);

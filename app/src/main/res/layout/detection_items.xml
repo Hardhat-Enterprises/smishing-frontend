@@ -5,20 +5,19 @@
     android:id="@+id/detectCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:padding="10dp"
+    android:layout_margin="16dp"
+    android:padding="16dp"
     app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
     app:strokeColor="@color/navy_blue"
-    app:strokeWidth="1dp"
-    app:cardCornerRadius="10dp"
-    android:theme="@style/Theme.MaterialComponents.Light">
+    app:strokeWidth="0dp">
 
     <LinearLayout
+        android:layout_margin="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
+        android:orientation="vertical">
 
         <!-- Multi-select checkbox -->
         <CheckBox
@@ -27,17 +26,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"/>
 
-        <!-- Phone number row -->
-      
+        <!-- Phone number section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/detectionPhoneLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="@string/pnTitle"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
@@ -49,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="4dp"
                 android:textColor="@color/black" />
-
         </LinearLayout>
 
         <!-- Message label -->
@@ -57,10 +57,20 @@
             android:id="@+id/detectionMessageLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
             android:text="@string/msgTitle"
             android:textColor="@color/navy_blue"
             android:textStyle="bold"
             android:textSize="18sp" />
+
+        <!-- Message text -->
+        <TextView
+            android:id="@+id/detectionMessageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/black" />
 
         <!-- Status row -->
         <LinearLayout
@@ -83,55 +93,60 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="4dp"
                 android:textColor="@color/black"/>
-
         </LinearLayout>
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_gravity="end"
-            android:text="@string/delete_text"
-            android:backgroundTint="@color/red"
-            android:textColor="@android:color/white" />
-
-        <!-- Message text -->
-        <TextView
-            android:id="@+id/detectionMessageText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black" />
-
         <!-- Spacer -->
-        <TextView
-            android:id="@+id/detectionSpacer"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="" />
+            android:layout_height="8dp"
+            android:background="@android:color/transparent" />
 
+        <!-- Date & Delete row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
 
-            <TextView
-                android:id="@+id/detectionDateLabel"
+            <!-- Date Section -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/detectionDateLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/dateTitle"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detectionDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="4dp"
+                    android:textColor="@color/black"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <!-- Delete Button -->
+            <Button
+                android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dateTitle"
-                android:textColor="@color/navy_blue"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/detectionDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="4dp"
-                android:textColor="@color/black" />
-
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:text="@string/delete_text"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white" />
         </LinearLayout>
-
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
