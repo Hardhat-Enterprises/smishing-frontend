@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,37 +32,34 @@ public class DetectionsActivity extends AppCompatActivity {
     private ListView detectionLV;
     DatabaseAccess databaseAccess;
 
-    public void searchDB(String search){
-        String searchQuery = ("SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message Like '%" + search + "%' OR Date Like '%" + search + "%'");
+    public void searchDB(String search) {
+        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-    //Sorting Oldest Date to Newest Date
-    public void sortONDB(){
-        String searchQuery = ("SELECT * FROM Detections ORDER BY Date ASC");
-
+    // Sorting Oldest to Newest
+    public void sortONDB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-    //Sorting Newest Date to Oldest Date
-    public void sortNODB(){
-        String searchQuery = ("SELECT * FROM Detections ORDER BY Date DESC");
-
+    // Sorting Newest to Oldest
+    public void sortNODB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-    public void refreshList(){
-        String searchQuery = ("SELECT * FROM Detections");
-
+    public void refreshList() {
+        String searchQuery = "SELECT * FROM Detections";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
@@ -71,11 +67,9 @@ public class DetectionsActivity extends AppCompatActivity {
     }
 
     public void DeleteRow(String id) {
-        DatabaseAccess.db.delete("Detections", "_id" + "=" + id, null);
-
+        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
     }
 
-    //Saving checked state of radio buttons in the filter popup.
     private void saveRadioButtonState(String key, boolean isChecked) {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -83,7 +77,6 @@ public class DetectionsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    //function used to clear checked state of radio buttons
     private void clearRadioButtonState() {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -91,7 +84,6 @@ public class DetectionsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    //clears checked state of radio buttons when app is closed.
     @Override
     protected void onStop() {
         super.onStop();
@@ -136,75 +128,73 @@ public class DetectionsActivity extends AppCompatActivity {
             return false;
         });
 
-        //Back button to go back to main dashboard
+        // Back to dashboard
         ImageButton detections_back = findViewById(R.id.detections_back);
         detections_back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-            clearRadioButtonState(); //clears checked state of radio buttons when returning to app dashboard.
+            clearRadioButtonState();
         });
 
-        //Defining and populating listview from database.
+        // ListView setup
         detectionLV = findViewById(R.id.lvDetectionsList);
         databaseAccess = new DatabaseAccess(getApplicationContext());
         databaseAccess.open();
-        final SimpleCursorAdapter simpleCursorAdapter = databaseAccess.populateDetectionList();
-        detectionLV.setAdapter(simpleCursorAdapter);
 
+        //  Use custom adapter for numbering logic
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        // Search functionality
         EditText detSearch = findViewById(R.id.searchTextBox);
         detSearch.addTextChangedListener(new TextWatcher() {
-
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String search = s.toString();
-                searchDB(search);
+                searchDB(s.toString());
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
+        // Filter popup
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            //determining which activity to show when filter button is clicked.
             View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
             bottomSheetDialog.setContentView(bottomSheet);
             bottomSheetDialog.show();
 
-            //defining radio buttons in the PopupFilter window.
             RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
             RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
 
-            //default value of radio buttons before saving preference.
             OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
             NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
 
             OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);//unchecks other radio button when this one is checked.
-                    sortONDB();//uses sort function
+                if (OldToNewRB.isChecked()) {
+                    NewToOldRB.setChecked(false);
+                    sortONDB();
                 }
-                saveRadioButtonState("OldToNewRB", isChecked); //saves the radio button checked state.
+                saveRadioButtonState("OldToNewRB", isChecked);
             });
+
             NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(NewToOldRB.isChecked()) {
+                if (NewToOldRB.isChecked()) {
                     OldToNewRB.setChecked(false);
                     sortNODB();
                 }
                 saveRadioButtonState("NewToOldRB", isChecked);
             });
-
         });
 
+        // Long click → delete dialog
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
             View bottomSheetDel = getLayoutInflater().inflate(R.layout.popup_deleteitem, null);
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
@@ -223,10 +213,8 @@ public class DetectionsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
             });
 
-
             return true;
         });
-
     }
     @Override
     public void onBackPressed() {
@@ -235,3 +223,4 @@ public class DetectionsActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 }
+

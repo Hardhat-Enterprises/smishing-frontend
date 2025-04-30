@@ -13,16 +13,34 @@
     app:cardCornerRadius="10dp"
     android:theme="@style/Theme.MaterialComponents.Light">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Numbering shown top-right -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/detectionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/navy_blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Number Label and Value -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -42,9 +60,9 @@
                 android:text=""
                 android:textColor="@color/black"
                 tools:ignore="RtlSymmetry" />
-
         </LinearLayout>
 
+        <!-- Message Label -->
         <TextView
             android:id="@+id/detectionMessageLabel"
             android:layout_width="match_parent"
@@ -52,19 +70,20 @@
             android:text="@string/msgTitle"
             android:textColor="@color/navy_blue"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
+        <!-- Delete Button -->
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_gravity="end"
-            android:text="Delete"
+            android:text="@string/delete_text"
             android:backgroundTint="@color/red"
             android:textColor="@android:color/white" />
 
-
+        <!-- Message Content -->
         <TextView
             android:id="@+id/detectionMessageText"
             android:layout_width="match_parent"
@@ -72,15 +91,17 @@
             android:text=""
             android:textColor="@color/black" />
 
+        <!-- Spacer -->
         <TextView
             android:id="@+id/detectionSpacer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="" />
 
+        <!-- Date -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -90,8 +111,7 @@
                 android:text="@string/dateTitle"
                 android:textColor="@color/navy_blue"
                 android:textStyle="bold"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/detectionDateText"
