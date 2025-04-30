@@ -12,9 +12,9 @@
             android:id="@+id/logo"
             android:layout_width="112dp"
             android:layout_height="106dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:contentDescription="@string/logo_description"
-            android:src="@drawable/hardhat_logo"
+            android:src="@drawable/new_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/action_login_in"
+            android:text="Welcome Back!"
             android:textColor="@color/navy_blue"
-            android:textSize="42sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:id="@+id/emailLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="60dp"
             android:text="@string/prompt_email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loginTitle"
@@ -49,7 +49,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:hint="@string/prompt_email"
+            android:importantForAccessibility="yes"
             android:ems="10"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/emailLabel"
             app:layout_constraintTop_toBottomOf="@id/emailLabel"
@@ -71,8 +75,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textSize="16sp"
             android:inputType="textPassword"
             android:autofillHints="password"
+            android:hint="@string/prompt_password"
             app:layout_constraintTop_toBottomOf="@id/passwordLabel"
             app:layout_constraintStart_toStartOf="@id/passwordLabel"
             app:layout_constraintEnd_toEndOf="@id/email"/>
@@ -81,44 +87,64 @@
         <Button
             android:id="@+id/togglePinLogin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login with PIN"
-            android:textColor="@color/navy_blue"
-            android:layout_marginStart="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password" />
-
-        <!-- Forgot Password Button -->
-        <TextView
-            android:id="@+id/forgotPasswordButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="@string/forgot_password"
+            android:layout_height="40dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:drawablePadding="8dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/login_with_pin"
             android:textColor="@color/navy_blue"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginOptionsLayout" />
+
+        <!-- Ensuring that remember me and forgot password are next to each other -->
+        <LinearLayout
+            android:id="@+id/loginOptionsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password" />
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
 
         <!-- Remember Me -->
         <CheckBox
             android:id="@+id/remember_me_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="32dp"
             android:text="Remember Me"
+            android:buttonTint="#E605445E"
+            android:textColor="@color/navy_blue"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Forgot Password Button -->
+        <TextView
+            android:id="@+id/forgotPasswordButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
             android:textColor="@color/navy_blue"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/togglePinLogin" />
+            android:layout_gravity="center_vertical"
+            android:paddingStart="16dp" />
+        </LinearLayout>
+
 
         <!-- Login Button -->
         <Button
             android:id="@+id/loginButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/buttons_rounded"
             android:backgroundTint="@color/baby_blue"
             android:text="@string/action_login_in"
@@ -126,7 +152,7 @@
             app:layout_constraintEnd_toEndOf="@id/password"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/password"
-            app:layout_constraintTop_toBottomOf="@id/remember_me_checkbox" />
+            app:layout_constraintTop_toBottomOf="@id/togglePinLogin" />
 
         <!-- Register Button -->
         <Button
@@ -142,12 +168,49 @@
             app:layout_constraintStart_toStartOf="@id/loginButton"
             app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
+        <!-- OR divider -->
+        <LinearLayout
+            android:id="@+id/orDivider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/registerButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#A0A0A0" />
+
+                <TextView
+                    android:id="@+id/orText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="or"
+                    android:textColor="#808080"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#A0A0A0" />
+        </LinearLayout>
+
         <!-- Google Sign-In Button -->
         <com.google.android.gms.common.SignInButton
             android:id="@+id/googleBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="45dp"
             app:layout_constraintEnd_toEndOf="@id/registerButton"
             app:layout_constraintStart_toStartOf="@id/registerButton"
             app:layout_constraintTop_toBottomOf="@id/registerButton" />
@@ -159,19 +222,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Toggle Password Visibility Icon -->
         <ImageButton
             android:id="@+id/togglePasswordVisibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_passwords_visibility"
-            android:contentDescription="Toggle passwords visibility"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_passwords_visibility_hover"
+            android:contentDescription="@string/toggle_password_visibility"
             android:background="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="@id/password"
-            app:layout_constraintTop_toTopOf="@id/password" />
+            app:layout_constraintTop_toTopOf="@id/password"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintHeight_percent="0.1"
+            android:scaleType="centerInside"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

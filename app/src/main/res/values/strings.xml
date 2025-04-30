@@ -31,6 +31,7 @@
     <string name="prompt_password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="action_welcome_to_screen">Welcome Back</string>
     <string name="action_login_in">Login</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -202,7 +203,126 @@
     <string name="sign_out_page">Sign Out</string>
     <string name="confirmSOTxt">Are you sure you want to sign out?</string>
 
+<<<<<<< HEAD
     <!-- Report Log -->
+=======
+    <!-- Settings Page Buttons -->
+    <string name="account_btn">Account</string>
+    <string name="notifications_btn">Notifications</string>
+    <string name="filtering_btn">Filtering</string>
+    <string name="report_btn">Report</string>
+    <string name="help_btn">Help</string>
+    <string name="about_btn">Privacy Policy</string>
+
+    <!-- Filtering Rules Strings -->
+    <string name="keywords_label">Keywords</string>
+    <string name="pn_label">Phone numbers</string>
+    <string name="set_keyword_btn">Set keywords</string>
+    <string name="set_pn_btn">Set numbers</string>
+
+    <!-- Register Page Strings -->
+    <string name="name_label">Full Name</string>
+    <string name="pin_label">Pin</string>
+    <string name="email_label">Email</string>
+    <string name="Pin_label">Pin</string>
+    <string name="pn_register_label">Phone Number</string>
+    <string name="pw_register_label">Password</string>
+    <string name="pw2_register_label">Confirm Password</string>
+    <string name="register_btn">Register</string>
+    <string name="view_terms_and_conditions">Click here to accept the terms and complete registration.</string>
+    <string name="agree_terms_and_conditions">I agree to the terms and conditions</string>
+
+    <!-- Detection Page Strings -->
+    <string name="delete_text">Delete</string>
+    <string name="pnTitle">Number: </string>
+    <string name="msgTitle">Message: </string>
+    <string name="dateTitle">Date: </string>
+
+    <string name="info_icon">info</string>
+    <string name="new_icon">info</string>
+    <string name="time_icon">info</string>
+
+    <!-- Notification Page Strings -->
+    <string name="notification_header">Notifications</string>
+    <string name="news_notification_title">News Updates</string>
+    <string name="smishing_detection_notification_title">Smishing Detections</string>
+    <string name="spam_detection_notification_title">Spam Detections</string>
+    <string name="password_security_check">Password Security Checks</string>
+    <string name="backup_reminder">Backup Reminders</string>
+    <string name="update_notifications">Update Notifications</string>
+    <string name="incident_reports">Incident Reports</string>
+    <string name="open_notification_settings">Device Notification Settings</string>
+    <string name="detection_notification_header">Detection Notifications</string>
+    <string name="push_notification_header">Push Notifications</string>
+    <string name="system_maintenance_header">System Maintenance Notifications</string>
+
+
+    <!-- NotificationHelper Strings -->
+    <string name="detection_channel_name">Detection Alerts</string>
+    <string name="detection_channel_id">detections_channel</string>
+    <string name="detection_channel_desc">Detection Notifications Channel</string>
+
+    <string name="push_channel_name">Push Notifications</string>
+    <string name="push_channel_id">push_channel</string>
+    <string name="push_channel_desc">Push Notifications Channel</string>
+
+    <string name="system_channel_name">System Notifications</string>
+    <string name="system_channel_id">system_channel</string>
+    <string name="system_channel_desc">system Notifications Channel</string>
+
+    <string name="smish_pref_key">smish_notif_pref</string>
+    <string name="spam_pref_key">spam_notif_pref</string>
+    <string name="news_pref_key">news_notif_pref</string>
+    <string name="incident_pref_key">incident_notif_pref</string>
+    <string name="update_pref_key">update_notif_pref</string>
+    <string name="backup_pref_key">backup_notif_pref</string>
+    <string name="password_pref_key">password_notif_pref</string>
+    <string name="what_is_the_app_for">What is the app for?</string>
+    <string name="how_to_use_the_app">how_to_use_the_app?</string>
+
+    <!-- Settings Activity Title EXAMPLE -->
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles EXAMPLE -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences EXAMPLE -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences EXAMPLE -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <!-- Added strings -->
+    <string name="terms_and_conditions_content">Your terms and conditions content here.</string>
+    <string name="helpful">Helpful</string>
+    <string name="not_helpful">Not Helpful</string>
+
+    <!-- Missing strings -->
+    <string name="phone_label">Phone Number</string>
+    <string name="refresh">Refresh</string>
+    <string name="empty_sms">No SMS messages found</string>
+    <string name="message_details">Message Details</string>
+    <string name="message_sender">Sender</string>
+    <string name="message_body">Message Body</string>
+
+    <string name="go_to_quizzes">Go to Quizzes</string>
+    <string name="learn_more_about_smishing">Learn More About Smishing</string>
+
+    <string name="dummy_smishing_report">This is a dummy smishing report</string>
+    <string name="click_to_read_more">Click to read more</string>
+
+    <string name="reportLog"> My Reports </string>
+>>>>>>> upstream/dev
     <string name="number">Number</string>
     <string name="spammsg">Reported Message</string>
     <string name="reportDate">Reported Date</string>
@@ -219,10 +339,22 @@
     <string name="push_channel_name">News Alerts</string>
     <string name="push_channel_desc">Notifications for latest cyber news</string>
 
+<<<<<<< HEAD
     <string name="incident_pref_key">incident_notification_pref</string>
     <string name="incident_channel_id">incident_channel</string>
     <string name="incident_channel_name">Incident Reports</string>
     <string name="incident_channel_desc">User incident reports</string>
+=======
+    <string name="confirm_delete_account_title">Hello there</string>
+    <string name="delete_account_warning_message">
+    You have selected delete account. Are you sure about this?
+    If you choose to delete your account, we will disable it for 30 days.
+    If you choose to reactivate your account, login within 30 days.
+    </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="login_with_pin">Login with PIN</string>
+>>>>>>> upstream/dev
 
     <string name="update_pref_key">update_notification_pref</string>
     <string name="update_channel_id">update_channel</string>

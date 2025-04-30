@@ -6,7 +6,51 @@
     android:background="@android:color/white"
     android:padding="16dp">
 
+<<<<<<< HEAD
     <RelativeLayout
+=======
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/feedback_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@null"
+        android:contentDescription="@string/image_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+    <!-- Hardhat Logo -->
+    <ImageView
+        android:id="@+id/hardhatLogo"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/logo_description"
+        app:srcCompat="@drawable/new_logo" />
+
+    <!-- Feedback Header -->
+    <TextView
+        android:id="@+id/feedbackHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/nav_header_vertical_spacing"
+        android:layout_below="@id/hardhatLogo"
+        android:layout_centerHorizontal="true"
+        android:text="@string/feedback"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/navy_blue"/>
+
+    <!-- Feedback Form Below -->
+
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/nameInput"
+>>>>>>> upstream/dev
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

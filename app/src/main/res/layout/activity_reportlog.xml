@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".NewsActivity">
 
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:itemBackground="@color/baby_blue"-->
-<!--        app:itemIconTint="@color/black"-->
-<!--        app:itemTextColor="@color/black"-->
-<!--        app:itemActiveIndicatorStyle="@android:color/transparent"-->
-<!--        android:theme="@style/Theme.SmishingDetectionApp"-->
-<!--        app:menu="@menu/activity_main_drawer" />-->
+
+    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+    <!--        android:id="@+id/bottom_navigation"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:itemBackground="@color/baby_blue"-->
+    <!--        app:itemIconTint="@color/black"-->
+    <!--        app:itemTextColor="@color/black"-->
+    <!--        app:itemActiveIndicatorStyle="@android:color/transparent"-->
+    <!--        android:theme="@style/Theme.SmishingDetectionApp"-->
+    <!--        app:menu="@menu/activity_main_drawer" />-->
+
 
     <ImageView
         android:id="@+id/HardhatLogo"
@@ -29,8 +31,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hardhat_logo"
+        app:srcCompat="@drawable/new_logo"
         android:contentDescription="@string/logo_description" />
+
 
     <TextView
         android:id="@+id/ReportText"
@@ -46,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
         android:textColor="@color/navy_blue"/>
 
+
     <TextView
         android:id="@+id/Report"
         android:layout_width="wrap_content"
@@ -59,6 +63,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
         android:textColor="@color/navy_blue"/>
+
+
+    <TextView
+        android:id="@+id/reportCountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Submitted Reports : 0"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Report"
+        android:textColor="@color/navy_blue"/>
+
 
     <TextView
         android:id="@+id/errorTextView"
@@ -75,6 +95,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reportrecycler" />
 
+
     <ImageButton
         android:id="@+id/report_back"
         android:layout_width="35dp"
@@ -86,15 +107,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
 
+
     <!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="@id/news_recycler_view"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/news_recycler_view"-->
-<!--        app:layout_constraintStart_toStartOf="@id/news_recycler_view"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/news_recycler_view"-->
-<!--        android:visibility="gone" />-->
+    <!--        android:id="@+id/progressBar"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/news_recycler_view"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/news_recycler_view"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/news_recycler_view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/news_recycler_view"-->
+    <!--        android:visibility="gone" />-->
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reportrecycler"
@@ -109,10 +132,12 @@
         app:layout_constraintTop_toBottomOf="@+id/searchTextBox2"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <EditText
         android:id="@+id/searchTextBox2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
@@ -120,34 +145,19 @@
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/filterBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReportText" />
+        app:layout_constraintTop_toBottomOf="@+id/reportCountText" />
+
 
     <ImageView
         android:id="@+id/filterBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchTextBox2"
-        app:layout_constraintTop_toBottomOf="@+id/ReportText"
+        app:layout_constraintTop_toBottomOf="@+id/reportCountText"
         app:srcCompat="@drawable/filter_svg" />
 
-    <TextView
-        android:id="@+id/reportCountText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reports : 0"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/button_border"
-        android:padding="10dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="200dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

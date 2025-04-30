@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:contentDescription="@string/logo_description"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/new_logo" />
 
     <!-- Community Forum Header -->
     <TextView
