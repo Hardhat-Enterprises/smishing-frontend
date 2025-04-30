@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:fillViewport="true"
+    android:background="@android:color/white"
+    android:padding="16dp">
 
+<<<<<<< HEAD
+    <RelativeLayout
+=======
     <!-- Back Button -->
     <ImageButton
         android:id="@+id/feedback_back"
@@ -48,64 +50,158 @@
     <!-- Name Input -->
     <EditText
         android:id="@+id/nameInput"
+>>>>>>> upstream/dev
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/feedbackHeader"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
-        android:padding="10dp"/>
+        android:layout_height="wrap_content">
+
+        <!-- 🔙 Back Button -->
+        <ImageButton
+            android:id="@+id/feedback_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:padding="8dp"
+            android:src="@drawable/back_button"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back_button_description" />
+
+        <!-- 🪖 App Logo -->
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/feedback_back"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/hardhat_logo"
+            android:contentDescription="@string/app_logo_description" />
+
+        <!-- 📝 Header -->
+        <TextView
+            android:id="@+id/feedbackHeader"
+            android:layout_below="@id/appLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feedback_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" />
+
+        <!-- 👤 Name Input -->
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_below="@id/feedbackHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:hint="@string/hint_name"
+            android:minHeight="48dp"
+            android:inputType="textPersonName"
+            android:autofillHints="name"
+            android:textColorHint="#616161"
+            android:textColor="#000000" />
+
+        <!-- 💬 Feedback Input -->
+        <EditText
+            android:id="@+id/feedbackInput"
+            android:layout_below="@id/nameInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:minLines="4"
+            android:hint="@string/hint_feedback"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:textColorHint="#616161"
+            android:textColor="#000000"
+            android:autofillHints="text" />
+
+        <!-- 🧮 Word Count -->
+        <TextView
+            android:id="@+id/wordCountText"
+            android:layout_below="@id/feedbackInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/word_count_default"
+            android:textColor="#757575"
+            android:layout_marginTop="4dp" />
+
+        <!-- 🚫 Word Limit Warning -->
+        <TextView
+            android:id="@+id/wordLimitWarning"
+            android:layout_below="@id/wordCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/word_limit_warning"
+            android:textColor="#D32F2F"
+            android:visibility="gone" />
+
+        <!-- ⭐ Rating Label -->
+        <TextView
+            android:id="@+id/ratingLabel"
+            android:layout_below="@id/wordLimitWarning"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_prompt"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <!-- ⭐ RatingBar -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ratingLabel"
+            android:layout_marginTop="8dp"
+            android:stepSize="1.0"
+            android:numStars="5"
+            android:layout_centerHorizontal="true" />
+
+        <!-- 💬 Popup Tooltip (Dynamic Message) -->
+        <TextView
+            android:id="@+id/ratingPopup"
+            android:layout_below="@id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:visibility="gone" />
+
+        <!-- 🚀 Submit Button -->
+        <Button
+            android:id="@+id/submitFeedbackButton"
+            android:layout_below="@id/ratingPopup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/submit_feedback" />
+
+        <!-- 📖 View Feedback History -->
+        <Button
+            android:id="@+id/viewHistoryButton"
+            android:layout_below="@id/submitFeedbackButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/view_feedback" />
+    </RelativeLayout>
+</ScrollView>
 
 
-    <!-- Feedback Input -->
-    <EditText
-        android:id="@+id/feedbackInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nameInput"
-        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        android:hint="@string/enter_feedback"
-        android:inputType="textMultiLine"
-        android:minLines="4"
-        android:gravity="top"
-        android:padding="10dp"/>
-
-    <!-- Rating Bar -->
-    <TextView
-        android:id="@+id/ratingLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rate_your_experience"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/navy_blue"
-        android:layout_below="@+id/feedbackInput"
-        android:layout_marginTop="@dimen/nav_header_vertical_spacing" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingLabel"
-        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        android:layout_centerHorizontal="true"
-        android:numStars="5"
-        android:stepSize="1.0"
-        android:rating="0"/>
-
-    <!-- Submit Button -->
-    <Button
-        android:id="@+id/submitFeedbackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submitfeedback"
-        android:textSize="18sp"
-        android:layout_below="@+id/ratingBar"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/navy_blue"
-        android:textColor="@android:color/white"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"/>
-
-</RelativeLayout>
