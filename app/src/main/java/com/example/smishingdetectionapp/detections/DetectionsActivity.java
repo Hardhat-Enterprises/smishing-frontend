@@ -31,6 +31,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class DetectionsActivity extends AppCompatActivity {
 
     private ListView detectionLV;
+
     private DatabaseAccess databaseAccess;
     private DetectionsAdapter adapter;
     private CheckBox selectAllCheckbox;
@@ -145,6 +146,7 @@ public class DetectionsActivity extends AppCompatActivity {
             });
         });
 
+        // Long click → delete dialog
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
             new AlertDialog.Builder(this)
                     .setTitle("Confirm Delete")

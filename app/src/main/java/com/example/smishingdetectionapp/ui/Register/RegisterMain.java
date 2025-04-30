@@ -70,6 +70,7 @@ public class RegisterMain extends AppCompatActivity {
         });
 
         // Set up register button
+        // Test registration flow
         Button registerButton = findViewById(R.id.registerBtn);
         registerButton.setEnabled(false);
 
