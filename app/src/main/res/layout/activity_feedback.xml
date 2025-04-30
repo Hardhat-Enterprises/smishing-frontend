@@ -32,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:src="@drawable/hardhat_logo"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_logo_description" />
 
         <!-- 📝 Header -->
         <TextView
@@ -40,10 +40,10 @@
             android:layout_below="@id/appLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Feedback"
+            android:text="@string/feedback_title"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#333333"
+            android:textColor="#212121"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp" />
 
@@ -51,29 +51,34 @@
         <EditText
             android:id="@+id/nameInput"
             android:layout_below="@id/feedbackHeader"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Your name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:hint="@string/hint_name"
             android:minHeight="48dp"
             android:inputType="textPersonName"
             android:autofillHints="name"
-            android:textColorHint="#666666"
+            android:textColorHint="#616161"
             android:textColor="#000000" />
 
         <!-- 💬 Feedback Input -->
         <EditText
             android:id="@+id/feedbackInput"
             android:layout_below="@id/nameInput"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:minLines="4"
-            android:hint="Write your feedback here"
+            android:hint="@string/hint_feedback"
             android:gravity="top"
             android:inputType="textMultiLine"
-            android:textColorHint="#666666"
-            android:textColor="#000000" />
+            android:textColorHint="#616161"
+            android:textColor="#000000"
+            android:autofillHints="text" />
 
         <!-- 🧮 Word Count -->
         <TextView
@@ -81,8 +86,8 @@
             android:layout_below="@id/feedbackInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Words: 0 / 150"
-            android:textColor="#888888"
+            android:text="@string/word_count_default"
+            android:textColor="#757575"
             android:layout_marginTop="4dp" />
 
         <!-- 🚫 Word Limit Warning -->
@@ -91,8 +96,8 @@
             android:layout_below="@id/wordCountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Word limit exceeded!"
-            android:textColor="#FF4444"
+            android:text="@string/word_limit_warning"
+            android:textColor="#D32F2F"
             android:visibility="gone" />
 
         <!-- ⭐ Rating Label -->
@@ -102,7 +107,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rate your experience"
+            android:text="@string/rating_prompt"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -135,18 +140,24 @@
         <Button
             android:id="@+id/submitFeedbackButton"
             android:layout_below="@id/ratingPopup"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Submit Feedback"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/submit_feedback" />
 
         <!-- 📖 View Feedback History -->
         <Button
             android:id="@+id/viewHistoryButton"
             android:layout_below="@id/submitFeedbackButton"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="View Recent Feedback"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/view_feedback" />
     </RelativeLayout>
 </ScrollView>
+
+

@@ -1,65 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:padding="16dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="wrap_content">
 
-        <!-- 🔙 Back Button & Logo Row -->
+        <!-- Full content in vertical layout -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="8dp">
-
-            <ImageButton
-                android:id="@+id/history_back_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:padding="8dp"
-                android:src="@drawable/back_button"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/back_button_description"
-                app:tint="#333333" />
-
-
-
-            <ImageView
-                android:id="@+id/history_logo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/hardhat_logo"
-                android:contentDescription="@string/app_logo_description" />
-        </LinearLayout>
-
-        <!-- 📝 Header -->
-        <TextView
-            android:id="@+id/historyHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/feedback_history"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginTop="8dp"
-            android:paddingBottom="16dp" />
-
-        <!-- 📄 Feedback Cards Container -->
-        <LinearLayout
-            android:id="@+id/feedbackListContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="4dp" />
-    </LinearLayout>
+            android:gravity="center_horizontal">
+
+            <!-- 🪖 Centered Logo -->
+            <ImageView
+                android:id="@+id/history_logo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/app_logo_description"
+                android:src="@drawable/hardhat_logo" />
+
+            <!-- 📝 Title -->
+            <TextView
+                android:id="@+id/historyHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_history"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 📄 Feedback Cards Container -->
+            <LinearLayout
+                android:id="@+id/feedbackListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="4dp" />
+        </LinearLayout>
+
+        <!-- 🔙 Floating Back Button -->
+        <ImageButton
+            android:id="@+id/history_back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:src="@drawable/back_button"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back_button_description"
+            app:tint="#333333"
+            android:layout_gravity="start|top"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp" />
+    </FrameLayout>
 </ScrollView>
+
+

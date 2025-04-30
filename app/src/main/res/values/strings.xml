@@ -16,7 +16,6 @@
     <!-- General App Strings -->
     <string name="app_name">Smishing Detection</string>
     <string name="back">Back</string>
-    <string name="back_button_description">Back</string>
     <string name="continue_button">Continue</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -46,9 +45,7 @@
     <string name="enter_name">Name</string>
     <string name="enter_feedback">Enter feedback</string>
     <string name="rate_experience">Rate your experience</string>
-    <string name="submit_feedback">Submit Feedback</string>
     <string name="word_count_format">Words: %1$d / %2$d</string>
-    <string name="word_limit_warning">Word limit exceeded!</string>
     <string name="feedback_success">Feedback submitted successfully!</string>
     <string name="feedback_failure">Failed to submit feedback. Please try again.</string>
     <string name="logo_description">Hardhat app logo</string>
@@ -170,11 +167,6 @@
     <string name="add_community_comment">Add a comment</string>
     <string name="submit_community_comment">Submit Comment</string>
 
-    <!-- Feedback History -->
-    <string name="feedback_history_header">🕓 Your Feedback History</string>
-    <string name="sample_feedback_1">⭐ 5\n“Great app, very useful!”\n📅 02 April 2025</string>
-    <string name="sample_feedback_2">⭐ 3\n“Needs a bit more polish.”\n📅 30 March 2025</string>
-
     <!-- News -->
     <string name="play_alert_text">Play Alert</string>
     <string name="click_to_read_more">Click to read more</string>
@@ -257,9 +249,23 @@
 
     <string name="view_recent_feedback">View Recent Feedback</string>
     <string name="feedback_history">Feedback History</string>
-    <string name="app_logo_description">App logo</string>
     <string name="app_logo">App Logo</string>
     <string name="back_button_desc">Back</string>
+
+    <string name="feedback_user">👤 %1$s</string>
+    <string name="feedback_comment">💬 "%1$s"</string>
+    <string name="feedback_rating">%1$s</string>
+
+    <string name="back_button_description">Go back</string>
+    <string name="app_logo_description">App Logo</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="hint_name">Your name</string>
+    <string name="hint_feedback">Write your feedback here</string>
+    <string name="word_count_default">Words: 0 / 150</string>
+    <string name="word_limit_warning">Word limit exceeded!</string>
+    <string name="rating_prompt">Rate your experience</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="view_feedback">View Recent Feedback</string>
 
 
 </resources>

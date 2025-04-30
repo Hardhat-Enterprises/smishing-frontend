@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
@@ -91,9 +92,16 @@ public class FeedbackActivity extends AppCompatActivity {
         submitFeedbackButton.setOnClickListener(v -> {
             String name = nameInput.getText().toString().trim();
             String feedback = feedbackInput.getText().toString().trim();
-            float rating = ratingBar.getRating();
 
-            FeedbackMemoryStore.addFeedback(name + "|" + feedback + "|" + rating);
+            int roundedRating = Math.round(ratingBar.getRating());
+
+            // Cap rating safely
+            if (roundedRating > 5) roundedRating = 5;
+            if (roundedRating < 0) roundedRating = 0;
+
+            Log.d("FEEDBACK_SAVE", "Rounded rating to be saved: " + roundedRating);
+
+            FeedbackMemoryStore.addFeedback(name + "|" + feedback + "|" + roundedRating);
 
             nameInput.setText("");
             feedbackInput.setText("");
@@ -104,14 +112,14 @@ public class FeedbackActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.feedback_success, Toast.LENGTH_LONG).show();
         });
 
-        viewHistoryButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, FeedbackHistoryActivity.class));
-        });
+        viewHistoryButton.setOnClickListener(v ->
+                startActivity(new Intent(this, FeedbackHistoryActivity.class))
+        );
     }
 
     private void showRatingPopup(String message) {
         ratingPopup.setText(message);
-        ratingPopup.setAlpha(0f);
+        ratingPopup.setAlpha(1f);
         ratingPopup.setVisibility(View.VISIBLE);
 
         ratingPopup.animate()
@@ -130,3 +138,4 @@ public class FeedbackActivity extends AppCompatActivity {
                 .start();
     }
 }
+
