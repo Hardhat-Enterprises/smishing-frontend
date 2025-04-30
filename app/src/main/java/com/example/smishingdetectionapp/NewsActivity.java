@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +13,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.net.NetworkCapabilities;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,13 +27,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class NewsActivity extends SharedActivity implements SelectListener{
+public class NewsActivity extends SharedActivity implements SelectListener {
     RecyclerView recyclerView;
     NewsAdapter adapter;
     NewsRequestManager manager;
     ProgressBar progressBar;
     TextView errorMessage;
-    Button refreshButton;
+    Button refreshButton, riskScoringButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,12 +44,12 @@ public class NewsActivity extends SharedActivity implements SelectListener{
         errorMessage = findViewById(R.id.errorTextView);
         recyclerView = findViewById(R.id.news_recycler_view);
         refreshButton = findViewById(R.id.refreshButton);
+        riskScoringButton = findViewById(R.id.riskScoringButton);
 
-        // Navigation at the bottom of the page designed by Damian
+        // Bottom navigation
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setSelectedItemId(R.id.nav_news);
         nav.setOnItemSelectedListener(menuItem -> {
-
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -68,68 +67,61 @@ public class NewsActivity extends SharedActivity implements SelectListener{
             return false;
         });
 
-
-        // Initialize ProgressBar and set it visible before fetching data
+        // ProgressBar setup
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        // Initialize NewsRequestManager and fetch RSS feed data
+        // Fetch news
         manager = new NewsRequestManager(this);
         manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
             @Override
             public void onFetchData(List<RSSFeedModel.Article> list, String message) {
                 showNews(list);
-                progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onError(String message) {
                 errorMessage.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
+                progressBar.setVisibility(View.GONE);
             }
 
-            // Method to display the fetched news articles in the RecyclerView
             private void showNews(List<RSSFeedModel.Article> list) {
-                recyclerView = findViewById(R.id.news_recycler_view);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
-                adapter = new NewsAdapter(list, NewsActivity.this); // Corrected this reference
+                adapter = new NewsAdapter(list, NewsActivity.this);
                 recyclerView.setAdapter(adapter);
             }
         });
 
-        // Set up the refresh button click listener
+        // Refresh button click
         refreshButton.setOnClickListener(v -> {
             if (isNetworkConnected()) {
-                // Toast.makeText(this, "Connected to Wi-Fi or Mobile Data", Toast.LENGTH_SHORT).show();
                 loadData();
             } else {
                 Toast.makeText(this, "You Have Lost Network Connection", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Risk Scoring button click
+        riskScoringButton.setOnClickListener(v -> {
+            Intent intent = new Intent(NewsActivity.this, RiskScoringActivity.class);
+            startActivity(intent);
+        });
     }
 
-    // This is for the refresh button
     private boolean isNetworkConnected() {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         if (connectivityManager != null) {
             NetworkCapabilities capabilities =
                     connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-
-            if (capabilities != null) {
-                // Check for both Wi-Fi and Mobile Data transport capabilities
-                return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-            }
+            return capabilities != null &&
+                    (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+                            || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
         }
-        return false; // No network connection
+        return false;
     }
-
-
-
 
     private void loadData() {
         progressBar.setVisibility(View.VISIBLE);
@@ -138,13 +130,13 @@ public class NewsActivity extends SharedActivity implements SelectListener{
             @Override
             public void onFetchData(List<RSSFeedModel.Article> list, String message) {
                 showNews(list);
-                progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onError(String message) {
                 errorMessage.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
+                progressBar.setVisibility(View.GONE);
             }
 
             private void showNews(List<RSSFeedModel.Article> list) {
@@ -156,7 +148,6 @@ public class NewsActivity extends SharedActivity implements SelectListener{
         });
     }
 
-    // Handle news article click events. Opens the article link in a browser.
     @Override
     public void OnNewsClicked(RSSFeedModel.Article article) {
         if (article != null && article.link != null && !article.link.isEmpty()) {
@@ -171,5 +162,4 @@ public class NewsActivity extends SharedActivity implements SelectListener{
             Toast.makeText(this, "No URL available", Toast.LENGTH_SHORT).show();
         }
     }
-
 }
