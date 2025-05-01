@@ -61,6 +61,8 @@
             android:layout_margin="8dp"
             android:layout_gravity="end"
             android:text="Delete"
+            android:clickable="true"
+            android:focusable="true"
             android:backgroundTint="@color/red"
             android:textColor="@android:color/white" />
 
