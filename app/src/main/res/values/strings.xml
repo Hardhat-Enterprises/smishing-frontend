@@ -78,6 +78,7 @@
     <string name="submit">Submit</string>
     <string name="help_page">Help Page</string>
     <string name="what_is_the_app_for">What is the app for?</string>
+    <string name="login_with_pin">Login with PIN</string>
 
     <!-- Rating Tooltips -->
     ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
