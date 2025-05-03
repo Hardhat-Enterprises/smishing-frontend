@@ -22,6 +22,7 @@
         app:menu="@menu/activity_main_drawer" />
 
     <ScrollView
+        android:id="@+id/settingsScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
@@ -54,7 +55,6 @@
                 android:text="@string/menu_settings"
                 android:textColor="@color/navy_blue"
                 android:textSize="32sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -79,7 +79,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/account_btn"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/divider1"
@@ -130,7 +129,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/notifications_text"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/divider2"
@@ -253,7 +251,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/filtering_text"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -311,12 +308,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/accessibility_text"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
+            <Switch
+                android:id="@+id/quick_access"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:paddingVertical="8dp"
+                android:text="@string/quick_access"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accessibility_text"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
                 android:id="@+id/dark_modeBtn"
@@ -329,7 +338,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/accessibility_text"
+                app:layout_constraintTop_toBottomOf="@+id/quick_access"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Switch
@@ -354,7 +363,7 @@
                 app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
-                app:layout_constraintTop_toBottomOf="@+id/always_underline_links" />
+                app:layout_constraintTop_toBottomOf="@+id/bold_text" />
 
             <TextView
                 android:id="@+id/Forums_and_Report"
@@ -362,7 +371,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/Forums_and_Report"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -419,7 +427,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/MoreInfoandSupport"
-                android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

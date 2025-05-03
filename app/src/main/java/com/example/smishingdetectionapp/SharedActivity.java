@@ -3,6 +3,15 @@ package com.example.smishingdetectionapp;
 import android.os.Bundle;
 import android.os.Handler;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
@@ -18,9 +27,45 @@ public abstract class SharedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isBold = prefs.getBoolean("bold_text_enabled", false);
+        setTheme(isBold ? R.style.Theme_SmishingDetectionApp_Bold : R.style.Theme_SmishingDetectionApp);
         super.onCreate(savedInstanceState);
         setupSessionTimeout();
     }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("bold_text_enabled", false)) {
+            View root = findViewById(android.R.id.content);
+            applyBoldToAllWidgets(root);
+        }
+    }
+    private void applyBoldToAllWidgets(View root) {
+        if (!(root instanceof ViewGroup)) return;
+
+        ViewGroup group = (ViewGroup) root;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+
+            if (child instanceof Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            if (child instanceof Button || child instanceof com.google.android.material.button.MaterialButton) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            if (child instanceof ViewGroup) {
+                applyBoldToAllWidgets(child);
+            }
+        }
+    }
+
+
 
     private void setupSessionTimeout() {
         sessionHandler = new Handler();

@@ -173,5 +173,6 @@
     <string name="outline_archive_24_alt">Black outline of a box with a solid black arrow pointing down</string>
     <string name="icon_information_alt">Black outline of a circle with a black i in the center</string>
     <string name="report_svg_alt">Black flag outline</string>
+    <string name="bold_text">Bold Text</string>
 
 </resources>

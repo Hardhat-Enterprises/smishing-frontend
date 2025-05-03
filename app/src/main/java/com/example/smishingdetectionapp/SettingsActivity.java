@@ -1,18 +1,25 @@
 package com.example.smishingdetectionapp;
 
-import android.view.View;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ScrollView;
+import android.graphics.Typeface;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
 import com.example.smishingdetectionapp.news.NewsAdapter;
@@ -30,13 +37,45 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isBold = prefs.getBoolean("bold_text_enabled", false);
+        setTheme(isBold ? R.style.Theme_SmishingDetectionApp_Bold : R.style.Theme_SmishingDetectionApp);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        if (isBold) {
+            applyBoldToAllSwitches(findViewById(R.id.settingsScroll));
+        }
+        if (isBold) {
+            applyBoldToAllWidgets(findViewById(R.id.settingsScroll));
+        }
 
+
+        ScrollView scrollView = findViewById(R.id.settingsScroll);
+        if (scrollView != null) {
+            scrollView.post(() -> {
+                int savedScrollY = prefs.getInt("scroll_pos", 0);
+                scrollView.scrollTo(0, savedScrollY);
+            });
+        }
+
+
+        Switch boldSwitch = findViewById(R.id.bold_text);
+        if (boldSwitch != null) {
+            boldSwitch.setChecked(isBold);
+            boldSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                int scrollY = scrollView != null ? scrollView.getScrollY() : 0;
+                prefs.edit()
+                        .putBoolean("bold_text_enabled", isChecked)
+                        .putInt("scroll_pos", scrollY)
+                        .apply();
+                recreate(); // Reload to apply new theme
+            });
+        }
+
+        //Navigation
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-
         nav.setSelectedItemId(R.id.nav_settings);
-
         nav.setOnItemSelectedListener(menuItem -> {
 
             int id = menuItem.getItemId();
@@ -197,5 +236,44 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificationActivity.class);
         startActivity(intent);
     }
+
+    private void applyBoldToAllSwitches(View root) {
+        if (!(root instanceof ViewGroup)) return;
+
+        ViewGroup group = (ViewGroup) root;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+
+            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            applyBoldToAllSwitches(child);
+        }
+    }
+    private void applyBoldToAllWidgets(View root) {
+        if (!(root instanceof ViewGroup)) return;
+
+        ViewGroup group = (ViewGroup) root;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+
+            // ✅ Bold Switch labels
+            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            // ✅ Bold Buttons (MaterialButton, Button, etc.)
+            if (child instanceof android.widget.Button ||
+                    child instanceof com.google.android.material.button.MaterialButton) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            // Recursively apply to nested children
+            applyBoldToAllWidgets(child);
+        }
+    }
+
+
 }
 
