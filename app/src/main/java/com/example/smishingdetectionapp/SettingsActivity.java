@@ -115,6 +115,13 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(this, ForumActivity.class));
             finish();
         });
+
+        Button detectionInsightsBtn = findViewById(R.id.detectionInsightsBtn);
+        detectionInsightsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, InsightsActivity.class);
+            startActivity(intent);
+        });
+
     }
     // Trigger biometric authentication with timeout
     private void triggerBiometricAuthenticationWithTimeout() {

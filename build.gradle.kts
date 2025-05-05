@@ -3,6 +3,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        maven("https://jitpack.io")
         // Add other repositories here
     }
     dependencies {

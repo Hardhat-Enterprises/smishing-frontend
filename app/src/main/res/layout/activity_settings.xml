@@ -269,5 +269,18 @@
             app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
             app:srcCompat="@drawable/outline_arrow_outward_24" />
 
+        <Button
+            android:id="@+id/detectionInsightsBtn"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/buttons_rounded"
+            android:gravity="bottom|start"
+            android:text="Detection Insights"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chatAssistantBtn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

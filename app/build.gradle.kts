@@ -118,5 +118,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation ("com.tbuonomo:dotsindicator:4.3")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }
 
