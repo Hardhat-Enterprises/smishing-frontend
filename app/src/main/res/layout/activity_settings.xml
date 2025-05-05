@@ -17,6 +17,7 @@
         app:itemTextColor="@color/black"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
         app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
