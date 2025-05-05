@@ -43,19 +43,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
 
+    <LinearLayout
+        android:id="@+id/selectionBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/filterBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <CheckBox
+            android:id="@+id/selectAllCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select All" />
+
+        <Button
+            android:id="@+id/deleteSelectedBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Delete Selected" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/lvDetectionsList"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
+        android:layout_height="0dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
+        app:layout_constraintTop_toBottomOf="@id/selectionBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTextBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:focusable="false">
 
     </ListView>

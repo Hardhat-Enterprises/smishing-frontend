@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    android:width="24dp">
+
+    <!-- Document Outline -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M6,2H14C15.104,2 16,2.896 16,4V20C16,21.104 15.104,22 14,22H6C4.896,22 4,21.104 4,20V4C4,2.896 4.896,2 6,2ZM6,3V20H14V4H6V3Z" />
+
+    <!-- Lock Icon -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,17C11.447,17 11,17.447 11,18V19C11,19.553 11.447,20 12,20C12.553,20 13,19.553 13,19V18C13,17.447 12.553,17 12,17Z" />
+
+    <!-- Lock Body -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,9C11.447,9 11,9.447 11,10V12H13V10C13,9.447 12.553,9 12,9Z" />
+</vector>

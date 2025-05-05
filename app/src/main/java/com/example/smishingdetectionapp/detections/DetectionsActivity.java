@@ -1,19 +1,15 @@
 package com.example.smishingdetectionapp.detections;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,65 +31,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class DetectionsActivity extends AppCompatActivity {
 
     private ListView detectionLV;
-    DatabaseAccess databaseAccess;
 
-    public void searchDB(String search) {
-        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    // Sorting Oldest to Newest
-    public void sortONDB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    // Sorting Newest to Oldest
-    public void sortNODB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void refreshList() {
-        String searchQuery = "SELECT * FROM Detections";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void DeleteRow(String id) {
-        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
-    }
-
-    private void saveRadioButtonState(String key, boolean isChecked) {
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, isChecked);
-        editor.apply();
-    }
-
-    private void clearRadioButtonState() {
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        clearRadioButtonState();
-    }
+    private DatabaseAccess databaseAccess;
+    private DetectionsAdapter adapter;
+    private CheckBox selectAllCheckbox;
+    private Button deleteSelectedBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,97 +43,152 @@ public class DetectionsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detections);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
             return insets;
         });
 
-        // Back to dashboard
-        ImageButton detections_back = findViewById(R.id.detections_back);
-        detections_back.setOnClickListener(v -> {
+        ImageButton back = findViewById(R.id.detections_back);
+        back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-            clearRadioButtonState();
         });
 
-        // ListView setup
-        detectionLV = findViewById(R.id.lvDetectionsList);
-        databaseAccess = new DatabaseAccess(getApplicationContext());
+        databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-
-        //  Use custom adapter for numbering logic
-        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV = findViewById(R.id.lvDetectionsList);
+        adapter = new DetectionsAdapter(this, databaseAccess.getAllDetections());
         detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
-        // Search functionality
-        EditText detSearch = findViewById(R.id.searchTextBox);
-        detSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        selectAllCheckbox = findViewById(R.id.selectAllCheckbox);
+        deleteSelectedBtn    = findViewById(R.id.deleteSelectedBtn);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchDB(s.toString());
+        selectAllCheckbox.setOnCheckedChangeListener((btn, isChecked) -> {
+            if (isChecked) adapter.selectAll();
+            else          adapter.clearSelection();
+        });
+
+        deleteSelectedBtn.setOnClickListener(v -> {
+            if (adapter.getSelectedIds().isEmpty()) {
+                Toast.makeText(this, "No detections selected", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete the selected detections?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete", (dlg, which) -> {
+                        for (Integer id : adapter.getSelectedIds()) {
+                            databaseAccess.DeleteRow(String.valueOf(id));
+                        }
+                        adapter.clearSelection();
+                        selectAllCheckbox.setChecked(false);
+                        adapter.changeCursor(databaseAccess.getAllDetections());
+                        Toast.makeText(this, "Deleted selected detections!", Toast.LENGTH_SHORT).show();
+                    })
+                    .create();
+
+            dialog.show();
+
+            Button cancelBtn = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+            if (cancelBtn != null) {
+                cancelBtn.setTextColor(Color.BLACK);
             }
 
-            @Override
-            public void afterTextChanged(Editable s) {}
+            Button deleteBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            if (deleteBtn != null) {
+                deleteBtn.setTextColor(Color.RED);
+            }
         });
 
-        // Filter popup
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
+        EditText detSearch = findViewById(R.id.searchTextBox);
+        detSearch.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s,int st,int c,int a){}
+            @Override public void afterTextChanged(Editable s){}
+
+            @Override
+            public void onTextChanged(CharSequence s, int st, int b, int c) {
+                String q = "%" + s.toString() + "%";
+                Cursor cur = DatabaseAccess.db.rawQuery(
+                        "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC",
+                        new String[]{q,q,q});
+                adapter.changeCursor(cur);
+            }
+        });
+
+        SharedPreferences prefs = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheet);
-            bottomSheetDialog.show();
+            View sheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
+            BottomSheetDialog dlg = new BottomSheetDialog(this);
+            dlg.setContentView(sheet);
+            dlg.show();
 
-            RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
-            RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
+            RadioButton oldToNew = sheet.findViewById(R.id.OldToNewRB);
+            RadioButton newToOld = sheet.findViewById(R.id.NewToOldRB);
 
-            OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
-            NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
+            oldToNew.setChecked(prefs.getBoolean("OldToNewRB", false));
+            newToOld.setChecked(prefs.getBoolean("NewToOldRB", false));
 
-            OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);
+            oldToNew.setOnCheckedChangeListener((bView, checked) -> {
+                if (checked) {
+                    newToOld.setChecked(false);
                     sortONDB();
                 }
-                saveRadioButtonState("OldToNewRB", isChecked);
+                prefs.edit().putBoolean("OldToNewRB", checked).apply();
             });
-
-            NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (NewToOldRB.isChecked()) {
-                    OldToNewRB.setChecked(false);
+            newToOld.setOnCheckedChangeListener((bView, checked) -> {
+                if (checked) {
+                    oldToNew.setChecked(false);
                     sortNODB();
                 }
-                saveRadioButtonState("NewToOldRB", isChecked);
+                prefs.edit().putBoolean("NewToOldRB", checked).apply();
             });
         });
 
         // Long click → delete dialog
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
-            View bottomSheetDel = getLayoutInflater().inflate(R.layout.popup_deleteitem, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheetDel);
-            bottomSheetDialog.show();
-
-            Button Cancel = bottomSheetDel.findViewById(R.id.delItemCancel);
-            Button Confirm = bottomSheetDel.findViewById(R.id.DelItemConfirm);
-
-            Cancel.setOnClickListener(v -> bottomSheetDialog.dismiss());
-
-            Confirm.setOnClickListener(v -> {
-                DeleteRow(String.valueOf(id));
-                refreshList();
-                bottomSheetDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
-            });
-
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete this detection?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete", (dlg, which) -> {
+                        databaseAccess.DeleteRow(String.valueOf(id));
+                        refreshList();
+                        Toast.makeText(this, "Detection Deleted!", Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
             return true;
         });
+    }
+
+    public void searchDB(String search) {
+        String q = "%" + search + "%";
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections WHERE Phone_Number LIKE ? OR Message LIKE ? OR Date LIKE ? ORDER BY Date DESC",
+                new String[]{q,q,q});
+        adapter.changeCursor(c);
+    }
+
+    public void sortONDB() {
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections ORDER BY Date ASC", null);
+        adapter.changeCursor(c);
+    }
+
+    public void sortNODB() {
+        Cursor c = DatabaseAccess.db.rawQuery(
+                "SELECT * FROM Detections ORDER BY Date DESC", null);
+        adapter.changeCursor(c);
+    }
+
+    public void refreshList() {
+        adapter.changeCursor(databaseAccess.getAllDetections());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getSharedPreferences("RadioPrefs", MODE_PRIVATE).edit().clear().apply();
     }
 }

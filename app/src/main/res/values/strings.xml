@@ -159,6 +159,7 @@
     <string name="delete_text">Delete</string>
     <string name="pnTitle">Number: </string>
     <string name="msgTitle">Message: </string>
+    <string name="msgStatus">Status: </string>
     <string name="dateTitle">Date: </string>
 
     <string name="info_icon">info</string>
