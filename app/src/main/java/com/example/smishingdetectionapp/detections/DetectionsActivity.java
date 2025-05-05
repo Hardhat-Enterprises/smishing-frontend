@@ -1,4 +1,11 @@
 package com.example.smishingdetectionapp.detections;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.io.File;
+import android.os.Environment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -210,5 +217,52 @@ public class DetectionsActivity extends AppCompatActivity {
             return true;
         });
 
+        Button exportBtn = findViewById(R.id.exportPdfBtn);
+        exportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exportDetectionsToPDF();
+            }
+        });
+
+
     }
+
+    private void exportDetectionsToPDF() {
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "No detections to export", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Create the document
+        Document document = new Document();
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "detections_report.pdf");
+        String filePath = file.getAbsolutePath();
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+            document.add(new Paragraph("Smishing Detections Report\n\n"));
+
+            while (cursor.moveToNext()) {
+                String phone = cursor.getString(cursor.getColumnIndexOrThrow("Phone_Number"));
+                String message = cursor.getString(cursor.getColumnIndexOrThrow("Message"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("Date"));
+
+                document.add(new Paragraph("Phone: " + phone));
+                document.add(new Paragraph("Message: " + message));
+                document.add(new Paragraph("Date: " + date));
+                document.add(new Paragraph("\n"));
+            }
+
+            document.close();
+            Toast.makeText(this, "PDF exported to: " + filePath, Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to export PDF", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }

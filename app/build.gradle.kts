@@ -77,6 +77,7 @@ android {
 }
 
 dependencies {
+    implementation("com.itextpdf:itextg:5.5.10")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
