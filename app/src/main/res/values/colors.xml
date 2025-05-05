@@ -7,15 +7,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- New Colors -->
-    <color name="navy_blue">#FF05445E</color>
-    <color name="blue_grotto">#FF189AB4</color>
-    <color name="blue_green">#FF75E6DA</color>
-    <color name="baby_blue">#FFD4F1F4</color>
-    <color name="grey">#949494</color>
-    <color name="azure">#F0FFFF</color>
-    <color name="red">#FFFF0000</color>
+ <!-- New Colors -->
+ <color name="navy_blue">#FF05445E</color>
+ <color name="blue_grotto">#FF189AB4</color>
+ <color name="blue_green">#FF75E6DA</color>
+ <color name="baby_blue">#FFD4F1F4</color>
+ <color name="grey">#949494</color>
+ <color name="azure">#F0FFFF</color>
+ <color name="red">#FFFF0000</color>
+ <color name="blueColor">#0000FF</color>
  <color name="cream">#F5EDD6</color>
  <color name="darker_baby_blue">#A0DCEB</color>
+
+ <color name="Dark_blue">#05445E</color>
+
+ <color name="green">#66BB6A</color>
+ <color name="orange">#FFEB3B</color>
+ <color name="redd">#EF5350</color>
+
 
 </resources>
