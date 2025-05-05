@@ -291,4 +291,23 @@
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
 
+    <!-- Reporting strings -->
+    <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
+    <string name="reporting_activity_tvStep2Indicator">Step 2 of 2</string>
+    <string name="reporting_activity_etName">Name</string>
+    <string name="reporting_activity_etEmail">Email</string>
+    <string name="reporting_activity_etMobile">Mobile Number</string>
+    <string name="reporting_activity_etLastName">Last Name</string>
+    <string name="reporting_activity_etAddress">Address</string>
+    <string name="reporting_activity_etPostalCode">Postal Code</string>
+    <string name="reporting_activity_etCountry">Country</string>
+    <string name="reporting_activity_btnNext">Next</string>
+    <string name="reporting_activity_btnBackStep1">Back</string>
+    <string name="reporting_activity_etDescription">Description</string>
+    <string name="reporting_activity_etTypeOfAttack">Type of Attack</string>
+    <string name="reporting_activity_etHowToPrevent">How to Prevent</string>
+    <string name="reporting_activity_etDateReceived">Date Received</string>
+    <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
+    <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
+
 </resources>
