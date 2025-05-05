@@ -57,6 +57,13 @@ public class NewsActivity extends SharedActivity implements SelectListener{
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
+            } else if (menuItem.getItemId() == R.id.nav_report) {
+                startActivity(new Intent(this, ForumActivity.class));
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+                
             } else if (id == R.id.nav_news) {
                 return true;
             } else if (id == R.id.nav_settings) {

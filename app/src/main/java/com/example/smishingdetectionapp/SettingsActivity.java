@@ -45,6 +45,14 @@ public class SettingsActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
+            } else if (menuItem.getItemId() == R.id.nav_report) {
+                startActivity(new Intent(this, ForumActivity.class));
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
+
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                 overridePendingTransition(0, 0);
