@@ -232,7 +232,7 @@
             android:id="@+id/togglePasswordVisibility"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_passwords_visibility_hover"
+            android:src="@drawable/visibilityoff"
             android:contentDescription="@string/toggle_password_visibility"
             android:background="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="@id/password"

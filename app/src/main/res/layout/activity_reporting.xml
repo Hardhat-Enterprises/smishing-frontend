@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-            <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -253,8 +253,8 @@
 
                 <Button
                     android:id="@+id/btnSubmitReport"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/button_width_medium"
+                    android:layout_height="@dimen/button_height_large"
                     android:layout_marginTop="8dp"
                     android:text="@string/reporting_activity_btnSubmitReport"
                     app:layout_constraintTop_toBottomOf="@id/llStep2Fields"
