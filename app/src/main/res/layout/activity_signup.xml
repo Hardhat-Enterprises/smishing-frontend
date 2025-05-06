@@ -84,13 +84,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pnInput" />
 
+    <!-- PIN Input -->
     <EditText
         android:id="@+id/pinInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/Pin_label"
+        android:hint="Enter a 6-digit PIN"
         android:inputType="numberPassword"
+        android:maxLength="6"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
