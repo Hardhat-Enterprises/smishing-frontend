@@ -91,6 +91,9 @@ public class LoginActivity extends AppCompatActivity {
 
         // Toggle functionality for PIN and Password login
         togglePinLogin.setOnClickListener(v -> {
+            passwordEditText.setText("");
+
+
             if (isPinLogin) {
                 // Switch to password login
                 passwordEditText.setHint("Password");
@@ -106,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                 togglePinLogin.setText("Login with Password");
                 isPinLogin = true;
             }
+            passwordEditText.requestFocus();
         });
 
         // Handle login button click
