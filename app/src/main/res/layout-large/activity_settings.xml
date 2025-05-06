@@ -1,0 +1,254 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/HardhatLogo"
+        android:layout_width="@dimen/image_size_medium"
+        android:layout_height="@dimen/image_size_medium"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/new_logo" />
+
+    <!-- Header Text -->
+    <TextView
+        android:id="@+id/SettingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/menu_settings"
+        android:textColor="@color/navy_blue"
+        android:textSize="@dimen/text_size_xxlarge"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Use a Flow to auto-place buttons in a grid -->
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_xxlarge"
+        app:constraint_referenced_ids="accountBtn,filteringBtn,notificationsBtn,reportBtn,helpBtn,aboutMeBtn,aboutUsBtn,feedbackBtn,forumBtn,chatAssistantBtn"
+        app:flow_horizontalGap="20dp"
+        app:flow_maxElementsWrap="4"
+        app:flow_verticalGap="40dp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SettingsText" />
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/accountBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/account_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/accountBtn"
+        app:layout_constraintTop_toTopOf="@+id/accountBtn"
+        app:srcCompat="@drawable/account_user_svg" />
+
+    <Button
+        android:id="@+id/filteringBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/filtering_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/filteringBtn"
+        app:layout_constraintTop_toTopOf="@+id/filteringBtn"
+        app:srcCompat="@drawable/filter_svg" />
+
+
+    <Button
+        android:id="@+id/notificationsBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/notifications_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/notificationsBtn"
+        app:layout_constraintTop_toTopOf="@+id/notificationsBtn"
+        app:srcCompat="@drawable/notification_svg1" />
+
+    <Button
+        android:id="@+id/reportBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/report_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/reportBtn"
+        app:layout_constraintTop_toTopOf="@+id/reportBtn"
+        app:srcCompat="@drawable/report_svg" />
+
+    <Button
+        android:id="@+id/helpBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/help_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/helpBtn"
+        app:layout_constraintTop_toTopOf="@+id/helpBtn"
+        app:srcCompat="@drawable/help_svg" />
+
+    <Button
+        android:id="@+id/aboutMeBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/about_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/aboutMeBtn"
+        app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
+        app:srcCompat="@drawable/chat_assistant_svg" />
+
+    <Button
+        android:id="@+id/aboutUsBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="About Us"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/aboutUsBtn"
+        app:layout_constraintTop_toTopOf="@+id/aboutUsBtn"
+        app:srcCompat="@drawable/account_user_svg" />
+
+    <Button
+        android:id="@+id/feedbackBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/feedback"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/feedbackBtn"
+        app:layout_constraintTop_toTopOf="@+id/feedbackBtn"
+        app:srcCompat="@drawable/outline_arrow_outward_24" />
+
+    <Button
+        android:id="@+id/forumBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/forums"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/forumBtn"
+        app:layout_constraintTop_toTopOf="@+id/forumBtn"
+        app:srcCompat="@drawable/faq_icon"/>
+
+    <Button
+        android:id="@+id/chatAssistantBtn"
+        style="@style/SettingsButtonStyle"
+        android:text="@string/chat_assistant_btn"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/chatAssistantBtn"
+        app:layout_constraintTop_toTopOf="@+id/chatAssistantBtn"
+        app:srcCompat="@drawable/chat_assistant_svg" />
+
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintCircleRadius="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottom_nav_bg"
+        app:itemBackground="@drawable/bottom_nav_bg"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:itemIconSize="@dimen/icon_size_large"
+        app:itemPaddingBottom="10dp"
+        app:itemHorizontalTranslationEnabled="false"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:menu="@menu/activity_main_drawer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
