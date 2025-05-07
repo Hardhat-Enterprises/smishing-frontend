@@ -1,5 +1,6 @@
 package com.example.smishingdetectionapp;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class TermsAndConditionsActivity extends SharedActivity {
 
@@ -28,6 +30,20 @@ public class TermsAndConditionsActivity extends SharedActivity {
 
         // Set formatted terms and conditions text
         termsTextView.setText(Html.fromHtml(getString(R.string.terms_and_conditions), Html.FROM_HTML_MODE_COMPACT));
+        
+        // Check if the app is in night mode
+        int nightModeFlags = getResources().getConfiguration().uiMode & 
+                             Configuration.UI_MODE_NIGHT_MASK;
+        
+        if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+            // Night mode is active, set colors for better contrast
+            termsTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
+            termsScrollView.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+        } else {
+            // Day mode is active, use default theme colors or set specific day mode colors
+            termsTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
+            termsScrollView.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+        }
 
         // Initially disable the back button
         backButton.setEnabled(false);
