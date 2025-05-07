@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -147,12 +148,20 @@ public class DashboardActivity extends SharedActivity {
         double avgLength      = 150.0;
         Log.d(TAG, "Static stats: total=" + totalAttacks + ", success=" + successfulAttacks + ", failed=" + failedAttacks);
 
-        // Display stats
-        tvTotalAttacks.setText("Total Attacks: " + totalAttacks);
-        tvSuccess.setText("Successful: " + successfulAttacks);
-        tvFailed.setText("Failed: " + failedAttacks);
-        tvUniqueSenders.setText("Unique Senders: " + uniqueSenders);
-        tvAvgContentLength.setText(String.format("Avg. SMS Length: %.1f", avgLength));
+        // Display stats with color
+        int primaryText = ContextCompat.getColor(this, R.color.navy_blue);
+        int accentText  = ContextCompat.getColor(this, R.color.blue_grotto);
+        tvTotalAttacks.setTextColor(primaryText);
+        tvSuccess      .setTextColor(accentText);
+        tvFailed       .setTextColor(ContextCompat.getColor(this, R.color.red));
+        tvUniqueSenders.setTextColor(ContextCompat.getColor(this, R.color.blue_green));
+        tvAvgContentLength.setTextColor(ContextCompat.getColor(this, R.color.grey));
+
+        tvTotalAttacks     .setText(String.valueOf(totalAttacks));
+        tvSuccess          .setText(String.valueOf(successfulAttacks));
+        tvFailed           .setText(String.valueOf(failedAttacks));
+        tvUniqueSenders    .setText(String.valueOf(uniqueSenders));
+        tvAvgContentLength.setText(String.format("%.1f", avgLength));
 
         // Static Daywise Bar Chart data
         List<BarEntry> barEntries = new ArrayList<>();
@@ -161,8 +170,15 @@ public class DashboardActivity extends SharedActivity {
         barEntries.add(new BarEntry(2, 20));
         barEntries.add(new BarEntry(3, 5));
         BarDataSet barSet = new BarDataSet(barEntries, "Attacks per Day");
+        // set two tonal colors
+        barSet.setColors(
+                ContextCompat.getColor(this, R.color.blue_grotto),
+                ContextCompat.getColor(this, R.color.blue_green)
+        );
+        barSet.setValueTextColor(ContextCompat.getColor(this, R.color.white));
         BarData barData = new BarData(barSet);
         daywiseChart.setData(barData);
+        daywiseChart.setBackgroundColor(ContextCompat.getColor(this, R.color.baby_blue));
         daywiseChart.getDescription().setEnabled(false);
         daywiseChart.invalidate();
 
@@ -171,9 +187,16 @@ public class DashboardActivity extends SharedActivity {
         pieEntries.add(new PieEntry(60, "Phishing"));
         pieEntries.add(new PieEntry(40, "Smishing"));
         PieDataSet pieSet = new PieDataSet(pieEntries, "Attack Categories");
+        pieSet.setColors(
+                ContextCompat.getColor(this, R.color.navy_blue),
+                ContextCompat.getColor(this, R.color.cream)
+        );
+        pieSet.setValueTextColor(ContextCompat.getColor(this, R.color.white));
         PieData pieData = new PieData(pieSet);
         categoryChart.setData(pieData);
+        categoryChart.setBackgroundColor(ContextCompat.getColor(this, R.color.azure));
         categoryChart.getDescription().setEnabled(false);
         categoryChart.invalidate();
     }
+
 }

@@ -7,107 +7,305 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dashboard.DashboardActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewDashboard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false">
 
-        <ScrollView
-            android:id="@+id/scrollViewDashboard"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fillViewport="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <!-- MAIN HEADER -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <TextView
+                    android:id="@+id/tvDashboardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Smishing Analytics Dashboard"
+                    android:textAlignment="center"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="28sp"
+                    android:textStyle="bold"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ROW 1: Total Attacks & Successful -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
 
-                <!-- Dashboard Header -->
-                <TextView
-                    android:id="@+id/tvDashboardTitle"
-                    android:layout_width="wrap_content"
+                <!-- Total Attacks -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Smishing Analytics Dashboard"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
 
-                <!-- Basic Statistics -->
-                <TextView
-                    android:id="@+id/tvTotalAttacks"
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Attacks"
+                            android:textSize="14sp"
+                            android:textColor="@color/navy_blue"/>
+
+                        <TextView
+                            android:id="@+id/tvTotalAttacks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/blue_grotto"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Successful -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Total Attacks:"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
 
-                <TextView
-                    android:id="@+id/tvSuccess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Successful:"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tvFailed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Failed:"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Successful"
+                            android:textSize="14sp"
+                            android:textColor="@color/navy_blue"/>
 
-                <TextView
-                    android:id="@+id/tvUniqueSenders"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unique Senders:"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tvAvgContentLength"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Avg. SMS Length:"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Daywise Attacks Bar Chart -->
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/daywiseChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- Attack Categories Pie Chart -->
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/categoryChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginBottom="16dp" />
-
+                        <TextView
+                            android:id="@+id/tvSuccess"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/blue_green"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-        </ScrollView>
 
+            <!-- ROW 2: Failed & Unique Senders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Failed -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Failed"
+                            android:textSize="14sp"
+                            android:textColor="@color/navy_blue"/>
+
+                        <TextView
+                            android:id="@+id/tvFailed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/red"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Unique Senders -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Unique Senders"
+                            android:textSize="14sp"
+                            android:textColor="@color/navy_blue"/>
+
+                        <TextView
+                            android:id="@+id/tvUniqueSenders"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/blue_grotto"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ROW 3: Avg. SMS Length (full-width) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avg. SMS Length"
+                        android:textSize="14sp"
+                        android:textColor="@color/navy_blue"/>
+
+                    <TextView
+                        android:id="@+id/tvAvgContentLength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue_green"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Daywise Bar Chart Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/labelBarChart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Attacks by Day"
+                        android:textSize="18sp"
+                        android:textColor="@color/navy_blue"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/daywiseChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Category Pie Chart Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/labelPieChart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Attack Categories"
+                        android:textSize="18sp"
+                        android:textColor="@color/navy_blue"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/categoryChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
+        app:menu="@menu/activity_main_drawer"
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        android:theme="@style/Theme.SmishingDetectionApp"
-        app:menu="@menu/activity_main_drawer" >
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:itemTextColor="@color/black"/>
 </RelativeLayout>
