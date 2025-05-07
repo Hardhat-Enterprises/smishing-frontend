@@ -72,7 +72,7 @@ public class InsightsActivity extends AppCompatActivity {
 
         String[] lines = trends.split("\n");
         for (String line : lines) {
-            if (line.matches("^\\d{4}-\\d{2}:.*")) {
+            if (line.matches("^\\d{4}-\\d{2}-\\d{2}:.*")) {
                 String year = line.substring(0, 4);
                 yearlyCounts.put(year, yearlyCounts.getOrDefault(year, 0) + 1);
 

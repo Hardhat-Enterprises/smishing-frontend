@@ -355,3 +355,4 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,visualstudiocode,jupyternotebooks,python,java
 .idea/
+.idea/
