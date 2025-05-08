@@ -1,5 +1,8 @@
 package com.example.smishingdetectionapp.ui.Register;
 
+import android.content.res.Configuration;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -79,12 +82,30 @@ public class RegisterMain extends AppCompatActivity {
             String phoneNumber = binding.pnInput.getText().toString();
             String email = binding.emailInput.getText().toString();
             String password = binding.pwInput.getText().toString();
-            String pin = binding.pinInput.getText().toString();
 
-            if (validateInput(fullName, phoneNumber, email, password, pin)) {
+            if (validateInput(fullName, phoneNumber, email, password)) {
                 validateAndCheckEmail(fullName, phoneNumber, email, password);
             }
         });
+
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.white));
+        } else {
+            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.black));
+        }
+
     }
 
     @Override
@@ -115,7 +136,7 @@ public class RegisterMain extends AppCompatActivity {
         javaMailAPI.execute();
     }
 
-    private boolean validateInput(String fullName, String phoneNumber, String email, String password, String pin) {
+    private boolean validateInput(String fullName, String phoneNumber, String email, String password) {
         if (TextUtils.isEmpty(fullName)) {
             Snackbar.make(binding.getRoot(), "Please enter your full name.", Snackbar.LENGTH_LONG).show();
             return false;
@@ -128,12 +149,6 @@ public class RegisterMain extends AppCompatActivity {
 
         if (!isValidEmailAddress(email)) {
             Snackbar.make(binding.getRoot(), "Please enter a valid email address.", Snackbar.LENGTH_LONG).show();
-            return false;
-        }
-
-        // PIN Validation: Ensure it's exactly 6 digits long
-        if (TextUtils.isEmpty(pin) || pin.length() != 6) {
-            Snackbar.make(binding.getRoot(), "PIN must be exactly 6 digits.", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
@@ -166,6 +181,41 @@ public class RegisterMain extends AppCompatActivity {
         return true;
     }
 
+    /*
+    private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("email", email);
+
+        Call<SignupResponse> call = retrofitinterface.checkEmail(map);
+        call.enqueue(new Callback<SignupResponse>() {
+            @Override
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                if (response.isSuccessful()) {
+                    String verificationCode = generateVerificationCode();
+                    sendVerificationEmail(email, verificationCode);
+
+                    Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
+                    intent.putExtra("fullName", fullName);
+                    intent.putExtra("phoneNumber", phoneNumber);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    intent.putExtra("code", verificationCode);
+                    startActivity(intent);
+                } else if (response.code() == 409) {
+                    Snackbar.make(binding.getRoot(), "Email already exists.", Snackbar.LENGTH_LONG).show();
+                } else {
+                    Snackbar.make(binding.getRoot(), "Error checking email. Please try again.", Snackbar.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
+                Snackbar.make(binding.getRoot(), "Network error. Please try again.", Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
+     */
+    // Bypassing verification for testing purposes
     private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
         // Instead of calling the server, simulate a successful email check
         String verificationCode = generateVerificationCode();
@@ -182,6 +232,7 @@ public class RegisterMain extends AppCompatActivity {
         intent.putExtra("code", verificationCode);
         startActivity(intent);
     }
+
 
     private boolean isValidEmailAddress(String email) {
         try {

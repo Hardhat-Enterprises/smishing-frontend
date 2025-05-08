@@ -29,8 +29,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hardhat_logo"
-        android:contentDescription="@string/logo_description" />
+        app:srcCompat="@drawable/new_logo"
+        android:contentDescription="@string/hardhat_logo_alt" />
+
 
     <TextView
         android:id="@+id/ReportText"

@@ -80,6 +80,15 @@ public class HelpActivity extends SharedActivity {
             }
         });
 
+        // FAQ Cards Click Listeners
+        MaterialCardView cardFAQ2 = findViewById(R.id.cardFAQ2);
+        if (cardFAQ2 != null) {
+            cardFAQ2.setOnClickListener(v -> {
+                Intent intent = new Intent(HelpActivity.this, FaqActivity.class);
+                intent.putExtra("faq_topic", "adjust_settings");
+                startActivity(intent);
+            });
+        }
 
 
     }

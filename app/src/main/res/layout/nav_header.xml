@@ -13,7 +13,7 @@
         android:layout_height="80dp"
         android:src="@drawable/hardhat_logo"
         android:layout_gravity="center"
-        android:contentDescription="Header Logo" />
+        android:contentDescription="@string/hardhat_logo_alt"/>
 
     <TextView
         android:id="@+id/header_title"

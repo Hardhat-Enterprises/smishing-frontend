@@ -25,9 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/education_back"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -40,8 +41,8 @@
                 android:layout_height="120dp"
                 android:layout_marginBottom="16dp"
                 android:importantForAccessibility="no"
-                android:src="@drawable/hardhat_logo" />
-
+                android:contentDescription="@string/hardhat_logo_alt"
+                android:src="@drawable/new_logo" />
 
             <TextView
                 android:id="@+id/educationTitle"
@@ -118,7 +119,7 @@
         </LinearLayout>
     </ScrollView>
 
-
+  
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -131,5 +132,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/activity_main_drawer" />
-
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -147,7 +147,7 @@
                     android:background="@drawable/circle_background"
                     android:padding="10dp"
                     android:src="@drawable/faq_icon" />
-
+              
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,18 +184,12 @@
                     android:padding="10dp"
                     android:src="@drawable/feedback_icon" />
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_feedback"
-                    android:layout_alignTop="@id/iv_feedback"
-                    android:layout_alignBottom="@id/rv_2"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Feedback"
-                    android:textColor="@color/black"
+                    android:layout_margin="16dp"
+                    android:text="Click here to redirect"
                     android:textSize="16sp"
                     tools:ignore="NotSibling" />
 
