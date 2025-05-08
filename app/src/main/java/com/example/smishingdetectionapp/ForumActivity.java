@@ -31,10 +31,10 @@ public class ForumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forums);
 
-        // Back button setup
+        // Back button setup to return to Community Home Page
         ImageButton report_back = findViewById(R.id.forum_back_button);
         report_back.setOnClickListener(v -> {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, CommunityHomeActivity.class));
             finish();
         });
 

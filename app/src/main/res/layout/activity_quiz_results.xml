@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/logoImage2"
+            android:contentDescription="@string/hardhat_logo_alt"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"
@@ -71,5 +72,16 @@
             android:layout_marginEnd="8dp"
             android:padding="12dp"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/shareButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share Score"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 </ScrollView>

@@ -8,6 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
 
+import android.view.View;
+
+import com.example.smishingdetectionapp.ui.EducationFragment;
+import androidx.fragment.app.Fragment;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
@@ -45,6 +50,7 @@ public class MainActivity extends SharedActivity {
         }
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+
         nav.setSelectedItemId(R.id.nav_home);
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
@@ -75,14 +81,25 @@ public class MainActivity extends SharedActivity {
         });
 
         Button learnMoreButton = findViewById(R.id.learn_more_btn);
-        learnMoreButton.setOnClickListener(v -> {
+        /*learnMoreButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
         });
+
+*/
+        learnMoreButton.setOnClickListener(v -> {
+            findViewById(R.id.home_layout).setVisibility(View.GONE);
+            findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new EducationFragment())
+                    .commit();
+        });
+
         Button scanner_btn = findViewById(R.id.scanner_btn);
         scanner_btn.setOnClickListener(v -> {
             startActivity(new Intent(this, RiskScannerTCActivity.class));
             finish();
+
         });
 
 
@@ -97,7 +114,7 @@ public class MainActivity extends SharedActivity {
         //databaseAccess.close();
         //TODO: Add functionality for new detections.
 
-        // Setting counter from the result
+        //Setting counter from the result
         //TextView total_count = findViewById(R.id.total_counter);
         //total_count.setText("" + databaseAccess.getCounter());
 

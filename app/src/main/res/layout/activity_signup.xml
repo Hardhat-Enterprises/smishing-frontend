@@ -27,7 +27,7 @@
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="32dp"
-        android:contentDescription="@string/logo_description"
+        android:contentDescription="@string/hardhat_logo_alt"
         android:src="@drawable/new_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

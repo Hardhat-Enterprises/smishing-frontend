@@ -82,22 +82,22 @@
 
     <!-- Rating Tooltips -->
     ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-     String message = "";
+    String message = "";
 
-     switch ((int) rating) {
-     case 1: message = "😞 Very Bad"; break;
-     case 2: message = "😕 Bad"; break;
-     case 3: message = "😐 Okay"; break;
-     case 4: message = "🙂 Good"; break;
-     case 5: message = "🤩 Excellent"; break;
-     }
+    switch ((int) rating) {
+    case 1: message = "😞 Very Bad"; break;
+    case 2: message = "😕 Bad"; break;
+    case 3: message = "😐 Okay"; break;
+    case 4: message = "🙂 Good"; break;
+    case 5: message = "🤩 Excellent"; break;
+    }
 
-     showRatingPopup(message);
-     });
+    showRatingPopup(message);
+    });
 
 
 
-     <!-- Validation Messages -->
+    <!-- Validation Messages -->
     <string name="error_name_required">Name is required</string>
     <string name="error_feedback_min_length">Feedback must be at least 10 characters</string>
     <string name="error_rating_required">Please rate your experience</string>
