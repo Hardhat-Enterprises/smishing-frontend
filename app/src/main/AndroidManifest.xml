@@ -49,6 +49,10 @@
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
         <activity
+            android:name=".InsightsActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".SmsActivity"
             android:exported="false" />
         <activity
