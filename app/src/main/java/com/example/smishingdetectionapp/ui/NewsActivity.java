@@ -1,4 +1,4 @@
-package com.example.smishingdetectionapp.news;
+package com.example.smishingdetectionapp.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.Settings.SettingsActivity;
+import com.example.smishingdetectionapp.news.NewsAdapter;
+import com.example.smishingdetectionapp.news.NewsRequestManager;
+import com.example.smishingdetectionapp.news.OnFetchDataListener;
+import com.example.smishingdetectionapp.news.SelectListener;
 import com.example.smishingdetectionapp.SharedActivity;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
@@ -27,7 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class NewsActivity extends SharedActivity implements SelectListener{
+public class NewsActivity extends SharedActivity implements SelectListener {
     RecyclerView recyclerView;
     NewsAdapter adapter;
     NewsRequestManager manager;

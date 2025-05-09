@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.example.smishingdetectionapp.Settings.SettingsActivity;
+import com.example.smishingdetectionapp.ui.SettingsActivity;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smishingdetectionapp.Settings.SettingsActivity;
+import com.example.smishingdetectionapp.ui.SettingsActivity;
 import com.example.smishingdetectionapp.ui.CommunityPost;
 
 import java.util.ArrayList;

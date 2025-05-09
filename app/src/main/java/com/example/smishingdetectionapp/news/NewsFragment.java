@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.databinding.FragmentHomeBinding;
+import com.example.smishingdetectionapp.ui.NewsActivity;
 
 public class NewsFragment extends Fragment {
 

@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smishingdetectionapp.news.NewsActivity;
+import com.example.smishingdetectionapp.ui.NewsActivity;
 import com.example.smishingdetectionapp.notifications.NotificationHelper;
 import com.example.smishingdetectionapp.notifications.NotificationType;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

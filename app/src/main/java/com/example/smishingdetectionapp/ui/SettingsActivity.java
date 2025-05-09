@@ -1,4 +1,4 @@
-package com.example.smishingdetectionapp.Settings;
+package com.example.smishingdetectionapp.ui;
 
 import android.view.View;
 import android.content.Intent;
@@ -25,7 +25,6 @@ import com.example.smishingdetectionapp.ReportingActivity;
 import com.example.smishingdetectionapp.SmishingRulesActivity;
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
-import com.example.smishingdetectionapp.news.NewsActivity;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

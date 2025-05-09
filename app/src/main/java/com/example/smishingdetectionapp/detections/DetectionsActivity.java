@@ -22,8 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.Settings.SettingsActivity;
-import com.example.smishingdetectionapp.news.NewsActivity;
+import com.example.smishingdetectionapp.ui.SettingsActivity;
+import com.example.smishingdetectionapp.ui.NewsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
