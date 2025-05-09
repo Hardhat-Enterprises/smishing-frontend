@@ -1,4 +1,4 @@
-package com.example.smishingdetectionapp.ui;
+package com.example.smishingdetectionapp;
 
 import android.view.View;
 import android.content.Intent;
@@ -13,16 +13,6 @@ import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
-import com.example.smishingdetectionapp.AboutMeActivity;
-import com.example.smishingdetectionapp.AboutUsActivity;
-import com.example.smishingdetectionapp.FeedbackActivity;
-import com.example.smishingdetectionapp.ForumActivity;
-import com.example.smishingdetectionapp.HelpActivity;
-import com.example.smishingdetectionapp.MainActivity;
-import com.example.smishingdetectionapp.NotificationActivity;
-import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.ReportingActivity;
-import com.example.smishingdetectionapp.SmishingRulesActivity;
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;

@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.ui.SettingsActivity;
+import com.example.smishingdetectionapp.SettingsActivity;
 import com.example.smishingdetectionapp.SharedActivity;
 
 public class AccountActivity extends SharedActivity {

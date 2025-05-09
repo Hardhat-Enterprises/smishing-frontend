@@ -1,4 +1,4 @@
-package com.example.smishingdetectionapp.ui;
+package com.example.smishingdetectionapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,10 @@ import android.net.NetworkCapabilities;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smishingdetectionapp.MainActivity;
-import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.news.NewsAdapter;
 import com.example.smishingdetectionapp.news.NewsRequestManager;
 import com.example.smishingdetectionapp.news.OnFetchDataListener;
 import com.example.smishingdetectionapp.news.SelectListener;
-import com.example.smishingdetectionapp.SharedActivity;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

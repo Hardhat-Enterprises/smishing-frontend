@@ -1,7 +1,5 @@
 package com.example.smishingdetectionapp;
 
-import com.example.smishingdetectionapp.ui.SettingsActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

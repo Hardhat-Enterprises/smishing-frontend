@@ -16,7 +16,7 @@ import com.example.smishingdetectionapp.detections.DetectionsActivity;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.smishingdetectionapp.ui.NewsActivity;
+import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 
 public class NotificationHelper {

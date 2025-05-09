@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.example.smishingdetectionapp.ui.SettingsActivity;
-
 public class AboutMeActivity extends SharedActivity {
 
     @Override

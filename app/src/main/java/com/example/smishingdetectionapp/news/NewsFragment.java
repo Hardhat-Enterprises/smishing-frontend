@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.ui.NewsActivity;
+import com.example.smishingdetectionapp.NewsActivity;
 
 public class NewsFragment extends Fragment {
 

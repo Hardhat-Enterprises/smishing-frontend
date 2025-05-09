@@ -9,8 +9,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.smishingdetectionapp.ui.SettingsActivity;
-
 public class SmishingRulesActivity extends SharedActivity {
 
     @Override

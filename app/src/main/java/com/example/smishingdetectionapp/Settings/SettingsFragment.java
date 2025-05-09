@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.ui.SettingsActivity;
+import com.example.smishingdetectionapp.SettingsActivity;
 
 
 public class SettingsFragment extends Fragment {
