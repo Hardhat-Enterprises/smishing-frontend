@@ -31,6 +31,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;  // Added for SmartFilterBottomSheet
 
 public class DetectionsActivity extends AppCompatActivity {
 
@@ -144,32 +145,15 @@ public class DetectionsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheet);
-            bottomSheetDialog.show();
+            // Commenting out the old BottomSheetDialog
+            // View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
+            // BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
+            // bottomSheetDialog.setContentView(bottomSheet);
+            // bottomSheetDialog.show();
 
-            RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
-            RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
-
-            OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
-            NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
-
-            OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);
-                    sortONDB();
-                }
-                saveRadioButtonState("OldToNewRB", isChecked);
-            });
-
-            NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (NewToOldRB.isChecked()) {
-                    OldToNewRB.setChecked(false);
-                    sortNODB();
-                }
-                saveRadioButtonState("NewToOldRB", isChecked);
-            });
+            // New BottomSheetFragment for filters
+            BottomSheetDialogFragment filterFragment = new SmartFilterBottomSheet();  // New BottomSheetFragment implementation
+            filterFragment.show(getSupportFragmentManager(), filterFragment.getTag());  // Show filter fragment
         });
 
         // Long click → delete dialog
