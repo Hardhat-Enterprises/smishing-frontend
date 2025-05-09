@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frame_layout"
         android:layout_width="408dp"
@@ -16,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </androidx.fragment.app.FragmentContainerView>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -43,18 +43,28 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="124dp"
             android:background="@drawable/buttons_rounded"
-            android:drawableLeft="@drawable/bell_svg"
-            android:paddingStart="105dp"
-            android:paddingEnd="125dp"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/scanner_btn"
+            android:layout_width="182dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="124dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Risk Scanner"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detections_btn" />
 
         <ImageView
             android:id="@+id/HardhatLogo"
@@ -120,51 +130,56 @@
 
         <TextView
             android:id="@+id/new_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
             android:textColor="#000000"
-            android:textSize="30dp"
+            android:textSize="50dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:layout_constraintStart_toStartOf="@+id/new_detections"
-            app:layout_constraintTop_toTopOf="@+id/new_detections" />
+            app:layout_constraintEnd_toEndOf="@+id/new_detections"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <TextView
             android:id="@+id/total_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
             android:textColor="#000000"
-            android:textSize="30dp"
+            android:textSize="50sp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:layout_constraintStart_toStartOf="@+id/total_detections"
-            app:layout_constraintTop_toTopOf="@+id/total_detections" />
+            app:layout_constraintEnd_toEndOf="@+id/total_detections"
+            app:layout_constraintBottom_toTopOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
             android:text="@string/new_detectionsTxt"
             android:textColor="#000000"
             android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/new_counter"
             app:layout_constraintBottom_toBottomOf="@+id/new_detections"
-            app:layout_constraintStart_toStartOf="@+id/new_detections" />
+            app:layout_constraintStart_toStartOf="@+id/new_detections"
+            app:layout_constraintEnd_toEndOf="@+id/new_detections"/>
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
             android:text="@string/total_detectionsTxt"
             android:textColor="#000000"
             android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/total_counter"
             app:layout_constraintBottom_toBottomOf="@+id/total_detections"
-            app:layout_constraintStart_toStartOf="@+id/total_detections" />
+            app:layout_constraintStart_toStartOf="@+id/total_detections"
+            app:layout_constraintEnd_toEndOf="@+id/total_detections" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -175,17 +190,19 @@
             app:layout_constraintEnd_toEndOf="@+id/total_detections"
             app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:srcCompat="@drawable/baseline_access_time_24"
-            android:contentDescription="@string/time_icon"/>
+            android:contentDescription="@string/baseline_access_time_24_alt"/>
 
         <TextView
             android:id="@+id/information_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="Information"
+            android:layout_width="352dp"
+            android:layout_height="177dp"
+            android:layout_marginTop="8dp"
+            android:text="Welcome to Smishing Detection! Your real-time tool to deter and detect any smishing attacks. Your app is ready to smish."
+            app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintStart_toStartOf="@+id/information_box"
-            app:layout_constraintTop_toTopOf="@+id/information_box" />
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/information_box"
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -196,7 +213,7 @@
             app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintTop_toTopOf="@+id/information_box"
             app:srcCompat="@drawable/icon_information"
-            android:contentDescription="@string/info_icon"/>
+            android:contentDescription="@string/icon_information_alt"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -207,7 +224,7 @@
             app:layout_constraintEnd_toEndOf="@+id/new_detections"
             app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:srcCompat="@drawable/new_5_svg"
-            android:contentDescription="@string/new_icon"
+            android:contentDescription="@string/hardhat_logo_alt"
             app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
         <Button

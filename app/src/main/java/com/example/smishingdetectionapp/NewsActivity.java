@@ -29,7 +29,7 @@ import java.util.List;
 
 public class NewsActivity extends SharedActivity implements SelectListener {
     RecyclerView recyclerView;
-    NewsAdapter adapter;
+    NewsAdapter adapter; // moved to class scope to reuse
     NewsRequestManager manager;
     ProgressBar progressBar;
     TextView errorMessage;
@@ -76,12 +76,19 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
+        // Initialize RecyclerView and Adapter ONCE
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        adapter = new NewsAdapter(this);
+        recyclerView.setAdapter(adapter);
+
         // Initialize NewsRequestManager and fetch RSS feed data
         manager = new NewsRequestManager(this);
         manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
             @Override
             public void onFetchData(List<RSSFeedModel.Article> list, String message) {
-                showNews(list);
+                adapter.submitList(list); // Only update data, don't reassign adapter
                 progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
             }
 
@@ -89,15 +96,6 @@ public class NewsActivity extends SharedActivity implements SelectListener {
             public void onError(String message) {
                 errorMessage.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
-            }
-
-            // Method to display the fetched news articles in the RecyclerView
-            private void showNews(List<RSSFeedModel.Article> list) {
-                recyclerView = findViewById(R.id.news_recycler_view);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
-                adapter = new NewsAdapter(list, NewsActivity.this); // Corrected this reference
-                recyclerView.setAdapter(adapter);
             }
         });
 
@@ -131,16 +129,13 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         return false; // No network connection
     }
 
-
-
-
     private void loadData() {
         progressBar.setVisibility(View.VISIBLE);
         manager = new NewsRequestManager(this);
         manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
             @Override
             public void onFetchData(List<RSSFeedModel.Article> list, String message) {
-                showNews(list);
+                adapter.submitList(list); // Only update data
                 progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
             }
 
@@ -148,13 +143,6 @@ public class NewsActivity extends SharedActivity implements SelectListener {
             public void onError(String message) {
                 errorMessage.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE); // Hide ProgressBar on error
-            }
-
-            private void showNews(List<RSSFeedModel.Article> list) {
-                adapter = new NewsAdapter(list, NewsActivity.this);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
-                recyclerView.setAdapter(adapter);
             }
         });
     }
@@ -174,6 +162,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
             Toast.makeText(this, "No URL available", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onBackPressed() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
@@ -181,3 +170,4 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         super.onBackPressed();
     }
 }
+

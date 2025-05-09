@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,95 +8,20 @@
     android:layout_height="match_parent"
     tools:context=".ReportingActivity">
 
-    <EditText
-        android:id="@+id/reportmessage"
-        android:layout_width="0dp"
-        android:layout_height="259dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Smishing Message"
-        android:gravity="top|start"
-        android:inputType="text"
-        android:maxLength="255"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageLabel" />
 
+    <!-- Top Bar: Title and Menu Buttons -->
     <TextView
-        android:id="@+id/messageLabel"
+        android:id="@+id/screenTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/report_message_prompt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
-
-    <Button
-        android:id="@+id/reportButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/buttons_rounded"
-        android:text="@string/action_report"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reportmessage"
-        android:enabled="false"/>
-
-    <EditText
-        android:id="@+id/PhoneNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Phone Number"
-        android:hint="e.g +61435992164 or +3553211165"
-        android:maxLength="15"
-        android:ems="10"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonenumberLabel" />
-
-    <TextView
-        android:id="@+id/phonenumberLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
-        android:text="@string/phone_number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/HardhatLogo"
-        android:layout_width="112dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/new_logo" />
-
-    <TextView
-        android:id="@+id/ReportText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="@string/report_page"
-        android:textSize="32sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
-        android:textColor="@color/navy_blue"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/report_back"
@@ -108,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
 
+
     <ImageButton
         android:id="@+id/report_menu"
         android:layout_width="35dp"
@@ -115,7 +42,261 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
+        android:contentDescription="@string/menu_icon_alt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menu_icon" />
+
+
+    <!-- Horizontal Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBarSteps"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progress="50"
+        android:progressTint="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/screenTitle" />
+
+
+    <!-- STEP 1 Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/step1Container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBarSteps">
+
+
+        <!-- Step Indicator Text -->
+        <TextView
+            android:id="@+id/tvStep1Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Step 1 of 2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- LinearLayout for Step 1 Fields -->
+        <LinearLayout
+            android:id="@+id/llStep1Fields"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvStep1Indicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp">
+
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                android:inputType="phone"
+                android:maxLength="15"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etPostalCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Postal Code"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Country"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+
+        <!-- Next Button -->
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llStep1Fields" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- STEP 2 Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/step2Container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBarSteps">
+
+
+        <!-- Step Indicator Text -->
+        <TextView
+            android:id="@+id/tvStep2Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Step 2 of 2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBackStep1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="Back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- LinearLayout for Step 2 Fields -->
+        <LinearLayout
+            android:id="@+id/llStep2Fields"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvStep2Indicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp">
+
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etTypeOfAttack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type of Attack"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etHowToPrevent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="How to Prevent"
+                android:layout_marginBottom="8dp" />
+
+
+            <EditText
+                android:id="@+id/etDateReceived"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date Received"
+                android:inputType="date"
+                android:layout_marginBottom="8dp" />
+
+
+            <!-- Select Image Button -->
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Image (optional)"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+
+            <!-- TextView to display selected image name -->
+            <TextView
+                android:id="@+id/tvSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitReport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="SUBMIT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llStep2Fields" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

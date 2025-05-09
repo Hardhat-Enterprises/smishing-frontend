@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.util.TypedValue;
+import com.example.smishingdetectionapp.PreferencesUtil;
+import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,18 +25,88 @@ import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.concurrent.Executor;
+import android.widget.ScrollView;
+import android.graphics.Typeface;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.preference.PreferenceManager;
+import android.content.SharedPreferences;
+import android.widget.Switch;
 
 
 public class SettingsActivity extends AppCompatActivity {
-
+    private SeekBar seekBarFontScale;
+    private TextView preview;
     private static final int TIMEOUT_MILLIS = 10000; // 30 seconds timeout
     private boolean isAuthenticated = false;
     private BiometricPrompt biometricPrompt; // To cancel authentication
+    private Button buttonIncreaseTextSize, buttonDecreaseTextSize;
+    private TextView textScaleLabel;
+    private float textScale; // between 0.8f and 1.5f, for example
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isBold = prefs.getBoolean("bold_text_enabled", false);
+        setTheme(isBold ? R.style.Theme_SmishingDetectionApp_Bold : R.style.Theme_SmishingDetectionApp);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        textScaleLabel = findViewById(R.id.textScaleLabel);
+        seekBarFontScale = findViewById(R.id.seekBarFontScale);
+        textScale = PreferencesUtil.getTextScale(this);
+        updateScaleLabel();
+
+// Set current SeekBar position
+        seekBarFontScale.setProgress((int) (textScale * 10));
+
+        seekBarFontScale.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float newScale = progress / 10f;
+
+                // Clamp between 0.8f and 1.5f
+                if (newScale < 0.8f) newScale = 0.8f;
+                if (newScale > 1.5f) newScale = 1.5f;
+
+                textScale = newScale;
+                PreferencesUtil.setTextScale(SettingsActivity.this, textScale);
+                updateScaleLabel();
+                applyFontScale();
+            }
+
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        if (isBold) {
+            applyBoldToAllSwitches(findViewById(R.id.settingsScroll));
+        }
+        if (isBold) {
+            applyBoldToAllWidgets(findViewById(R.id.settingsScroll));
+        }
+
+
+        ScrollView scrollView = findViewById(R.id.settingsScroll);
+        if (scrollView != null) {
+            scrollView.post(() -> {
+                int savedScrollY = prefs.getInt("scroll_pos", 0);
+                scrollView.scrollTo(0, savedScrollY);
+            });
+        }
+
+
+        Switch boldSwitch = findViewById(R.id.bold_text);
+        if (boldSwitch != null) {
+            boldSwitch.setChecked(isBold);
+            boldSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                int scrollY = scrollView != null ? scrollView.getScrollY() : 0;
+                prefs.edit()
+                        .putBoolean("bold_text_enabled", isChecked)
+                        .putInt("scroll_pos", scrollY)
+                        .apply();
+                recreate(); // Reload to apply new theme
+            });
+        }
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setSelectedItemId(R.id.nav_settings);
@@ -58,7 +134,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return false;
         });
-
         // Account button to switch to account page with biometric authentication
         Button accountBtn = findViewById(R.id.accountBtn);
         accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
@@ -108,6 +183,7 @@ public class SettingsActivity extends AppCompatActivity {
         feedbackBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, FeedbackActivity.class));
         });
+
         //Forum Button to switch to Forum page
         Button forumBtn = findViewById(R.id.forumBtn);
         forumBtn.setOnClickListener(v -> {
@@ -195,11 +271,69 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificationActivity.class);
         startActivity(intent);
     }
+
     @Override
     public void onBackPressed() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setSelectedItemId(R.id.nav_home);
         super.onBackPressed();
+    }
+
+    private void applyBoldToAllSwitches(View root) {
+        if (!(root instanceof ViewGroup)) return;
+
+        ViewGroup group = (ViewGroup) root;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+
+            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            applyBoldToAllSwitches(child);
+        }
+    }
+    private void applyBoldToAllWidgets(View root) {
+        if (!(root instanceof ViewGroup)) return;
+
+        ViewGroup group = (ViewGroup) root;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+
+            // ✅ Bold Switch labels
+            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            // ✅ Bold Buttons (MaterialButton, Button, etc.)
+            if (child instanceof android.widget.Button ||
+                    child instanceof com.google.android.material.button.MaterialButton) {
+                ((TextView) child).setTypeface(null, Typeface.BOLD);
+            }
+
+            // Recursively apply to nested children
+            applyBoldToAllWidgets(child);
+        }
+    }
+    private void applyFontScale() {
+        Configuration configuration = getResources().getConfiguration();
+        configuration = new Configuration(configuration); // make a copy
+        configuration.fontScale = textScale;
+
+        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+
+        // Refresh the layout
+        recreate();
+    }
+    private void saveAndApplyScale() {
+        PreferencesUtil.setTextScale(this, textScale);
+        updateScaleLabel();
+        applyFontScale();
+    }
+
+    private void updateScaleLabel() {
+        int percentage = (int) (textScale * 100);
+        textScaleLabel.setText(percentage + "%");
     }
 }
 
