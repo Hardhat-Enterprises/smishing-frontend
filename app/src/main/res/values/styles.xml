@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BoldTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BoldTextAppearance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="BoldButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BoldMaterialButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="BoldMaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

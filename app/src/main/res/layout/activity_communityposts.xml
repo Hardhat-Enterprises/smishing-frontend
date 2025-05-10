@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CommunityHomeActivity">
+
+    <!-- Community Header -->
+    <LinearLayout
+        android:id="@+id/headerSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/communityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community"
+            android:textColor="@color/navy_blue"
+            android:textSize="58sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/communitySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="keeping you and your loved ones safe"
+            android:textColor="@color/navy_blue"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Navigation using TabLayout-->
+    <LinearLayout
+        android:id="@+id/tabNavigationContainer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/headerSection"
+        android:weightSum="3">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="@color/navy_blue"
+            app:tabBackground="@color/white"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/tabDivider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/tabNavigationContainer"
+        android:layout_marginTop="4dp"
+        android:background="@color/Dark_blue" />
+
+    <!-- Search bar container -->
+    <RelativeLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabDivider"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_lightblue_card">
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search"
+            android:paddingEnd="40dp"
+            android:padding="12dp"
+            android:background="@android:color/transparent" />
+
+        <!--allow search data to be cleared with the button-->
+        <ImageView
+            android:id="@+id/clearSearch"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/close_button" />
+    </RelativeLayout>
+
+    <!-- Posts List using recyclerview i.e. CommunityPostAdapter.java -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchContainer"
+        android:layout_margin="16dp"
+        android:layout_above="@id/bottom_navigation" />
+
+    <!--Add new post button-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="80dp"
+        app:srcCompat="@drawable/add_button"
+        android:contentDescription="Add Post"
+        android:backgroundTint="@color/white" />
+
+    <!--Back button-->
+    <ImageButton
+        android:id="@+id/community_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+    <!-- Bottom Fixed Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/baby_blue"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/activity_main_drawer" />
+
+</RelativeLayout>

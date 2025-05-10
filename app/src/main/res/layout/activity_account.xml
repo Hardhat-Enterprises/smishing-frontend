@@ -77,11 +77,12 @@
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/hardhat_logo_alt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/new_logo" />
 
     <TextView
         android:id="@+id/AccountText"
@@ -104,6 +105,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@null"
+        android:contentDescription="@string/back_button_alt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
@@ -115,7 +117,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/buttons_rounded"
+        android:contentDescription="@string/buttons_rounded_alt"
         android:text="@string/delete_accountBtn"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

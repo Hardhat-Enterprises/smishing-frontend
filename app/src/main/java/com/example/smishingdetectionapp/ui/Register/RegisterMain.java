@@ -1,5 +1,8 @@
 package com.example.smishingdetectionapp.ui.Register;
 
+import android.content.res.Configuration;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -70,6 +73,7 @@ public class RegisterMain extends AppCompatActivity {
         });
 
         // Set up register button
+        // Test registration flow
         Button registerButton = findViewById(R.id.registerBtn);
         registerButton.setEnabled(false);
 
@@ -84,6 +88,25 @@ public class RegisterMain extends AppCompatActivity {
                 validateAndCheckEmail(fullName, phoneNumber, email, password);
             }
         });
+
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.white));
+            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.white));
+        } else {
+            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.black));
+            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.black));
+        }
+
     }
 
     @Override
