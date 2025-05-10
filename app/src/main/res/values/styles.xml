@@ -6,5 +6,3 @@
 
     <style name="DatePickerButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/navy_blue</item>
-    </style>
-</resources>

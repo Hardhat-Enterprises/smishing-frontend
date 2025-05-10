@@ -28,8 +28,8 @@ public class CommunityHomeActivity extends AppCompatActivity {
                 int position = tab.getPosition();
                 if (position == 0) {
                 } else if (position == 1) {
-                    // go to CommunityPostActivity but currently placeholder as ForumActivity >> to be created in Phase 2
-                    Intent intent = new Intent(CommunityHomeActivity.this, ForumActivity.class);
+                    // go to CommunityPostActivity
+                    Intent intent = new Intent(CommunityHomeActivity.this, CommunityPostActivity.class);
                     startActivity(intent);
                 } else if (position == 2) {
                     // go to CommunityReportActivity >> to be created in Phase 2
@@ -47,11 +47,11 @@ public class CommunityHomeActivity extends AppCompatActivity {
         });
 
         // Back Button
-        ImageButton notification_back = findViewById(R.id.notification_back);
+        ImageButton community_back = findViewById(R.id.community_back);
         // Check if the back button is initialized properly
-        if (notification_back != null) {
+        if (community_back != null) {
             // Set an onClick listener to handle the back button's behavior
-            notification_back.setOnClickListener(v -> {
+            community_back.setOnClickListener(v -> {
                 // Start SettingsActivity when back button is pressed
                 startActivity(new Intent(this, SettingsActivity.class));
                 // Close the current activity

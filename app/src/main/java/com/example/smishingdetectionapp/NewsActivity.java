@@ -58,6 +58,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
                 finish();
                 return true;
             } else if (id == R.id.nav_news) {
+                nav.setActivated(true);
                 return true;
             } else if (id == R.id.nav_settings) {
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
@@ -157,6 +158,13 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         } else {
             Toast.makeText(this, "No URL available", Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        nav.setSelectedItemId(R.id.nav_home);
+        finish();
+        super.onBackPressed();
     }
 }
 

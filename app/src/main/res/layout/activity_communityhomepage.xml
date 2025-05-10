@@ -35,7 +35,7 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Navigation using ViewPager -->
+    <!-- Navigation using TabLayout-->
     <LinearLayout
         android:id="@+id/tabNavigationContainer"
         android:layout_width="match_parent"
@@ -206,7 +206,7 @@
 
     <!--Back button-->
     <ImageButton
-        android:id="@+id/notification_back"
+        android:id="@+id/community_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"

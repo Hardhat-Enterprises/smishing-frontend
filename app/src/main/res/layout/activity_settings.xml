@@ -24,6 +24,7 @@
 
 
     <ScrollView
+        android:id="@+id/settingsScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
@@ -60,6 +61,7 @@
                 android:textColor="@color/navy_blue"
                 android:textSize="32sp"
                 android:textStyle="bold"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -374,6 +376,88 @@
                 app:layout_constraintTop_toBottomOf="@+id/dark_modeBtn"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+            <Switch
+                android:id="@+id/bold_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:paddingVertical="8dp"
+                android:text="@string/bold_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/always_underline_links"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <LinearLayout
+                android:id="@+id/fontSizeControls"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/bold_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Title above SeekBar -->
+                <TextView
+                    android:id="@+id/textSizeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adjust Text Size"
+                    android:textStyle="bold"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- A- | SeekBar | A+ -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/textLabelSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A−"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <SeekBar
+                        android:id="@+id/seekBarFontScale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:min="8"
+                        android:max="15" />
+
+                    <TextView
+                        android:id="@+id/textLabelLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A+"
+                        android:textSize="20sp"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- Percentage text below SeekBar -->
+                <TextView
+                    android:id="@+id/textScaleLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider5"
@@ -383,15 +467,14 @@
                 app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
-                app:layout_constraintTop_toBottomOf="@+id/always_underline_links" />
-
+                app:layout_constraintTop_toBottomOf="@+id/fontSizeControls" />
 
             <TextView
-                android:id="@+id/Forums_and_Report"
+                android:id="@+id/Community_and_Report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/Forums_and_Report"
+                android:text="@string/Community_and_Report"
                 android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:textSize="18sp"
@@ -415,7 +498,7 @@
                 android:text="@string/community"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Forums_and_Report" />
+                app:layout_constraintTop_toBottomOf="@+id/Community_and_Report" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -686,3 +769,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </RelativeLayout>
+

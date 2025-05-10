@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/home_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation"
-        android:visibility="gone" />
-        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -29,13 +22,12 @@
         app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" >
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/home_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
         <Button
             android:id="@+id/detections_btn"
@@ -93,32 +85,33 @@
 
         <TextView
             android:id="@+id/new_detections"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="181dp"
+            android:layout_height="101dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/total_detections"
-            android:layout_width="175dp"
+            android:layout_width="180dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
         <TextView
             android:id="@+id/information_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="200dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/buttons_rounded"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +177,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/total_detections"
             app:layout_constraintTop_toTopOf="@+id/total_detections"
@@ -207,7 +200,7 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintTop_toTopOf="@+id/information_box"
@@ -218,7 +211,7 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/new_detections"
             app:layout_constraintTop_toTopOf="@+id/new_detections"
@@ -231,7 +224,7 @@
             android:layout_width="113dp"
             android:layout_height="111dp"
             android:layout_marginStart="149dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
 
 
             android:layout_marginEnd="150dp"
@@ -248,19 +241,21 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/learn_more_btn"
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_container"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_rounded"
             android:text="Learn More About Smishing"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detections_btn"
-            tools:ignore="MissingConstraints" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+ />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
