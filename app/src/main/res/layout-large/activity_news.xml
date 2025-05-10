@@ -31,18 +31,18 @@
 
         <ImageView
             android:id="@+id/new_logo"
-            android:layout_width="@dimen/image_size_small"
-            android:layout_height="@dimen/image_size_small"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginEnd="12dp"
             app:srcCompat="@drawable/new_logo"
-            android:contentDescription="@string/hardhat_logo_alt"/>
+            android:contentDescription="@string/logo_description" />
 
         <TextView
             android:id="@+id/NewsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/menu_Cyber_news"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_xxlarge"
             android:textStyle="bold"
             android:textColor="@color/navy_blue"
             android:gravity="center_vertical" />
@@ -56,8 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:contentDescription="@string/logo_description"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
+        android:padding="@dimen/padding_tablet"
         android:scrollbarSize="5dp"
         android:scrollbarThumbVertical="@android:color/darker_gray"
         android:scrollbars="vertical"
@@ -70,12 +69,11 @@
     <Button
         android:id="@+id/refreshButton"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_height_medium"
+        android:layout_height="@dimen/button_height_large"
         android:text="@string/refresh"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/navy_blue"
-        android:layout_marginStart="@dimen/margin_xxlarge"
-        android:layout_marginEnd="@dimen/margin_xxlarge"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/margin_tablet"
+        android:layout_marginEnd="@dimen/margin_tablet"
         android:layout_marginBottom="12dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -116,9 +114,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/baby_blue"
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

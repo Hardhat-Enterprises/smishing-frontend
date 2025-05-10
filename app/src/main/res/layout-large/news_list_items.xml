@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     android:foreground="?attr/selectableItemBackground">
 
@@ -34,7 +34,7 @@
                     android:id="@+id/text_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_small"
+                    android:textSize="@dimen/text_size_xlarge"
                     android:textStyle="bold"
                     android:textColor="@color/navy_blue"
                     android:fontFamily="sans-serif-medium"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:textColor="#9E9E9E"
-                    android:textSize="@dimen/text_size_xsmall"/>
+                    android:textSize="@dimen/text_size_small"/>
             </LinearLayout>
 
             <!-- Right Arrow Icon -->
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/text_size_large"
             android:textColor="@color/black"
             android:lineSpacingExtra="2dp"
             android:maxLines="4"
