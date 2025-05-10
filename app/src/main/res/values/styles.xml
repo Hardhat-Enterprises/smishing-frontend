@@ -1,0 +1,10 @@
+<resources>
+    <style name="CustomDatePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerButtonStyle</item>
+    </style>
+
+    <style name="DatePickerButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/navy_blue</item>
+    </style>
+</resources>

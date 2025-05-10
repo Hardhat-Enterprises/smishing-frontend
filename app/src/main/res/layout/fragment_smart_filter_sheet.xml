@@ -1,63 +1,155 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/filter_sheet"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
-    android:orientation="vertical"
-    android:padding="20dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sort and Filter"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sort By"
-        android:textStyle="normal"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp" />
-
-    <RadioGroup
-        android:id="@+id/sortGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:id="@+id/radio_oldest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Oldest to Newest" />
-        <RadioButton
-            android:id="@+id/radio_newest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Newest to Oldest" />
-    </RadioGroup>
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/filter_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:layout_marginTop="16dp">
+        android:background="@drawable/bottom_sheet_background"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:scrollbars="vertical">
 
-        <Button
-            android:id="@+id/button_reset"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reset" />
+            android:text="Sort and Filter"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp" />
 
-        <Button
-            android:id="@+id/button_apply"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply"
-            android:layout_marginStart="12dp" />
+            android:text="Sort By"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <RadioGroup
+            android:id="@+id/sortGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_oldest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oldest to Newest" />
+            <RadioButton
+                android:id="@+id/radio_newest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Newest to Oldest" />
+        </RadioGroup>
+
+        <!-- Filter Options -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter Options"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp" />
+
+        <CheckBox
+            android:id="@+id/checkbox_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contains Link" />
+
+        <CheckBox
+            android:id="@+id/checkbox_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Received Today" />
+
+        <CheckBox
+            android:id="@+id/checkbox_last7days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last 7 Days" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Custom Date Range"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp" />
+
+        <!-- Date Range -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:gravity="start">
+
+            <Button
+                android:id="@+id/button_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Date"
+                android:textColor="@android:color/black" /> <!-- Dark text color -->
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="End Date"
+                android:textColor="@android:color/black" /> <!-- Dark text color -->
+        </LinearLayout>
+
+        <!-- Year Filters -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter by Year"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:id="@+id/year_filter_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="4dp" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="16dp">
+
+            <!-- Reset Button -->
+            <Button
+                android:id="@+id/button_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:textColor="@color/navy_blue"
+                android:background="@drawable/button_background" /> <!-- Custom background -->
+
+            <!-- Apply Button -->
+            <Button
+                android:id="@+id/button_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply"
+                android:textColor="@color/navy_blue"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/button_background" /> <!-- Custom background -->
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
