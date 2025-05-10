@@ -8,16 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Build;
-
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
-
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -26,14 +23,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -55,37 +49,29 @@ import com.example.smishingdetectionapp.recyclebin.RecycleBinManager;
 import com.example.smishingdetectionapp.ui.Register.RegisterMain;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import android.net.Uri;
-import android.widget.Toast;
-
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.io.File;
-import android.os.Environment;
-import android.media.MediaScannerConnection;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class DetectionsActivity extends AppCompatActivity {
 
@@ -101,6 +87,7 @@ public class DetectionsActivity extends AppCompatActivity {
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
 
     public void sortONDB() {
         String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
@@ -119,8 +106,7 @@ public class DetectionsActivity extends AppCompatActivity {
     }
 
     public void refreshList() {
-        String searchQuery = "SELECT * FROM Detections";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -129,6 +115,7 @@ public class DetectionsActivity extends AppCompatActivity {
     public void DeleteRow(String id) {
         DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
     }
+
 
     private void saveRadioButtonState(String key, boolean isChecked) {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
@@ -165,17 +152,18 @@ public class DetectionsActivity extends AppCompatActivity {
         detections_back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-            clearRadioButtonState();
         });
 
         detectionLV = findViewById(R.id.lvDetectionsList);
         databaseAccess = new DatabaseAccess(getApplicationContext());
         databaseAccess.open();
+        refreshList();
 
         Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
 
         EditText detSearch = findViewById(R.id.searchTextBox);
 
@@ -208,47 +196,62 @@ public class DetectionsActivity extends AppCompatActivity {
         });
 
         detSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchDB(s.toString());
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
+            @Override public void afterTextChanged(Editable s) {}
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
-            bottomSheetDialog.setContentView(bottomSheet);
-            bottomSheetDialog.show();
+            SmartFilterBottomSheet filterFragment = new SmartFilterBottomSheet();
+            filterFragment.setFilterListener((newestFirst, containsLink, todayOnly, last7DaysOnly, selectedYears, startDate, endDate) -> {
+                StringBuilder query = new StringBuilder("SELECT * FROM Detections");
+                boolean hasCondition = false;
 
-            RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
-            RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
-
-            OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
-            NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
-
-            OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);
-                    sortONDB();
+                if (containsLink) {
+                    query.append(" WHERE (Message LIKE '%http%' OR Message LIKE '%www%')");
+                    hasCondition = true;
                 }
-                saveRadioButtonState("OldToNewRB", isChecked);
+
+                if (todayOnly) {
+                    String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                    query.append(hasCondition ? " AND " : " WHERE ").append("Date LIKE '").append(today).append("%'");
+                    hasCondition = true;
+                }
+
+                if (last7DaysOnly) {
+                    long sevenDaysAgoMillis = System.currentTimeMillis() - (7L * 24 * 60 * 60 * 1000);
+                    String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                    String sevenDaysAgo = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date(sevenDaysAgoMillis));
+                    query.append(hasCondition ? " AND " : " WHERE ").append("Date BETWEEN '").append(sevenDaysAgo).append("' AND '").append(today).append("'");
+                    hasCondition = true;
+                }
+
+                if (startDate != null && endDate != null) {
+                    query.append(hasCondition ? " AND " : " WHERE ").append("Date BETWEEN '").append(startDate).append("' AND '").append(endDate).append("'");
+                    hasCondition = true;
+                }
+
+                if (!selectedYears.isEmpty()) {
+                    StringBuilder yearCondition = new StringBuilder();
+                    for (int i = 0; i < selectedYears.size(); i++) {
+                        if (i > 0) yearCondition.append(" OR ");
+                        yearCondition.append("SUBSTR(Date, 1, 4) = '").append(selectedYears.get(i)).append("'");
+                    }
+                    query.append(hasCondition ? " AND (" : " WHERE (").append(yearCondition).append(")");
+                }
+
+                query.append(newestFirst ? " ORDER BY Date DESC" : " ORDER BY Date ASC");
+
+                Cursor filteredCursor = DatabaseAccess.db.rawQuery(query.toString(), null);
+                DisplayDataAdapterView filteredAdapter = new DisplayDataAdapterView(this, filteredCursor);
+                detectionLV.setAdapter(filteredAdapter);
+                filteredAdapter.notifyDataSetChanged();
             });
 
-            NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if (NewToOldRB.isChecked()) {
-                    OldToNewRB.setChecked(false);
-                    sortNODB();
-                }
-                saveRadioButtonState("NewToOldRB", isChecked);
-            });
+            filterFragment.show(getSupportFragmentManager(), filterFragment.getTag());
         });
 
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -257,12 +260,11 @@ public class DetectionsActivity extends AppCompatActivity {
             bottomSheetDialog.setContentView(bottomSheetDel);
             bottomSheetDialog.show();
 
-            Button Cancel = bottomSheetDel.findViewById(R.id.delItemCancel);
-            Button Confirm = bottomSheetDel.findViewById(R.id.DelItemConfirm);
+            Button cancel = bottomSheetDel.findViewById(R.id.delItemCancel);
+            Button confirm = bottomSheetDel.findViewById(R.id.DelItemConfirm);
 
-            Cancel.setOnClickListener(v -> bottomSheetDialog.dismiss());
-
-            Confirm.setOnClickListener(v -> {
+            cancel.setOnClickListener(v1 -> bottomSheetDialog.dismiss());
+            confirm.setOnClickListener(v12 -> {
                 DeleteRow(String.valueOf(id));
                 refreshList();
                 bottomSheetDialog.dismiss();
