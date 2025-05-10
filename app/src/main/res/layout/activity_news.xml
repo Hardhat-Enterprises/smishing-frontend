@@ -24,7 +24,6 @@
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
         app:itemPaddingBottom="10dp"
-        app:itemActiveIndicatorStyle="@android:color/transparent"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer">
 

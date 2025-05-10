@@ -5,21 +5,17 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -28,26 +24,27 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@drawable/new_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/new_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmishingDetectionApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.locale.LanguageActivity"
+            android:exported="false" />
         <!-- Splash Activity (first screen that will show) -->
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Changed the round icons for app -->
+        </activity> <!-- Changed the round icons for app -->
         <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
@@ -81,8 +78,7 @@
         <activity
             android:name=".ui.account.AccountActivity"
             android:exported="true" />
-        <activity
-            android:name=".ui.account.PopupDEL" />
+        <activity android:name=".ui.account.PopupDEL" />
         <activity
             android:name=".detections.DetectionsActivity"
             android:exported="true">
@@ -95,8 +91,9 @@
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="true" />
-        <activity android:name=".ui.onboarding.LoginCreateActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.onboarding.LoginCreateActivity"
+            android:exported="false" />
         <activity
             android:name=".NewsActivity"
             android:exported="false" />
@@ -106,24 +103,19 @@
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
-
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
-        <activity android:name=".QuizesActivity"/>
-        <!-- Your Reports Activity-->
-        <activity android:name=".detections.YourReportsActivity" android:exported="false"/>
-
+        <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
+        <activity
+            android:name=".detections.YourReportsActivity"
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
-        <!-- Set LoginActivity is not the launcher activity -->
-
+            android:exported="false" /> <!-- Set LoginActivity is not the launcher activity -->
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true">
-        </activity> <!-- MainActivity is not the launcher anymore -->
-
+            android:exported="true"></activity> <!-- MainActivity is not the launcher anymore -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -134,9 +126,7 @@
         <activity
             android:name=".ForumActivity"
             android:exported="false" />
-        <activity
-            android:name=".CommunityHomeActivity" />
-
+        <activity android:name=".CommunityHomeActivity" />
         <activity
             android:name=".chat.ChatAssistantActivity"
             android:exported="false"
@@ -144,8 +134,6 @@
         <activity
             android:name=".FaqActivity"
             android:exported="false" />
-
-
         <activity
             android:name=".CommunityPostActivity"
             android:exported="false" />
@@ -155,9 +143,9 @@
         <activity
             android:name=".riskmeter.RiskScannerActivity"
             android:exported="true" />
-        <activity android:name=".riskmeter.RiskResultActivity"
-            android:exported="true" />
-        <!-- File Provider -->
+        <activity
+            android:name=".riskmeter.RiskResultActivity"
+            android:exported="true" /> 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.smishingdetectionapp.fileprovider"
@@ -167,8 +155,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-
     </application>
 
 </manifest>

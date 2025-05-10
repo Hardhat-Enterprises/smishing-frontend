@@ -121,3 +121,19 @@ dependencies {
     implementation("com.itextpdf:itextg:5.5.10")
 }
 
+apply(plugin = "com.localazy.gradle")
+
+localazy {
+    writeKey = "a6956453925910666760-ec9b7089e8e26c071a5dacaf7d83e78306e0aef9602c580bd49fbf3d996ce5b4"
+    readKey = "a6956453925910666760-0473cc4207e313f26710b748d9c6051a796872bac94e352e9e06c79a90ef80d1"
+}
+
+// Disable the section below (from here to >) to prevent the automatic execution of `./gradlew uploadStrings`, which helps conserve translation usage count.
+afterEvaluate {
+    tasks.named("localazyDownloadStringsDebug") {
+        dependsOn("uploadStrings")
+    }
+}
+// < End of the section to disable auto-run.
+
+
