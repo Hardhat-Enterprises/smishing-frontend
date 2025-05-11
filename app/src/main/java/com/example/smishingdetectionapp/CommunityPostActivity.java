@@ -49,7 +49,11 @@ public class CommunityPostActivity extends AppCompatActivity {
                     startActivity(new Intent(CommunityPostActivity.this, CommunityHomeActivity.class));
                     finish();
                 } else if (position == 2) {
-                    Toast.makeText(CommunityPostActivity.this, "Report page coming soon :)", Toast.LENGTH_SHORT).show();
+                    // launch ReportActivity
+                    startActivity(new Intent(CommunityPostActivity.this,
+                            CommunityReportActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
             }
             @Override public void onTabUnselected(TabLayout.Tab tab) {}

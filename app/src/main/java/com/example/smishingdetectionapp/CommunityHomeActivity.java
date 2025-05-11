@@ -30,8 +30,11 @@ public class CommunityHomeActivity extends AppCompatActivity {
                 if (position == 0) {
                 } else if (position == 1) {
                     // go to CommunityPostActivity
-                    Intent intent = new Intent(CommunityHomeActivity.this, CommunityPostActivity.class);
+                    Intent intent = new Intent(CommunityHomeActivity.this,
+                            CommunityPostActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
                 } else if (position == 2) {
                     // launch ReportActivity
                     startActivity(new Intent(CommunityHomeActivity.this,
