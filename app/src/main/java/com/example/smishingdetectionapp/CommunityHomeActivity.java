@@ -9,7 +9,8 @@ import com.google.android.material.tabs.TabLayout;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import com.example.smishingdetectionapp.CommunityReportActivity;
+import com.example.smishingdetectionapp.CommunityPostActivity;
 public class CommunityHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,11 @@ public class CommunityHomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(CommunityHomeActivity.this, CommunityPostActivity.class);
                     startActivity(intent);
                 } else if (position == 2) {
-                    // go to CommunityReportActivity >> to be created in Phase 2
-                    Toast.makeText(CommunityHomeActivity.this, "Report page coming soon :)", Toast.LENGTH_SHORT).show();
+                    // launch ReportActivity
+                    startActivity(new Intent(CommunityHomeActivity.this,
+                            CommunityReportActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
                 }
             }
 
