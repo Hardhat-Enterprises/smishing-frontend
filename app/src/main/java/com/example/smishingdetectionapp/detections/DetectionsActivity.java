@@ -5,9 +5,12 @@ import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +27,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
+import com.example.smishingdetectionapp.recyclebin.RecycleBinActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,42 +53,7 @@ public class DetectionsActivity extends AppCompatActivity {
 
     private ListView detectionLV;
     DatabaseAccess databaseAccess;
-
-    public void searchDB(String search) {
-        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-
-    public void sortONDB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void sortNODB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void refreshList() {
-        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void DeleteRow(String id) {
-        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
-    }
+    private static final int IMPORT_FILE_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,13 +77,30 @@ public class DetectionsActivity extends AppCompatActivity {
         databaseAccess.open();
         refreshList();
 
-        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        EditText detSearch = findViewById(R.id.searchTextBox);
+
+        //populate data
+        String searchQuery = ("SELECT * FROM Detections");
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
 
-        EditText detSearch = findViewById(R.id.searchTextBox);
+        Button importButton = findViewById(R.id.importButton);
+        importButton.setOnClickListener(v -> openFilePicker());
+
+        ImageButton imgBtnRecyclebin = findViewById(R.id.btnRecyclebin);
+
+        imgBtnRecyclebin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetectionsActivity.this, RecycleBinActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         detSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -202,6 +190,41 @@ public class DetectionsActivity extends AppCompatActivity {
 
 
     }
+    public void searchDB(String search) {
+        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+
+    public void sortONDB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void sortNODB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void refreshList() {
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void DeleteRow(String id) {
+        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
+    }
 
     private void exportDetectionsToPDF() {
         Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
@@ -246,6 +269,75 @@ public class DetectionsActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Failed to export PDF", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void openFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*"); // Show all file types
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        String[] mimeTypes = {"text/csv", "application/csv", "text/comma-separated-values", "application/vnd.ms-excel"};
+
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+
+        startActivityForResult(Intent.createChooser(intent, "Select CSV File"), IMPORT_FILE_REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMPORT_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri fileUri = data.getData();
+            if (fileUri != null) {
+                importDataFromFile(fileUri);
+            }
+        }
+    }
+    private void importDataFromFile(Uri fileUri)
+    {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(fileUri), "UTF-8"))) {
+            String line;
+            int lineNumber = 0;
+            boolean isHeader = true;
+
+            DatabaseAccess dbAccess = DatabaseAccess.getInstance(this);
+            dbAccess.open();
+
+            dbAccess.deleteAllDetections();
+
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                if (isHeader) {
+                    isHeader = false;
+                    continue;
+                }
+
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    try {
+                        // Extract data from the CSV
+                        String phone = parts[1].trim();
+                        String message = parts[2].trim();
+                        String date = parts[3].trim();
+
+                        dbAccess.insertDetection(phone, message, date);
+
+                    } catch (Exception e) {
+                        Log.e("ImportError", "Error processing line " + lineNumber + ": " + e.getMessage());
+                    }
+                } else {
+                    Log.w("ImportWarning", "Skipping invalid line " + lineNumber + ": " + line);
+                }
+            }
+
+            dbAccess.close();
+
+            Toast.makeText(this, "Import successful", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException e)
+        {
+            Toast.makeText(this, "Import failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 

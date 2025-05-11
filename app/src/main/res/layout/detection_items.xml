@@ -140,6 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="Delete"
                 android:backgroundTint="@color/red"
                 android:textColor="@android:color/white" />
