@@ -140,6 +140,18 @@
         </LinearLayout>
     </ScrollView>
 
+    <!--Back button-->
+    <ImageButton
+        android:id="@+id/community_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
     <!-- Bottom Navigation (same as main) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -149,5 +161,6 @@
         android:background="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/activity_main_drawer"/>
 </RelativeLayout>

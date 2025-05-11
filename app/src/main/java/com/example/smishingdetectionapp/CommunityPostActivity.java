@@ -47,6 +47,7 @@ public class CommunityPostActivity extends AppCompatActivity {
                 int position = tab.getPosition();
                 if (position == 0) {
                     startActivity(new Intent(CommunityPostActivity.this, CommunityHomeActivity.class));
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (position == 2) {
                     // launch ReportActivity

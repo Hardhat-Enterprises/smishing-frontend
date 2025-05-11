@@ -225,5 +225,6 @@
         android:background="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/activity_main_drawer" />
 </RelativeLayout>

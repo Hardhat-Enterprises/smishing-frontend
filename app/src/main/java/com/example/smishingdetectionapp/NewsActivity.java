@@ -66,7 +66,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
                 return true;
 
             } else if (menuItem.getItemId() == R.id.nav_report) {
-                startActivity(new Intent(this, ForumActivity.class));
+                startActivity(new Intent(this, CommunityReportActivity.class));
                 overridePendingTransition(0,0);
                 finish();
                 return true;

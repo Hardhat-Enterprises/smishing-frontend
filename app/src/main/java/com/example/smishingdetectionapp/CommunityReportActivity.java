@@ -2,9 +2,11 @@ package com.example.smishingdetectionapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +46,24 @@ public class CommunityReportActivity extends AppCompatActivity {
             @Override public void onTabUnselected(TabLayout.Tab tab) { }
             @Override public void onTabReselected(TabLayout.Tab tab) { }
         });
+
+
+        // Back Button
+        ImageButton community_back = findViewById(R.id.community_back);
+        // Check if the back button is initialized properly
+        if (community_back != null) {
+            // Set an onClick listener to handle the back button's behavior
+            community_back.setOnClickListener(v -> {
+                // Start SettingsActivity when back button is pressed
+                startActivity(new Intent(this, SettingsActivity.class));
+                // Close the current activity
+                finish();
+            });
+        } else {
+            // Log an error if the back button is null
+            Log.e("NotificationActivity", "Back button is null");
+        }
+
 
         // 2️⃣ BottomNavigationView: identical to CommunityHomeActivity’s
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);

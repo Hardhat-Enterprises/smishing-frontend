@@ -55,7 +55,7 @@ public class MainActivity extends SharedActivity {
                 return true;
 
             } else if (id == R.id.nav_report) {
-                startActivity(new Intent(getApplicationContext(), ForumActivity.class));
+                startActivity(new Intent(getApplicationContext(), CommunityReportActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
