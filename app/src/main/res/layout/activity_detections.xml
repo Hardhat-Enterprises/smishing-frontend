@@ -13,6 +13,7 @@
         android:layout_height="106dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/hardhat_logo_alt"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,10 +28,9 @@
         android:textColor="@color/navy_blue"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/detections_back"
@@ -39,50 +39,70 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/back_button_alt"
         app:srcCompat="@drawable/back_button" />
 
+    <!--Horizontal row for search + filter -->
+    <LinearLayout
+        android:id="@+id/searchRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/DetectionsText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/searchTextBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search detections..."
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/filterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/filter_svg" />
+    </LinearLayout>
+
+    <!-- PDF Export Button -->
+    <Button
+        android:id="@+id/exportPdfBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Export to PDF"
+        android:textStyle="bold"
+        android:backgroundTint="@color/darker_baby_blue"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintTop_toBottomOf="@id/searchRow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- ListView of Detections -->
     <ListView
         android:id="@+id/lvDetectionsList"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
+        android:layout_height="0dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"
         android:padding="10dp"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@+id/exportPdfBtn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTextBox"
-        android:focusable="false">
-
-    </ListView>
-
-    <EditText
-        android:id="@+id/searchTextBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:hint="Search detections..."
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/filterBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DetectionsText" />
-
-    <ImageView
-        android:id="@+id/filterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/DetectionsText"
-        app:srcCompat="@drawable/filter_svg" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

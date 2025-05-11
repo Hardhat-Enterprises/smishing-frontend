@@ -10,8 +10,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="no_saved_articles">No saved articles yet.</string>
     <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_report">Report</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -108,7 +108,7 @@
 
     <!-- Sign Out Window Strings -->
     <string name="sign_out_page">Sign Out</string>
-    <string name="confirmSOTxt">Do you want to sign out?</string>
+    <string name="confirmSOTxt">Are you sure you want to sign out?</string>
     <string name="cancelSOBtn">Cancel</string>
 
     <!-- Delete Account Window Strings -->
@@ -291,5 +291,79 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
+    <string name="alert">triangle with exclamation mark</string>
+
+    <!-- Account / Sorting -->
+    <string name="account_details">Account Details</string>
+    <string name="about_us">About Us</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="newest_to_oldest">Newest to Oldest</string>
+    <string name="oldest_to_newest">Oldest to Newest</string>
+    <string name="sort_by">Sort By</string>
+    <string name="password_and_security">Password and Security</string>
+    <string name="account_details_text">Account Details</string>
+
+
+    <!-- Settings Section Headers -->
+    <string name="notifications_text">Notifications</string>
+    <string name="filtering_text">Filtering</string>
+    <string name="accessibility_text">Accessibility</string>
+    <string name="Community_and_Report">Community and Reporting</string>
+    <string name="MoreInfoandSupport">More Info and Support</string>
+
+
+    <!-- Accessibility Alt Texts -->
+    <string name="account_user_svg_alt">Black outline of a persons head and body</string>
+    <string name="back_button_alt">Black circle outline with a black arrow pointing to the left</string>
+    <string name="background_gradient_alt">Black outline of a square</string>
+    <string name="baseline_access_time_24_alt">Black circle with two lines representing the time 12:20</string>
+    <string name="bell_svg_alt">Black outline of a bell</string>
+    <string name="filter_svg_alt">Black outline of a filter where the top is slightly ajar</string>
+    <string name="hardhat_logo_alt">Yellow shield with a dark blue outline with two oval rings crossing with a yellow construction hat above the shield</string>
+    <string name="notification_svg1_alt">Black outline of a bell</string>
+    <string name="outline_arrow_outward_24_alt">Black arrow pointing towards the top right</string>
+    <string name="outline_archive_24_alt">Black outline of a box with a solid black arrow pointing down</string>
+    <string name="icon_information_alt">Black outline of a circle with a black i in the center</string>
+    <string name="always_underline_links">Always underline links</string>
+    <string name="report_svg_alt">Black flag outline</string>
+    <string name="baseline_archive_24_alt">Black solid box with a hollow arrow pointing down</string>
+    <string name="baseline_arrow_back_24_alt">Black arrow pointing to the left</string>
+    <string name="bot_message_background_alt">Plain light cream coloured square with rounded corners</string>
+    <string name="button_background_alt">Plain light blue coloured square with rounded corners</string>
+    <string name="card_rounded_alt">Plain light cream coloured square with rounded corners</string>
+    <string name="chat_assistant_svg_alt">White outline of a rectangular chat bubble with three white dots in a horizontal line in the center</string>
+    <string name="circle_background_alt">Plain light blue coloured circle</string>
+    <string name="close_button_alt">Black x</string>
+    <string name="counter_buttons_alt">Dark blue square with rounded corners that is transitioning colours to a light blue</string>
+    <string name="email_icon_alt">Black email icon</string>
+    <string name="emoji_background_alt">Plain white circle</string>
+    <string name="faq_icon_alt">Black question mark</string>
+    <string name="feedback_icon_alt">Solid black square chat bubble with an exclamation mark in the center</string>
+    <string name="hardhat_logo_notif_alt">Yellow shield with a dark blue outline with two oval rings crossing with a yellow construction hat above the sheild</string>
+    <string name="help_svg_alt">Black outline of a circle with a black question mark in the center</string>
+    <string name="ic_launcher_background_alt">Neon yellow with a white square grid</string>
+    <string name="ic_launcher_foreground_alt">Top half of a white robot head with two atennas</string>
+    <string name="icons8_home_48_alt">Black outline of a house</string>
+    <string name="icons8_house_48_alt">Black outline of a house with a solid black roof</string>
+    <string name="icons8_news_48_alt">Black outline of a piece of paper folded in half behind itself</string>
+    <string name="icons8_settings_48_alt">Black outline of a gear</string>
+    <string name="message_input_background_alt">Plain white square with rounded corners</string>
+    <string name="new_5_svg_alt">Black outline of a icosagon with the word new in the center positioned at a slight angle </string>
+    <string name="outline_bookmark_24_alt">Solid black bookmark icon</string>
+    <string name="phone_icon_alt">Solid black phone icon</string>
+    <string name="primary_button_alt">Neon green square</string>
+    <string name="send_button_background_alt">Solid dark blue circle</string>
+    <string name="send_icon_alt">White tringle pointing to the right with a thinner triangle shape removed from the center</string>
+    <string name="side_nav_bar_alt">Solid teal square</string>
+    <string name="user_message_background_alt">Solid dark blue square</string>
+
+    <!-- Miscellaneous -->
+    <string name="buttons_rounded_alt">Rounded corner background used for buttons</string>
+    <string name="menu_icon_alt">Hamburger menu icon in the top navigation bar</string>
+    <string name="bold_text">Bold Text</string>
+    <string name="saved_news">Saved News</string>
+    <string name="news_list">News articles list</string>
+    <string name="bookmark">Bookmark for News</string>
+
 
 </resources>

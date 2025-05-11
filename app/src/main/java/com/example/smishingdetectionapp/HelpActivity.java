@@ -69,17 +69,13 @@ public class HelpActivity extends SharedActivity {
 
 
         // FAQ Cards Click Listeners
-        MaterialCardView cardFAQ1 = findViewById(R.id.cardFAQ1);
-        if (cardFAQ1 != null) {
-            cardFAQ1.setOnClickListener(v ->
-                    Toast.makeText(HelpActivity.this, "What is this app for?", Toast.LENGTH_SHORT).show()
-            );
-        }
         MaterialCardView cardFAQ2 = findViewById(R.id.cardFAQ2);
         if (cardFAQ2 != null) {
-            cardFAQ2.setOnClickListener(v ->
-                    Toast.makeText(HelpActivity.this, "How to adjust my settings?", Toast.LENGTH_SHORT).show()
-            );
+            cardFAQ2.setOnClickListener(v -> {
+                Intent intent = new Intent(HelpActivity.this, FaqActivity.class);
+                intent.putExtra("faq_topic", "adjust_settings");
+                startActivity(intent);
+            });
         }
 
 

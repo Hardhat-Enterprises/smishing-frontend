@@ -166,25 +166,7 @@
                 android:textSize="18sp" />
 
 
-            <!-- FAQ Cards -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardFAQ1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="What is this app for?"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black" />
-            </com.google.android.material.card.MaterialCardView>
-
+            <!-- Button to redirect to Faq -->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardFAQ2"
@@ -199,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="How to adjust my settings?"
+                    android:text="Click here to redirect"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.card.MaterialCardView>

@@ -24,10 +24,10 @@ public class RiskScannerTCActivity extends AppCompatActivity {
 
         // Bottom navigation
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-        nav.setSelectedItemId(R.id.nav_news);
 
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
+
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 overridePendingTransition(0, 0);

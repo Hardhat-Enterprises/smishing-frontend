@@ -12,7 +12,9 @@ import com.example.smishingdetectionapp.R;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class DatabaseAccess {
@@ -118,35 +120,35 @@ public class DatabaseAccess {
     }
 
     public Cursor getAllDetections() {
-    return db.rawQuery("SELECT * FROM " + DatabaseOpenHelper.TABLE_DETECTIONS + " ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC", null);
-}
+        return db.rawQuery("SELECT * FROM " + DatabaseOpenHelper.TABLE_DETECTIONS + " ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC", null);
+    }
 
-public Cursor getDetectionsForDate(String date) {
-    return db.rawQuery(
-        "SELECT * FROM " + DatabaseOpenHelper.TABLE_DETECTIONS +
-        " WHERE " + DatabaseOpenHelper.KEY_DATE + " LIKE ? ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
-        new String[]{"%" + date + "%"}
-    );
-}
+    public Cursor getDetectionsForDate(String date) {
+        return db.rawQuery(
+                "SELECT * FROM " + DatabaseOpenHelper.TABLE_DETECTIONS +
+                        " WHERE " + DatabaseOpenHelper.KEY_DATE + " LIKE ? ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
+                new String[]{"%" + date + "%"}
+        );
+    }
 
-public Cursor getAllReports() {
-    return db.rawQuery("SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS + " ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC", null);
-}
+    public Cursor getAllReports() {
+        return db.rawQuery("SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS + " ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC", null);
+    }
 
-public Cursor getReportsForDate(String date) {
-    return db.rawQuery(
-        "SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS +
-        " WHERE " + DatabaseOpenHelper.KEY_DATE + " LIKE ? ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
-        new String[]{"%" + date + "%"}
-    );
-}
-public Cursor getReportsForSpecificDate(String specificDate) {
-    return db.rawQuery(
-        "SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS +
-        " WHERE DATE(" + DatabaseOpenHelper.KEY_DATE + ") = DATE(?) ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
-        new String[]{specificDate}
-    );
-}
+    public Cursor getReportsForDate(String date) {
+        return db.rawQuery(
+                "SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS +
+                        " WHERE " + DatabaseOpenHelper.KEY_DATE + " LIKE ? ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
+                new String[]{"%" + date + "%"}
+        );
+    }
+    public Cursor getReportsForSpecificDate(String specificDate) {
+        return db.rawQuery(
+                "SELECT * FROM " + DatabaseOpenHelper.TABLE_REPORTS +
+                        " WHERE DATE(" + DatabaseOpenHelper.KEY_DATE + ") = DATE(?) ORDER BY " + DatabaseOpenHelper.KEY_DATE + " DESC",
+                new String[]{specificDate}
+        );
+    }
 
     public SimpleCursorAdapter populateDetectionList(){
 
@@ -382,4 +384,23 @@ public Cursor getReportsForSpecificDate(String specificDate) {
             return false; // Return false if an error occurs
         }
     }
+
+    public List<String> getAvailableDetectionYears() {
+        List<String> years = new ArrayList<>();
+        String query = "SELECT DISTINCT SUBSTR(Date, -4) AS year FROM Detections ORDER BY year DESC";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String year = cursor.getString(cursor.getColumnIndexOrThrow("year"));
+                if (year != null && year.matches("\\d{4}")) {
+                    years.add(year);
+                }
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        return years;
+    }
+
 }
