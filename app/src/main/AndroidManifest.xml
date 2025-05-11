@@ -110,6 +110,11 @@
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
+        <activity
+            android:name=".news.SavedNewsActivity"
+            android:exported="false"
+            />
+      
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />

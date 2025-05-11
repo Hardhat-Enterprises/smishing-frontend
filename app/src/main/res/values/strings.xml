@@ -10,8 +10,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="no_saved_articles">No saved articles yet.</string>
     <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
-
     <string name="menu_home">Home</string>
 
     <string name="title_activity_login">LoginActivity</string>
@@ -359,6 +359,9 @@
     <string name="buttons_rounded_alt">Rounded corner background used for buttons</string>
     <string name="menu_icon_alt">Hamburger menu icon in the top navigation bar</string>
     <string name="bold_text">Bold Text</string>
+    <string name="saved_news">Saved News</string>
+    <string name="news_list">News articles list</string>
+    <string name="bookmark">Bookmark for News</string>
 
 
 </resources>
