@@ -33,8 +33,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
+
 import com.example.smishingdetectionapp.recyclebin.RecycleBinActivity;
 import com.example.smishingdetectionapp.recyclebin.RecycleBinManager;
+
+import com.example.smishingdetectionapp.ui.WidgetDataManager;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedReader;
@@ -92,11 +96,20 @@ public class DetectionsActivity extends AppCompatActivity {
         databaseAccess.open();
         refreshList();
 
+
         EditText detSearch = findViewById(R.id.searchTextBox);
 
         //populate data
         String searchQuery = ("SELECT * FROM Detections");
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+
+        // Update widget SharedPreferences with real data
+        int detectionCount = databaseAccess.getCounter();
+        WidgetDataManager.updateDetectionCount(this, detectionCount);
+        WidgetDataManager.updateSafeDayStreak(this);
+
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
