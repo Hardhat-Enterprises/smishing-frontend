@@ -10,8 +10,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="no_saved_articles">No saved articles yet.</string>
     <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
-
     <string name="menu_home">Home</string>
 
     <string name="title_activity_login">LoginActivity</string>
@@ -24,13 +24,13 @@
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up">Register</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="logo_description">App Logo</string>
-    <string name="chat_assistant_btn">Chat Assistant</string>
-    <string name="chat_assistant_page">Chat Assistant</string>
+    <string name="chat_assistant_btn">Get Support</string>
+    <string name="chat_assistant_page">Support Chat</string>
 
     <!-- Error messages -->
     <string name="no_network_message">No available network. Please check your internet connection or try again later</string>
@@ -50,24 +50,22 @@
     <string name="sms_page">SMS Messages</string>
 
     <!-- Main Dashboard Strings -->
-    <string name="detectionsBtn">Detections</string>
+    <string name="detectionsBtn">View Detections</string>
     <string name="new_detectionsTxt">New detections</string>
     <string name="total_detectionsTxt">Total detections</string>
 
     <!-- Account Settings Page Buttons -->
-    <string name="password_changeBtn">Password</string>
-    <string name="phone_changeBtn">Phone</string>
-    <string name="email_changeBtn">Email</string>
-    <string name="dark_modeBtn">Dark mode</string>
+    <string name="password_changeBtn">Change Password</string>
+    <string name="phone_changeBtn">Change Phone</string>
+    <string name="email_changeBtn">Change Email</string>
+    <string name="dark_modeBtn">Toggle Dark mode</string>
     <string name="delete_accountBtn">Delete account</string>
     <string name="sign_outBtn">Sign out</string>
-    <string name="session_timeoutBtn">Session Timeout</string>
-    <string name="pin_changeBtn">Pin</string>
+    <string name="session_timeoutBtn">Session Timeout Settings</string>
+    <string name="pin_changeBtn">Change Pin</string>
 
     <string name="terms_and_conditions">
-    &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
-
-    &lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
+&lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
     &lt;b&gt;2.&lt;/b&gt; The app is provided on an as is basis, with no guarantees of accuracy or availability.&lt;br/&gt;
     &lt;b&gt;3.&lt;/b&gt; You are responsible for ensuring you use the services in accordance with applicable laws.&lt;br/&gt;
     &lt;b&gt;4.&lt;/b&gt; Unauthorized reproduction, modification, or distribution of this app or its content is strictly prohibited.&lt;br/&gt;
@@ -89,8 +87,6 @@
     &lt;b&gt;2.&lt;/b&gt; We do not guarantee uninterrupted or error-free use of the app.&lt;br/&gt;
     &lt;b&gt;3.&lt;/b&gt; We are not liable for any damages resulting from the use of this app.&lt;br/&gt;
     &lt;b&gt;4.&lt;/b&gt; Always use caution when interacting with unknown parties through the app.&lt;br/&gt;&lt;br/&gt;
-
-    Please scroll to the bottom to continue.
 </string>
 
 
@@ -107,7 +103,7 @@
 
     <!-- Sign Out Window Strings -->
     <string name="sign_out_page">Sign Out</string>
-    <string name="confirmSOTxt">Do you want to sign out?</string>
+    <string name="confirmSOTxt">Are you sure you want to sign out?</string>
     <string name="cancelSOBtn">Cancel</string>
 
     <!-- Delete Account Window Strings -->
@@ -290,6 +286,26 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
+
+        <!-- Reporting strings -->
+    <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
+    <string name="reporting_activity_tvStep2Indicator">Step 2 of 2</string>
+    <string name="reporting_activity_etName">Name</string>
+    <string name="reporting_activity_etEmail">Email</string>
+    <string name="reporting_activity_etMobile">Mobile Number</string>
+    <string name="reporting_activity_etLastName">Last Name</string>
+    <string name="reporting_activity_etAddress">Address</string>
+    <string name="reporting_activity_etPostalCode">Postal Code</string>
+    <string name="reporting_activity_etCountry">Country</string>
+    <string name="reporting_activity_btnNext">Next</string>
+    <string name="reporting_activity_btnBackStep1">Back</string>
+    <string name="reporting_activity_etDescription">Description</string>
+    <string name="reporting_activity_etTypeOfAttack">Type of Attack</string>
+    <string name="reporting_activity_etHowToPrevent">How to Prevent</string>
+    <string name="reporting_activity_etDateReceived">Date Received</string>
+    <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
+    <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
+  
     <string name="alert">triangle with exclamation mark</string>
 
     <!-- Account / Sorting -->
@@ -360,6 +376,20 @@
     <string name="buttons_rounded_alt">Rounded corner background used for buttons</string>
     <string name="menu_icon_alt">Hamburger menu icon in the top navigation bar</string>
     <string name="bold_text">Bold Text</string>
+    <string name="saved_news">Saved News</string>
+    <string name="news_list">News articles list</string>
+    <string name="bookmark">Bookmark for News</string>
 
+    <!-- Common Topics -->
+    <string name="detect_smishing_title">How to Detect Smishing Messages?</string>
+    <string name="detect_smishing_content">Our Smishing App can automatically detect and block all smishing messages you receive. Do not worry!  We will do our best to protect your safety.</string>
+    <string name="report_sms_title">How to report a suspicious SMS?</string>
+    <string name="report_sms_content">To report a suspicious SMS, click on “Settings” at the lower right corner on the homepage of our smishing app, found "Report"button under  sub-title "Community and Reporting", fill in your personal information and information of a suspicious SMS to report it.</string>
+    <string name="smishing_vs_phishing_title">What is smishing vs. phishing?</string>
+    <string name="smishing_vs_phishing_content">Smishing is phishing via SMS, tricking users into clicking malicious links or sharing personal info. Phishing typically uses emails or fake websites to do the same. Both aim to steal sensitive data.</string>
+
+    <string name="terms_and_conditions_title">Terms And Conditions</string>
+    <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
+    <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
 </resources>

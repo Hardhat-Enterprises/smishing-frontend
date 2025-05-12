@@ -17,7 +17,11 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
     <application
@@ -103,10 +107,20 @@
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
+        <activity
+            android:name=".news.SavedNewsActivity"
+            android:exported="false" />
+
+
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
-        <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
+        <activity android:name=".QuizesActivity" />
+
+        <!-- Your Reports Activity-->
+        <activity
+            android:name=".detections.YourReportsActivity"
+            android:exported="false" />
         <activity
             android:name=".detections.YourReportsActivity"
             android:exported="false" />
@@ -145,7 +159,8 @@
             android:exported="true" />
         <activity
             android:name=".riskmeter.RiskResultActivity"
-            android:exported="true" /> 
+        android:exported="true" />
+        <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.smishingdetectionapp.fileprovider"
@@ -155,6 +170,30 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-    </application>
+        <activity android:name=".TopicDetailActivity" />
 
+        <receiver android:name=".ui.SmishingWidgetSmall" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_small_info" />
+        </receiver>
+
+        <receiver android:name=".ui.SmishingWidgetMedium" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_medium_info" />
+        </receiver>
+
+        <receiver android:name=".ui.SmishingWidgetLarge" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_large_info" />
+        </receiver>
+    </application>
 </manifest>

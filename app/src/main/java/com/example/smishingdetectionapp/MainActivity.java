@@ -2,6 +2,10 @@ package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import java.time.LocalDate;
+
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
@@ -93,6 +97,8 @@ public class MainActivity extends SharedActivity {
         TextView total_count;
         total_count = findViewById(R.id.total_counter);
         total_count.setText(""+databaseAccess.getCounter());
+
+
         //closing the connection
         //databaseAccess.close();
         //TODO: Add functionality for new detections.

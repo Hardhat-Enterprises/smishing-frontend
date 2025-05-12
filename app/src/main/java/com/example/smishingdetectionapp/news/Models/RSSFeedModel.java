@@ -13,54 +13,75 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+/**
+ * POJOs for parsing an RSS feed with Simple-XML.
+ */
 public class RSSFeedModel {
 
-    // Root class representing the RSS feed.
+    /* ───── root <rss> ───── */
     @Root(name = "rss", strict = false)
     public static class Feed {
-        @Element(name = "channel")
-        public Channel channel;
+        @Element(name = "channel") public Channel channel;
     }
 
-    // Class representing the channel element in the RSS feed.
+    /* ───── <channel> ───── */
     @Root(name = "channel", strict = false)
     public static class Channel {
         @ElementList(entry = "item", inline = true)
         public List<Article> articles;
     }
 
-    // Class representing an article item in the RSS feed.
+    /* ───── <item> (article) ───── */
     @Root(name = "item", strict = false)
     public static class Article {
-        @Element(name = "title")
-        public String title;
+        @Element(name = "title")                     public String title;
+        @Element(name = "link")                      public String link;
+        @Element(name = "description", required = false) public String description;
+        @Element(name = "pubDate",    required = false) public String pubDate;
 
-        @Element(name = "link")
-        public String link;
+        /* bookmark flag */
+        private boolean isBookmarked = false;
+        public boolean isBookmarked()                { return isBookmarked; }
+        public void setBookmarked(boolean b)         { isBookmarked = b;    }
 
-        @Element(name = "description", required = false)
-        public String description;
-
-        @Element(name = "pubDate", required = false)
-        public String pubDate;
-
-        // Method to format the publication date to a more user-friendly format.
+        /* nicer date for UI */
         public String getFormattedDate() {
             try {
-                // Original date format in the RSS feed
-                SimpleDateFormat originalFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
-                Date date = originalFormat.parse(this.pubDate);
-                // New date format for displaying in the app
-                SimpleDateFormat newFormat = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH);
-                return newFormat.format(date);
+                SimpleDateFormat in  = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+                Date d = in.parse(pubDate);
+                SimpleDateFormat out = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH);
+                return out.format(d);
             } catch (Exception e) {
-                // Return original date string if parsing fails
-                return this.pubDate;
+                return pubDate;   // fallback
             }
+        }
+
+        /* ---------- DiffUtil helpers ---------- */
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof Article)) return false;
+            Article a = (Article) obj;
+
+            return  link.equals(a.link) &&
+                    title.equals(a.title) &&
+                    String.valueOf(description).equals(String.valueOf(a.description)) &&
+                    String.valueOf(pubDate).equals(String.valueOf(a.pubDate)) &&
+                    isBookmarked == a.isBookmarked;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = link.hashCode();
+            result = 31 * result + title.hashCode();
+            result = 31 * result + (description == null ? 0 : description.hashCode());
+            result = 31 * result + (pubDate     == null ? 0 : pubDate.hashCode());
+            result = 31 * result + (isBookmarked ? 1 : 0);
+            return result;
         }
     }
 
-    // Interface representing the API for fetching RSS feed articles.
+    /* Retrofit interface for fetching the feed */
     public interface RSSApi {
         @GET("{Feed}")
         Call<Feed> getArticles(@Path("Feed") String Feed);

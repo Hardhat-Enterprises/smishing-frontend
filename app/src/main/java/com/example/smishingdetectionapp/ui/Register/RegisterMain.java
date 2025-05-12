@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class RegisterMain extends AppCompatActivity {
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
     private String BASE_URL = BuildConfig.SERVERIP;
+    private CheckBox termsCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,8 @@ public class RegisterMain extends AppCompatActivity {
         });
 
         // Link Terms and Conditions
-        TextView termsTextView = findViewById(R.id.terms_conditions);
+        TextView termsTextView = findViewById(R.id.terms_text);
+        termsCheckBox = findViewById(R.id.terms_condition_checkbox);
         termsTextView.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterMain.this, TermsAndConditionsActivity.class);
             startActivityForResult(intent, TERMS_REQUEST_CODE);
@@ -119,6 +122,10 @@ public class RegisterMain extends AppCompatActivity {
                 // Terms accepted, enable the register button
                 Button registerButton = findViewById(R.id.registerBtn);
                 registerButton.setEnabled(true);
+                termsCheckBox.setChecked(true);
+            } else {
+                termsCheckBox.setChecked(false);
+                findViewById(R.id.registerBtn).setEnabled(false);
             }
         }
     }

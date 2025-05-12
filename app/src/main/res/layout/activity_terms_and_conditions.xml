@@ -4,7 +4,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/title_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/terms_and_conditions_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/terms_and_conditions_title"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/please_scroll_to_the_bottom_to_proceed"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
 
     <!-- Terms and Conditions Content -->
     <ScrollView
@@ -16,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@id/accept_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/title_linear_layout">
 
         <TextView
             android:id="@+id/terms_text_view"
@@ -38,7 +66,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="All good! I accept the terms and conditions"
+        android:text="@string/accept_and_go_back_to_registration"
         android:enabled="false"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
