@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,16 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/baby_blue"
+        android:background="#D6D6D6"
+        app:itemBackground="@color/transparent"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
         app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
-        app:menu="@menu/activity_main_drawer" >
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/activity_main_drawer" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,9 +37,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="124dp"
-            android:background="@drawable/buttons_rounded"
+            android:background="@drawable/button_filled"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent" />
@@ -50,9 +52,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="124dp"
-            android:background="@drawable/buttons_rounded"
+            android:background="@drawable/button_filled"
             android:text="Risk Scanner"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/detections_btn" />
@@ -77,11 +80,11 @@
             android:text="@string/app_name"
             android:textSize="32sp"
             android:textStyle="bold"
+            android:textColor="@color/navy_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
-            android:textColor="@color/navy_blue"/>
+            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
         <TextView
             android:id="@+id/new_detections"
@@ -89,7 +92,7 @@
             android:layout_height="101dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/counter_buttons"
+            android:background="@drawable/button_filled"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -99,10 +102,9 @@
             android:layout_height="100dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/counter_buttons"
+            android:background="@drawable/button_filled"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
         <TextView
             android:id="@+id/information_box"
@@ -112,7 +114,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/buttons_rounded"
+            android:background="@drawable/info_box_bg"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -225,12 +227,9 @@
             android:layout_height="111dp"
             android:layout_marginStart="149dp"
             android:layout_marginTop="8dp"
-
-
             android:layout_marginEnd="150dp"
             android:alpha="0"
             android:autoText="true"
-
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="@+id/HardhatLogo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -242,21 +241,23 @@
 
         <Button
             android:id="@+id/fragment_container"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/buttons_rounded"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/button_secondary"
             android:text="Learn More About Smishing"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
- />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </RelativeLayout>
