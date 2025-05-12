@@ -76,6 +76,22 @@
             android:paddingBottom="4dp"
             android:text="@string/msgTitle"
             android:textColor="@color/navy_blue"
+
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="end"
+            android:text="Delete"
+            android:clickable="true"
+            android:focusable="true"
+            android:backgroundTint="@color/red"
+            android:textColor="@android:color/white" />
+
             android:textSize="18sp"
             android:textStyle="bold" />
 

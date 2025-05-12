@@ -68,6 +68,7 @@ public class DatabaseAccess {
         }
     }
 
+
     DatabaseAccess(Context context) {
 
         openHelper= new DatabaseOpenHelper(context);
@@ -248,6 +249,20 @@ public class DatabaseAccess {
             return null;
         }
     }
+
+    public void deleteAllDetections() {
+        db.delete("Detections", null, null);
+    }
+
+    public void insertDetection(String phone, String message, String date) {
+        ContentValues values = new ContentValues();
+        values.put("Phone_Number", phone);
+        values.put("Message", message);
+        values.put("Date", date);
+
+        db.insert("Detections", null, values);
+    }
+
 
     public Cursor getReportsNewestFirst() { // same function
         try {
