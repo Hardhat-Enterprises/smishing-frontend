@@ -1,174 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E3F6FC"
-    android:padding="16dp">
+    android:background="@drawable/background_gradient">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/caseStudiesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Real-World Case Studies"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:id="@+id/caseStudiesSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Examples of real smishing cases"
-            android:textSize="16sp"
-            android:textColor="#455A64"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Case Study Card 1 -->
         <LinearLayout
-            android:id="@+id/card_bank_scam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
-            android:backgroundTintMode="src_in">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_bank_scam"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="Bank Scam Icon" />
+            <!-- Title -->
+            <TextView
+                android:id="@+id/caseStudiesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Real-World Case Studies"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/caseStudiesSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Examples of real smishing cases"
+                android:textSize="16sp"
+                android:textColor="#455A64"
+                android:layout_marginBottom="16dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+            <!-- Card 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_bank_scam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bank Impersonation Scam"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_bank_scam"
+                        android:tint="#0077B6"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Bank Scam Icon" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bank Impersonation Scam"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A woman lost $8,500 after receiving a fake bank alert message."
+                            android:layout_marginTop="4dp"
+                            android:textColor="#444444"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_package_scam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="A woman lost $8,500 after receiving a fake bank alert message."
-                    android:layout_marginTop="4dp"
-                    android:textColor="#444444"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_package_scam"
+                        android:tint="#0077B6"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Package Scam Icon" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Package Delivery Con"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Victims were tricked into opening a malicious link in a text about a bogus shipment"
+                            android:layout_marginTop="2dp"
+                            android:textColor="#444444"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 3 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_tax_scam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_tax_scam"
+                        android:tint="#0077B6"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="Tax Scam Icon" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tax Refund Fraud"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A fake tax refund message led individuals to a phishing site."
+                            android:layout_marginTop="2dp"
+                            android:textColor="#444444"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Button to go to Trends Page -->
+            <Button
+                android:id="@+id/btn_trends"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Recent Smishing Trends"
+                android:backgroundTint="#BDE6F8"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:elevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"/>
         </LinearLayout>
-
-        <!-- Case Study Card 2 -->
-        <LinearLayout
-            android:id="@+id/card_package_scam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/white"
-            android:elevation="4dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_package_scam"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="Package Scam Icon" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Package Delivery Con"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Victims were tricked into opening a malicious link in a text about a bogus shipment"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#444444"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Case Study Card 3 -->
-        <LinearLayout
-            android:id="@+id/card_tax_scam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:color/white"
-            android:elevation="4dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_tax_scam"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="Tax Scam Icon" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tax Refund Fraud"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="A fake tax refund message led individuals to a phishing site."
-                    android:layout_marginTop="2dp"
-                    android:textColor="#444444"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Button to go to Trends Page -->
-        <Button
-            android:id="@+id/btn_trends"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Recent Smishing Trends"
-            android:backgroundTint="#BDE6F8"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:elevation="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"/>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</FrameLayout>
