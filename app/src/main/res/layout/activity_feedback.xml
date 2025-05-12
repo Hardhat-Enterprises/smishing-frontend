@@ -2,151 +2,144 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@android:color/white"
-    android:padding="16dp">
+    android:background="#FFFFFF">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-        <!-- 🔙 Back Button -->
+        <!-- Back Button -->
         <ImageButton
             android:id="@+id/feedback_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:minHeight="48dp"
-            android:minWidth="48dp"
             android:padding="8dp"
-            android:src="@drawable/back_button"
+            android:layout_gravity="start"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back_button_description" />
+            android:contentDescription="@string/back_button" />
 
-        <!-- 🪖 App Logo -->
+
+        <!-- App Logo -->
         <ImageView
-            android:id="@+id/appLogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/feedback_back"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/hardhat_logo"
-            android:contentDescription="@string/app_name" />
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:src="@drawable/smishing_detection_logo"
+            android:contentDescription="@string/app_logo_description"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
 
-        <!-- 📝 Header -->
+        <!-- Feedback Heading -->
         <TextView
             android:id="@+id/feedbackHeader"
-            android:layout_below="@id/appLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Feedback"
+            android:text="@string/feedback"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:layout_marginBottom="16dp" />
 
-        <!-- 👤 Name Input -->
+        <!-- Name Input -->
         <EditText
             android:id="@+id/nameInput"
-            android:layout_below="@id/feedbackHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Your name"
-            android:minHeight="48dp"
+            android:layout_height="56dp"
+            android:hint="@string/hint_name"
+            android:textColorHint="#888888"
             android:inputType="textPersonName"
+            android:importantForAutofill="yes"
             android:autofillHints="name"
-            android:textColorHint="#666666"
-            android:textColor="#000000" />
+            android:padding="12dp"
+            android:layout_marginBottom="12dp" />
 
-        <!-- 💬 Feedback Input -->
+        <!-- Feedback Input -->
         <EditText
             android:id="@+id/feedbackInput"
-            android:layout_below="@id/nameInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:minLines="4"
-            android:hint="Write your feedback here"
-            android:gravity="top"
+            android:layout_height="120dp"
+            android:hint="@string/hint_feedback"
+            android:textColorHint="#888888"
+            android:gravity="top|start"
             android:inputType="textMultiLine"
-            android:textColorHint="#666666"
-            android:textColor="#000000" />
+            android:importantForAutofill="yes"
+            android:autofillHints="text"
+            android:padding="12dp"
+            android:background="?attr/editTextBackground"
+            android:layout_marginBottom="8dp" />
 
-        <!-- 🧮 Word Count -->
+        <!-- Word Count -->
         <TextView
             android:id="@+id/wordCountText"
-            android:layout_below="@id/feedbackInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Words: 0 / 150"
-            android:textColor="#888888"
-            android:layout_marginTop="4dp" />
+            android:text="@string/word_count_default"
+            android:textColor="#444444"
+            android:layout_marginBottom="4dp"/>
 
-        <!-- 🚫 Word Limit Warning -->
         <TextView
             android:id="@+id/wordLimitWarning"
-            android:layout_below="@id/wordCountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Word limit exceeded!"
+            android:text="@string/word_limit_warning"
             android:textColor="#FF4444"
-            android:visibility="gone" />
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"/>
 
-        <!-- ⭐ Rating Label -->
+        <!-- Rating Label -->
         <TextView
             android:id="@+id/ratingLabel"
-            android:layout_below="@id/wordLimitWarning"
-            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rate your experience"
+            android:text="@string/rating_label"
+            android:textStyle="bold"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:layout_marginBottom="4dp"/>
 
-        <!-- ⭐ RatingBar -->
+        <!-- Rating Bar -->
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ratingLabel"
-            android:layout_marginTop="8dp"
-            android:stepSize="1.0"
             android:numStars="5"
-            android:layout_centerHorizontal="true" />
+            android:stepSize="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
 
-        <!-- 💬 Popup Tooltip (Dynamic Message) -->
+        <!-- Rating Popup -->
         <TextView
             android:id="@+id/ratingPopup"
-            android:layout_below="@id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:visibility="gone" />
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp"/>
 
-        <!-- 🚀 Submit Button -->
+        <!-- Submit Button -->
         <Button
             android:id="@+id/submitFeedbackButton"
-            android:layout_below="@id/ratingPopup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit Feedback"
-            android:layout_marginTop="20dp" />
+            android:layout_height="56dp"
+            android:text="@string/submit_feedback"
+            android:textAllCaps="false"
+            android:backgroundTint="#E0F7FA"
+            android:layout_marginBottom="12dp"/>
 
-        <!-- 📖 View Feedback History -->
+        <!-- View History Button -->
         <Button
             android:id="@+id/viewHistoryButton"
-            android:layout_below="@id/submitFeedbackButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Recent Feedback"
-            android:layout_marginTop="16dp" />
-    </RelativeLayout>
+            android:layout_height="56dp"
+            android:text="@string/view_recent_feedback"
+            android:textAllCaps="false"
+            android:backgroundTint="#E0F7FA"/>
+    </LinearLayout>
 </ScrollView>

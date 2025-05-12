@@ -1,266 +1,405 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="session_timeoutBtn">Session Timeout</string>
-    <string name="password_changeBtn">Change Password</string>
-    <string name="debug">Debug</string>
-    <string name="detectionsBtn">Detections</string>
-    <string name="time_icon">Time</string>
-    <string name="info_icon">Info</string>
-    <string name="menu_Cyber_news">Cyber News</string>
-    <string name="no_network_message">No internet connection.</string>
-    <string name="detection_channel_id">detection_channel</string>
-    <string name="push_channel_id">push_channel</string>
-    <string name="Pin_label">PIN</string>
-
-    <!-- General App Strings -->
-    <string name="app_name">Smishing Detection</string>
+    <!-- Existing strings -->
     <string name="back">Back</string>
     <string name="back_button_description">Back</string>
     <string name="continue_button">Continue</string>
+    <string name="app_name">Smishing Detection</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="no_saved_articles">No saved articles yet.</string>
+    <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
     <string name="menu_home">Home</string>
-    <string name="title_activity_login">LoginActivity</string>
 
-    <!-- Login Page -->
+    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="toggle_password_visibility">Toggle password visibility</string>
+    <string name="action_welcome_to_screen">Welcome Back</string>
     <string name="action_login_in">Login</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up">Register</string>
-    <string name="welcome">Welcome!</string>
+    <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be &gt;5 characters</string>
-    <string name="login_failed">Login failed</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="logo_description">App Logo</string>
+    <string name="chat_assistant_btn">Get Support</string>
+    <string name="chat_assistant_page">Support Chat</string>
 
-    <!-- Feedback Page -->
-    <string name="feedback">Feedback</string>
-    <string name="enter_name">Name</string>
-    <string name="enter_feedback">Enter feedback</string>
-    <string name="rate_experience">Rate your experience</string>
-    <string name="submit_feedback">Submit Feedback</string>
-    <string name="word_count_format">Words: %1$d / %2$d</string>
-    <string name="word_limit_warning">Word limit exceeded!</string>
-    <string name="feedback_success">Feedback submitted successfully!</string>
-    <string name="feedback_failure">Failed to submit feedback. Please try again.</string>
-    <string name="logo_description">Hardhat app logo</string>
-    <string name="back_button">Back to settings</string>
+    <!-- Error messages -->
+    <string name="no_network_message">No available network. Please check your internet connection or try again later</string>
 
-    <!-- Notification & Reporting Strings -->
-    <string name="detection_notification_header">Detection Notifications</string>
-    <string name="smishing_detection_notification_title">Smishing Detections</string>
-    <string name="spam_detection_notification_title">Spam Detections</string>
-    <string name="push_notification_header">Push Notifications</string>
-    <string name="news_notification_title">News Updates</string>
-    <string name="incident_reports">Incident Reports</string>
-    <string name="system_maintenance_header">System Maintenance Notifications</string>
-    <string name="update_notifications">Update Notifications</string>
-    <string name="backup_reminder">Backup Reminder</string>
-    <string name="password_security_check">Password Security Check</string>
-    <string name="open_notification_settings">Open Notification Settings</string>
-    <string name="report_message_prompt">Smishing Message</string>
-
-    <!-- Chat & Community -->
-    <string name="chat_assistant_page">Chat Assistant</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="image_description">Image related to forum</string>
-    <string name="community">Community</string>
-    <string name="share_your_thoughts">Share your thoughts</string>
-    <string name="submit">Submit</string>
-    <string name="help_page">Help Page</string>
-    <string name="what_is_the_app_for">What is the app for?</string>
-    <string name="login_with_pin">Login with PIN</string>
-
-    <!-- Rating Tooltips -->
-    ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-    String message = "";
-
-    switch ((int) rating) {
-    case 1: message = "😞 Very Bad"; break;
-    case 2: message = "😕 Bad"; break;
-    case 3: message = "😐 Okay"; break;
-    case 4: message = "🙂 Good"; break;
-    case 5: message = "🤩 Excellent"; break;
-    }
-
-    showRatingPopup(message);
-    });
-
-
-
-    <!-- Validation Messages -->
-    <string name="error_name_required">Name is required</string>
-    <string name="error_feedback_min_length">Feedback must be at least 10 characters</string>
-    <string name="error_rating_required">Please rate your experience</string>
-
-    <!-- Placeholder strings to fix resource linking -->
-    <string name="new_icon">New</string>
-    <string name="refresh">Refresh</string>
-    <string name="notification_header">Notifications</string>
-    <string name="action_report">Report</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="report_page">Report Page</string>
-    <string name="reportLog">Report Log</string>
-
-    <string name="menu_settings">Settings</string>
-    <string name="account_btn">Account</string>
-    <string name="filtering_btn">Filtering</string>
-    <string name="notifications_btn">Notifications</string>
-    <string name="report_btn">Report</string>
-    <string name="help_btn">Help</string>
-    <string name="about_btn">About</string>
-    <string name="forum_btn">Forum</string>
-
-    <!-- More UI/UX Placeholders -->
-    <string name="email_changeBtn">Change Email</string>
-    <string name="phone_changeBtn">Change Phone</string>
-    <string name="dark_modeBtn">Toggle Dark Mode</string>
-    <string name="account_page">Account Page</string>
-    <string name="delete_accountBtn">Delete Account</string>
-    <string name="sign_outBtn">Sign Out</string>
-    <string name="pin_changeBtn">Change PIN</string>
+    <!-- Page Titles -->
+    <string name="login_page">Login</string>
     <string name="detections_str">Detections</string>
-    <string name="learn_more_about_smishing">Learn More About Smishing</string>
-    <string name="new_detectionsTxt">New Detections</string>
-    <string name="total_detectionsTxt">Total Detections</string>
-    <string name="forums">Forums</string>
-    <string name="name_label">Full Name</string>
-    <string name="phone_label">Phone Number</string>
-    <string name="email_label">Email</string>
-    <string name="pin_label">PIN</string>
-    <string name="pw_register_label">Password</string>
-    <string name="pw2_register_label">Confirm Password</string>
+    <string name="menu_news">News</string>
+    <string name="play_alert_text">Play Alert Text</string>
+    <string name="menu_Cyber_news">ACCC Scamwatch News</string>
+    <string name="menu_settings">Settings</string>
+    <string name="account_page">Account</string>
+    <string name="report_page">Report Smishing</string>
+    <string name="filtering_page">Smishing Rules</string>
+    <string name="debug">Debug</string>
+    <string name="help_page">Help</string>
+    <string name="sms_page">SMS Messages</string>
 
-    <string name="chat_assistant_btn">Chat Assistant</string>
-    <string name="register_btn">Register</string>
-    <string name="set_keyword_btn">Set Keyword</string>
-    <string name="keywords_label">Enter Keywords</string>
-    <string name="set_pin_btn">Set PIN</string>
-    <string name="pn_label">Phone Number</string>
-    <string name="filtering_pg">Filtering Page</string>
-    <string name="sms_page">SMS Page</string>
-    <string name="empty_sms">No SMS detected</string>
-    <string name="message_detail">Message Details</string>
-    <string name="message_body">Message Body</string>
-    <string name="message_sender">Sender</string>
-    <string name="terms_and_conditions">Terms and Conditions</string>
-    <string name="msgTitle">Title</string>
-    <string name="msgTime">Time</string>
-    <string name="dateTitle">Date</string>
-    <string name="pinTitle">PIN</string>
-    <string name="set_pn_btn">Set Phone Number</string>
-    <string name="filtering_page">Filtering Page</string>
-    <string name="message_details">Message Details</string>
-    <string name="dummy_smishing_report">This is a sample smishing report used for demonstration purposes.</string>
-    <string name="pnTitle">Phone Number</string>
-    <string name="delete_account_warning_message">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <!-- Main Dashboard Strings -->
+    <string name="detectionsBtn">View Detections</string>
+    <string name="new_detectionsTxt">New detections</string>
+    <string name="total_detectionsTxt">Total detections</string>
 
-    <!-- Community Post -->
-    <string name="title">Post Title</string>
-    <string name="content">Post Content</string>
-    <string name="community_comments">Comments</string>
-    <string name="add_community_comment">Add a comment</string>
-    <string name="submit_community_comment">Submit Comment</string>
+    <!-- Account Settings Page Buttons -->
+    <string name="password_changeBtn">Change Password</string>
+    <string name="phone_changeBtn">Change Phone</string>
+    <string name="email_changeBtn">Change Email</string>
+    <string name="dark_modeBtn">Toggle Dark mode</string>
+    <string name="delete_accountBtn">Delete account</string>
+    <string name="sign_outBtn">Sign out</string>
+    <string name="session_timeoutBtn">Session Timeout Settings</string>
+    <string name="pin_changeBtn">Change Pin</string>
 
-    <!-- Feedback History -->
-    <string name="feedback_history_header">🕓 Your Feedback History</string>
-    <string name="sample_feedback_1">⭐ 5\n“Great app, very useful!”\n📅 02 April 2025</string>
-    <string name="sample_feedback_2">⭐ 3\n“Needs a bit more polish.”\n📅 30 March 2025</string>
+    <string name="terms_and_conditions">
+    &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
 
-    <!-- News -->
-    <string name="play_alert_text">Play Alert</string>
-    <string name="click_to_read_more">Click to read more</string>
+    &lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; The app is provided on an as is basis, with no guarantees of accuracy or availability.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; You are responsible for ensuring you use the services in accordance with applicable laws.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; Unauthorized reproduction, modification, or distribution of this app or its content is strictly prohibited.&lt;br/&gt;
+    &lt;b&gt;5.&lt;/b&gt; We reserve the right to modify or discontinue the app without notice.&lt;br/&gt;
+    &lt;b&gt;6.&lt;/b&gt; We respect your privacy and commit to protecting your data as per the privacy policy outlined herein.&lt;br/&gt;
+    &lt;b&gt;7.&lt;/b&gt; Your personal data will only be used for purposes that you have explicitly agreed to.&lt;br/&gt;
+    &lt;b&gt;8.&lt;/b&gt; Any disputes arising from the use of this app will be subject to the jurisdiction of [Your Location].&lt;br/&gt;&lt;br/&gt;
 
-    <!-- Popup Delete Account -->
-    <string name="delete_acc_page">Delete Account</string>
-    <string name="confirmDelTxt">Do you really want to delete your account?</string>
-    <string name="confirmDelBtn">Confirm Delete</string>
-    <string name="cancelDelBtn">Cancel</string>
-    <string name="confirmPW">Please confirm your password</string>
+    &lt;b&gt;PRIVACY POLICY&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
 
-    <!-- Popup Delete Item -->
-    <string name="cancelSOBtn">Cancel</string>
+    &lt;b&gt;1.&lt;/b&gt; We collect data to enhance your experience and improve our services.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; Your data will never be sold or shared with third parties without your consent, except as required by law.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; Cookies may be used to personalize content and ads.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; By continuing to use the app, you consent to our use of cookies.&lt;br/&gt;&lt;br/&gt;
 
-    <!-- Popup Email -->
-    <string name="change_email_page">Change Email</string>
-    <string name="new_email">New Email</string>
-    <string name="confirm_new_email">Confirm New Email</string>
+    &lt;b&gt;DISCLAIMER&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
 
-    <!-- Popup Password -->
+    &lt;b&gt;1.&lt;/b&gt; This app is provided as-is without any warranties of any kind.&lt;br/&gt;
+    &lt;b&gt;2.&lt;/b&gt; We do not guarantee uninterrupted or error-free use of the app.&lt;br/&gt;
+    &lt;b&gt;3.&lt;/b&gt; We are not liable for any damages resulting from the use of this app.&lt;br/&gt;
+    &lt;b&gt;4.&lt;/b&gt; Always use caution when interacting with unknown parties through the app.&lt;br/&gt;&lt;br/&gt;
+
+    Please scroll to the bottom to continue.
+</string>
+
+
+
+    <!-- Password Change Window Strings -->
     <string name="change_password_page">Change Password</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
-    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="confirm_new_password">Confirm Password</string>
 
-    <!-- Popup Phone Number -->
-    <string name="phone_number_page">Change Phone Number</string>
-    <string name="confirm_PNTxt">Do you want to confirm this phone number?</string>
-    <string name="confirmPNBtn">Confirm</string>
-    <string name="confirmPN">Confirm Phone Number</string>
+    <!-- Email Change Window Strings -->
+    <string name="change_email_page">Change Email</string>
+    <string name="new_email">New Email</string>
+    <string name="confirm_new_email">Confirm Email</string>
 
-    <!-- Signout -->
+    <!-- Sign Out Window Strings -->
     <string name="sign_out_page">Sign Out</string>
     <string name="confirmSOTxt">Are you sure you want to sign out?</string>
+    <string name="cancelSOBtn">Cancel</string>
 
-    <!-- Report Log -->
-    <string name="number">Number</string>
-    <string name="spammsg">Reported Message</string>
-    <string name="reportDate">Reported Date</string>
+    <!-- Delete Account Window Strings -->
+    <string name="delete_acc_page">Delete Account</string>
+    <string name="confirmDelTxt">Are you sure?</string>
+    <string name="confirmPNBtn">Change Phone Number</string>
+    <string name="confirmPN">Enter your phone number:</string>
 
-    <!-- Menu -->
-    <string name="menu_news">News</string>
-    <string name="savedReportsMenu">Saved Reports</string>
-    <string name="smish_pref_key">smishing_notification_pref</string>
+    <!-- Change Phone Number Window Strings -->
+    <string name="phone_number_page">Change Phone Number</string>
+    <string name="confirm_PNTxt">New number must be associated with this phone.</string>
+    <string name="cancelDelBtn">Cancel</string>
+    <string name="confirmDelBtn">Yes</string>
+    <string name="confirmPW">Enter your password:</string>
 
-    <string name="detection_channel_name">Smishing Detection</string>
-    <string name="detection_channel_desc">Alerts for smishing detections</string>
+    <!-- Report Page Strings -->
+    <string name="phone_number">Phone Number</string>
+    <string name="report_message_prompt">Smishing message</string>
+    <string name="action_report">Send report</string>
 
-    <string name="news_pref_key">news_notification_pref</string>
-    <string name="push_channel_name">News Alerts</string>
-    <string name="push_channel_desc">Notifications for latest cyber news</string>
+    <!-- Settings Page Buttons -->
+    <string name="account_btn">Account</string>
+    <string name="notifications_btn">Notifications</string>
+    <string name="filtering_btn">Filtering</string>
+    <string name="report_btn">Report</string>
+    <string name="help_btn">Help</string>
+    <string name="about_btn">Privacy Policy</string>
 
-    <string name="incident_pref_key">incident_notification_pref</string>
-    <string name="incident_channel_id">incident_channel</string>
-    <string name="incident_channel_name">Incident Reports</string>
-    <string name="incident_channel_desc">User incident reports</string>
+    <!-- Filtering Rules Strings -->
+    <string name="keywords_label">Keywords</string>
+    <string name="pn_label">Phone numbers</string>
+    <string name="set_keyword_btn">Set keywords</string>
+    <string name="set_pn_btn">Set numbers</string>
 
-    <string name="update_pref_key">update_notification_pref</string>
-    <string name="update_channel_id">update_channel</string>
-    <string name="update_channel_name">App Updates</string>
-    <string name="update_channel_desc">Update info and changelogs</string>
+    <!-- Register Page Strings -->
+    <string name="name_label">Full Name</string>
+    <string name="pin_label">Pin</string>
+    <string name="email_label">Email</string>
+    <string name="Pin_label">Pin</string>
+    <string name="pn_register_label">Phone Number</string>
+    <string name="pw_register_label">Password</string>
+    <string name="pw2_register_label">Confirm Password</string>
+    <string name="register_btn">Register</string>
+    <string name="view_terms_and_conditions">Click here to accept the terms and complete registration.</string>
+    <string name="agree_terms_and_conditions">I agree to the terms and conditions</string>
 
+    <!-- Detection Page Strings -->
+    <string name="delete_text">Delete</string>
+    <string name="pnTitle">Number: </string>
+    <string name="msgTitle">Message: </string>
+    <string name="dateTitle">Date: </string>
+
+    <string name="info_icon">info</string>
+    <string name="new_icon">info</string>
+    <string name="time_icon">info</string>
+
+    <!-- Notification Page Strings -->
+    <string name="notification_header">Notifications</string>
+    <string name="news_notification_title">News Updates</string>
+    <string name="smishing_detection_notification_title">Smishing Detections</string>
+    <string name="spam_detection_notification_title">Spam Detections</string>
+    <string name="password_security_check">Password Security Checks</string>
+    <string name="backup_reminder">Backup Reminders</string>
+    <string name="update_notifications">Update Notifications</string>
+    <string name="incident_reports">Incident Reports</string>
+    <string name="open_notification_settings">Device Notification Settings</string>
+    <string name="detection_notification_header">Detection Notifications</string>
+    <string name="push_notification_header">Push Notifications</string>
+    <string name="system_maintenance_header">System Maintenance Notifications</string>
+
+
+    <!-- NotificationHelper Strings -->
+    <string name="detection_channel_name">Detection Alerts</string>
+    <string name="detection_channel_id">detections_channel</string>
+    <string name="detection_channel_desc">Detection Notifications Channel</string>
+
+    <string name="push_channel_name">Push Notifications</string>
+    <string name="push_channel_id">push_channel</string>
+    <string name="push_channel_desc">Push Notifications Channel</string>
+
+    <string name="system_channel_name">System Notifications</string>
     <string name="system_channel_id">system_channel</string>
-    <string name="system_channel_name">System Alerts</string>
-    <string name="system_channel_desc">Critical system notifications</string>
+    <string name="system_channel_desc">system Notifications Channel</string>
 
-    <string name="backup_pref_key">backup_notification_pref</string>
-    <string name="password_pref_key">password_check_notification_pref</string>
+    <string name="smish_pref_key">smish_notif_pref</string>
+    <string name="spam_pref_key">spam_notif_pref</string>
+    <string name="news_pref_key">news_notif_pref</string>
+    <string name="incident_pref_key">incident_notif_pref</string>
+    <string name="update_pref_key">update_notif_pref</string>
+    <string name="backup_pref_key">backup_notif_pref</string>
+    <string name="password_pref_key">password_notif_pref</string>
+    <string name="what_is_the_app_for">What is the app for?</string>
+    <string name="how_to_use_the_app">how_to_use_the_app?</string>
 
-    <!-- Preferences -->
-    <string name="messages_header">Message Settings</string>
-    <string name="signature_title">Signature</string>
-    <string name="reply_title">Default Reply Action</string>
-    <string name="sync_header">Synchronization</string>
-    <string name="sync_title">Enable Auto-Sync</string>
-    <string name="attachment_title">Download Attachments</string>
-    <string name="attachment_summary_on">Attachments will be downloaded automatically.</string>
-    <string name="attachment_summary_off">Attachments wont be downloaded automatically.</string>
-    <string name="spam_pref_key">spam_notification_pref</string>
+    <!-- Settings Activity Title EXAMPLE -->
+    <string name="title_activity_settings">SettingsActivity</string>
 
-    <string name="view_recent_feedback">View Recent Feedback</string>
+    <!-- Preference Titles EXAMPLE -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences EXAMPLE -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences EXAMPLE -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <!-- Added strings -->
+    <string name="terms_and_conditions_content">Your terms and conditions content here.</string>
+    <string name="helpful">Helpful</string>
+    <string name="not_helpful">Not Helpful</string>
+
+    <!-- Missing strings -->
+    <string name="phone_label">Phone Number</string>
+    <string name="refresh">Refresh</string>
+    <string name="empty_sms">No SMS messages found</string>
+    <string name="message_details">Message Details</string>
+    <string name="message_sender">Sender</string>
+    <string name="message_body">Message Body</string>
+
+    <string name="go_to_quizzes">Go to Quizzes</string>
+    <string name="learn_more_about_smishing">Learn More About Smishing</string>
+
+    <string name="dummy_smishing_report">This is a dummy smishing report</string>
+    <string name="click_to_read_more">Click to read more</string>
+
+    <string name="reportLog"> My Reports </string>
+    <string name="number">Number</string>
+    <string name="spammsg">Message</string>
+    <string name="reportDate">Date</string>
+    <string name="savedReportsMenu">Saved Reports</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="rate_your_experience">Rate your experience</string>
+    <string name="enter_feedback">Enter feedback</string>
+    <string name="enter_email">Enter email</string>
+    <string name="name">Name</string>
+    <string name="image_description">image_description</string>
+    <string name="forums">Forums</string>
+    <string name="community_forum">Community Forum</string>
+    <string name="create_forum_topic">Create Forum Topic</string>
+    <string name="back_button">Back</string>
+    <string name="search_bar">Search Bar</string>
+    <string name="forum_1">Forum 1</string>
+    <string name="forum_title">Forum Title</string>
+    <string name="forum_description">Forum Description</string>
+    <string name="share_your_thoughts">Share your thoughts...</string>
+    <string name="submit">Submit</string>
+    <string name="comments">Comments</string>
+    <string name="add_a_comment">Add a comment...</string>
+    <string name="submit_comment">Submit Comment</string>
+    <string name="empty_forum">There are no forums.\nStart a new one today!</string>
+    <string name="start_a_new_post">Start a new post</string>
+    <string name="submitfeedback">Submit Feedback</string>
+    <string name="community">Community</string>
+
+    <!-- community post -->
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="community_comments">Comments</string>
+    <string name="add_community_comment">Add a comment...</string>
+    <string name="submit_community_comment">Submit Comment</string>
+
+    <string name="confirm_delete_account_title">Hello there</string>
+    <string name="delete_account_warning_message">
+    You have selected delete account. Are you sure about this?
+    If you choose to delete your account, we will disable it for 30 days.
+    If you choose to reactivate your account, login within 30 days.
+    </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="login_with_pin">Login with PIN</string>
+
+    <!-- Reporting strings -->
+    <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
+    <string name="reporting_activity_tvStep2Indicator">Step 2 of 2</string>
+    <string name="reporting_activity_etName">Name</string>
+    <string name="reporting_activity_etEmail">Email</string>
+    <string name="reporting_activity_etMobile">Mobile Number</string>
+    <string name="reporting_activity_etLastName">Last Name</string>
+    <string name="reporting_activity_etAddress">Address</string>
+    <string name="reporting_activity_etPostalCode">Postal Code</string>
+    <string name="reporting_activity_etCountry">Country</string>
+    <string name="reporting_activity_btnNext">Next</string>
+    <string name="reporting_activity_btnBackStep1">Back</string>
+    <string name="reporting_activity_etDescription">Description</string>
+    <string name="reporting_activity_etTypeOfAttack">Type of Attack</string>
+    <string name="reporting_activity_etHowToPrevent">How to Prevent</string>
+    <string name="reporting_activity_etDateReceived">Date Received</string>
+    <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
+    <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
+
+    <string name="alert">triangle with exclamation mark</string>
+
+    <!-- Account / Sorting -->
+    <string name="account_details">Account Details</string>
+    <string name="about_us">About Us</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="newest_to_oldest">Newest to Oldest</string>
+    <string name="oldest_to_newest">Oldest to Newest</string>
+    <string name="sort_by">Sort By</string>
+    <string name="password_and_security">Password and Security</string>
+    <string name="account_details_text">Account Details</string>
+
+
+    <!-- Settings Section Headers -->
+    <string name="notifications_text">Notifications</string>
+    <string name="filtering_text">Filtering</string>
+    <string name="accessibility_text">Accessibility</string>
+    <string name="Community_and_Report">Community and Reporting</string>
+    <string name="MoreInfoandSupport">More Info and Support</string>
+
+
+    <!-- Accessibility Alt Texts -->
+    <string name="account_user_svg_alt">Black outline of a persons head and body</string>
+    <string name="back_button_alt">Black circle outline with a black arrow pointing to the left</string>
+    <string name="background_gradient_alt">Black outline of a square</string>
+    <string name="baseline_access_time_24_alt">Black circle with two lines representing the time 12:20</string>
+    <string name="bell_svg_alt">Black outline of a bell</string>
+    <string name="filter_svg_alt">Black outline of a filter where the top is slightly ajar</string>
+    <string name="hardhat_logo_alt">Yellow shield with a dark blue outline with two oval rings crossing with a yellow construction hat above the shield</string>
+    <string name="notification_svg1_alt">Black outline of a bell</string>
+    <string name="outline_arrow_outward_24_alt">Black arrow pointing towards the top right</string>
+    <string name="outline_archive_24_alt">Black outline of a box with a solid black arrow pointing down</string>
+    <string name="icon_information_alt">Black outline of a circle with a black i in the center</string>
+    <string name="always_underline_links">Always underline links</string>
+    <string name="report_svg_alt">Black flag outline</string>
+    <string name="baseline_archive_24_alt">Black solid box with a hollow arrow pointing down</string>
+    <string name="baseline_arrow_back_24_alt">Black arrow pointing to the left</string>
+    <string name="bot_message_background_alt">Plain light cream coloured square with rounded corners</string>
+    <string name="button_background_alt">Plain light blue coloured square with rounded corners</string>
+    <string name="card_rounded_alt">Plain light cream coloured square with rounded corners</string>
+    <string name="chat_assistant_svg_alt">White outline of a rectangular chat bubble with three white dots in a horizontal line in the center</string>
+    <string name="circle_background_alt">Plain light blue coloured circle</string>
+    <string name="close_button_alt">Black x</string>
+    <string name="counter_buttons_alt">Dark blue square with rounded corners that is transitioning colours to a light blue</string>
+    <string name="email_icon_alt">Black email icon</string>
+    <string name="emoji_background_alt">Plain white circle</string>
+    <string name="faq_icon_alt">Black question mark</string>
+    <string name="feedback_icon_alt">Solid black square chat bubble with an exclamation mark in the center</string>
+    <string name="hardhat_logo_notif_alt">Yellow shield with a dark blue outline with two oval rings crossing with a yellow construction hat above the sheild</string>
+    <string name="help_svg_alt">Black outline of a circle with a black question mark in the center</string>
+    <string name="ic_launcher_background_alt">Neon yellow with a white square grid</string>
+    <string name="ic_launcher_foreground_alt">Top half of a white robot head with two atennas</string>
+    <string name="icons8_home_48_alt">Black outline of a house</string>
+    <string name="icons8_house_48_alt">Black outline of a house with a solid black roof</string>
+    <string name="icons8_news_48_alt">Black outline of a piece of paper folded in half behind itself</string>
+    <string name="icons8_settings_48_alt">Black outline of a gear</string>
+    <string name="message_input_background_alt">Plain white square with rounded corners</string>
+    <string name="new_5_svg_alt">Black outline of a icosagon with the word new in the center positioned at a slight angle </string>
+    <string name="outline_bookmark_24_alt">Solid black bookmark icon</string>
+    <string name="phone_icon_alt">Solid black phone icon</string>
+    <string name="primary_button_alt">Neon green square</string>
+    <string name="send_button_background_alt">Solid dark blue circle</string>
+    <string name="send_icon_alt">White tringle pointing to the right with a thinner triangle shape removed from the center</string>
+    <string name="side_nav_bar_alt">Solid teal square</string>
+    <string name="user_message_background_alt">Solid dark blue square</string>
+
+    <!-- Miscellaneous -->
+    <string name="buttons_rounded_alt">Rounded corner background used for buttons</string>
+    <string name="menu_icon_alt">Hamburger menu icon in the top navigation bar</string>
+    <string name="bold_text">Bold Text</string>
+    <string name="saved_news">Saved News</string>
+    <string name="news_list">News articles list</string>
+    <string name="bookmark">Bookmark for News</string>
+    <string name="app_logo_description">Smishing App Logo</string>
     <string name="feedback_history">Feedback History</string>
-    <string name="app_logo_description">App logo</string>
-    <string name="app_logo">App Logo</string>
-    <string name="back_button_desc">Back</string>
+    <string name="Forums_and_Report">Forums &amp; Report</string>
+    <string name="word_count_format">Words: %1$d / %2$d</string>
+    <string name="feedback_success">Feedback submitted successfully!</string>
+
+    <!-- feedback page  -->
+    <string name="enter_name">Your name</string>
+    <string name="word_count_default">Words: 0 / 150</string>
+    <string name="word_limit_warning">You have exceeded the 150-word limit.</string>
+    <string name="view_recent_feedback">View Recent Feedback</string>
+    <string name="rating_popup_text">Tap the stars to rate your experience.</string>
+    <string name="hint_name">Your name</string>
+    <string name="hint_feedback">Enter feedback</string>
+    <string name="rating_label">Rate your experience</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
 
 
 </resources>
