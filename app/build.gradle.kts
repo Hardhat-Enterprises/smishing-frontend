@@ -120,6 +120,7 @@ dependencies {
     implementation ("com.tbuonomo:dotsindicator:4.3")
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("com.itextpdf:itextg:5.5.10")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
 }
 
