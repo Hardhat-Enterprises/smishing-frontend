@@ -1,0 +1,302 @@
+{
+  "0": {
+    "totalAttacks": 187,
+    "successfulAttacks": 132,
+    "uniqueSenders": 63,
+    "avgMessageLength": 145.7,
+    "daywiseData": [23, 17, 29, 15, 26, 19, 31],
+    "categoryData": {
+      "Phishing": 37,
+      "Smishing": 28,
+      "Vishing": 17,
+      "Malware": 12,
+      "Pharming": 6
+    },
+    "weeklyTrendData": [6, 9, 12, 7, 10, 8, 11],
+    "successFailedData": [
+      [10, 4],
+      [9, 5],
+      [11, 3],
+      [8, 6],
+      [12, 4],
+      [7, 7],
+      [13, 3]
+    ],
+    "severityData": [28, 34, 22, 16]
+  },
+  "1": {
+    "totalAttacks": 204,
+    "successfulAttacks": 168,
+    "uniqueSenders": 71,
+    "avgMessageLength": 132.4,
+    "daywiseData": [18, 24, 16, 27, 22, 30, 19],
+    "categoryData": {
+      "Phishing": 33,
+      "Smishing": 32,
+      "Vishing": 18,
+      "Malware": 11,
+      "Pharming": 6
+    },
+    "weeklyTrendData": [8, 11, 9, 13, 10, 12, 14],
+    "successFailedData": [
+      [13, 5],
+      [12, 6],
+      [14, 4],
+      [11, 7],
+      [15, 5],
+      [10, 8],
+      [16, 4]
+    ],
+    "severityData": [30, 32, 24, 14]
+  },
+  "2": {
+    "totalAttacks": 172,
+    "successfulAttacks": 115,
+    "uniqueSenders": 59,
+    "avgMessageLength": 157.2,
+    "daywiseData": [20, 14, 18, 22, 17, 25, 21],
+    "categoryData": {
+      "Phishing": 40,
+      "Smishing": 27,
+      "Vishing": 19,
+      "Malware": 9,
+      "Pharming": 5
+    },
+    "weeklyTrendData": [7, 10, 8, 12, 9, 11, 13],
+    "successFailedData": [
+      [12, 3],
+      [11, 4],
+      [13, 3],
+      [10, 5],
+      [14, 2],
+      [9, 6],
+      [15, 1]
+    ],
+    "severityData": [26, 36, 20, 18]
+  },
+  "3": {
+    "totalAttacks": 195,
+    "successfulAttacks": 142,
+    "uniqueSenders": 68,
+    "avgMessageLength": 149.0,
+    "daywiseData": [25, 19, 23, 18, 27, 20, 24],
+    "categoryData": {
+      "Phishing": 35,
+      "Smishing": 30,
+      "Vishing": 20,
+      "Malware": 8,
+      "Pharming": 7
+    },
+    "weeklyTrendData": [9, 12, 11, 14, 13, 15, 10],
+    "successFailedData": [
+      [14, 5],
+      [13, 6],
+      [15, 4],
+      [12, 7],
+      [16, 3],
+      [11, 8],
+      [17, 2]
+    ],
+    "severityData": [29, 31, 25, 15]
+  },
+  "4": {
+    "totalAttacks": 222,
+    "successfulAttacks": 178,
+    "uniqueSenders": 74,
+    "avgMessageLength": 138.6,
+    "daywiseData": [28, 21, 26, 19, 30, 23, 27],
+    "categoryData": {
+      "Phishing": 32,
+      "Smishing": 33,
+      "Vishing": 18,
+      "Malware": 9,
+      "Pharming": 8
+    },
+    "weeklyTrendData": [10, 13, 12, 16, 14, 17, 11],
+    "successFailedData": [
+      [16, 4],
+      [15, 5],
+      [17, 3],
+      [14, 6],
+      [18, 2],
+      [13, 7],
+      [19, 1]
+    ],
+    "severityData": [31, 29, 27, 13]
+  },
+  "5": {
+    "totalAttacks": 209,
+    "successfulAttacks": 160,
+    "uniqueSenders": 70,
+    "avgMessageLength": 152.3,
+    "daywiseData": [22, 17, 24, 20, 26, 21, 23],
+    "categoryData": {
+      "Phishing": 34,
+      "Smishing": 29,
+      "Vishing": 21,
+      "Malware": 10,
+      "Pharming": 6
+    },
+    "weeklyTrendData": [8, 11, 10, 13, 12, 14, 9],
+    "successFailedData": [
+      [15, 7],
+      [14, 8],
+      [16, 6],
+      [13, 9],
+      [17, 5],
+      [12, 10],
+      [18, 4]
+    ],
+    "severityData": [30, 32, 23, 15]
+  },
+  "6": {
+    "totalAttacks": 184,
+    "successfulAttacks": 130,
+    "uniqueSenders": 61,
+    "avgMessageLength": 142.9,
+    "daywiseData": [19, 16, 21, 17, 23, 18, 20],
+    "categoryData": {
+      "Phishing": 38,
+      "Smishing": 26,
+      "Vishing": 22,
+      "Malware": 9,
+      "Pharming": 5
+    },
+    "weeklyTrendData": [7, 9, 11, 8, 12, 10, 13],
+    "successFailedData": [
+      [13, 6],
+      [12, 7],
+      [14, 5],
+      [11, 8],
+      [15, 4],
+      [10, 9],
+      [16, 3]
+    ],
+    "severityData": [27, 35, 21, 17]
+  },
+  "7": {
+    "totalAttacks": 218,
+    "successfulAttacks": 170,
+    "uniqueSenders": 76,
+    "avgMessageLength": 136.4,
+    "daywiseData": [24, 20, 25, 22, 27, 23, 26],
+    "categoryData": {
+      "Phishing": 31,
+      "Smishing": 34,
+      "Vishing": 19,
+      "Malware": 8,
+      "Pharming": 8
+    },
+    "weeklyTrendData": [9, 12, 11, 15, 13, 16, 10],
+    "successFailedData": [
+      [17, 7],
+      [16, 8],
+      [18, 6],
+      [15, 9],
+      [19, 5],
+      [14, 10],
+      [20, 4]
+    ],
+    "severityData": [29, 33, 22, 16]
+  },
+  "8": {
+    "totalAttacks": 231,
+    "successfulAttacks": 182,
+    "uniqueSenders": 79,
+    "avgMessageLength": 148.1,
+    "daywiseData": [27, 23, 28, 24, 29, 25, 28],
+    "categoryData": {
+      "Phishing": 30,
+      "Smishing": 32,
+      "Vishing": 20,
+      "Malware": 9,
+      "Pharming": 7
+    },
+    "weeklyTrendData": [10, 13, 12, 17, 14, 18, 11],
+    "successFailedData": [
+      [18, 9],
+      [17, 10],
+      [19, 8],
+      [16, 11],
+      [20, 7],
+      [15, 12],
+      [21, 6]
+    ],
+    "severityData": [28, 34, 23, 15]
+  },
+  "9": {
+    "totalAttacks": 198,
+    "successfulAttacks": 152,
+    "uniqueSenders": 67,
+    "avgMessageLength": 155.6,
+    "daywiseData": [21, 18, 23, 19, 24, 20, 22],
+    "categoryData": {
+      "Phishing": 36,
+      "Smishing": 28,
+      "Vishing": 18,
+      "Malware": 10,
+      "Pharming": 8
+    },
+    "weeklyTrendData": [9, 11, 10, 14, 12, 15, 8],
+    "successFailedData": [
+      [14, 6],
+      [13, 7],
+      [15, 5],
+      [12, 8],
+      [16, 4],
+      [11, 9],
+      [17, 3]
+    ],
+    "severityData": [27, 35, 22, 16]
+  },
+  "10": {
+    "totalAttacks": 243,
+    "successfulAttacks": 185,
+    "uniqueSenders": 81,
+    "avgMessageLength": 147.3,
+    "daywiseData": [26, 21, 28, 23, 30, 25, 27],
+    "categoryData": {
+      "Phishing": 34,
+      "Smishing": 29,
+      "Vishing": 20,
+      "Malware": 9,
+      "Pharming": 8
+    },
+    "weeklyTrendData": [11, 14, 13, 17, 15, 18, 12],
+    "successFailedData": [
+      [19, 7],
+      [18, 8],
+      [20, 6],
+      [17, 9],
+      [21, 5],
+      [16, 10],
+      [22, 4]
+    ],
+    "severityData": [30, 32, 24, 14]
+  },
+  "11": {
+    "totalAttacks": 210,
+    "successfulAttacks": 158,
+    "uniqueSenders": 72,
+    "avgMessageLength": 162.2,
+    "daywiseData": [24, 19, 26, 21, 28, 23, 25],
+    "categoryData": {
+      "Phishing": 32,
+      "Smishing": 28,
+      "Vishing": 22,
+      "Malware": 10,
+      "Pharming": 8
+    },
+    "weeklyTrendData": [10, 12, 11, 15, 13, 16, 9],
+    "successFailedData": [
+      [17, 6],
+      [16, 7],
+      [18, 5],
+      [15, 8],
+      [19, 4],
+      [14, 9],
+      [20, 3]
+    ],
+    "severityData": [29, 33, 23, 15]
+  }
+}
