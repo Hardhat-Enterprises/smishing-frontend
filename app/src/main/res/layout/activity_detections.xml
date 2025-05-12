@@ -78,7 +78,7 @@
         android:id="@+id/exportPdfBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Export to PDF"
+        android:text="Export to CSV"
         android:textStyle="bold"
         android:backgroundTint="@color/darker_baby_blue"
         android:textColor="@android:color/black"
