@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/home_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,250 +13,232 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="#D6D6D6"
-        app:itemBackground="@color/transparent"
+        android:background="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
-        app:itemPaddingBottom="10dp"
-        android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_above="@id/bottom_navigation"
+        android:paddingBottom="8dp">
 
-        <Button
-            android:id="@+id/detections_btn"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="124dp"
-            android:background="@drawable/button_filled"
-            android:text="@string/detectionsBtn"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/scanner_btn"
-            android:layout_width="182dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="124dp"
-            android:background="@drawable/button_filled"
-            android:text="Risk Scanner"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/detections_btn" />
-
+        <!-- Logo -->
         <ImageView
             android:id="@+id/HardhatLogo"
             android:layout_width="112dp"
             android:layout_height="106dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/new_logo"
-            android:contentDescription="@string/logo_description"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/logo_description"
+            app:srcCompat="@drawable/new_logo" />
 
+        <!-- Title -->
         <TextView
             android:id="@+id/DashboardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/app_name"
-            android:textSize="32sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/navy_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
-
-        <TextView
-            android:id="@+id/new_detections"
-            android:layout_width="181dp"
-            android:layout_height="101dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/button_filled"
-            app:layout_constraintBottom_toTopOf="@+id/detections_btn"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/total_detections"
-            android:layout_width="180dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/button_filled"
-            app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
+        <!-- Info Box -->
+        <LinearLayout
             android:id="@+id/information_box"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="140dp"
+            android:gravity="left"
+            android:layout_margin="20dp"
+            android:background="@drawable/buttons_rounded"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/DashboardText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/four_point_grid"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/information_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/info_text"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:gravity="center_vertical" />
+
+            <ImageView
+                android:id="@+id/info_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/icon_information_alt"
+                app:srcCompat="@drawable/icon_information" />
+        </LinearLayout>
+
+        <!-- Grid Layout Using ConstraintLayout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/four_point_grid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/info_box_bg"
-            app:layout_constraintBottom_toTopOf="@+id/new_detections"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/information_box"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/new_counter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="50dp"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="@+id/new_detections"
-            app:layout_constraintStart_toStartOf="@+id/new_detections"
-            app:layout_constraintEnd_toEndOf="@+id/new_detections"
-            app:layout_constraintBottom_toTopOf="@+id/textView7"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            <!-- New Detections -->
+            <LinearLayout
+                android:id="@+id/card_new_detections"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/outlined_card_white"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/card_total_detections"
+                app:layout_constraintWidth_percent="0.48">
 
-        <TextView
-            android:id="@+id/total_counter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="50sp"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="@+id/total_detections"
-            app:layout_constraintStart_toStartOf="@+id/total_detections"
-            app:layout_constraintEnd_toEndOf="@+id/total_detections"
-            app:layout_constraintBottom_toTopOf="@+id/textView8" />
+                <TextView
+                    android:id="@+id/counter_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="32sp"
+                    android:textColor="@color/navy_blue"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/new_detectionsTxt"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/new_counter"
-            app:layout_constraintBottom_toBottomOf="@+id/new_detections"
-            app:layout_constraintStart_toStartOf="@+id/new_detections"
-            app:layout_constraintEnd_toEndOf="@+id/new_detections"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_detectionsTxt"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/total_detectionsTxt"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/total_counter"
-            app:layout_constraintBottom_toBottomOf="@+id/total_detections"
-            app:layout_constraintStart_toStartOf="@+id/total_detections"
-            app:layout_constraintEnd_toEndOf="@+id/total_detections" />
+            <!-- Total Detections -->
+            <LinearLayout
+                android:id="@+id/card_total_detections"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/outlined_card_white"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/card_new_detections"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.48">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/total_detections"
-            app:layout_constraintTop_toTopOf="@+id/total_detections"
-            app:srcCompat="@drawable/baseline_access_time_24"
-            android:contentDescription="@string/baseline_access_time_24_alt"/>
+                <TextView
+                    android:id="@+id/counter_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="34"
+                    android:textSize="32sp"
+                    android:textColor="@color/navy_blue"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/information_text"
-            android:layout_width="352dp"
-            android:layout_height="177dp"
-            android:layout_marginTop="8dp"
-            android:text="Welcome to Smishing Detection! Your real-time tool to deter and detect any smishing attacks. Your app is ready to smish."
-            app:layout_constraintEnd_toEndOf="@+id/information_box"
-            app:layout_constraintStart_toStartOf="@+id/information_box"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="@+id/information_box"
-            android:textSize="22sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_detectionsTxt"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/information_box"
-            app:layout_constraintTop_toTopOf="@+id/information_box"
-            app:srcCompat="@drawable/icon_information"
-            android:contentDescription="@string/icon_information_alt"/>
+            <!-- View Detections -->
+            <LinearLayout
+                android:id="@+id/card_view_detections"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/outlined_card_white"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/card_new_detections"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/card_risk_scanner"
+                app:layout_constraintWidth_percent="0.48">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/new_detections"
-            app:layout_constraintTop_toTopOf="@+id/new_detections"
-            app:srcCompat="@drawable/new_5_svg"
-            android:contentDescription="@string/hardhat_logo_alt"
-            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:srcCompat="@drawable/ic_view"
+                    app:tint="@color/navy_blue"
+                    android:contentDescription="@string/icon_view_alt" />
 
-        <Button
-            android:id="@+id/debug_btn"
-            android:layout_width="113dp"
-            android:layout_height="111dp"
-            android:layout_marginStart="149dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="150dp"
-            android:alpha="0"
-            android:autoText="true"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="@+id/HardhatLogo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_detections"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
+            <!-- Risk Scanner -->
+            <LinearLayout
+                android:id="@+id/card_risk_scanner"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/outlined_card_white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/card_view_detections"
+                app:layout_constraintTop_toBottomOf="@id/card_total_detections"
+                app:layout_constraintWidth_percent="0.48">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:contentDescription="@string/icon_scan_alt"
+                    app:srcCompat="@drawable/ic_scan"
+                    app:tint="@color/navy_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/risk_scanner"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Learn More Button -->
         <Button
             android:id="@+id/fragment_container"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="@drawable/button_secondary"
-            android:text="Learn More About Smishing"
-            android:textColor="@android:color/black"
+            android:layout_margin="24dp"
+            android:background="@drawable/outlined_card_white"
+            android:text="@string/learn_more_about_smishing"
+            android:textColor="@color/navy_blue"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/scanner_btn"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/four_point_grid"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

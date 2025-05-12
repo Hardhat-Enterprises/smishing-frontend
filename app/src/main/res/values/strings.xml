@@ -53,6 +53,12 @@
     <string name="detectionsBtn">View Detections</string>
     <string name="new_detectionsTxt">New detections</string>
     <string name="total_detectionsTxt">Total detections</string>
+    <string name="info_text">Welcome to Smishing Detection! Your real-time tool to deter and detect any smishing attacks. Your app is ready to smish.</string>
+    <string name="view_detections">View Detections</string> <!-- Used below icon -->
+    <string name="risk_scanner">Risk Scanner</string>       <!-- Used below icon -->
+    <string name="icon_view_alt">View detections icon</string>
+    <string name="icon_scan_alt">Risk scanner icon</string>
+
 
     <!-- Account Settings Page Buttons -->
     <string name="password_changeBtn">Change Password</string>
