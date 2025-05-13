@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/new_post_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:id="@+id/headerSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/communityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community"
+            android:textColor="@color/navy_blue"
+            android:textSize="58sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/communitySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="keeping you and your loved ones safe"
+            android:textColor="@color/navy_blue"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Tab Strip -->
+    <LinearLayout
+        android:id="@+id/tabNavigationContainer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/headerSection">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="@color/navy_blue"
+            app:tabBackground="@color/white" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/tabDivider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/tabNavigationContainer"
+        android:background="@color/Dark_blue" />
+
+    <!-- New Post Form -->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabDivider"
+        android:layout_above="@id/bottom_navigation">
+
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPostTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create a New Post"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tvPostSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The more we share, the stronger we become"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Post Title Input -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textStyle="bold"
+                android:paddingBottom="4dp"/>
+            <EditText
+                android:id="@+id/etPostTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="@drawable/rounded_lightblue_border"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Post Message Input -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:textStyle="bold"
+                android:paddingBottom="4dp"/>
+            <EditText
+                android:id="@+id/etPostMessage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:background="@drawable/rounded_lightblue_border"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Submit Post Button -->
+            <Button
+                android:id="@+id/btnSharePost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share Your Post"
+                android:textStyle="bold"
+                android:backgroundTint="@color/baby_blue"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!--Back button-->
+    <ImageButton
+        android:id="@+id/community_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        app:srcCompat="@drawable/back_button" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/baby_blue"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/activity_main_drawer"/>
+</RelativeLayout>
