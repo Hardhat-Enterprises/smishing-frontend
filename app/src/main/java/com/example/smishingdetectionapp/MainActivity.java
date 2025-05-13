@@ -8,8 +8,6 @@ import java.time.LocalDate;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Handler;
 
@@ -23,14 +21,12 @@ import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
-
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private boolean isBackPressed;
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -66,33 +62,26 @@ public class MainActivity extends SharedActivity {
             return false;
         });
 
-        Button debug_btn = findViewById(R.id.debug_btn);
-        debug_btn.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, DebugActivity.class)));
-
-        Button detections_btn = findViewById(R.id.detections_btn);
-        detections_btn.setOnClickListener(v -> {
+        // ✅ New Grid Button: View Detections
+        binding.cardViewDetections.setOnClickListener(v -> {
             startActivity(new Intent(this, DetectionsActivity.class));
         });
 
+        // ✅ New Grid Button: Risk Scanner
+        binding.cardRiskScanner.setOnClickListener(v -> {
+            startActivity(new Intent(this, RiskScannerTCActivity.class));
+        });
 
-        Button learnMoreButton = findViewById(R.id.fragment_container);
-        learnMoreButton.setOnClickListener(v -> {
+        // ✅ Learn More button
+        binding.fragmentContainer.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
         });
 
-
-        Button scanner_btn = findViewById(R.id.scanner_btn);
-        scanner_btn.setOnClickListener(v -> {
-            startActivity(new Intent(this, RiskScannerTCActivity.class));
-
-        });
-
-
-        // Database connection
+        // ✅ Optional: Handle count setting here (you may remove if dynamic updates aren't required)
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
+
         //setting counter from result
         TextView total_count;
         total_count = findViewById(R.id.total_counter);
@@ -108,27 +97,20 @@ public class MainActivity extends SharedActivity {
         //total_count.setText("" + databaseAccess.getCounter());
 
         // Closing the connection
-        databaseAccess.close();
 
+        databaseAccess.close();
     }
-    //tap again to exit override. only closes app if back pressed while alert is on screen
+
     @Override
     public void onBackPressed() {
-        if(isBackPressed)
-        {
+        if (isBackPressed) {
             super.onBackPressed();
             return;
         }
         Toast.makeText(this, "press back again to exit", Toast.LENGTH_SHORT).show();
         isBackPressed = true;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                isBackPressed = false;
-            }
-        }, 2000);
-
+        new Handler().postDelayed(() -> isBackPressed = false, 2000);
     }
 
     private boolean areNotificationsEnabled() {
