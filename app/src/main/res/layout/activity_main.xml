@@ -1,30 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="8dp"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/baby_blue"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:itemIconSize="25dp"
-        app:itemHorizontalTranslationEnabled="false"
-        app:menu="@menu/activity_main_drawer" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation"
-        android:paddingBottom="8dp">
 
         <!-- Logo -->
         <ImageView
@@ -55,7 +39,8 @@
         <LinearLayout
             android:id="@+id/information_box"
             android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
+            android:minHeight="180dp"
             android:gravity="left"
             android:layout_margin="20dp"
             android:background="@drawable/buttons_rounded"
@@ -224,21 +209,38 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Learn More Button -->
-        <Button
-            android:id="@+id/fragment_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/outlined_card_white"
-            android:text="@string/learn_more_about_smishing"
-            android:textColor="@color/navy_blue"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/four_point_grid"
+    <Button
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/outlined_card_white"
+        android:text="@string/learn_more_about_smishing"
+        android:textColor="@color/navy_blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/four_point_grid"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/baby_blue"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            app:itemIconSize="25dp"
+            app:itemHorizontalTranslationEnabled="false"
+            app:menu="@menu/activity_main_drawer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+
