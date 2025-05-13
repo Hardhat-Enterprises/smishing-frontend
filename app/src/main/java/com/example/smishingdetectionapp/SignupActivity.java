@@ -6,8 +6,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +21,12 @@ import com.example.smishingdetectionapp.ui.login.LoginActivity;
 public class SignupActivity extends AppCompatActivity {
 
     private static final int TERMS_REQUEST_CODE = 1001;  // Unique request code for terms acceptance
-    private boolean isTermsAccepted = false;
 
     private EditText fullNameInput, phoneNumberInput, emailInput, passwordInput, confirmPasswordInput, pinInput;
     private Button registerButton;
-    private TextView termsTextView;
+    private CheckBox termsCheckBox;
+//    private LinearLayout termsWrapper;
+    private TextView termsText;
 
     private DatabaseAccess databaseAccess;
     @Override
@@ -33,7 +36,6 @@ public class SignupActivity extends AppCompatActivity {
 
         // Initialize views
         ImageButton imageButton = findViewById(R.id.signup_back);
-        termsTextView = findViewById(R.id.terms_conditions);
         registerButton = findViewById(R.id.registerBtn);
         fullNameInput = findViewById(R.id.full_name_input);
         phoneNumberInput = findViewById(R.id.pnInput);
@@ -41,6 +43,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.pwInput);
         confirmPasswordInput = findViewById(R.id.pw2Input);
         pinInput = findViewById(R.id.pinInput);
+        termsCheckBox = findViewById(R.id.terms_condition_checkbox);
+//        termsWrapper = findViewById(R.id.terms_wrapper);
+        termsText = findViewById(R.id.terms_text);
 
         // Disable the register button initially
         registerButton.setEnabled(false);
@@ -54,7 +59,7 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         // Open Terms and Conditions Activity on click
-        termsTextView.setOnClickListener(v -> {
+        termsText.setOnClickListener(v -> {
             Intent intent = new Intent(SignupActivity.this, TermsAndConditionsActivity.class);
             startActivityForResult(intent, TERMS_REQUEST_CODE);
         });
@@ -97,7 +102,7 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             }
             if (pin.length() != 6 || !pin.matches("\\d+")) {
-                Toast.makeText(this, "Invalid PIN. Must be 4 digits.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Invalid PIN. Must be 6 digits.", Toast.LENGTH_SHORT).show();
                 return;
             }
             try {
@@ -123,8 +128,9 @@ public class SignupActivity extends AppCompatActivity {
 
         if (requestCode == TERMS_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                isTermsAccepted = true;
-                termsTextView.setTextColor(getResources().getColor(R.color.blue_grotto));
+                termsCheckBox.setChecked(true);
+            } else {
+                termsCheckBox.setChecked(false);
             }
             checkFieldsForEmptyValues(); // Re-evaluate the button state
         }
@@ -142,7 +148,7 @@ public class SignupActivity extends AppCompatActivity {
         boolean allFieldsFilled = !fullName.isEmpty() && !phoneNumber.isEmpty() &&
                 !email.isEmpty() && !password.isEmpty() &&
                 !confirmPassword.isEmpty() && !pin.isEmpty() &&
-                isTermsAccepted;
+                termsCheckBox.isChecked();
         Log.d("SignupActivity", "All fields valid: " + allFieldsFilled);
         registerButton.setEnabled(allFieldsFilled);
     }

@@ -71,9 +71,7 @@
     <string name="pin_changeBtn">Change Pin</string>
 
     <string name="terms_and_conditions">
-    &lt;b&gt;TERMS AND CONDITIONS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
-
-    &lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
+&lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
     &lt;b&gt;2.&lt;/b&gt; The app is provided on an as is basis, with no guarantees of accuracy or availability.&lt;br/&gt;
     &lt;b&gt;3.&lt;/b&gt; You are responsible for ensuring you use the services in accordance with applicable laws.&lt;br/&gt;
     &lt;b&gt;4.&lt;/b&gt; Unauthorized reproduction, modification, or distribution of this app or its content is strictly prohibited.&lt;br/&gt;
@@ -95,8 +93,6 @@
     &lt;b&gt;2.&lt;/b&gt; We do not guarantee uninterrupted or error-free use of the app.&lt;br/&gt;
     &lt;b&gt;3.&lt;/b&gt; We are not liable for any damages resulting from the use of this app.&lt;br/&gt;
     &lt;b&gt;4.&lt;/b&gt; Always use caution when interacting with unknown parties through the app.&lt;br/&gt;&lt;br/&gt;
-
-    Please scroll to the bottom to continue.
 </string>
 
 
@@ -262,7 +258,6 @@
     <string name="enter_email">Enter email</string>
     <string name="name">Name</string>
     <string name="image_description">image_description</string>
-    <string name="submit_feedback">Submit_feedback</string>
     <string name="forums">Forums</string>
     <string name="community_forum">Community Forum</string>
     <string name="create_forum_topic">Create Forum Topic</string>
@@ -298,7 +293,7 @@
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
 
-        <!-- Reporting strings -->
+    <!-- Reporting strings -->
     <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
     <string name="reporting_activity_tvStep2Indicator">Step 2 of 2</string>
     <string name="reporting_activity_etName">Name</string>
@@ -316,7 +311,7 @@
     <string name="reporting_activity_etDateReceived">Date Received</string>
     <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
     <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
-  
+
     <string name="alert">triangle with exclamation mark</string>
 
     <!-- Account / Sorting -->
@@ -390,6 +385,23 @@
     <string name="saved_news">Saved News</string>
     <string name="news_list">News articles list</string>
     <string name="bookmark">Bookmark for News</string>
+    <string name="app_logo_description">Smishing App Logo</string>
+    <string name="feedback_history">Feedback History</string>
+    <string name="Forums_and_Report">Forums &amp; Report</string>
+    <string name="word_count_format">Words: %1$d / %2$d</string>
+    <string name="feedback_success">Feedback submitted successfully!</string>
+
+    <!-- feedback page  -->
+    <string name="enter_name">Your name</string>
+    <string name="word_count_default">Words: 0 / 150</string>
+    <string name="word_limit_warning">You have exceeded the 150-word limit.</string>
+    <string name="view_recent_feedback">View Recent Feedback</string>
+    <string name="rating_popup_text">Tap the stars to rate your experience.</string>
+    <string name="hint_name">Your name</string>
+    <string name="hint_feedback">Enter feedback</string>
+    <string name="rating_label">Rate your experience</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
 
     <!-- Common Topics -->
     <string name="detect_smishing_title">How to Detect Smishing Messages?</string>
@@ -399,5 +411,8 @@
     <string name="smishing_vs_phishing_title">What is smishing vs. phishing?</string>
     <string name="smishing_vs_phishing_content">Smishing is phishing via SMS, tricking users into clicking malicious links or sharing personal info. Phishing typically uses emails or fake websites to do the same. Both aim to steal sensitive data.</string>
 
+    <string name="terms_and_conditions_title">Terms And Conditions</string>
+    <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
+    <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
 </resources>
