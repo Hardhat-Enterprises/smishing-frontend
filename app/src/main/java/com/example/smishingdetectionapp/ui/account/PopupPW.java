@@ -14,8 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.smishingdetectionapp.R;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class PopupPW extends DialogFragment {
+public class PopupPW extends BottomSheetDialogFragment {
 
     private EditText editTextCurrentPassword, editTextNewPassword, editTextConfirmPassword;
     private Button changePW;

@@ -129,7 +129,7 @@
             android:exported="false" /> <!-- Set LoginActivity is not the launcher activity -->
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true"></activity> <!-- MainActivity is not the launcher anymore -->
+            android:exported="true"   />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -137,10 +137,9 @@
         <activity
             android:name=".FeedbackActivity"
             android:exported="false" />
-        <activity
-            android:name=".ForumActivity"
-            android:exported="false" />
+
         <activity android:name=".CommunityHomeActivity" />
+        <activity android:name=".CommunityOpenPost" />
         <activity
             android:name=".chat.ChatAssistantActivity"
             android:exported="false"
@@ -148,6 +147,7 @@
         <activity
             android:name=".FaqActivity"
             android:exported="false" />
+        <activity android:name=".CommunityNewPost" />
         <activity
             android:name=".CommunityPostActivity"
             android:exported="false" />
@@ -195,5 +195,6 @@
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/widget_large_info" />
         </receiver>
+        <activity android:name=".FeedbackHistoryActivity" android:exported="false"/>
     </application>
 </manifest>

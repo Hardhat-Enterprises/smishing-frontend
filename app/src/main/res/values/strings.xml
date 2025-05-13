@@ -251,7 +251,6 @@
     <string name="enter_email">Enter email</string>
     <string name="name">Name</string>
     <string name="image_description">image_description</string>
-    <string name="submit_feedback">Submit_feedback</string>
     <string name="forums">Forums</string>
     <string name="community_forum">Community Forum</string>
     <string name="create_forum_topic">Create Forum Topic</string>
@@ -287,7 +286,7 @@
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
 
-        <!-- Reporting strings -->
+    <!-- Reporting strings -->
     <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
     <string name="reporting_activity_tvStep2Indicator">Step 2 of 2</string>
     <string name="reporting_activity_etName">Name</string>
@@ -305,7 +304,7 @@
     <string name="reporting_activity_etDateReceived">Date Received</string>
     <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
     <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
-  
+
     <string name="alert">triangle with exclamation mark</string>
 
     <!-- Account / Sorting -->
@@ -379,6 +378,23 @@
     <string name="saved_news">Saved News</string>
     <string name="news_list">News articles list</string>
     <string name="bookmark">Bookmark for News</string>
+    <string name="app_logo_description">Smishing App Logo</string>
+    <string name="feedback_history">Feedback History</string>
+    <string name="Forums_and_Report">Forums &amp; Report</string>
+    <string name="word_count_format">Words: %1$d / %2$d</string>
+    <string name="feedback_success">Feedback submitted successfully!</string>
+
+    <!-- feedback page  -->
+    <string name="enter_name">Your name</string>
+    <string name="word_count_default">Words: 0 / 150</string>
+    <string name="word_limit_warning">You have exceeded the 150-word limit.</string>
+    <string name="view_recent_feedback">View Recent Feedback</string>
+    <string name="rating_popup_text">Tap the stars to rate your experience.</string>
+    <string name="hint_name">Your name</string>
+    <string name="hint_feedback">Enter feedback</string>
+    <string name="rating_label">Rate your experience</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
 
     <!-- Common Topics -->
     <string name="detect_smishing_title">How to Detect Smishing Messages?</string>
