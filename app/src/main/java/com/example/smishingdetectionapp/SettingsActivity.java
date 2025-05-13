@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ScrollView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.util.TypedValue;
 import com.example.smishingdetectionapp.PreferencesUtil;
 import android.content.res.Configuration;
@@ -193,6 +195,17 @@ public class SettingsActivity extends AppCompatActivity {
         communityBtn.setOnClickListener(v -> {
             startActivity(new Intent(this, CommunityHomeActivity.class));
         });
+        // share app button
+        Button shareButton = findViewById(R.id.share_button);
+        shareButton.setOnClickListener(v -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this app! Download Smishing Detection App: https://example.com");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
 
         Button signoutBtn = findViewById(R.id.buttonSignOut);
         Intent intent = new Intent(this, LoginActivity.class);
@@ -214,9 +227,22 @@ public class SettingsActivity extends AppCompatActivity {
         signoutBtn.setOnClickListener(v -> {
             dialog.show();
         });
+        FloatingActionButton scrollToTopFab = findViewById(R.id.scrollToTopFab);
+        scrollToTopFab.setOnClickListener(v -> scrollView.smoothScrollTo(0, 0));
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            if (scrollView.getScrollY() > 300) {
+                scrollToTopFab.show();
+            } else {
+                scrollToTopFab.hide();
+            }
+        });
+
 
 
     }
+
+
     // Trigger biometric authentication with timeout
     private void triggerBiometricAuthenticationWithTimeout() {
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
