@@ -1,4 +1,3 @@
-// FINAL MERGED VERSION (READY TO PASTE)
 
 package com.example.smishingdetectionapp;
 
