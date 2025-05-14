@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271138643742",
+    "project_id": "smishing-detection-app",
+    "storage_bucket": "smishing-detection-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271138643742:android:af35072dcb06929cc6f30f",
+        "android_client_info": {
+          "package_name": "com.example.smishingdetectionapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEzoWBZyi28Lir40T20Z17qAJvxwCjuFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

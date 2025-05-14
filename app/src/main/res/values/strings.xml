@@ -63,6 +63,8 @@
     <string name="sign_outBtn">Sign out</string>
     <string name="session_timeoutBtn">Session Timeout Settings</string>
     <string name="pin_changeBtn">Change Pin</string>
+    <string name="notifications">Notifications</string>
+
 
     <string name="terms_and_conditions">
 &lt;b&gt;1.&lt;/b&gt; By using this app, you agree to comply with these terms.&lt;br/&gt;
@@ -132,6 +134,17 @@
     <string name="report_btn">Report</string>
     <string name="help_btn">Help</string>
     <string name="about_btn">Privacy Policy</string>
+    <string name="settings">Settings</string>
+    <string name="font_size">Font Size: 100%</string>
+    <string name="account">Account</string>
+    <string name="filtering">Filtering</string>
+    <string name="report">Report</string>
+    <string name="help">Help</string>
+    <string name="about_me">About Me</string>
+    <string name="chat_assistant">Chat Assistant</string>
+    <string name="forum">Forum</string>
+    <string name="add_guardian">Add Guardian</string>
+    <string name="sign_out">Sign Out</string>
 
     <!-- Filtering Rules Strings -->
     <string name="keywords_label">Keywords</string>
@@ -286,6 +299,13 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="login_with_pin">Login with PIN</string>
+    <string name="notification_history_title">Notification History</string>
+    <string name="notification_history_list">Here is your list of recent notifications</string>
+    <string name="save_guardian_button">Save Guardian</string>
+    <string name="guardian_username_hint">Enter Guardian Username</string>
+    <string name="notify_guardian_button">Notify Guardian</string>
+    <string name="notify_guardian_button_alt">Send Notification</string>
+    <string name="view_notification_history">View Notification History</string>
 
     <!-- Reporting strings -->
     <string name="reporting_activity_tvStep1Indicator">Step 1 of 2</string>
@@ -325,6 +345,7 @@
     <string name="accessibility_text">Accessibility</string>
     <string name="Community_and_Report">Community and Reporting</string>
     <string name="MoreInfoandSupport">More Info and Support</string>
+
 
 
     <!-- Accessibility Alt Texts -->
