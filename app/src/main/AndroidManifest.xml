@@ -12,18 +12,11 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-feature android:name="android.hardware.telephony" android:required="false" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
     <!-- Optional Feature -->
-    <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -38,8 +31,6 @@
         tools:targetApi="31">
 
         <!-- Launcher -->
-
-        <!-- Splash Activity -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -50,9 +41,8 @@
             </intent-filter>
         </activity>
 
-        <!-- Core Activities -->
-        <activity android:name=".MainActivity" android:exported="true"
-            android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
+        <!-- Core & Feature Activities -->
+        <activity android:name=".MainActivity" android:exported="true" android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
         <activity android:name=".SettingsActivity" android:exported="false" />
         <activity android:name=".FeedbackActivity" android:exported="false" />
         <activity android:name=".FeedbackHistoryActivity" android:exported="false" />
@@ -69,32 +59,14 @@
         <activity android:name=".QuizResultActivity" />
         <activity android:name=".QuizesActivity" />
         <activity android:name=".TopicDetailActivity" />
+        <activity android:name=".ReportingActivity" android:exported="false" />
+        <activity android:name=".NewsActivity" android:exported="false" />
 
-        <!-- Feature Activities -->
+        <!-- UI Pages -->
         <activity android:name=".ui.CaseStudiesActivity" android:exported="false" />
         <activity android:name=".ui.SmishingTrendsActivity" android:exported="false" />
-        <activity android:name=".detections.DetectionsActivity" android:exported="true">
-        </activity>
 
-        <!-- Core Activities -->
-        <activity android:name=".TermsAndConditionsActivity" android:exported="false" />
-        <activity android:name=".ui.CaseStudiesActivity" />
-        <activity android:name=".ui.SmishingTrendsActivity" />
-        <activity android:name=".SmsActivity" android:exported="false" />
-        <activity android:name=".SMSMessageDetailActivity" android:exported="false" />
-        <activity android:name=".HelpActivity" android:exported="false" />
-        <activity android:name=".AboutMeActivity" android:exported="false" />
-        <activity android:name=".NotificationActivity" android:exported="false" />
-        <activity android:name=".DebugActivity" android:exported="false" />
-        <activity android:name=".SmishingRulesActivity" android:exported="false" />
-
-        <!-- Registration/Login -->
-        <activity android:name=".ui.Register.RegisterMain" android:exported="true" />
-        <activity android:name=".ui.Register.EmailVerify" android:exported="true" />
-        <activity android:name=".ui.account.AccountActivity" android:exported="true" />
-        <activity android:name=".ui.account.PopupDEL" />
-
-        <!-- Detection & Reports -->
+        <!-- Detection -->
         <activity android:name=".detections.DetectionsActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -102,62 +74,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".detections.YourReportsActivity" android:exported="false" />
-        <activity
-            android:name=".ui.onboarding.OnboardingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.onboarding.LoginCreateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ReportingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".news.SavedNewsActivity"
-            android:exported="false" />
 
-
-        <!-- Onboarding -->
+        <!-- Onboarding/Auth -->
         <activity android:name=".ui.onboarding.OnboardingActivity" android:exported="true" />
         <activity android:name=".ui.onboarding.LoginCreateActivity" android:exported="false" />
-
-        <!-- Navigation Pages -->
-        <activity android:name=".NewsActivity" android:exported="false" />
-        <activity android:name=".ReportingActivity" android:exported="false" />
-        <activity android:name=".SignupActivity" android:exported="false" />
-        <activity android:name=".news.SavedNewsActivity" android:exported="false" />
-        <activity android:name=".EducationActivity" />
-        <activity android:name=".AboutUsActivity" />
-        <activity android:name=".QuizResultActivity" />
-        <activity android:name=".QuizesActivity" />
-        <activity android:name=".SettingsActivity" android:exported="false" />
         <activity android:name=".ui.login.LoginActivity" android:exported="true" />
-        <activity android:name=".MainActivity" android:exported="true" android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
-        <activity android:name=".FeedbackActivity" android:exported="false" />
-        <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
-
-
-        <!-- Your Reports Activity-->
-        <activity
-            android:name=".detections.YourReportsActivity"
-            android:exported="false" />
-
-
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false" /> <!-- Set LoginActivity is not the launcher activity -->
-        <activity android:name=".detections.YourReportsActivity" android:exported="false" />
-        <activity android:name="ReportingActivity" android:exported="false" />
-
-        <!-- Onboarding & Auth -->
-        <activity android:name=".ui.login.LoginActivity" android:exported="true" />
-        <activity android:name=".ui.onboarding.OnboardingActivity" android:exported="true" />
-        <activity android:name=".ui.onboarding.LoginCreateActivity" android:exported="false" />
         <activity android:name=".ui.Register.RegisterMain" android:exported="true" />
         <activity android:name=".ui.Register.EmailVerify" android:exported="true" />
         <activity android:name=".ui.account.AccountActivity" android:exported="true" />
@@ -175,30 +96,8 @@
         <activity android:name=".riskmeter.RiskResultActivity" android:exported="true" />
 
         <!-- Chat & FAQ -->
-        <activity android:name=".chat.ChatAssistantActivity" android:exported="false"
-            android:label="@string/chat_assistant_page" />
-        <activity android:name=".FaqActivity" android:exported="false" />
         <activity android:name=".chat.ChatAssistantActivity" android:exported="false" android:label="@string/chat_assistant_page" />
         <activity android:name=".FaqActivity" android:exported="false" />
-        <activity android:name=".CommunityNewPost" />
-        <activity android:name=".CommunityPostActivity" android:exported="false" />
-        <activity android:name=".riskmeter.RiskScannerTCActivity" android:exported="true" />
-        <activity android:name=".riskmeter.RiskScannerActivity" android:exported="true" />
-        <activity android:name=".riskmeter.RiskResultActivity" android:exported="true" />
-        <activity android:name=".TopicDetailActivity" />
-        <activity android:name=".FeedbackHistoryActivity" android:exported="false" />
-
-        <activity
-            android:name=".CommunityPostActivity"
-            android:exported="false" />
-        <activity
-            android:name=".riskmeter.RiskScannerTCActivity"
-            android:exported="true" />
-        <activity
-            android:name=".riskmeter.RiskScannerActivity"
-            android:exported="true" />
-        <activity
-            android:name=".riskmeter.RiskResultActivity"/>
 
         <!-- File Provider -->
         <provider
@@ -212,32 +111,25 @@
         </provider>
 
         <!-- Widgets -->
-        <!-- App Widgets -->
         <receiver android:name=".ui.SmishingWidgetSmall" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_small_info" />
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_small_info" />
         </receiver>
 
         <receiver android:name=".ui.SmishingWidgetMedium" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_medium_info" />
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_medium_info" />
         </receiver>
 
         <receiver android:name=".ui.SmishingWidgetLarge" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_large_info" />
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_large_info" />
         </receiver>
 
     </application>

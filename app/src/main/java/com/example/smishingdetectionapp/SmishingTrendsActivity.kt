@@ -17,13 +17,6 @@ class SmishingTrendsActivity : AppCompatActivity() {
         supportActionBar?.title = "Smishing Trends"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Custom back button logic
-        val backButton = findViewById<ImageButton>(R.id.back_button_trends)
-        backButton.setOnClickListener {
-            val intent = Intent(this, CaseStudiesActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         // Back button returns to Case Studies page
         val backButton = findViewById<ImageButton>(R.id.back_button_trends)
