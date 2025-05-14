@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.smishingdetectionapp.EducationActivity
 import com.example.smishingdetectionapp.R
-import com.example.smishingdetectionapp.SmishingTrendsActivity
+import com.example.smishingdetectionapp.ui.SmishingTrendsActivity
+
 
 class CaseStudiesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

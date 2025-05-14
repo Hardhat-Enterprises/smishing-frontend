@@ -13,10 +13,19 @@ class SmishingTrendsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_smishing_trends)
 
         // App bar setup (optional, not used if custom button exists)
+        // App bar title (if needed)
         supportActionBar?.title = "Smishing Trends"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Custom back button logic
+        val backButton = findViewById<ImageButton>(R.id.back_button_trends)
+        backButton.setOnClickListener {
+            val intent = Intent(this, CaseStudiesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        // Back button returns to Case Studies page
         val backButton = findViewById<ImageButton>(R.id.back_button_trends)
         backButton.setOnClickListener {
             val intent = Intent(this, CaseStudiesActivity::class.java)
