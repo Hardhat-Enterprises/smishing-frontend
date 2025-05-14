@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -118,30 +118,25 @@
         <activity
             android:name=".news.SavedNewsActivity"
             android:exported="false" />
-            android:exported="false" />
+
 
 
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
         <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
-        <activity android:name=".QuizesActivity" />
+
 
         <!-- Your Reports Activity-->
         <activity
             android:name=".detections.YourReportsActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".detections.YourReportsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".SettingsActivity"
             android:exported="false" /> <!-- Set LoginActivity is not the launcher activity -->
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="true"></activity> <!-- MainActivity is not the launcher anymore -->
-            android:exported="true"   />
+
 
         <activity
             android:name=".MainActivity"
@@ -150,12 +145,10 @@
         <activity
             android:name=".FeedbackActivity"
             android:exported="false" />
-        <activity
-            android:name=".ForumActivity"
-            android:exported="false" />
-        <activity android:name=".CommunityHomeActivity" />
 
         <activity android:name=".CommunityHomeActivity" />
+
+
         <activity android:name=".CommunityOpenPost" />
 
 
@@ -179,11 +172,8 @@
             android:name=".riskmeter.RiskScannerActivity"
             android:exported="true" />
         <activity
-            android:name=".riskmeter.RiskResultActivity"
-            android:exported="true" /> <!-- File Provider -->
-        <activity
-            android:name=".riskmeter.RiskResultActivity"
-            android:exported="true" />
+            android:name=".riskmeter.RiskResultActivity"/>
+
         <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
