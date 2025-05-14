@@ -65,7 +65,7 @@
 
         <!-- Feature Activities -->
         <activity android:name=".ui.CaseStudiesActivity" android:exported="false" />
-        <activity android:name=".SmishingTrendsActivity" android:exported="false" />
+        <activity android:name=".ui.SmishingTrendsActivity" android:exported="false" />
         <activity android:name=".detections.DetectionsActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
