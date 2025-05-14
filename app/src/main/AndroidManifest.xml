@@ -18,6 +18,11 @@
     <!-- Optional Feature -->
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
+    <!-- Optional Feature -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -31,6 +36,7 @@
         tools:targetApi="31">
 
         <!-- Launcher -->
+        <!-- Splash Activity -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -68,17 +74,51 @@
 
         <!-- Detection -->
         <activity android:name=".detections.DetectionsActivity" android:exported="true">
+        <!-- Core Activities -->
+        <activity android:name=".MainActivity" android:exported="true"
+            android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
+        <activity android:name=".SettingsActivity" android:exported="false" />
+        <activity android:name=".FeedbackActivity" android:exported="false" />
+        <activity android:name=".FeedbackHistoryActivity" android:exported="false" />
+        <activity android:name=".HelpActivity" android:exported="false" />
+        <activity android:name=".NotificationActivity" android:exported="false" />
+        <activity android:name=".AboutMeActivity" android:exported="false" />
+        <activity android:name=".DebugActivity" android:exported="false" />
+        <activity android:name=".TermsAndConditionsActivity" android:exported="false" />
+        <activity android:name=".SMSMessageDetailActivity" android:exported="false" />
+        <activity android:name=".SmsActivity" android:exported="false" />
+        <activity android:name=".SmishingRulesActivity" android:exported="false" />
+        <activity android:name=".EducationActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".QuizResultActivity" />
+        <activity android:name=".QuizesActivity" />
+        <activity android:name=".TopicDetailActivity" />
+
+        <!-- Feature Activities -->
+        <activity android:name=".ui.CaseStudiesActivity" android:exported="false" />
+        <activity android:name=".ui.SmishingTrendsActivity" android:exported="false" />
+        <activity android:name=".detections.DetectionsActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".detections.YourReportsActivity" android:exported="false" />
+        <activity android:name=".detections.YourReportsActivity" android:exported="false" />
+        <activity android:name="ReportingActivity" android:exported="false" />
 
         <!-- Onboarding/Auth -->
         <activity android:name=".ui.onboarding.OnboardingActivity" android:exported="true" />
         <activity android:name=".ui.onboarding.LoginCreateActivity" android:exported="false" />
         <activity android:name=".ui.login.LoginActivity" android:exported="true" />
+        <activity android:name=".ui.Register.RegisterMain" android:exported="true" />
+        <activity android:name=".ui.Register.EmailVerify" android:exported="true" />
+        <activity android:name=".ui.account.AccountActivity" android:exported="true" />
+        <activity android:name=".ui.account.PopupDEL" />
+        <!-- Onboarding & Auth -->
+        <activity android:name=".ui.login.LoginActivity" android:exported="true" />
+        <activity android:name=".ui.onboarding.OnboardingActivity" android:exported="true" />
+        <activity android:name=".ui.onboarding.LoginCreateActivity" android:exported="false" />
         <activity android:name=".ui.Register.RegisterMain" android:exported="true" />
         <activity android:name=".ui.Register.EmailVerify" android:exported="true" />
         <activity android:name=".ui.account.AccountActivity" android:exported="true" />
@@ -97,6 +137,11 @@
 
         <!-- Chat & FAQ -->
         <activity android:name=".chat.ChatAssistantActivity" android:exported="false" android:label="@string/chat_assistant_page" />
+        <activity android:name=".FaqActivity" android:exported="false" />
+
+        <!-- Chat & FAQ -->
+        <activity android:name=".chat.ChatAssistantActivity" android:exported="false"
+            android:label="@string/chat_assistant_page" />
         <activity android:name=".FaqActivity" android:exported="false" />
 
         <!-- File Provider -->
