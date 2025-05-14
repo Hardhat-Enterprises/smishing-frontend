@@ -140,8 +140,6 @@
             android:exported="false" />
 
         <activity android:name=".CommunityHomeActivity" />
-        <activity android:name=".CommunityOpenPost" />
-
 
         <activity
             android:name=".chat.ChatAssistantActivity"
@@ -151,7 +149,6 @@
             android:name=".FaqActivity"
             android:exported="false" />
 
-        <activity android:name=".CommunityNewPost" />
 
         <activity
             android:name=".CommunityPostActivity"

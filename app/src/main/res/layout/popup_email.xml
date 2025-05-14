@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/EmailText" />
 
     <TextView
-        android:id="@+id/textViewConfirmPassword"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -60,13 +60,13 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:ignore="Autofill,LabelFor" />
 
     <Button
         android:id="@+id/change_emailBtn"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="0dp"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"

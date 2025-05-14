@@ -68,11 +68,11 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_PN"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="Autofill,LabelFor" />
 
     <TextView
-        android:id="@+id/enter_PN"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

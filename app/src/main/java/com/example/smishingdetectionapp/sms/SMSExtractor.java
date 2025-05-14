@@ -29,7 +29,7 @@ public class SMSExtractor {
         return ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private boolean hasContactsPermission() {
+    private boolean hasContactsPersmission() {
         return ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
     }
 
@@ -47,7 +47,7 @@ public class SMSExtractor {
 
     @Nullable
     private Cursor getContactsCursor(String sender){
-        if (!hasContactsPermission()){
+        if (!hasContactsPersmission()){
             return null;
         }
         // Get Contacts from the device

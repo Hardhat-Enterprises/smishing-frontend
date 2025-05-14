@@ -15,9 +15,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class PopupPIN extends BottomSheetDialogFragment {
+public class PopupPIN extends DialogFragment {
 
     private EditText editTextNewPIN, editTextConfirmPIN;
     private Button changePIN;

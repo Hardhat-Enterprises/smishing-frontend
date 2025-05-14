@@ -3,8 +3,6 @@ package com.example.smishingdetectionapp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Context;
-import android.content.Intent;
 import android.widget.TextView;
 import android.widget.ImageView;
 
@@ -41,17 +39,6 @@ public class CommunityPostAdapter extends RecyclerView.Adapter<CommunityPostAdap
         holder.postdescription.setText(post.getPostdescription());
         holder.likes.setText(String.valueOf(post.getLikes()));
         holder.comments.setText(String.valueOf(post.getComments()));
-
-        // link to open post
-        holder.itemView.setOnClickListener(v -> {
-            Context context = holder.itemView.getContext();
-            Intent intent = new Intent(context, CommunityOpenPost.class);
-            intent.putExtra("username", post.getUsername());
-            intent.putExtra("posttitle", post.getPosttitle());
-            intent.putExtra("postdescription", post.getPostdescription());
-            intent.putExtra("likes", post.getLikes());
-            context.startActivity(intent);
-        });
     }
 
     @Override

@@ -1,164 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.account.AccountActivity"
-    android:id="@+id/main">
+    tools:context=".ui.account.AccountActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+    <Button
+        android:id="@+id/buttonSessionTimeout2"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/session_timeoutBtn"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dark_modeBtn" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
+    <Button
+        android:id="@+id/passwordBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/password_changeBtn"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Back Button -->
-            <ImageButton
-                android:id="@+id/account_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@null"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription="@string/back_button_alt"
-                app:srcCompat="@drawable/back_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+        android:id="@+id/emailBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/email_changeBtn"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBtn" />
 
-            <!-- Logo -->
-            <ImageView
-                android:id="@+id/HardhatLogo"
-                android:layout_width="112dp"
-                android:layout_height="106dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/hardhat_logo_alt"
-                app:srcCompat="@drawable/new_logo"
-                app:layout_constraintTop_toBottomOf="@id/account_back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+        android:id="@+id/phoneBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/phone_changeBtn"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Title -->
-            <TextView
-                android:id="@+id/AccountText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_page"
-                android:textColor="@color/navy_blue"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+        android:id="@+id/dark_modeBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/dark_modeBtn"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneBtn" />
 
-            <!-- Divider -->
-            <View
-                android:id="@+id/divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/navy_blue"
-                app:layout_constraintTop_toBottomOf="@id/AccountText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+        android:id="@+id/HardhatLogo"
+        android:layout_width="112dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/hardhat_logo_alt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/new_logo" />
 
-            <!-- Buttons (MaterialButtons) -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/passwordBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/password_changeBtn"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="28dp"/>
+    <TextView
+        android:id="@+id/AccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/account_page"
+        android:textColor="@color/navy_blue"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/emailBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/email_changeBtn"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/passwordBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="8dp"/>
+    <ImageButton
+        android:id="@+id/account_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:contentDescription="@string/back_button_alt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/phoneBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_changeBtn"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/emailBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="8dp"/>
+    <Button
+        android:id="@+id/account_delete"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/buttons_rounded_alt"
+        android:text="@string/delete_accountBtn"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/pinBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/pin_changeBtn"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/phoneBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="8dp"/>
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/navy_blue"
+        app:layout_constraintBottom_toTopOf="@+id/account_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSessionTimeout2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/session_timeoutBtn"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/pinBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="8dp"/>
+    <Button
+        android:id="@+id/buttonSignOut"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:text="@string/sign_outBtn"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Sign Out -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSignOut"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_outBtn"
-                android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/buttonSessionTimeout2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp" />
+    <Button
+        android:id="@+id/pinBtn"
+        android:layout_width="175dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttons_rounded"
+        android:gravity="bottom|start"
+        android:text="@string/pin_changeBtn"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailBtn" />
 
-            <!-- Delete Account -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/account_delete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/delete_accountBtn"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/buttonSignOut"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+
