@@ -406,6 +406,7 @@
     <string name="smishing_vs_phishing_content">Smishing is phishing via SMS, tricking users into clicking malicious links or sharing personal info. Phishing typically uses emails or fake websites to do the same. Both aim to steal sensitive data.</string>
 
     <string name="terms_and_conditions_title">Terms And Conditions</string>
+
     <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
     <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
