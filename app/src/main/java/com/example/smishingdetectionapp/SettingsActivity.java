@@ -156,6 +156,14 @@ public class SettingsActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
+
+            } else if (menuItem.getItemId() == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                return true;
+
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                 overridePendingTransition(0, 0);
@@ -226,7 +234,9 @@ public class SettingsActivity extends AppCompatActivity {
         //Community Button to switch to Community page
         Button communityBtn = findViewById(R.id.communityBtn);
         communityBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, CommunityHomeActivity.class));
+            Intent i = new Intent(this, CommunityHomeActivity.class);
+            i.putExtra("source", "settings");
+            startActivity(i);
         });
 
         Button signoutBtn = findViewById(R.id.buttonSignOut);

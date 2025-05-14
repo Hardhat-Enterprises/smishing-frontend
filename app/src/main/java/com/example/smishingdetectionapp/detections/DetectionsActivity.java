@@ -31,14 +31,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.smishingdetectionapp.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
+import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 
 import com.example.smishingdetectionapp.recyclebin.RecycleBinActivity;
 import com.example.smishingdetectionapp.recyclebin.RecycleBinManager;
-
 import com.example.smishingdetectionapp.ui.WidgetDataManager;
 
+import com.example.smishingdetectionapp.SettingsActivity;
+import com.example.smishingdetectionapp.ui.WidgetDataManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedReader;
@@ -77,13 +81,40 @@ public class DetectionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detections);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        nav.setSelectedItemId(R.id.nav_home);
+        nav.setOnItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_news) {
+                startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
+            return false;
         });
+
 
         ImageButton detections_back = findViewById(R.id.detections_back);
         detections_back.setOnClickListener(v -> {
@@ -199,7 +230,7 @@ public class DetectionsActivity extends AppCompatActivity {
 
             cancel.setOnClickListener(v1 -> bottomSheetDialog.dismiss());
             confirm.setOnClickListener(v12 -> {
-                DeleteRow(String.valueOf(id));
+                DeleteRowNew(String.valueOf(id));
                 refreshList();
                 bottomSheetDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
@@ -226,13 +257,32 @@ public class DetectionsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
     public void sortONDB() {
         String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    public void sortNODB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void refreshList() {
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void DeleteRow(String id) {
+        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
+
     }
 
     public void sortNODB() {
@@ -252,7 +302,7 @@ public class DetectionsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void DeleteRow(String id) {
+    public void DeleteRowNew(String id) {
         Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections WHERE _id = ?", new String[]{id});
         if (cursor.moveToFirst()) {
             JSONObject detection = new JSONObject();

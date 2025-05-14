@@ -2,12 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/new_post_root"
+    android:id="@+id/report_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Header Section -->
+    <!-- Header Section (same as CommunityHomeActivity) -->
     <LinearLayout
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
@@ -52,6 +52,7 @@
             app:tabBackground="@color/white" />
     </LinearLayout>
 
+    <!-- Underline Below Tabs -->
     <View
         android:id="@+id/tabDivider"
         android:layout_width="match_parent"
@@ -59,7 +60,7 @@
         android:layout_below="@id/tabNavigationContainer"
         android:background="@color/Dark_blue" />
 
-    <!-- New Post Form -->
+    <!-- Report Form Content -->
     <ScrollView
         android:id="@+id/contentScrollView"
         android:layout_width="match_parent"
@@ -74,50 +75,52 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Centered Title -->
             <TextView
-                android:id="@+id/tvPostTitle"
+                android:id="@+id/tvReportTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create a New Post"
+                android:text="Be a Part of the Solution"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:layout_marginBottom="4dp"/>
 
+            <!-- Centered Subtitle -->
             <TextView
-                android:id="@+id/tvPostSubtitle"
+                android:id="@+id/tvReportSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="The more we share, the stronger we become"
+                android:text="Every report helps us fight smishing better"
                 android:textSize="14sp"
                 android:textAlignment="center"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Post Title Input -->
+            <!-- Phone Number Field -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="Phone Number"
                 android:textStyle="bold"
                 android:paddingBottom="4dp"/>
             <EditText
-                android:id="@+id/etPostTitle"
+                android:id="@+id/etPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="phone"
                 android:background="@drawable/rounded_lightblue_border"
                 android:padding="12dp"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Post Message Input -->
+            <!-- Message Content Field -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Message"
+                android:text="Content of Message"
                 android:textStyle="bold"
                 android:paddingBottom="4dp"/>
             <EditText
-                android:id="@+id/etPostMessage"
+                android:id="@+id/etMessageContent"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:gravity="top"
@@ -126,12 +129,12 @@
                 android:padding="12dp"
                 android:layout_marginBottom="24dp"/>
 
-            <!-- Submit Post Button -->
+            <!-- Submit Button -->
             <Button
-                android:id="@+id/btnSharePost"
+                android:id="@+id/btnReportProtect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Share Your Post"
+                android:text="Report &amp; Protect"
                 android:textStyle="bold"
                 android:backgroundTint="@color/baby_blue"/>
         </LinearLayout>
@@ -145,9 +148,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button" />
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Navigation (same as main) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
