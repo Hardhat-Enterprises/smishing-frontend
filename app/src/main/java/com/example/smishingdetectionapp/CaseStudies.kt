@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smishingdetectionapp.R
+import com.example.smishingdetectionapp.SmishingTrendsActivity
 
 class CaseStudiesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
