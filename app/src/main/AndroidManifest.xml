@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
@@ -65,6 +67,25 @@
             </intent-filter>
         </activity>
         <activity android:name=".detections.YourReportsActivity" android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.onboarding.LoginCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".news.SavedNewsActivity"
+            android:exported="false" />
+
 
         <!-- Onboarding -->
         <activity android:name=".ui.onboarding.OnboardingActivity" android:exported="true" />
@@ -83,7 +104,31 @@
         <activity android:name=".ui.login.LoginActivity" android:exported="true" />
         <activity android:name=".MainActivity" android:exported="true" android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
         <activity android:name=".FeedbackActivity" android:exported="false" />
+        <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
+
+
+        <!-- Your Reports Activity-->
+        <activity
+            android:name=".detections.YourReportsActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" /> <!-- Set LoginActivity is not the launcher activity -->
+
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
+        <activity
+            android:name=".FeedbackActivity"
+            android:exported="false" />
+
         <activity android:name=".CommunityHomeActivity" />
+
+
         <activity android:name=".CommunityOpenPost" />
         <activity android:name=".chat.ChatAssistantActivity" android:exported="false" android:label="@string/chat_assistant_page" />
         <activity android:name=".FaqActivity" android:exported="false" />
@@ -94,6 +139,18 @@
         <activity android:name=".riskmeter.RiskResultActivity" android:exported="true" />
         <activity android:name=".TopicDetailActivity" />
         <activity android:name=".FeedbackHistoryActivity" android:exported="false" />
+
+        <activity
+            android:name=".CommunityPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".riskmeter.RiskScannerTCActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskScannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskResultActivity"/>
 
         <!-- File Provider -->
         <provider
