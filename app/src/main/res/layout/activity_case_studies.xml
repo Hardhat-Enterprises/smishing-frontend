@@ -5,10 +5,22 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient">
 
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button_case"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:src="@drawable/back_button"
+        android:contentDescription="Back"
+        android:importantForAccessibility="no" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_marginTop="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +36,6 @@
                 android:src="@drawable/new_logo"
                 android:contentDescription="Smishing Detection Logo" />
 
-
             <!-- Title -->
             <TextView
                 android:id="@+id/caseStudiesTitle"
@@ -35,11 +46,13 @@
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:layout_marginBottom="4dp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="16dp"
                 android:background="#B0BEC5" />
+
             <TextView
                 android:id="@+id/caseStudiesSubtitle"
                 android:layout_width="wrap_content"
@@ -211,7 +224,6 @@
                 app:backgroundTint="#BDE6F8"
                 android:insetTop="0dp"
                 android:insetBottom="0dp" />
-
 
         </LinearLayout>
     </ScrollView>

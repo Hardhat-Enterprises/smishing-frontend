@@ -43,9 +43,6 @@
         android:theme="@style/Theme.SmishingDetectionApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".SmishingTrendsActivity"
-            android:exported="false" />
         <!-- Splash Activity (first screen that will show) -->
         <activity
             android:name=".SplashScreen"
@@ -60,6 +57,11 @@
         <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
+
+        <activity android:name=".ui.CaseStudiesActivity" />
+
+        <activity android:name=".ui.SmishingTrendsActivity" />
+
         <activity
             android:name=".SmsActivity"
             android:exported="false" />
@@ -193,6 +195,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
+
         </provider>
         <activity android:name=".TopicDetailActivity" />
 

@@ -5,8 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import com.example.smishingdetectionapp.EducationActivity
 import com.example.smishingdetectionapp.R
 
 class CaseStudiesActivity : AppCompatActivity() {
@@ -14,24 +16,20 @@ class CaseStudiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case_studies)
 
-        // Back arrow in the top app bar
-        supportActionBar?.title = "Case Studies"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        // Reference to cards
-        val bankScamCard = findViewById<LinearLayout>(R.id.card_bank_scam)
-        val packageScamCard = findViewById<LinearLayout>(R.id.card_package_scam)
-        val taxScamCard = findViewById<LinearLayout>(R.id.card_tax_scam)
+        // Reference to CardViews
+        val bankScamCard = findViewById<CardView>(R.id.card_bank_scam)
+        val packageScamCard = findViewById<CardView>(R.id.card_package_scam)
+        val taxScamCard = findViewById<CardView>(R.id.card_tax_scam)
 
         // Load animation
         val cardAnim = AnimationUtils.loadAnimation(this, R.anim.fade_slide_up)
 
-        // Start animation
+        // Apply animation
         bankScamCard.startAnimation(cardAnim)
         packageScamCard.startAnimation(cardAnim)
         taxScamCard.startAnimation(cardAnim)
 
-        // OnClick listeners for each card
+        // Card click listeners
         bankScamCard.setOnClickListener {
             openLink("https://www.news.com.au/finance/business/banking/melbourne-woman-loses-40k-house-deposit-after-sophisticated-scam-call/news-story/b7418b0eb10a8a6b64e8e2b61adff7df")
         }
@@ -44,20 +42,29 @@ class CaseStudiesActivity : AppCompatActivity() {
             openLink("https://www.ato.gov.au/online-services/scams-cyber-safety-and-identity-protection/scam-alerts")
         }
 
-        // Trends Button
+        // Navigate to Smishing Trends
         val trendsButton = findViewById<Button>(R.id.btn_trends)
         trendsButton.setOnClickListener {
             val intent = Intent(this, SmishingTrendsActivity::class.java)
             startActivity(intent)
         }
+
+        // Back button (custom icon)
+        val backBtn = findViewById<ImageButton>(R.id.back_button_case)
+        backBtn.setOnClickListener {
+            val intent = Intent(this, EducationActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
-    // 🔧 Move this outside onCreate!
+    // Open external link
     private fun openLink(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
     }
 
+    // Optional: supportActionBar back
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
