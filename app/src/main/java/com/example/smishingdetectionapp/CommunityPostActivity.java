@@ -26,8 +26,8 @@ public class CommunityPostActivity extends AppCompatActivity {
     private RecyclerView postsRecyclerView;
     private CommunityPostAdapter adapter;
     private List<CommunityPost> postList;
+    private EditText searchInput;
 
-    // link to Posts page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +38,7 @@ public class CommunityPostActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Trending"));
         tabLayout.addTab(tabLayout.newTab().setText("Posts"));
         tabLayout.addTab(tabLayout.newTab().setText("Report"));
-
-        tabLayout.getTabAt(1).select(); // Keeps "Posts" tab as selected page
+        tabLayout.getTabAt(1).select();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -57,7 +56,7 @@ public class CommunityPostActivity extends AppCompatActivity {
         });
 
         // Search bar
-        EditText searchInput = findViewById(R.id.searchInput);
+        searchInput = findViewById(R.id.searchInput);
         ImageView clearSearch = findViewById(R.id.clearSearch);
         clearSearch.setOnClickListener(v -> searchInput.setText(""));
 
@@ -65,7 +64,6 @@ public class CommunityPostActivity extends AppCompatActivity {
         postsRecyclerView = findViewById(R.id.postsRecyclerView);
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // mock posts
         postList = new ArrayList<>();
         postList.add(new CommunityPost("User1 • 6hrs ago", "Is this legit: 0280067670?", "This number keeps calling me. Why is it ...", 15, 1));
         postList.add(new CommunityPost("User3 • 1 day ago", "Latest Scammer called 'Albert'", "I have been scammed by this person who ...", 8, 5));
@@ -73,7 +71,7 @@ public class CommunityPostActivity extends AppCompatActivity {
         adapter = new CommunityPostAdapter(postList);
         postsRecyclerView.setAdapter(adapter);
 
-        // Search feature that will filter the typed data
+        // Search filter logic
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -82,13 +80,12 @@ public class CommunityPostActivity extends AppCompatActivity {
             @Override public void afterTextChanged(Editable s) {}
         });
 
-        // Add Post button using floating button to make it more obvious - to be linked in next phase
         FloatingActionButton addPostButton = findViewById(R.id.addPostButton);
         addPostButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Add post clicked!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(CommunityPostActivity.this, CommunityNewPost.class);
+            startActivityForResult(intent, 100);
         });
 
-        // Back button to the settings page
         ImageButton communityBack = findViewById(R.id.community_back);
         if (communityBack != null) {
             communityBack.setOnClickListener(v -> {
@@ -99,7 +96,6 @@ public class CommunityPostActivity extends AppCompatActivity {
             Log.e("CommunityPostActivity", "Back button is null");
         }
 
-        // Bottom navigation
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
@@ -116,5 +112,28 @@ public class CommunityPostActivity extends AppCompatActivity {
             finish();
             return true;
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            String username = data.getStringExtra("username");
+            String title = data.getStringExtra("posttitle");
+            String description = data.getStringExtra("postdescription");
+            int likes = data.getIntExtra("likes", 0);
+            int comments = data.getIntExtra("comments", 0);
+
+            CommunityPost newPost = new CommunityPost(username, title, description, likes, comments);
+            postList.add(0, newPost);
+
+            searchInput.setText(""); // Clear search to show all posts
+            adapter.filter(""); // Refresh filtered list
+            adapter.notifyDataSetChanged();
+            postsRecyclerView.scrollToPosition(0);
+
+            Toast.makeText(this, "New post added!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

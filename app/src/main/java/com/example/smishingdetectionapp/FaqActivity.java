@@ -77,7 +77,9 @@ public class FaqActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.nav_settings) {
-                return true; // Stay on current screen
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                finish();
+                return true;
             }
             return false;
         });

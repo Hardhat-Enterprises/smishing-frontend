@@ -24,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
+import com.example.smishingdetectionapp.ui.WidgetDataManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.SimpleDateFormat;
@@ -105,6 +106,11 @@ public class DetectionsActivity extends AppCompatActivity {
         databaseAccess = new DatabaseAccess(getApplicationContext());
         databaseAccess.open();
         refreshList();
+
+        // Update widget SharedPreferences with real data
+        int detectionCount = databaseAccess.getCounter();
+        WidgetDataManager.updateDetectionCount(this, detectionCount);
+        WidgetDataManager.updateSafeDayStreak(this);
 
         Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
