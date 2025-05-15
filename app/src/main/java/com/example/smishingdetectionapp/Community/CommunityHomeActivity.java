@@ -1,16 +1,19 @@
-package com.example.smishingdetectionapp;
+package com.example.smishingdetectionapp.Community;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smishingdetectionapp.MainActivity;
+import com.example.smishingdetectionapp.NewsActivity;
+import com.example.smishingdetectionapp.R;
+import com.example.smishingdetectionapp.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageButton;
-import com.example.smishingdetectionapp.CommunityReportActivity;
-import com.example.smishingdetectionapp.CommunityPostActivity;
+
 public class CommunityHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

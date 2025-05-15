@@ -407,4 +407,15 @@
     <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
     <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
+    <!--Community search-->
+    <string-array name="search_fields">
+        <item>All</item>
+        <item>Username</item>
+        <item>Date</item>
+        <item>Title</item>
+        <item>Description</item>
+        <item>Likes</item>
+        <item>Comments</item>
+    </string-array>
+
 </resources>

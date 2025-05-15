@@ -8,7 +8,7 @@ import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smishingdetectionapp.CommunityReportActivity;
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;

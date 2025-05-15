@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CommunityHomeActivity">
+    tools:context=".Community.CommunityHomeActivity">
 
     <!-- Community Header -->
     <LinearLayout
@@ -74,20 +74,32 @@
             android:id="@+id/searchInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search"
-            android:paddingEnd="40dp"
+            android:hint="Search posts..."
+            android:paddingEnd="88dp"
             android:padding="12dp"
             android:background="@android:color/transparent" />
 
-        <!--allow search data to be cleared with the button-->
+        <!-- Clear (X) button -->
         <ImageView
             android:id="@+id/clearSearch"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="12dp"
-            android:src="@drawable/close_button" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/close_button"
+            android:contentDescription="Clear search" />
+
+        <!-- Filter icon -->
+        <ImageView
+            android:id="@+id/filterBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toStartOf="@id/clearSearch"
+            android:layout_marginEnd="12dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/filter_svg"
+            android:contentDescription="Filter options" />
     </RelativeLayout>
 
     <!-- Posts List using recyclerview i.e. CommunityPostAdapter.java -->
