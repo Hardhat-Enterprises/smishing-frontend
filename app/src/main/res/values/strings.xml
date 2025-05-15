@@ -384,6 +384,8 @@
     <string name="Forums_and_Report">Forums &amp; Report</string>
     <string name="word_count_format">Words: %1$d / %2$d</string>
     <string name="feedback_success">Feedback submitted successfully!</string>
+    <string name="open_link_checker">Open Safe Link Checker</string>
+
 
     <!-- feedback page  -->
     <string name="enter_name">Your name</string>
