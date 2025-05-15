@@ -46,15 +46,24 @@ public class SplashScreen extends AppCompatActivity {
 
         // Navigate after delay
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            SharedPreferences prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE);
-            boolean onboardingShown = prefs.getBoolean("onboarding_shown", false);
+            SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+
+            boolean isGuest = prefs.getBoolean("isGuest", false);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+            //boolean onboardingShown = prefs.getBoolean("onboarding_shown", false); uncomment when finsihed
+            boolean onboardingShown = false; // <<<< FORCE it to always be false for testing
 
             Intent intent;
+
             if (!onboardingShown) {
+                // First-time user → show onboarding
                 intent = new Intent(SplashScreen.this, OnboardingActivity.class);
-                prefs.edit().putBoolean("onboarding_shown", true).apply(); // Mark onboarding as completed
+            } else if (isGuest || isLoggedIn) {
+                // Already logged in or using Guest Mode
+                intent = new Intent(SplashScreen.this, MainActivity.class);
             } else {
-                intent = new Intent(SplashScreen.this, OnboardingActivity.class);
+                // Show login page
+                intent = new Intent(SplashScreen.this, LoginActivity.class);
             }
 
             startActivity(intent);

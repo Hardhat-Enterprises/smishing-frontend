@@ -3,6 +3,7 @@ package com.example.smishingdetectionapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
 import com.example.smishingdetectionapp.news.NewsAdapter;
 import com.example.smishingdetectionapp.news.NewsRequestManager;
@@ -41,7 +41,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-      
+
         // UI refs
         errorMessage = findViewById(R.id.errorTextView);
         recyclerView = findViewById(R.id.news_recycler_view);
@@ -49,11 +49,22 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         savedNewsButton = findViewById(R.id.btn_saved_news); // new
         progressBar = findViewById(R.id.progressBar);
 
-        // Saved News button click → open SavedNewsActivity
-        savedNewsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(NewsActivity.this, SavedNewsActivity.class);
-            startActivity(intent);
-        });
+        Button savedNewsButton = findViewById(R.id.btn_saved_news);
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        boolean isGuest = prefs.getBoolean("isGuest", false);
+
+        if (isGuest) {
+            savedNewsButton.setAlpha(0.5f);
+            savedNewsButton.setOnClickListener(v ->
+                    Toast.makeText(NewsActivity.this, "Saved News is unavailable in Guest Mode", Toast.LENGTH_SHORT).show()
+            );
+        } else {
+            savedNewsButton.setOnClickListener(v -> {
+                Intent intent = new Intent(NewsActivity.this, SavedNewsActivity.class);
+                startActivity(intent);
+            });
+        }
+
 
         // Bottom navigation setup
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
@@ -65,13 +76,6 @@ public class NewsActivity extends SharedActivity implements SelectListener {
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
-
-            } else if (menuItem.getItemId() == R.id.nav_report) {
-                startActivity(new Intent(this, CommunityReportActivity.class));
-                overridePendingTransition(0,0);
-                finish();
-                return true;
-                
             } else if (id == R.id.nav_news) {
                 nav.setActivated(true);
                 return true;
@@ -85,11 +89,11 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         });
 
 
- 
+
 
         // Fetch articles
         // Initialize ProgressBar and set it visible before fetching data
-        
+
         progressBar.setVisibility(View.VISIBLE);
 
         // Initialize RecyclerView and Adapter ONCE
@@ -98,9 +102,9 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new NewsAdapter(this, this);
         recyclerView.setAdapter(adapter);
-        
+
         fetchArticles();    // first load
-        
+
         /*
         manager = new NewsRequestManager(this);
         manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
@@ -129,14 +133,14 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         // Refresh button click
         refreshButton.setOnClickListener(v -> {
             if (isNetworkConnected()) {
-                fetchArticles(); 
+                fetchArticles();
             } else {
                 Toast.makeText(this, "You Have Lost Network Connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-     /** Connectivity helper */
+    /** Connectivity helper */
     private boolean isNetworkConnected() {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -150,7 +154,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         }
         return false;
     }
-  
+
 
     /** Fetch RSS feed */
     private void fetchArticles() {
@@ -185,7 +189,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         }
     }
 
-       /** Hardware back – bounce to Home tab */
+    /** Hardware back – bounce to Home tab */
     @Override
     public void onBackPressed() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
