@@ -3,6 +3,9 @@ package com.example.smishingdetectionapp.ui.onboarding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.content.SharedPreferences;
+import com.example.smishingdetectionapp.MainActivity;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -21,6 +24,8 @@ public class OnboardingActivity extends AppCompatActivity{
     private OnBoardingSliderAdapter adapter;
     private DotsIndicator dotsIndicator; // Added this line
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,7 @@ public class OnboardingActivity extends AppCompatActivity{
         viewPager = findViewById(R.id.viewPager);
         skipButton = findViewById(R.id.skipButton);
         nextButton = findViewById(R.id.nextButton);
+
         dotsIndicator = findViewById(R.id.dotsIndicator); // Initialize DotsIndicator
 
         List<OnBoardingSlide> slides = new ArrayList<>();
@@ -48,6 +54,7 @@ public class OnboardingActivity extends AppCompatActivity{
             } else {
                 finishIntroSlider();
             }
+
         });
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -63,8 +70,10 @@ public class OnboardingActivity extends AppCompatActivity{
         });
     }
 
-   private void finishIntroSlider() {
-        // Start main app activity
+    private void finishIntroSlider() {
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        prefs.edit().putBoolean("onboarding_shown", true).apply();
+
         startActivity(new Intent(this, LoginCreateActivity.class));
         finish();
     }

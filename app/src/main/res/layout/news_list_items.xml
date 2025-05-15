@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/azure"
-    app:cardCornerRadius="8dp">
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,53 +18,76 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/navy_blue" />
-
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
-
-        <ImageButton
-            android:id="@+id/TTSPlayButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_700"
-            android:contentDescription="@string/play_alert_text"
-            app:srcCompat="@android:drawable/ic_media_play" />
-
+        <!-- ───── Top horizontal row: bookmark + title/date + arrow ───── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="8dp">
+            android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/text_pubDate"
+            <!-- Bookmark icon -->
+            <ImageButton
+                android:id="@+id/bookmarkButton"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/bookmark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_bookmark_border"
+                app:tint="@color/navy_blue" />
+
+            <!-- Title + date (vertical) -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:textColor="@color/grey"
-                android:textSize="14sp" />
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
 
-            <TextView
-                android:id="@+id/ReadMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/click_to_read_more"
-                android:textColor="@color/navy_blue"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold"
+                    android:textColor="@color/navy_blue"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/text_pubDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#9E9E9E"
+                    android:textSize="@dimen/text_size_xsmall"/>
+            </LinearLayout>
+
+            <!-- Right-arrow icon -->
+            <ImageView
+                  android:id="@+id/icon_arrow"
+                android:layout_width="@dimen/icon_size_display"
+                android:layout_height="@dimen/icon_size_display"
+                android:paddingStart="8dp"
+                android:contentDescription="@string/baseline_keyboard_arrow_right_24"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                app:tint="#9E9E9E" />
+
         </LinearLayout>
+
+        <!-- ───── Description (below row) ───── -->
+        <TextView
+           android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="3"
+            android:ellipsize="end" />
+      
     </LinearLayout>
 </androidx.cardview.widget.CardView>

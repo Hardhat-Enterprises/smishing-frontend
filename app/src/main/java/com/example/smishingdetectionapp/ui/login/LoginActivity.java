@@ -2,8 +2,11 @@ package com.example.smishingdetectionapp.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+//import android.text.method.HideReturnsTransformationMethod;
+//import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,9 +92,14 @@ public class LoginActivity extends AppCompatActivity {
         final Button registerButton = binding.registerButton;
         final ImageButton togglePasswordVisibility = binding.togglePasswordVisibility;
         final Button togglePinLogin = binding.togglePinLogin;  // Added missing reference for togglePinLogin button
+        final Button guestLoginButton = binding.guestLoginButton;
+
 
         // Toggle functionality for PIN and Password login
         togglePinLogin.setOnClickListener(v -> {
+            passwordEditText.setText("");
+
+
             if (isPinLogin) {
                 // Switch to password login
                 passwordEditText.setHint("Password");
@@ -107,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                 togglePinLogin.setText("Login with Password");
                 isPinLogin = true;
             }
+            passwordEditText.requestFocus();
         });
 
         // Handle login button click
@@ -135,6 +144,22 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, RegisterMain.class));
             finish();
         });
+
+        // Handle Guest Login button click
+        guestLoginButton.setOnClickListener(v -> {
+            // Save isGuest = true
+            SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+            prefs.edit()
+                    .putBoolean("isGuest", true)
+                    .remove("isLoggedIn") // Ensure clean state
+                    .apply();
+
+            Toast.makeText(LoginActivity.this, "Guest mode activated", Toast.LENGTH_SHORT).show();
+
+            // Go to MainActivity
+            navigateToMainActivity();
+        });
+
 
         // Handle Google Sign-In setup
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -187,31 +212,39 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         /*
         // Password visibility toggle
         togglePasswordVisibility.setOnClickListener(v -> {
-            boolean isPasswordVisible = passwordEditText.getTransformationMethod() == null;
-            if (isPasswordVisible) {
-                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility);
+            // Check the current input type to determine if the password is visible
+            int currentInputType = passwordEditText.getInputType();
+
+            if (currentInputType == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                // If the password is currently hidden (password transformation is applied), show the password
+                passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD); // Show the password
+                togglePasswordVisibility.setImageResource(R.drawable.visibility);  // Open eye icon
             } else {
-                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility);
+                // If the password is currently visible, hide the password
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD); // Hide the password
+                togglePasswordVisibility.setImageResource(R.drawable.visibilityoff);  // Closed eye icon
             }
+
+            // Move the cursor to the end
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
+
     }*/
 
         togglePasswordVisibility.setOnClickListener(v -> {
             if (isPasswordVisible) {
                 // Hide password
                 passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility_hover); // lighter icon
+                togglePasswordVisibility.setImageResource(R.drawable.visibilityoff); // lighter icon
                 isPasswordVisible = false;
             } else {
                 // Show password
                 passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility); // darker icon
+                togglePasswordVisibility.setImageResource(R.drawable.visibility); // darker icon
                 isPasswordVisible = true;
             }
 
@@ -221,6 +254,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    //
 
     // Google Sign-In
     void signInGoogle() {
@@ -303,6 +337,12 @@ public class LoginActivity extends AppCompatActivity {
     private void loginWithPassword(String email, String password) {
         // For testing purposes, simulate a successful login
         Toast.makeText(LoginActivity.this, "Login successful (bypassed for testing)", Toast.LENGTH_SHORT).show();
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        prefs.edit()
+                .putBoolean("isLoggedIn", true)
+                .remove("isGuest") // Remove guest if any
+                .apply();
+
         navigateToMainActivity();
     }
 
@@ -335,9 +375,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isUserLoggedIn() {
-        // Placeholder for checking login state
-        return false;
+        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        return prefs.getBoolean("isLoggedIn", false);
     }
+
 
     private void navigateToMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

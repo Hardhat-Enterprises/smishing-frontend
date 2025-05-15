@@ -14,7 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-   <style name="Theme.SmishingDetectionApp.NoActionBar">
+    <style name="Theme.SmishingDetectionApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/navy_blue</item>
+        <item name="colorSecondary">@color/baby_blue</item>
+    </style>
+
+    <style name="Theme.SmishingDetectionApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -43,7 +48,16 @@
     </style>
 
 
-
+    <!--Text styling-->
+    <style name="Theme.SmishingDetectionApp.Bold">
+    <item name="android:textViewStyle">@style/BoldTextViewStyle</item>
+    <item name="textAppearanceBodyLarge">@style/BoldTextAppearance</item>
+    <item name="textAppearanceBodyMedium">@style/BoldTextAppearance</item>
+    <item name="textAppearanceBodySmall">@style/BoldTextAppearance</item>
+    <item name="android:buttonStyle">@style/BoldButtonStyle</item>
+    <item name="buttonStyle">@style/BoldMaterialButtonStyle</item>
+    <item name="materialSwitchStyle">@style/BoldMaterialSwitch</item>
+    </style>
 
 
 </resources>

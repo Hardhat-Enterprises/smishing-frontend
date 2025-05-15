@@ -27,7 +27,7 @@
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="32dp"
-        android:contentDescription="@string/logo_description"
+        android:contentDescription="@string/hardhat_logo_alt"
         android:src="@drawable/new_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +150,31 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/terms_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/terms_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <CheckBox
+            android:id="@+id/terms_condition_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/terms_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I accept the Terms and Conditions"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="0dp"
@@ -164,20 +189,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/terms_container" />
-
-    <TextView
-        android:id="@+id/terms_conditions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="none"
-        android:linksClickable="true"
-        android:text="Click here to accept the terms and complete registration."
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/terms_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

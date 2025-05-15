@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.SharedPreferences;
 
+import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.ui.Register.RegisterMain;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
@@ -21,6 +23,8 @@ public class LoginCreateActivity extends AppCompatActivity {
         // Reference the buttons from the layout
         Button signUpButton = findViewById(R.id.signUpButton);
         Button loginButton = findViewById(R.id.loginButton);
+        Button guestModeButton = findViewById(R.id.guestModeButton);
+
 
         // click listener for the "Sign Up" button
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +45,18 @@ public class LoginCreateActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button guestButton = findViewById(R.id.guestModeButton);
+        guestButton.setOnClickListener(view -> {
+            SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+            prefs.edit().putBoolean("isGuest", true).apply();
+
+            Intent intent = new Intent(LoginCreateActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
+
+
     }
 
 

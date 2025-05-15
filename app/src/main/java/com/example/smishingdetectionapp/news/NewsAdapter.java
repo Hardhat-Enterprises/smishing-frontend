@@ -1,67 +1,92 @@
 package com.example.smishingdetectionapp.news;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
+
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
 
-import java.util.List;
+/**
+ * Displays RSS articles and lets the user bookmark them.
+ * Uses ListAdapter + DiffUtil so NewsActivity can call submitList().
+ */
+public class NewsAdapter extends ListAdapter<RSSFeedModel.Article, NewsViewHolder> {
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder>{
-    private final List<RSSFeedModel.Article> articles;
     private final SelectListener listener;
-    private String formattedDescription;
+    private final BookmarkManager bookmarkManager;
 
-    // Constructor to initialize the adapter with articles and a click listener.
-    public NewsAdapter(List<RSSFeedModel.Article> articles, SelectListener listener) {
-        this.articles = articles;
-        this.listener = listener;
+    /* ---------- DiffUtil for efficient updates ---------- */
+    private static final DiffUtil.ItemCallback<RSSFeedModel.Article> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<RSSFeedModel.Article>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull RSSFeedModel.Article o,
+                                               @NonNull RSSFeedModel.Article n) {
+                    return o.link.equals(n.link); // link is unique
+                }
+                @Override
+                public boolean areContentsTheSame(@NonNull RSSFeedModel.Article o,
+                                                  @NonNull RSSFeedModel.Article n) {
+                    // include bookmark state so icon toggles properly
+                    return o.equals(n) && o.isBookmarked() == n.isBookmarked();
+                }
+            };
+
+    public NewsAdapter(Context ctx, SelectListener listener) {
+        super(DIFF_CALLBACK);
+        this.listener        = listener;
+        this.bookmarkManager = new BookmarkManager(ctx);
     }
 
-    // Called when RecyclerView needs a new ViewHolder of the given type to represent an item.
+    /* ---------- View-holder creation ---------- */
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the item layout and create the ViewHolder
-        return new NewsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_items, parent, false));
+        return new NewsViewHolder(
+                LayoutInflater.from(parent.getContext())
+                              .inflate(R.layout.news_list_items, parent, false));
     }
 
-    // Called by RecyclerView to display the data at the specified position.
+    /* ---------- Bind article data + bookmark logic ---------- */
     @Override
-    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        // Get the article for the current position
-        RSSFeedModel.Article article = articles.get(position);
+    public void onBindViewHolder(@NonNull NewsViewHolder h, int pos) {
+        RSSFeedModel.Article a = getItem(pos);
 
-        // Bind the article data to the ViewHolder's views
-        holder.text_title.setText(article.title);
-        holder.text_description.setText(article.description);
-        // LOG BELOW GIVES THE DESC STRING AS PLAIN
-        Log.d("DebugTag1", "Value " + article.description);
+        /* Title & description */
+        h.text_title.setText(a.title);
+        String desc = a.description.replaceAll("\\<.*?\\>", "");
+        try { desc = desc.substring(84, desc.length() - 14); }
+        catch (Exception e) { Log.w("NewsAdapter", "Desc trim fallback", e); }
+        h.text_description.setText(desc);
+        h.text_pubDate.setText(a.getFormattedDate());
 
+        /* Bookmark icon */
+        boolean bookmarked = bookmarkManager.isBookmarked(a.link);
+        a.setBookmarked(bookmarked);
+        h.bookmarkButton.setImageResource(bookmarked
+                ? R.drawable.ic_bookmark_filled
+                : R.drawable.ic_bookmark_border);
 
-        formattedDescription = (article.description);
-        // Formats description data to remove HTML tags if they are present. This is specifically setup to format SCAMWATCHs' RSS feed.
-        formattedDescription = formattedDescription.replaceAll("\\<.*?\\>", "");
-        // Removes whitespace and leftover tags
-        formattedDescription = formattedDescription.substring(84, formattedDescription.length() - 14);
-        holder.text_description.setText(formattedDescription);
+        h.bookmarkButton.setOnClickListener(v -> {
+            boolean now = !a.isBookmarked();
+            a.setBookmarked(now);
+            if (now) {
+                bookmarkManager.saveBookmark(a);
+                Toast.makeText(v.getContext(), "Bookmarked", Toast.LENGTH_SHORT).show();
+            } else {
+                bookmarkManager.removeBookmark(a.link);
+                Toast.makeText(v.getContext(), "Bookmark removed", Toast.LENGTH_SHORT).show();
+            }
+            notifyItemChanged(pos);
+        });
 
-        Log.d("DebugTag2", "Value " + holder.text_description);
-
-
-        holder.text_pubDate.setText(article.getFormattedDate());
-
-        // Set a click listener on the card view to handle item clicks
-        holder.cardView.setOnClickListener(v -> listener.OnNewsClicked(article));
-    }
-
-
-    // Returns the total number of items in the data set held by the adapter, MAX 9.
-    public int getItemCount() {
-        return Math.min(articles.size(), 9);
+        h.cardView.setOnClickListener(v -> listener.OnNewsClicked(a));
     }
 }
-

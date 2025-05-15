@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#f5f5f5">
 
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/baby_blue"
+        app:menu="@menu/activity_main_drawer"
+        app:itemPaddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        android:layout_marginBottom="?actionBarSize"
+        android:padding="12dp">
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -15,6 +38,7 @@
 
         <ImageView
             android:id="@+id/logoImage2"
+            android:contentDescription="@string/hardhat_logo_alt"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"
@@ -42,7 +66,7 @@
             android:padding="8dp"
             android:background="#ffffff"
             android:elevation="4dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="?actionBarSize"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp">
 
@@ -66,10 +90,22 @@
             android:text="Back to Home"
             android:background="@drawable/buttons_rounded"
             android:textColor="@android:color/black"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="-50dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:padding="12dp"
             android:textSize="18sp" />
-    </LinearLayout>
-</ScrollView>
+
+        <Button
+            android:id="@+id/shareButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share Score"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:textSize="18sp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

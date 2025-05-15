@@ -380,6 +380,7 @@
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:itemBackground="@color/baby_blue"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/activity_main_drawer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

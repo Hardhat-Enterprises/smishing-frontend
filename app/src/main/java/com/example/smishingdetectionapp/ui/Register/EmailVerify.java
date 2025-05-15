@@ -3,12 +3,21 @@ package com.example.smishingdetectionapp.ui.Register;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,12 +41,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EmailVerify extends AppCompatActivity {
 
-    private String email;
-    private String fullName;
-    private String phoneNumber;
-    private String password;
+    private int otpLength = 4; // make this dynamic if needed
+    private EditText[] otpFields;
     private String verificationCode;
-    private EditText verificationCodeInput;
+    private String email, fullName, phoneNumber, password;
+
+    private TextView resendText;
     private Button verifyButton;
 
     private ActivityEmailVerifyBinding binding;
@@ -45,6 +54,7 @@ public class EmailVerify extends AppCompatActivity {
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
     private String BASE_URL = BuildConfig.SERVERIP;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,42 +85,67 @@ public class EmailVerify extends AppCompatActivity {
         password = intent.getStringExtra("password");
         verificationCode = intent.getStringExtra("code");
 
+        resendText = findViewById(R.id.resendText);
+        verifyButton = findViewById(R.id.continueBtn);
 
+        LinearLayout otpContainer = findViewById(R.id.otpContainer);
+        otpFields = new EditText[otpLength];
 
-        verificationCodeInput = findViewById(R.id.verifytext);
-        verifyButton = findViewById(R.id.confirmBtn);
+        for (int i = 0; i < otpLength; i++) {
+            EditText editText = new EditText(this);
+            editText.setLayoutParams(new LinearLayout.LayoutParams(120, LinearLayout.LayoutParams.WRAP_CONTENT));
+            editText.setGravity(Gravity.CENTER);
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
+            editText.setTextSize(24);
+            editText.setId(View.generateViewId());
 
-        /*
-        verifyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String enteredCode = verificationCodeInput.getText().toString();
-
-
-
-                // Check if the entered code matches the one sent via email
-                if (enteredCode.equals(verificationCode)) {
-                    Snackbar.make(binding.getRoot(), "Email verified successfully.", Snackbar.LENGTH_LONG).show();
-
-
-                    // Proceed with the signup process after successful verification
-                    completeSignup();
-                } else {
-                    Snackbar.make(binding.getRoot(), "Invalid verification code. Please try again.", Snackbar.LENGTH_LONG).show();
+            final int index = i;
+            editText.addTextChangedListener(new TextWatcher() {
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                public void afterTextChanged(Editable s) {
+                    if (s.length() == 1 && index < otpLength - 1) {
+                        otpFields[index + 1].requestFocus();
+                    } else if (s.length() == 0 && index > 0) {
+                        otpFields[index - 1].requestFocus();
+                    }
                 }
-            }
-        });
-         */
+            });
 
-        // Bypass the email verification for testing purposes
+            otpFields[i] = editText;
+            otpContainer.addView(editText);
+        }
+
+        otpFields[0].requestFocus();
+        startTimer(20); // 20 seconds timer
+
+        // Back to login
+        findViewById(R.id.signup_back).setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
+
         verifyButton.setOnClickListener(v -> {
-            // Show a message indicating the verification is skipped
-            Snackbar.make(binding.getRoot(), "Email verified successfully (bypassed for testing).", Snackbar.LENGTH_LONG).show();
-            completeSignup();  // Proceed with signup
+            String enteredOTP = getEnteredOTP();
+            if (enteredOTP.length() != otpLength) {
+                Snackbar.make(findViewById(android.R.id.content), "Please enter full code.", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+
+            // Uncomment below for real verification
+            /*
+            if (!enteredOTP.equals(verificationCode)) {
+                Snackbar.make(findViewById(android.R.id.content), "Invalid verification code.", Snackbar.LENGTH_LONG).show();
+                return;
+            }
+            */
+
+            Snackbar.make(findViewById(android.R.id.content), "Email verified successfully.", Snackbar.LENGTH_LONG).show();
+            completeSignup();
         });
     }
 
-    /*
     private void completeSignup() {
         HashMap<String, String> map = new HashMap<>();
         map.put("FullName", fullName);
@@ -141,15 +176,36 @@ public class EmailVerify extends AppCompatActivity {
         });
     }
 
-     */
-    // Bypassing verification for testing purposes
-    private void completeSignup() {
-        // Directly simulate a successful signup
-        Snackbar.make(binding.getRoot(), "Registration successful (bypassed).", Snackbar.LENGTH_LONG).show();
+    private void startTimer(int seconds) {
+        resendText.setTextColor(Color.GRAY);
+        timer = new CountDownTimer(seconds * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                resendText.setText("Resend code in 00:" + String.format("%02d", millisUntilFinished / 1000));
+            }
 
-        // After successful registration, navigate to MainActivity
-        Intent intent = new Intent(EmailVerify.this, MainActivity.class);
-        startActivity(intent);
+            public void onFinish() {
+                resendText.setText("Resend Code");
+                resendText.setTextColor(Color.BLUE);
+                resendText.setOnClickListener(v -> {
+                    Snackbar.make(findViewById(android.R.id.content), "Code re-sent.", Snackbar.LENGTH_SHORT).show();
+                    resendText.setOnClickListener(null);
+                    startTimer(20);
+                });
+            }
+        }.start();
     }
 
+    private String getEnteredOTP() {
+        StringBuilder otp = new StringBuilder();
+        for (EditText field : otpFields) {
+            otp.append(field.getText().toString());
+        }
+        return otp.toString();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (timer != null) timer.cancel();
+        super.onDestroy();
+    }
 }

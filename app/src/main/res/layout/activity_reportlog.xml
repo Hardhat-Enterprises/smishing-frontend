@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/new_logo"
-        android:contentDescription="@string/logo_description" />
+        android:contentDescription="@string/hardhat_logo_alt" />
 
 
     <TextView
