@@ -60,6 +60,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/sampleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sample Text"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center" />
+
+
+        <Button
+            android:id="@+id/starBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⭐"
+            android:textSize="30sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="onStarButtonClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SettingsText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+
         <Button
             android:id="@+id/filteringBtn"
             android:layout_width="175dp"
@@ -126,8 +150,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/helpBtn"/>
 
-
-
         <Button
             android:id="@+id/aboutUsBtn"
             android:layout_width="175dp"
@@ -142,7 +164,6 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/helpBtn"
             app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
-
 
         <Button
             android:id="@+id/feedbackBtn"
@@ -170,7 +191,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/helpBtn" />
 
-
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
@@ -190,7 +210,6 @@
             app:layout_constraintEnd_toEndOf="@+id/reportBtn"
             app:layout_constraintTop_toTopOf="@+id/reportBtn"
             app:srcCompat="@drawable/report_svg" />
-
 
         <Button
             android:id="@+id/chatAssistantBtn"
@@ -235,27 +254,6 @@
             app:layout_constraintTop_toTopOf="@+id/notificationsBtn"
             app:srcCompat="@drawable/notification_svg1" />
 
-<!--        <Button-->
-<!--            android:id="@+id/YourReportBtn"-->
-<!--            android:layout_width="175dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_marginStart="28dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:background="@drawable/buttons_rounded"-->
-<!--            android:text="Your Reports"-->
-<!--            android:textSize="20sp"-->
-<!--            android:gravity="bottom"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/helpBtn"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/reportBtn" />-->
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView11"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginEnd="4dp"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/YourReportBtn"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/YourReportBtn"-->
-<!--            app:srcCompat="@drawable/outline_archive_24" />-->
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"

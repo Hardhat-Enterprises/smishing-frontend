@@ -33,6 +33,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AlertDialog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         // Inflate layout
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        //tips
+        String[] tipsArray = getResources().getStringArray(R.array.cybersecurity_tips);
 
         // Initialize Retrofit
         retrofit = new Retrofit.Builder()
@@ -198,6 +201,18 @@ public class LoginActivity extends AppCompatActivity {
             }
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Exit the app
+                    super.onBackPressed();
+                })
+                .setNegativeButton("No", null) // dismisses dialog
+                .show();
     }
 
     // Google Sign-In

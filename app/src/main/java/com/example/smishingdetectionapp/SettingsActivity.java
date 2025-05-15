@@ -7,12 +7,19 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+import android.view.View;
+import android.graphics.Color;
+import android.widget.TextView;
+import android.util.TypedValue;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
+
 
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
 import com.example.smishingdetectionapp.news.NewsAdapter;
@@ -20,6 +27,7 @@ import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.concurrent.Executor;
+import java.util.Random;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -55,6 +63,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return false;
         });
+        String[] tips = getResources().getStringArray(R.array.cybersecurity_tips);
+        int randomIndex = new Random().nextInt(tips.length);
+        String randomTip = tips[randomIndex];
+        Toast.makeText(this, "Cybersecurity Tip:\n" + randomTip, Toast.LENGTH_LONG).show();
 
         // Account button to switch to account page with biometric authentication
         Button accountBtn = findViewById(R.id.accountBtn);
@@ -102,6 +114,20 @@ public class SettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(SettingsActivity.this, ChatAssistantActivity.class);
             startActivity(intent);
         });
+// **Add the star button logic below here:**
+        Button starButton = findViewById(R.id.starBtn);  // Ensure this ID is correct and matches the star button in your layout
+        starButton.setOnClickListener(v -> {
+            // Create a PopupMenu for the star button
+            PopupMenu popupMenu = new PopupMenu(SettingsActivity.this, starButton);
+
+            // Inflate the menu from the XML resource file (star_menu.xml)
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.star_menu, popupMenu.getMenu());
+
+            // Show the popup menu
+            popupMenu.show();
+        });
+
 
         //Feedback Button to switch to Feedback page
         Button feedbackBtn = findViewById(R.id.feedbackBtn);

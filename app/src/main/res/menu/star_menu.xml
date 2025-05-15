@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/highlightText"
+        android:title="Highlight Text" />
+
+    <item
+        android:id="@+id/increaseFontSize"
+        android:title="Increase Font Size" />
+
+    <item
+        android:id="@+id/decreaseFontSize"
+        android:title="Decrease Font Size" />
+
+    <item
+        android:id="@+id/increaseContrast"
+        android:title="Increase Text Contrast" />
+
+</menu>

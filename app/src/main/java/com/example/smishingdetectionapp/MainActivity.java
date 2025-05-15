@@ -7,6 +7,14 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
+import androidx.appcompat.app.AlertDialog;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
@@ -97,6 +105,17 @@ public class MainActivity extends SharedActivity {
         // Closing the connection
         databaseAccess.close();
 
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    super.onBackPressed();  // will close MainActivity and exit app
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private boolean areNotificationsEnabled() {
