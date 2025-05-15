@@ -7,6 +7,14 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
+import androidx.appcompat.app.AlertDialog;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
@@ -26,6 +34,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
+    // added by Hash
+    Button emailPwnedButton;
+    // added by Hash
+    Button reportScamButton;
 
 
     @SuppressLint("SetTextI18n")
@@ -77,7 +89,25 @@ public class MainActivity extends SharedActivity {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
         });
+        // added by Hash - Starts
+        emailPwnedButton = findViewById(R.id.pwned_email_check);
+        emailPwnedButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, PwnedEmailCheckerActivity.class));
+        });
 
+        reportScamButton = findViewById(R.id.scam_email_report);
+        reportScamButton.setOnClickListener(v -> {
+            // Handle the click event here
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            // Set the type of intent
+            emailIntent.setType("message/rfc822");
+            // Add email details using putExtra
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mailto:support@example.com"});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject: Spam Alert!");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Sample body for spam mail. Modify body content based on your need");
+            startActivity(emailIntent);
+        });
+        // added by Hash - Ends
 
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
@@ -97,6 +127,17 @@ public class MainActivity extends SharedActivity {
         // Closing the connection
         databaseAccess.close();
 
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    super.onBackPressed();  // will close MainActivity and exit app
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private boolean areNotificationsEnabled() {

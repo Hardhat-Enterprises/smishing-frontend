@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- For Android 12 and below (keeps older devices working) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -31,6 +35,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmishingDetectionApp"
         tools:targetApi="31">
+        <activity
+            android:name=".PwnedEmailCheckerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subscriptionActivity"
+            android:exported="false" />
         <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />

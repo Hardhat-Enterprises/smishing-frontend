@@ -32,7 +32,15 @@
 
     <!-- Error messages -->
     <string name="no_network_message">No available network. Please check your internet connection or try again later</string>
-
+    <!-- Cybersecurity Tips -->
+    <string-array name="cybersecurity_tips">
+        <item>Always verify the sender before clicking any link in an email.</item>
+        <item>Use multi-factor authentication wherever possible.</item>
+        <item>Never share sensitive information over unsecured channels.</item>
+        <item>Update your software regularly to fix security vulnerabilities.</item>
+        <item>Be cautious of unsolicited phone calls asking for personal information.</item>
+        <item>Check for HTTPS in website URLs before entering sensitive data.</item>
+    </string-array>
     <!-- Page Titles -->
     <string name="login_page">Login</string>
     <string name="detections_str">Detections</string>
