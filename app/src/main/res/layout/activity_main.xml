@@ -91,8 +91,8 @@
 
         <TextView
             android:id="@+id/information_box"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="378dp"
+            android:layout_height="149dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="10dp"
@@ -104,6 +104,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <!-- Code Starts Here. Added by Hash -->
+        <Button
+            android:id="@+id/pwned_email_check"
+            android:layout_width="382dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Check Pwned email"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/information_box"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/scam_email_report"
+            android:layout_width="382dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Report scam"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pwned_email_check"
+            tools:ignore="MissingConstraints" />
+        <!-- Code Ends Here. Added by Hash -->
 
         <TextView
             android:id="@+id/new_counter"

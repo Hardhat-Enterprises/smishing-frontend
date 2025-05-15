@@ -35,6 +35,8 @@ public class NewsActivity extends SharedActivity implements SelectListener{
     ProgressBar progressBar;
     TextView errorMessage;
     Button refreshButton;
+    // added by Hash
+    Button subscribeButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,6 +47,8 @@ public class NewsActivity extends SharedActivity implements SelectListener{
         errorMessage = findViewById(R.id.errorTextView);
         recyclerView = findViewById(R.id.news_recycler_view);
         refreshButton = findViewById(R.id.refreshButton);
+		// added by Hash
+        subscribeButton = findViewById(R.id.subscribeButton);
 
         // Navigation at the bottom of the page designed by Damian
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
@@ -97,6 +101,13 @@ public class NewsActivity extends SharedActivity implements SelectListener{
                 recyclerView.setAdapter(adapter);
             }
         });
+
+        // added by Hash - Starts
+        // Set up the subscribe to newsletter button click listener
+        subscribeButton.setOnClickListener(v -> {
+            startActivity(new Intent(NewsActivity.this, subscriptionActivity.class));
+        });
+        // added by Hash - Ends
 
         // Set up the refresh button click listener
         refreshButton.setOnClickListener(v -> {

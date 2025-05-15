@@ -36,6 +36,12 @@
         android:theme="@style/Theme.SmishingDetectionApp"
         tools:targetApi="31">
         <activity
+            android:name=".PwnedEmailCheckerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subscriptionActivity"
+            android:exported="false" />
+        <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
         <activity
