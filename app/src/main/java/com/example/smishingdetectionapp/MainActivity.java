@@ -25,6 +25,7 @@ import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
+import com.example.smishingdetectionapp.utils.BiometricAuthHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends SharedActivity {
@@ -77,8 +78,10 @@ public class MainActivity extends SharedActivity {
 
         Button detections_btn = findViewById(R.id.detections_btn);
         detections_btn.setOnClickListener(v -> {
+
             startActivity(new Intent(this, DetectionsActivity.class));
             finish();
+
         });
 
         Button learnMoreButton = findViewById(R.id.fragment_container);
