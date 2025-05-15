@@ -21,6 +21,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.smishingdetectionapp.CommunityReportActivity;
+
 public class CommunityPostActivity extends AppCompatActivity {
 
     private RecyclerView postsRecyclerView;
@@ -32,6 +34,11 @@ public class CommunityPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communityposts);
+
+        final String origin;
+        String src = getIntent().getStringExtra("source");
+        if (src == null) origin = "home";
+        else origin = src;
 
         // TabLayout
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -45,10 +52,18 @@ public class CommunityPostActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 if (position == 0) {
-                    startActivity(new Intent(CommunityPostActivity.this, CommunityHomeActivity.class));
+                    Intent i = new Intent(CommunityPostActivity.this, CommunityHomeActivity.class);
+                    i.putExtra("source", origin);
+                    startActivity(i);
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (position == 2) {
-                    Toast.makeText(CommunityPostActivity.this, "Report page coming soon :)", Toast.LENGTH_SHORT).show();
+                    // launch ReportActivity
+                    Intent i = new Intent(CommunityPostActivity.this, CommunityReportActivity.class);
+                    i.putExtra("source", origin);
+                    startActivity(i);
+                    overridePendingTransition(0,0);
+                    finish();
                 }
             }
             @Override public void onTabUnselected(TabLayout.Tab tab) {}
@@ -101,6 +116,15 @@ public class CommunityPostActivity extends AppCompatActivity {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+            } else if (id == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
             } else if (id == R.id.nav_settings) {

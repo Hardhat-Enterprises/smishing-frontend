@@ -95,10 +95,35 @@
         <activity android:name=".riskmeter.RiskScannerActivity" android:exported="true" />
         <activity android:name=".riskmeter.RiskResultActivity" android:exported="true" />
 
-        <!-- Chat & FAQ -->
-        <activity android:name=".chat.ChatAssistantActivity" android:exported="false" android:label="@string/chat_assistant_page" />
-        <activity android:name=".FaqActivity" android:exported="false" />
 
+        <activity
+            android:name=".chat.ChatAssistantActivity"
+            android:exported="false"
+            android:label="@string/chat_assistant_page" />
+        <activity
+            android:name=".FaqActivity"
+            android:exported="false" />
+
+
+        <activity android:name=".CommunityNewPost" />
+
+        <activity
+            android:name=".CommunityPostActivity"
+            android:exported="false" />
+
+        <!-- Community Report page -->
+        <activity android:name=".CommunityReportActivity"
+            android:label="Community – Report"/>
+        <activity
+            android:name=".riskmeter.RiskScannerTCActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskScannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskResultActivity"
+            android:exported="true" />
+      
         <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"

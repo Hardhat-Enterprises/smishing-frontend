@@ -13,7 +13,7 @@
     <string name="no_saved_articles">No saved articles yet.</string>
     <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
     <string name="menu_home">Home</string>
-
+    <string name="menu_report">Report</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

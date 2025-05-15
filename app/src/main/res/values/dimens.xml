@@ -96,7 +96,7 @@
     <!-- Images -->
     <dimen name="image_size_small">80dp</dimen>
     <dimen name="image_size_medium">120dp</dimen>
-    <dimen name="image_size_large">160dp</dimen>
+    <dimen name="image_size_large">250dp</dimen>
     <dimen name="image_size_xlarge">200dp</dimen>
 
     <dimen name="toolbar_height">56dp</dimen>
