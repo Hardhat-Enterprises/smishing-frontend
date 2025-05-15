@@ -10,8 +10,16 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!-- leonora start -->
+    <string name="click_smishing_prompt">Click the smishing message!</string>
+    <string name="restart">Restart</string>
+    <string name="next">Next</string>
+    <!-- leonora end -->
+
     <string name="no_saved_articles">No saved articles yet.</string>
     <string name="baseline_keyboard_arrow_right_24">Right Arrow</string>
+
     <string name="menu_home">Home</string>
     <string name="menu_report">Report</string>
     <string name="title_activity_login">LoginActivity</string>

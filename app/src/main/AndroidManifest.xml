@@ -139,9 +139,17 @@
             android:name=".FeedbackActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ForumActivity"
+            android:exported="false" />
+        <!-- leonora start -->
+        <activity
+            android:name=".RealVsSmishGame"
+            android:exported="true" />
+        <!-- leonora end -->
+
         <activity android:name="Community.CommunityHomeActivity" />
         <activity android:name="Community.CommunityOpenPost" />
-
 
         <activity
             android:name=".chat.ChatAssistantActivity"

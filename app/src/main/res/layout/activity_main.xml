@@ -94,6 +94,15 @@
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- leonora start -->
+        <Button
+            android:id="@+id/gameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play Smishing Game"
+            android:layout_centerInParent="true" />
+        <!-- leonora end -->
+
         <TextView
             android:id="@+id/total_detections"
             android:layout_width="180dp"

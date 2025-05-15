@@ -34,6 +34,8 @@ public class MainActivity extends SharedActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        gameButton();  //leonora
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_report, R.id.nav_news, R.id.nav_settings)
                 .build();
@@ -110,6 +112,23 @@ public class MainActivity extends SharedActivity {
 
         new Handler().postDelayed(() -> isBackPressed = false, 2000);
     }
+
+    //leonora start
+    private void startGame(String level) {
+        Intent intent = new Intent(MainActivity.this, RealVsSmishGame.class);
+        intent.putExtra("level", level);
+        startActivity(intent);
+    }
+
+    private void gameButton() {
+        Button gameButton = findViewById(R.id.gameButton);
+
+        gameButton.setOnClickListener( v -> {
+            Intent intent = new Intent(MainActivity.this, RealVsSmishGame.class);
+            startActivity(intent);
+        });
+    }
+    //leonora end
 
     private boolean areNotificationsEnabled() {
         return NotificationManagerCompat.from(this).areNotificationsEnabled();
