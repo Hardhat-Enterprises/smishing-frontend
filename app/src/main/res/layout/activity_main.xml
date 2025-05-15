@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/home_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,32 +17,46 @@
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
+        app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" >
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
         <Button
             android:id="@+id/detections_btn"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="124dp"
             android:background="@drawable/buttons_rounded"
-            android:drawableLeft="@drawable/bell_svg"
-            android:paddingStart="105dp"
-            android:paddingEnd="125dp"
             android:text="@string/detectionsBtn"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/scanner_btn"
+            android:layout_width="182dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="124dp"
+            android:background="@drawable/buttons_rounded"
+            android:text="Risk Scanner"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detections_btn" />
 
         <ImageView
             android:id="@+id/HardhatLogo"
@@ -52,7 +67,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hardhat_logo"
+            app:srcCompat="@drawable/new_logo"
             android:contentDescription="@string/logo_description"/>
 
         <TextView
@@ -71,32 +86,33 @@
 
         <TextView
             android:id="@+id/new_detections"
-            android:layout_width="175dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="181dp"
+            android:layout_height="101dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/total_detections"
-            android:layout_width="175dp"
+            android:layout_width="180dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintBottom_toTopOf="@+id/detections_btn"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
         <TextView
             android:id="@+id/information_box"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="200dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/buttons_rounded"
             app:layout_constraintBottom_toTopOf="@+id/new_detections"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,94 +123,101 @@
 
         <TextView
             android:id="@+id/new_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
             android:textColor="#000000"
-            android:textSize="30dp"
+            android:textSize="50dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:layout_constraintStart_toStartOf="@+id/new_detections"
-            app:layout_constraintTop_toTopOf="@+id/new_detections" />
+            app:layout_constraintEnd_toEndOf="@+id/new_detections"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <TextView
             android:id="@+id/total_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
             android:textColor="#000000"
-            android:textSize="30dp"
+            android:textSize="50sp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:layout_constraintStart_toStartOf="@+id/total_detections"
-            app:layout_constraintTop_toTopOf="@+id/total_detections" />
+            app:layout_constraintEnd_toEndOf="@+id/total_detections"
+            app:layout_constraintBottom_toTopOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
             android:text="@string/new_detectionsTxt"
             android:textColor="#000000"
             android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/new_counter"
             app:layout_constraintBottom_toBottomOf="@+id/new_detections"
-            app:layout_constraintStart_toStartOf="@+id/new_detections" />
+            app:layout_constraintStart_toStartOf="@+id/new_detections"
+            app:layout_constraintEnd_toEndOf="@+id/new_detections"/>
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
             android:text="@string/total_detectionsTxt"
             android:textColor="#000000"
             android:textSize="16sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/total_counter"
             app:layout_constraintBottom_toBottomOf="@+id/total_detections"
-            app:layout_constraintStart_toStartOf="@+id/total_detections" />
+            app:layout_constraintStart_toStartOf="@+id/total_detections"
+            app:layout_constraintEnd_toEndOf="@+id/total_detections" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/total_detections"
             app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:srcCompat="@drawable/baseline_access_time_24"
-            android:contentDescription="@string/time_icon"/>
+            android:contentDescription="@string/baseline_access_time_24_alt"/>
 
         <TextView
             android:id="@+id/information_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="Information"
+            android:layout_width="352dp"
+            android:layout_height="177dp"
+            android:layout_marginTop="8dp"
+            android:text="Welcome to Smishing Detection! Your real-time tool to deter and detect any smishing attacks. Your app is ready to smish."
+            app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintStart_toStartOf="@+id/information_box"
-            app:layout_constraintTop_toTopOf="@+id/information_box" />
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/information_box"
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/information_box"
             app:layout_constraintTop_toTopOf="@+id/information_box"
             app:srcCompat="@drawable/icon_information"
-            android:contentDescription="@string/info_icon"/>
+            android:contentDescription="@string/icon_information_alt"/>
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="@+id/new_detections"
             app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:srcCompat="@drawable/new_5_svg"
-            android:contentDescription="@string/new_icon"
+            android:contentDescription="@string/hardhat_logo_alt"
             app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
 
         <Button
@@ -202,7 +225,7 @@
             android:layout_width="113dp"
             android:layout_height="111dp"
             android:layout_marginStart="149dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
 
 
             android:layout_marginEnd="150dp"
@@ -219,18 +242,30 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/learn_more_btn"
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_container"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_rounded"
             android:text="Learn More About Smishing"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scanner_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detections_btn"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="parent"
+ />
+        <Button
+            android:id="@+id/learn_more_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Learn More"
+            app:layout_constraintTop_toBottomOf="@id/total_counter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

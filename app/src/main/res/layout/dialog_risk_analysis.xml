@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/risk_dialog_background"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/textRiskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Risk Analysis Results \n"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#3C3C3C"
+        android:paddingBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/textRiskMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#3C3C3C"
+            android:textSize="15sp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnCloseDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:backgroundTint="#4B74F0"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="10dp"
+        android:layout_gravity="center" />
+</LinearLayout>

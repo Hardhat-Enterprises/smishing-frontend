@@ -85,11 +85,12 @@
             android:layout_width="112dp"
             android:layout_height="106dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/hardhat_logo_alt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hardhat_logo" />
+            app:srcCompat="@drawable/new_logo" />
 
         <TextView
             android:id="@+id/DashboardText"

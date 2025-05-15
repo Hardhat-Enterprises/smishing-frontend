@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="10dp"/>
-    <solid android:color="@color/baby_blue"/>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Button Background Layer Only -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/baby_blue"/>
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+</layer-list>

@@ -20,6 +20,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageButton
+                android:id="@+id/about_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_button" />
+
 
             <ImageView
                 android:id="@+id/logoImageView"
@@ -27,8 +38,8 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/hardhat_logo"
-                android:contentDescription="App Logo" />
+                android:src="@drawable/new_logo"
+                android:contentDescription="@string/hardhat_logo_alt" />
 
 
             <TextView
