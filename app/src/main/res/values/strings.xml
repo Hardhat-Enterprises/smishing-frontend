@@ -138,6 +138,7 @@
     <string name="font_size">Font Size: 100%</string>
     <string name="account">Account</string>
     <string name="filtering">Filtering</string>
+    <string name="filter_icon_description">Filter settings icon</string>
     <string name="report">Report</string>
     <string name="help">Help</string>
     <string name="about_me">About Me</string>

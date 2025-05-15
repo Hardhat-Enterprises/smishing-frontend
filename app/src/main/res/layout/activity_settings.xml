@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="100dp">
 
-            <!-- Logo -->
             <ImageView
                 android:id="@+id/HardhatLogo"
                 android:layout_width="112dp"
@@ -48,19 +47,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/new_logo" />
 
-            <!-- : imageView7 added here -->
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
-                android:contentDescription="Filter"
+                android:contentDescription="@string/filter_icon_description"
                 android:src="@android:drawable/ic_menu_manage"
                 app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Title -->
             <TextView
                 android:id="@+id/SettingsText"
                 android:layout_width="wrap_content"
@@ -74,7 +71,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Font Scale -->
             <TextView
                 android:id="@+id/textScaleLabel"
                 android:layout_width="wrap_content"
@@ -96,7 +92,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Switches -->
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/dark_mode_switch"
                 android:layout_width="wrap_content"
@@ -115,20 +110,20 @@
                 app:layout_constraintTop_toBottomOf="@id/dark_mode_switch"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Buttons -->
-            <Button android:id="@+id/accountBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/account" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/bold_text" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/filteringBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/filtering" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/accountBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/notificationsBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/notifications" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/filteringBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/reportBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/report" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/notificationsBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/helpBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/help" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/reportBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/chatAssistantBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/chat_assistant" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/helpBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/guardianBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/add_guardian" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/chatAssistantBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/aboutMeBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/about_me" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/guardianBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/feedbackBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/feedback" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/aboutMeBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/aboutUsBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/about_us" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/feedbackBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/communityBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/community" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/aboutUsBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/forumBtn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/forum" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/communityBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
-            <Button android:id="@+id/buttonSignOut" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sign_out" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/forumBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <!-- Buttons (Fixed width and constraints) -->
+            <Button android:id="@+id/accountBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/account" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/bold_text" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/filteringBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/filtering" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/accountBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/notificationsBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/notifications" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/filteringBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/reportBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/report" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/notificationsBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/helpBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/help" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/reportBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/chatAssistantBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/chat_assistant" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/helpBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/guardianBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/add_guardian" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/chatAssistantBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/aboutMeBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/about_me" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/guardianBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/feedbackBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/feedback" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/aboutMeBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/aboutUsBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/about_us" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/feedbackBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/communityBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/community" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/aboutUsBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/forumBtn" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/forum" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/communityBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+            <Button android:id="@+id/buttonSignOut" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/sign_out" android:layout_marginTop="12dp" android:background="@drawable/buttons_rounded" android:gravity="center" android:textSize="18sp" app:layout_constraintTop_toBottomOf="@id/forumBtn" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

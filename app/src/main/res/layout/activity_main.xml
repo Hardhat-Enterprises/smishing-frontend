@@ -257,6 +257,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
  />
+        <Button
+            android:id="@+id/learn_more_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Learn More"
+            app:layout_constraintTop_toBottomOf="@id/total_counter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

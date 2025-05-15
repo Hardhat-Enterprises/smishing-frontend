@@ -4,6 +4,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import java.util.Map;
+import retrofit2.http.Header;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,5 +28,9 @@ public interface ApiService {
 
     @POST("users/{userId}/get-notification-history")
     Call<List<NotificationItem>> getNotificationHistory(@Path("userId") String userId);
+
+    @POST("/user/save-fcm-token")
+    Call<Void> saveFcmToken(@Header("Authorization") String token, @Body Map<String, String> body);
+
 
 }

@@ -3,10 +3,11 @@ package com.example.smishingdetectionapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationManagerCompat;
@@ -19,11 +20,19 @@ import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
-import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
+import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends SharedActivity {
+
     private AppBarConfiguration mAppBarConfiguration;
     private boolean isBackPressed = false;
 
@@ -41,6 +50,21 @@ public class MainActivity extends SharedActivity {
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog();
         }
+
+        // 🔄 Force delete old token and fetch a new one
+        FirebaseMessaging.getInstance().deleteToken().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("FCM", "Token deleted. Now requesting new one...");
+                FirebaseMessaging.getInstance().getToken()
+                        .addOnSuccessListener(token -> {
+                            Log.d("FCM", "New FCM Token (forced): " + token);
+                            sendFcmTokenToServer("your-jwt-token-here", token); // replace token after login
+                        })
+                        .addOnFailureListener(e -> Log.e("FCM", "Failed to get new token", e));
+            } else {
+                Log.e("FCM", "Token deletion failed", task.getException());
+            }
+        });
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setSelectedItemId(R.id.nav_home);
@@ -67,50 +91,36 @@ public class MainActivity extends SharedActivity {
             return false;
         });
 
-        Button debug_btn = findViewById(R.id.debug_btn);
-        debug_btn.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, DebugActivity.class)));
-
-        Button detections_btn = findViewById(R.id.detections_btn);
-        detections_btn.setOnClickListener(v -> {
+        findViewById(R.id.debug_btn).setOnClickListener(v -> startActivity(new Intent(this, DebugActivity.class)));
+        findViewById(R.id.detections_btn).setOnClickListener(v -> {
             startActivity(new Intent(this, DetectionsActivity.class));
             finish();
         });
-
-        Button learnMoreButton = findViewById(R.id.fragment_container);
-        learnMoreButton.setOnClickListener(v -> {
+        findViewById(R.id.learn_more_btn).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
         });
-
-        Button scanner_btn = findViewById(R.id.scanner_btn);
-        scanner_btn.setOnClickListener(v -> {
+        findViewById(R.id.scanner_btn).setOnClickListener(v -> {
             startActivity(new Intent(this, RiskScannerTCActivity.class));
             finish();
         });
 
-        // Database connection
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
-        databaseAccess.open();
-
-        TextView total_count = findViewById(R.id.total_counter);
-        total_count.setText("" + databaseAccess.getCounter());
-
-        databaseAccess.close();
+        DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+        db.open();
+        TextView totalCount = findViewById(R.id.total_counter);
+        totalCount.setText("" + db.getCounter());
+        db.close();
     }
 
-    // Press back twice to exit
     @Override
     public void onBackPressed() {
         if (isBackPressed) {
             super.onBackPressed();
-            return;
+        } else {
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            isBackPressed = true;
+            new Handler().postDelayed(() -> isBackPressed = false, 2000);
         }
-
-        Toast.makeText(this, "press back again to exit", Toast.LENGTH_SHORT).show();
-        isBackPressed = true;
-
-        new Handler().postDelayed(() -> isBackPressed = false, 2000);
     }
 
     private boolean areNotificationsEnabled() {
@@ -118,8 +128,34 @@ public class MainActivity extends SharedActivity {
     }
 
     private void showNotificationPermissionDialog() {
-        NotificationPermissionDialogFragment dialogFragment = new NotificationPermissionDialogFragment();
-        dialogFragment.show(getSupportFragmentManager(), "notificationPermission");
+        NotificationPermissionDialogFragment dialog = new NotificationPermissionDialogFragment();
+        dialog.show(getSupportFragmentManager(), "notificationPermission");
+    }
+
+    private void sendFcmTokenToServer(String jwtToken, String fcmToken) {
+        ApiService apiService = RetrofitClient
+                .getClient("http://10.0.2.2:3000/api/")
+                .create(ApiService.class);
+
+        HashMap<String, String> body = new HashMap<>();
+        body.put("fcmToken", fcmToken);
+
+        Call<Void> call = apiService.saveFcmToken("Bearer " + jwtToken, body);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Log.d("FCM", "FCM token sent to server!");
+                } else {
+                    Log.e("FCM", "Server rejected FCM token");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("FCM", "Error sending FCM token: " + t.getMessage());
+            }
+        });
     }
 
     @Override
