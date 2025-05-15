@@ -11,6 +11,10 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
+        <!-- Centering Helper -->
+
+
+        <!-- Group container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/contentGroup"
             android:layout_width="0dp"
@@ -85,36 +89,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Guest Mode -->
-            <Button
-                android:id="@+id/guestModeButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/buttons_rounded"
-                android:backgroundTint="@color/baby_blue"
-                android:text="Continue as Guest"
-                android:textColor="@color/navy_blue"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                app:layout_constraintTop_toBottomOf="@id/loginButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
             <!-- Terms -->
             <TextView
                 android:id="@+id/termsConditionsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="48dp"
                 android:text="Click here for Terms and Conditions"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/guestModeButton"
+                app:layout_constraintTop_toBottomOf="@id/loginButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
-

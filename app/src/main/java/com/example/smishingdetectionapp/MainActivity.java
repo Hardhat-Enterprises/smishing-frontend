@@ -2,8 +2,6 @@ package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -36,10 +34,6 @@ public class MainActivity extends SharedActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Get Guest Mode flag
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        boolean isGuest = prefs.getBoolean("isGuest", false);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_report, R.id.nav_news, R.id.nav_settings)
@@ -75,6 +69,7 @@ public class MainActivity extends SharedActivity {
         });
 
         Button debug_btn = findViewById(R.id.debug_btn);
+
         if (isGuest) {
             debug_btn.setAlpha(0.5f);
             debug_btn.setOnClickListener(v -> {
@@ -85,18 +80,15 @@ public class MainActivity extends SharedActivity {
                 startActivity(new Intent(MainActivity.this, DebugActivity.class));
             });
         }
+        debug_btn.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, DebugActivity.class)));
+
 
         Button detections_btn = findViewById(R.id.detections_btn);
-        if (isGuest) {
-            detections_btn.setAlpha(0.5f);
-            detections_btn.setOnClickListener(v -> {
-                Toast.makeText(MainActivity.this, "Detections are disabled in Guest Mode", Toast.LENGTH_SHORT).show();
-            });
-        } else {
-            detections_btn.setOnClickListener(v -> {
-                startActivity(new Intent(this, DetectionsActivity.class));
-            });
-        }
+        detections_btn.setOnClickListener(v -> {
+            startActivity(new Intent(this, DetectionsActivity.class));
+            finish();
+        });
 
         Button learnMoreButton = findViewById(R.id.fragment_container);
         learnMoreButton.setOnClickListener(v -> {
@@ -128,9 +120,16 @@ public class MainActivity extends SharedActivity {
             });
         }
 
+        scanner_btn.setOnClickListener(v -> {
+            startActivity(new Intent(this, RiskScannerTCActivity.class));
+            finish();
+        });
+
+
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
+
 
         TextView infoText = findViewById(R.id.information_text);
         TextView total_count = findViewById(R.id.total_counter);
@@ -141,6 +140,9 @@ public class MainActivity extends SharedActivity {
             infoText.setText("Welcome to Smishing Detection! Your real-time tool to deter and detect smishing attacks.\nYour app is ready to smish.");
             total_count.setText("" + databaseAccess.getCounter());
         }
+
+        TextView total_count = findViewById(R.id.total_counter);
+        total_count.setText("" + databaseAccess.getCounter());
 
         databaseAccess.close();
     }

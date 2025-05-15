@@ -3,7 +3,6 @@ package com.example.smishingdetectionapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
@@ -50,22 +49,11 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         savedNewsButton = findViewById(R.id.btn_saved_news); // new
         progressBar = findViewById(R.id.progressBar);
 
-        Button savedNewsButton = findViewById(R.id.btn_saved_news);
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        boolean isGuest = prefs.getBoolean("isGuest", false);
-
-        if (isGuest) {
-            savedNewsButton.setAlpha(0.5f);
-            savedNewsButton.setOnClickListener(v ->
-                    Toast.makeText(NewsActivity.this, "Saved News is unavailable in Guest Mode", Toast.LENGTH_SHORT).show()
-            );
-        } else {
-            savedNewsButton.setOnClickListener(v -> {
-                Intent intent = new Intent(NewsActivity.this, SavedNewsActivity.class);
-                startActivity(intent);
-            });
-        }
-
+        // Saved News button click → open SavedNewsActivity
+        savedNewsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(NewsActivity.this, SavedNewsActivity.class);
+            startActivity(intent);
+        });
 
         // Bottom navigation setup
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);

@@ -56,15 +56,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isGuest = getSharedPreferences("AppPrefs", MODE_PRIVATE).getBoolean("isGuest", false);
         boolean isBold = prefs.getBoolean("bold_text_enabled", false);
         setTheme(isBold ? R.style.Theme_SmishingDetectionApp_Bold : R.style.Theme_SmishingDetectionApp);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        View guestBanner = findViewById(R.id.guestBanner);
-        if (guestBanner != null) {
-            guestBanner.setVisibility(isGuest ? View.VISIBLE : View.GONE);
-        }
 
         darkModeSwitch = findViewById(R.id.dark_mode_switch);
 
@@ -188,12 +183,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Account button to switch to account page with biometric authentication
         Button accountBtn = findViewById(R.id.accountBtn);
-        if (!isGuest) {
-            accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
-        } else {
-            restrictButton(accountBtn, "Account access is disabled in Guest Mode");
-        }
-
+        accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
 
         //Filtering button to switch to Smishing rules page
         ImageView filteringBtn = findViewById(R.id.imageView7);
@@ -205,14 +195,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Report button to switch to reporting page
         Button reportBtn = findViewById(R.id.reportBtn);
-        if (!isGuest) {
-            reportBtn.setOnClickListener(v -> {
-                startActivity(new Intent(this, ReportingActivity.class));
-            });
-        } else {
-            restrictButton(reportBtn, "Reporting is not available in Guest Mode");
-        }
-
+        reportBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, ReportingActivity.class));
+        });
         //Notification button to switch to notification page
 
         // Help button to switch to Help page
@@ -236,36 +221,24 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         Button chatAssistantBtn = findViewById(R.id.chatAssistantBtn);
-        if (!isGuest) {
-            chatAssistantBtn.setOnClickListener(v -> {
-                Intent intent = new Intent(SettingsActivity.this, ChatAssistantActivity.class);
-                startActivity(intent);
-            });
-        } else {
-            restrictButton(chatAssistantBtn, "Chat Assistant is unavailable in Guest Mode");
-        }
-
+        chatAssistantBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, ChatAssistantActivity.class);
+            startActivity(intent);
+        });
 
         //Feedback Button to switch to Feedback page
         Button feedbackBtn = findViewById(R.id.feedbackBtn);
-        if (!isGuest) {
-            feedbackBtn.setOnClickListener(v -> {
-                startActivity(new Intent(this, FeedbackActivity.class));
-            });
-        } else {
-            restrictButton(feedbackBtn, "Feedback is disabled in Guest Mode");
-        }
-
+        feedbackBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, FeedbackActivity.class));
+        });
 
         //Community Button to switch to Community page
         Button communityBtn = findViewById(R.id.communityBtn);
-        if (!isGuest) {
-            communityBtn.setOnClickListener(v -> {
-                startActivity(new Intent(this, CommunityHomeActivity.class));
-            });
-        } else {
-            restrictButton(communityBtn, "Community access is restricted in Guest Mode");
-        }
+        communityBtn.setOnClickListener(v -> {
+            Intent i = new Intent(this, CommunityHomeActivity.class);
+            i.putExtra("source", "settings");
+            startActivity(i);
+        });
 
         Button signoutBtn = findViewById(R.id.buttonSignOut);
         Intent intent = new Intent(this, LoginActivity.class);
@@ -280,13 +253,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
         dialogSignout.setOnClickListener(v -> {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            SharedPreferences loginPrefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-            loginPrefs.edit()
-                    .remove("isGuest")
-                    .remove("isLoggedIn")
-                    .apply();
-
             startActivity(intent);
             finish();
         });
@@ -294,7 +260,6 @@ public class SettingsActivity extends AppCompatActivity {
         signoutBtn.setOnClickListener(v -> {
             dialog.show();
         });
-
         if (isTaskRoot()) {
             prefs.edit().putBoolean("cold_start", true).apply();
             prefs.edit().remove("scroll_pos").apply();
@@ -493,16 +458,6 @@ public class SettingsActivity extends AppCompatActivity {
         );
     }
 
-    private void restrictButton(Button button, String message) {
-        if (button != null) {
-            button.setAlpha(0.5f);
-            button.setOnClickListener(v ->
-                    Toast.makeText(SettingsActivity.this, message, Toast.LENGTH_SHORT).show()
-            );
-        }
-    }
-
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -515,8 +470,6 @@ public class SettingsActivity extends AppCompatActivity {
         if (!prefs.getBoolean("cold_start", false)) {
             restoreScrollPosition();
         }
-
-
     }
 }
 
