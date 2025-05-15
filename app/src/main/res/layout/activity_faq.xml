@@ -57,16 +57,20 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/baby_blue"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:itemIconSize="25dp"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="?android:attr/windowBackground"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:itemBackground="@color/baby_blue"
         app:itemHorizontalTranslationEnabled="false"
+        app:itemIconSize="25dp"
+        app:itemIconTint="@color/black"
         app:itemPaddingBottom="10dp"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/activity_main_drawer"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

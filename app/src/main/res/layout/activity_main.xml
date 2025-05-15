@@ -21,7 +21,6 @@
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
         app:labelVisibilityMode="labeled"
-        app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
 
@@ -62,13 +61,13 @@
                 android:layout_width="112dp"
                 android:layout_height="106dp"
                 android:layout_marginTop="20dp"
+                android:contentDescription="@string/logo_description"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:contentDescription="@string/logo_description"
                 app:srcCompat="@drawable/new_logo" />
 
-            <!-- App Title -->
+            <!-- Dashboard Title -->
             <TextView
                 android:id="@+id/DashboardText"
                 android:layout_width="wrap_content"
@@ -78,11 +77,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/navy_blue"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
+                app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Info Box -->
+            <!-- Information Box -->
             <TextView
                 android:id="@+id/information_box"
                 android:layout_width="0dp"
@@ -91,7 +90,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/buttons_rounded"
-                app:layout_constraintTop_toBottomOf="@+id/DashboardText"
+                app:layout_constraintTop_toBottomOf="@id/DashboardText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -102,11 +101,11 @@
                 android:text="Welcome to Smishing Detection! Your real-time tool to deter and detect smishing attacks. Your app is ready to smish."
                 android:textSize="22sp"
                 android:gravity="center"
+                android:layout_margin="16dp"
                 app:layout_constraintTop_toTopOf="@id/information_box"
                 app:layout_constraintBottom_toBottomOf="@id/information_box"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="16dp" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -114,101 +113,106 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
-                app:layout_constraintTop_toTopOf="@id/information_box"
-                app:layout_constraintEnd_toEndOf="@id/information_box"
+                android:contentDescription="@string/icon_information_alt"
                 app:srcCompat="@drawable/icon_information"
-                android:contentDescription="@string/icon_information_alt" />
+                app:layout_constraintTop_toTopOf="@id/information_box"
+                app:layout_constraintEnd_toEndOf="@id/information_box" />
 
-            <!-- Detection Counters -->
-            <TextView
-                android:id="@+id/new_detections"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
+            <!-- New Detections Frame -->
+            <FrameLayout
+                android:id="@+id/new_detections_container"
+                android:layout_width="181dp"
+                android:layout_height="101dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/counter_buttons"
-                app:layout_constraintTop_toBottomOf="@+id/information_box"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/total_detections" />
+                app:layout_constraintTop_toBottomOf="@id/information_box"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/total_detections"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/new_detections"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/counter_buttons" />
+
+                <TextView
+                    android:id="@+id/new_counter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="50dp"
+                    android:gravity="center"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_detectionsTxt"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:layout_gravity="bottom"/>
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="4dp"
+                    app:srcCompat="@drawable/new_5_svg"
+                    android:contentDescription="@string/hardhat_logo_alt"/>
+            </FrameLayout>
+
+            <!-- Total Detections Frame -->
+            <FrameLayout
+                android:id="@+id/total_detections_container"
+                android:layout_width="180dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/counter_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/new_detections"
-                app:layout_constraintTop_toBottomOf="@+id/information_box" />
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/information_box"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:id="@+id/new_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="30dp"
-                android:textColor="#000000"
-                app:layout_constraintTop_toTopOf="@id/new_detections"
-                app:layout_constraintStart_toStartOf="@id/new_detections"
-                android:layout_margin="4dp" />
+                <TextView
+                    android:id="@+id/total_detections"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/counter_buttons" />
 
-            <TextView
-                android:id="@+id/total_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="15"
-                android:textSize="30dp"
-                android:textColor="#000000"
-                app:layout_constraintTop_toTopOf="@id/total_detections"
-                app:layout_constraintStart_toStartOf="@id/total_detections"
-                android:layout_margin="4dp" />
+                <TextView
+                    android:id="@+id/total_counter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="50sp"
+                    android:gravity="center"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="10dp"/>
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_detectionsTxt"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@id/new_detections"
-                app:layout_constraintStart_toStartOf="@id/new_detections"
-                android:layout_marginBottom="4dp" />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_detectionsTxt"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:layout_gravity="bottom"/>
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total_detectionsTxt"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@id/total_detections"
-                app:layout_constraintStart_toStartOf="@id/total_detections"
-                android:layout_marginBottom="4dp" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:contentDescription="@string/time_icon"
-                app:srcCompat="@drawable/baseline_access_time_24"
-                app:layout_constraintTop_toTopOf="@id/total_detections"
-                app:layout_constraintEnd_toEndOf="@id/total_detections" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:contentDescription="@string/new_icon"
-                app:srcCompat="@drawable/new_5_svg"
-                app:layout_constraintTop_toTopOf="@id/new_detections"
-                app:layout_constraintEnd_toEndOf="@id/new_detections" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="4dp"
+                    app:srcCompat="@drawable/baseline_access_time_24"
+                    android:contentDescription="@string/baseline_access_time_24_alt"/>
+            </FrameLayout>
 
             <!-- Main Action Buttons -->
             <Button
@@ -219,7 +223,7 @@
                 android:textSize="18sp"
                 android:layout_margin="16dp"
                 android:background="@drawable/buttons_rounded"
-                app:layout_constraintTop_toBottomOf="@id/total_detections"
+                app:layout_constraintTop_toBottomOf="@id/total_detections_container"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -251,7 +255,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- ✅ NEW Live Radar Button -->
+            <!-- Live Smishing Radar Button -->
             <Button
                 android:id="@+id/radar_btn"
                 android:layout_width="0dp"
@@ -265,6 +269,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
 </RelativeLayout>
