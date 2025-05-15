@@ -91,7 +91,8 @@
         <activity android:name=".QuizesActivity"/>
         <!-- Your Reports Activity-->
         <activity android:name=".detections.YourReportsActivity" android:exported="false"/>
-      
+        <activity android:name=".SimilarMessageActivity" />
+
         <activity
             android:name=".SettingsActivity"
             android:exported="false" /> <!-- Set LoginActivity as the launcher activity -->
@@ -118,6 +119,7 @@
             android:name=".chat.ChatAssistantActivity"
             android:exported="false"
             android:label="@string/chat_assistant_page" />
+        <activity android:name=".SimilarDetectionsActivity" />
     </application>
 
 </manifest>

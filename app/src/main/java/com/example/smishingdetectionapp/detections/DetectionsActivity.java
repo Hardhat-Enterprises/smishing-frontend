@@ -1,3 +1,4 @@
+
 package com.example.smishingdetectionapp.detections;
 
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -51,20 +53,16 @@ public class DetectionsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    //Sorting Oldest Date to Newest Date
     public void sortONDB(){
         String searchQuery = ("SELECT * FROM Detections ORDER BY Date ASC");
-
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-    //Sorting Newest Date to Oldest Date
     public void sortNODB(){
         String searchQuery = ("SELECT * FROM Detections ORDER BY Date DESC");
-
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
@@ -73,7 +71,6 @@ public class DetectionsActivity extends AppCompatActivity {
 
     public void refreshList(){
         String searchQuery = ("SELECT * FROM Detections");
-
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
@@ -82,10 +79,8 @@ public class DetectionsActivity extends AppCompatActivity {
 
     public void DeleteRow(String id) {
         DatabaseAccess.db.delete("Detections", "_id" + "=" + id, null);
-
     }
 
-    //Saving checked state of radio buttons in the filter popup.
     private void saveRadioButtonState(String key, boolean isChecked) {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -93,7 +88,6 @@ public class DetectionsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    //function used to clear checked state of radio buttons
     private void clearRadioButtonState() {
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -101,7 +95,6 @@ public class DetectionsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    //clears checked state of radio buttons when app is closed.
     @Override
     protected void onStop() {
         super.onStop();
@@ -119,15 +112,13 @@ public class DetectionsActivity extends AppCompatActivity {
             return insets;
         });
 
-        //Back button to go back to main dashboard
         ImageButton detections_back = findViewById(R.id.detections_back);
         detections_back.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-            clearRadioButtonState(); //clears checked state of radio buttons when returning to app dashboard.
+            clearRadioButtonState();
         });
 
-        //Defining and populating listview from database.
         detectionLV = findViewById(R.id.lvDetectionsList);
         databaseAccess = new DatabaseAccess(getApplicationContext());
         databaseAccess.open();
@@ -136,11 +127,8 @@ public class DetectionsActivity extends AppCompatActivity {
 
         EditText detSearch = findViewById(R.id.searchTextBox);
         detSearch.addTextChangedListener(new TextWatcher() {
-
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -149,35 +137,31 @@ public class DetectionsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         SharedPreferences sharedPreferences = getSharedPreferences("RadioPrefs", MODE_PRIVATE);
         ImageView filterBtn = findViewById(R.id.filterBtn);
         filterBtn.setOnClickListener(v -> {
-            //determining which activity to show when filter button is clicked.
             View bottomSheet = getLayoutInflater().inflate(R.layout.popup_filter, null);
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DetectionsActivity.this);
             bottomSheetDialog.setContentView(bottomSheet);
             bottomSheetDialog.show();
 
-            //defining radio buttons in the PopupFilter window.
             RadioButton OldToNewRB = bottomSheet.findViewById(R.id.OldToNewRB);
             RadioButton NewToOldRB = bottomSheet.findViewById(R.id.NewToOldRB);
 
-            //default value of radio buttons before saving preference.
             OldToNewRB.setChecked(sharedPreferences.getBoolean("OldToNewRB", false));
             NewToOldRB.setChecked(sharedPreferences.getBoolean("NewToOldRB", false));
 
             OldToNewRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if(OldToNewRB.isChecked()) {
-                    NewToOldRB.setChecked(false);//unchecks other radio button when this one is checked.
-                    sortONDB();//uses sort function
+                    NewToOldRB.setChecked(false);
+                    sortONDB();
                 }
-                saveRadioButtonState("OldToNewRB", isChecked); //saves the radio button checked state.
+                saveRadioButtonState("OldToNewRB", isChecked);
             });
+
             NewToOldRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if(NewToOldRB.isChecked()) {
                     OldToNewRB.setChecked(false);
@@ -185,7 +169,6 @@ public class DetectionsActivity extends AppCompatActivity {
                 }
                 saveRadioButtonState("NewToOldRB", isChecked);
             });
-
         });
 
         detectionLV.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -206,9 +189,41 @@ public class DetectionsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
             });
 
-
             return true;
         });
+
+        // ====== NEW CODE: Similar Detections Logic ======
+        TextView similarDetectionsTextView = findViewById(R.id.similarDetectionsTextView);
+
+        String[] keywords = {"bank", "click", "OTP", "verify","won","Prize"};
+
+        List<String> allDetectionMessages = new ArrayList<>();
+        Cursor messageCursor = DatabaseAccess.db.rawQuery("SELECT Message FROM Detections", null);
+        if (messageCursor != null && messageCursor.moveToFirst()) {
+            do {
+                int msgColIndex = messageCursor.getColumnIndex("Message");
+                if (msgColIndex != -1) {
+                    String message = messageCursor.getString(msgColIndex);
+                    if (message != null) {
+                        allDetectionMessages.add(message);
+                    }
+                }
+
+            } while (messageCursor.moveToNext());
+            messageCursor.close();
+        }
+
+        int similarCount = 0;
+        for (String message : allDetectionMessages) {
+            for (String keyword : keywords) {
+                if (message.toLowerCase().contains(keyword.toLowerCase())) {
+                    similarCount++;
+                    break;
+                }
+            }
+        }
+        similarDetectionsTextView.setText("Similar Detections: " + similarCount);
+
 
     }
 }

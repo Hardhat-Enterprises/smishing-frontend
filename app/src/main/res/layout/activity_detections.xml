@@ -5,19 +5,36 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".detections.DetectionsActivity">
 
+    <!-- Back Button with fixed size and accessibility -->
+    <ImageButton
+        android:id="@+id/detections_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Go back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button"
+        app:tint="@android:color/black" />
+
+    <!-- Logo -->
     <ImageView
         android:id="@+id/HardhatLogo"
         android:layout_width="112dp"
         android:layout_height="106dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintTop_toBottomOf="@id/detections_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:srcCompat="@drawable/hardhat_logo" />
 
+    <!-- Title Text -->
     <TextView
         android:id="@+id/DetectionsText"
         android:layout_width="wrap_content"
@@ -27,62 +44,64 @@
         android:textColor="@color/navy_blue"
         android:textSize="32sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HardhatLogo" />
+        app:layout_constraintHorizontal_bias="0.5" />
 
-    <ImageButton
-        android:id="@+id/detections_back"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_button" />
 
-    <ListView
-        android:id="@+id/lvDetectionsList"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10sp"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
+    <TextView
+        android:id="@+id/similarDetectionsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="12dp"
+        android:background="#ADD8E6"
+        android:padding="8dp"
+        android:text="Similar Detections: 7"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTextBox"
-        android:focusable="false">
-
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@id/DetectionsText" />
 
     <EditText
         android:id="@+id/searchTextBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="48dp"
         android:hint="Search detections..."
         android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/filterBtn"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/similarDetectionsTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DetectionsText" />
+        app:layout_constraintEnd_toStartOf="@id/filterBtn" />
 
+    <!-- Filter Button with fixed touch size -->
     <ImageView
         android:id="@+id/filterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/DetectionsText"
-        app:srcCompat="@drawable/filter_svg" />
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="Filter button"
+        android:padding="8dp"
+        app:srcCompat="@drawable/filter_svg"
+        app:layout_constraintTop_toBottomOf="@id/similarDetectionsTextView"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Detection List -->
+    <ListView
+        android:id="@+id/lvDetectionsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:padding="10dp"
+        android:focusable="false"
+        app:layout_constraintTop_toBottomOf="@id/searchTextBox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
