@@ -60,5 +60,13 @@ public class EducationActivity extends AppCompatActivity {
             Intent intent = new Intent(EducationActivity.this, QuizesActivity.class);
             startActivity(intent);
         });
+
+        // Quick guide button
+        Button tutorialBtn = findViewById(R.id.tutorialBtn);
+        tutorialBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EducationActivity.this, MainActivity.class);
+            intent.putExtra("showGuide", true); 
+            startActivity(intent);
+        });
     }
 }

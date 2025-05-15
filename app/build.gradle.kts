@@ -120,6 +120,7 @@ dependencies {
     implementation ("com.tbuonomo:dotsindicator:4.3")
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("com.itextpdf:itextg:5.5.10")
+    implementation("com.getkeepsafe.taptargetview:taptargetview:1.13.3")
 
 }
 
