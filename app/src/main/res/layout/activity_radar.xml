@@ -1,115 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F0F2">
+    android:background="#F4F9FF">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <!-- 🔙 Back Button -->
         <ImageButton
             android:id="@+id/radar_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:background="@null"
-            android:contentDescription="@string/back"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="4dp"
+            android:layout_gravity="start"
             app:srcCompat="@drawable/back_button" />
 
         <!-- 📡 Title -->
         <TextView
             android:id="@+id/radarTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/radar_back"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:text="Live Smishing Radar"
+            android:text="📡 Smishing Radar"
+            android:textColor="#0D47A1"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#0D47A1" />
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
-        <!-- 🔵 Radar Lottie -->
+        <!-- 🔵 Lottie Animation -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieRadar"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:layout_below="@id/radarTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            app:lottie_fileName="radar_sweep.json"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
+            app:lottie_fileName="radar_sweep.json"
             app:lottie_speed="1" />
 
-        <!-- 🌐 Region Filter -->
+        <!-- 📂 Category Filter -->
+        <TextView
+            android:id="@+id/categoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter by Category"
+            android:textColor="#263238"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp" />
+
         <Spinner
             android:id="@+id/region_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lottieRadar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/spinner_background" />
 
-        <!-- 💡 Tip Banner -->
+        <!-- 🧠 Enhanced Tip Banner -->
         <TextView
             android:id="@+id/tipBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/region_filter"
-            android:layout_marginTop="12dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:text="🚫 Never click on unknown links."
+            android:text=" Stay cautious of fake SMS links!"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#D32F2F"
-            android:background="#FFFBE6"
-            android:textSize="15sp" />
+            android:textColor="#0D47A1"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/tip_banner_bg"
+            android:elevation="5dp" />
 
         <!-- 📢 Radar Status -->
         <TextView
             android:id="@+id/radarStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tipBanner"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
             android:text="Scanning for threats..."
-            android:textColor="#000000"
             android:textSize="17sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp" />
 
         <!-- ⏰ Timestamp -->
         <TextView
             android:id="@+id/lastUpdated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/radarStatus"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp"
             android:text="Last updated: --:--"
-            android:textColor="#666"
-            android:textSize="13sp" />
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp" />
 
-        <!-- 📊 Bar Chart -->
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChart"
+        <!-- 📊 Bar Chart Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/barCard"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:layout_below="@id/lastUpdated"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="5dp"
+            android:backgroundTint="#FFFFFF">
 
-        <!-- 🍩 Pie Chart -->
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:padding="10dp"
+                android:background="@android:color/white" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- 🍩 Pie Chart Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pieCard"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:layout_below="@id/barChart"
-            android:layout_marginTop="16dp"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="5dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="#FFFFFF">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:padding="10dp"
+                android:background="@android:color/white" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 </ScrollView>

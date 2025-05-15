@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- 🌐 Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -22,73 +22,42 @@
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
 
+    <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation">
-        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/detections_btn"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="124dp"
-            android:background="@drawable/buttons_rounded"
-            android:text="@string/detectionsBtn"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/scanner_btn"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/scanner_btn"
-            android:layout_width="182dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="124dp"
-            android:background="@drawable/buttons_rounded"
-            android:text="Risk Scanner"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/detections_btn" />
-
+        <!-- 🧠 App Logo and Title -->
         <ImageView
             android:id="@+id/HardhatLogo"
             android:layout_width="112dp"
             android:layout_height="106dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/logo_description"
             app:srcCompat="@drawable/new_logo"
-            android:contentDescription="@string/logo_description"/>
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/DashboardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/app_name"
             android:textSize="32sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            android:textColor="@color/navy_blue"
+            app:layout_constraintTop_toBottomOf="@id/HardhatLogo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HardhatLogo"
-            android:textColor="@color/navy_blue" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- 🧾 Info Box -->
         <TextView
             android:id="@+id/information_box"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_margin="16dp"
             android:background="@drawable/buttons_rounded"
             app:layout_constraintTop_toBottomOf="@id/DashboardText"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +67,7 @@
             android:id="@+id/information_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_margin="4dp"
             android:text="Information"
             app:layout_constraintStart_toStartOf="@+id/information_box"
             app:layout_constraintTop_toTopOf="@+id/information_box" />
@@ -108,19 +76,19 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/information_box"
-            app:layout_constraintTop_toTopOf="@+id/information_box"
+            android:layout_margin="4dp"
+            android:contentDescription="@string/info_icon"
             app:srcCompat="@drawable/icon_information"
-            android:contentDescription="@string/info_icon" />
+            app:layout_constraintTop_toTopOf="@+id/information_box"
+            app:layout_constraintEnd_toEndOf="@+id/information_box" />
 
+        <!-- 📊 Detection Counters -->
         <TextView
             android:id="@+id/new_detections"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintTop_toBottomOf="@+id/information_box"
@@ -131,8 +99,8 @@
             android:id="@+id/total_detections"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/counter_buttons"
             app:layout_constraintTop_toBottomOf="@+id/information_box"
             app:layout_constraintStart_toEndOf="@+id/new_detections"
@@ -142,35 +110,33 @@
             android:id="@+id/new_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
-            android:textColor="#000000"
             android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="@+id/new_detections"
-            app:layout_constraintTop_toTopOf="@+id/new_detections" />
+            android:textColor="#000000"
+            android:layout_margin="4dp"
+            app:layout_constraintTop_toTopOf="@+id/new_detections"
+            app:layout_constraintStart_toStartOf="@+id/new_detections" />
 
         <TextView
             android:id="@+id/total_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
             android:text="0"
-            android:textColor="#000000"
             android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="@+id/total_detections"
-            app:layout_constraintTop_toTopOf="@+id/total_detections" />
+            android:textColor="#000000"
+            android:layout_margin="4dp"
+            app:layout_constraintTop_toTopOf="@+id/total_detections"
+            app:layout_constraintStart_toStartOf="@+id/total_detections" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/new_detectionsTxt"
+            android:textSize="16sp"
+            android:textColor="#000000"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:text="@string/new_detectionsTxt"
-            android:textColor="#000000"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/new_detections"
             app:layout_constraintStart_toStartOf="@+id/new_detections" />
 
@@ -178,24 +144,25 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/total_detectionsTxt"
+            android:textSize="16sp"
+            android:textColor="#000000"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
-            android:text="@string/total_detectionsTxt"
-            android:textColor="#000000"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/total_detections"
             app:layout_constraintStart_toStartOf="@+id/total_detections" />
 
+        <!-- 🕐 Icons -->
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/total_detections"
-            app:layout_constraintTop_toTopOf="@+id/total_detections"
             app:srcCompat="@drawable/baseline_access_time_24"
-            android:contentDescription="@string/time_icon" />
+            android:contentDescription="@string/time_icon"
+            app:layout_constraintTop_toTopOf="@+id/total_detections"
+            app:layout_constraintEnd_toEndOf="@+id/total_detections" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -203,11 +170,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/new_detections"
-            app:layout_constraintTop_toTopOf="@+id/new_detections"
             app:srcCompat="@drawable/new_5_svg"
-            android:contentDescription="@string/new_icon" />
+            android:contentDescription="@string/new_icon"
+            app:layout_constraintTop_toTopOf="@+id/new_detections"
+            app:layout_constraintEnd_toEndOf="@+id/new_detections" />
 
+        <!-- 📍 Buttons Below Metrics -->
         <Button
             android:id="@+id/detections_btn"
             android:layout_width="0dp"
@@ -218,7 +186,7 @@
             android:background="@drawable/buttons_rounded"
             android:text="@string/detectionsBtn"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/total_detections"
+            app:layout_constraintTop_toBottomOf="@id/total_detections"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -238,31 +206,67 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/debug_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Debug"
-            android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/radar_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <Button
             android:id="@+id/radar_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_rounded"
             android:text="Live Smishing Radar"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/learn_more_btn"
+            app:layout_constraintTop_toBottomOf="@id/learn_more_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- New: Button Row Below Radar -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/shortcut_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="90dp"
+            app:layout_constraintTop_toBottomOf="@id/radar_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <Button
+                android:id="@+id/detections_shortcut_btn"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/buttons_rounded"
+                android:text="@string/detectionsBtn"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/scanner_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/scanner_btn"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/buttons_rounded"
+                android:text="Risk Scanner"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/detections_shortcut_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 🛠 Hidden Debug Button -->
+        <Button
+            android:id="@+id/debug_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debug"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/shortcut_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
