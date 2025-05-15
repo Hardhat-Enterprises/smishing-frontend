@@ -61,6 +61,13 @@ public class MainActivity extends SharedActivity {
             }
             return false;
         });
+        Button similarDetectionsBtn = findViewById(R.id.similar_detections_btn);
+        similarDetectionsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SimilarDetectionsActivity.class);
+
+            startActivity(intent);
+        });
+
 
         Button debug_btn = findViewById(R.id.debug_btn);
         debug_btn.setOnClickListener(v ->
