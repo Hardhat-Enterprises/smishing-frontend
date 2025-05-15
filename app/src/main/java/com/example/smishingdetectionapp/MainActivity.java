@@ -20,6 +20,7 @@ import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
 import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
+import com.example.smishingdetectionapp.ui.AnalyzeMessageActivity;
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -87,6 +88,15 @@ public class MainActivity extends SharedActivity {
         scanner_btn.setOnClickListener(v -> {
             startActivity(new Intent(this, RiskScannerTCActivity.class));
             finish();
+        });
+
+
+
+
+        // Analyze Message Button
+        binding.btnAnalyzeMessage.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AnalyzeMessageActivity.class);
+            startActivity(intent);
         });
 
         // Database connection
