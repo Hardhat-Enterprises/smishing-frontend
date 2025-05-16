@@ -439,7 +439,25 @@
     <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
     <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
-    <!--Community search-->
+    <string name="label_username">👤 Username</string>
+    <string name="label_feedback_message">💬 Feedback message</string>
+    <string name="options_menu">More options</string>
+
+<string name="feedback_success">Feedback submitted successfully!</string>
+<string name="back_button">Back</string>
+<string name="edit_feedback">Edit Feedback</string>
+<string name="delete_selected">Delete Selected</string>
+<string name="cancel">Cancel</string>
+<string name="select">Select</string>
+<string name="update_feedback">Update Feedback</string>
+<string name="view_recent_feedback">View Recent Feedback</string>
+<string name="rating_very_bad">😞 Very Bad</string>
+<string name="rating_bad">😕 Bad</string>
+<string name="rating_okay">😐 Okay</string>
+<string name="rating_good">🙂 Good</string>
+<string name="rating_excellent">🤩 Excellent</string>
+<string name="word_count_format">Words: %1$d / %2$d</string>
+    <!--Communsearch-->
     <string-array name="search_fields">
         <item>All</item>
         <item>Username</item>
