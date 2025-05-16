@@ -22,6 +22,8 @@ import androidx.core.content.ContextCompat;
 import com.example.smishingdetectionapp.Community.CommunityHomeActivity;
 import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
+import com.example.smishingdetectionapp.dashboard.DashboardActivity;
+import com.example.smishingdetectionapp.news.NewsAdapter;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -163,6 +165,11 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
                 return true;
 
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
             } else if (menuItem.getItemId() == R.id.nav_report) {
                 Intent i = new Intent(this, CommunityReportActivity.class);
                 i.putExtra("source", "home");

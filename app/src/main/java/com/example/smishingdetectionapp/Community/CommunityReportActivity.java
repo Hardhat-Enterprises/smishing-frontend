@@ -12,6 +12,7 @@
 
     import com.example.smishingdetectionapp.NewsActivity;
     import com.example.smishingdetectionapp.R;
+    import com.example.smishingdetectionapp.dashboard.DashboardActivity;
     import com.google.android.material.bottomnavigation.BottomNavigationView;
     import com.google.android.material.tabs.TabLayout;
 
@@ -89,6 +90,7 @@
                 Intent intent;
                 int id = item.getItemId();
                 if      (id == R.id.nav_home)     intent = new Intent(this, MainActivity.class);
+                else if (id == R.id.nav_dashboard) intent = new Intent(this, DashboardActivity.class);
                 else if (id == R.id.nav_news)     intent = new Intent(this, NewsActivity.class);
                 else if (id == R.id.nav_settings) intent = new Intent(this, SettingsActivity.class);
                 else return false;

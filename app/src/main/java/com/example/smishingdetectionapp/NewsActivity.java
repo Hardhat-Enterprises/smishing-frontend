@@ -23,6 +23,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smishingdetectionapp.dashboard.DashboardActivity;
 import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.news.Models.RSSFeedModel;
 import com.example.smishingdetectionapp.news.NewsAdapter;
@@ -73,12 +74,16 @@ public class NewsActivity extends SharedActivity implements SelectListener {
                 finish();
                 return true;
 
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
             } else if (menuItem.getItemId() == R.id.nav_report) {
                 startActivity(new Intent(this, CommunityReportActivity.class));
                 overridePendingTransition(0,0);
                 finish();
                 return true;
-                
+
             } else if (id == R.id.nav_news) {
                 nav.setActivated(true);
                 return true;
