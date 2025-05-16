@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -52,6 +54,8 @@
         <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
+
+
         <activity
             android:name=".SmsActivity"
             android:exported="false" />
@@ -125,6 +129,12 @@
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
         <activity android:name=".QuizesActivity" />
+
+        <activity android:name=".QuestionActivity" /> <!-- Added activity -->
+        <activity android:name=".VirusTotalScanner" />
+        <activity android:name=".ReportDetailsActivity" />
+
+
 
         <!-- Your Reports Activity-->
         <activity

@@ -77,6 +77,13 @@ public class MainActivity extends SharedActivity {
             startActivity(new Intent(this, DetectionsActivity.class));
             finish();
         });
+        Button questionOfTheDayButton = findViewById(R.id.qotd_btn);
+
+        questionOfTheDayButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            startActivity(intent);
+        });
+
 
 
         Button learnMoreButton = findViewById(R.id.fragment_container);
@@ -91,7 +98,7 @@ public class MainActivity extends SharedActivity {
             finish();
         });
 
-        // Database connection
+        // Database connectio (n)
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
 
