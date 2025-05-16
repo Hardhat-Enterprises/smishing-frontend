@@ -24,6 +24,10 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_community_report);
 
+            EditText etPhone = findViewById(R.id.etPhoneNumber);
+            EditText etMessage = findViewById(R.id.etMessageContent);
+            Button btnReport = findViewById(R.id.btnReportProtect);
+
             final String source =
                     (getIntent().getStringExtra("source") == null
                             ? "home"
@@ -79,7 +83,6 @@
                 Log.e("CommunityReportActivity", "Back button is null");
             }
 
-
             // BottomNavigationView: identical to CommunityHomeActivity’s
             BottomNavigationView nav = findViewById(R.id.bottom_navigation);
 
@@ -98,19 +101,21 @@
                 return true;
             });
 
-            // Form logic: validate & toast
-            EditText etPhone   = findViewById(R.id.etPhoneNumber);
-            EditText etMessage = findViewById(R.id.etMessageContent);
-            Button btnReport   = findViewById(R.id.btnReportProtect);
-
+            // Submit button to link to database
             btnReport.setOnClickListener(v -> {
                 String phone = etPhone.getText().toString().trim();
-                String msg   = etMessage.getText().toString().trim();
+                String msg = etMessage.getText().toString().trim();
                 if (phone.isEmpty() || msg.isEmpty()) {
-                    Toast.makeText(this, "Please fill out both fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please help us complete this", Toast.LENGTH_SHORT).show();
                 } else {
+                    CommunityDatabaseAccess dbAccess = new CommunityDatabaseAccess(this);
+                    dbAccess.open();
+                    dbAccess.insertOrUpdateReport(phone, msg);
+                    dbAccess.close();
+
                     Toast.makeText(this, "Report submitted. Thank you!", Toast.LENGTH_LONG).show();
-                    // TODO: send to backend
+                    etPhone.setText("");
+                    etMessage.setText("");
                 }
             });
         }

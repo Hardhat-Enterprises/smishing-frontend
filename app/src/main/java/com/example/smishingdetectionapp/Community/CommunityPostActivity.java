@@ -40,6 +40,7 @@ public class CommunityPostActivity extends AppCompatActivity {
         dbAccess = new CommunityDatabaseAccess(this);
         dbAccess.open();
 
+        // Pre-loaded post
         if (dbAccess.isEmpty()) {
             int id1 = (int) dbAccess.insertPost(new CommunityPost(-1, "User1", "2025-05-11",
                     "Is this legit: 0280067670?",
