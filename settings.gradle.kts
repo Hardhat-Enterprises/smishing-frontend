@@ -16,6 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            setUrl("https://maven.localazy.com/repository/release/")
+        }
     }
 }
 

@@ -124,3 +124,17 @@ dependencies {
 
 }
 
+apply(plugin = "com.localazy.gradle")
+
+localazy {
+    writeKey = "a6949959005165748491-9135dcf2c52cddc18279e4a8d15ff18b7b18d10f058377a29622afff90b4c781"
+    readKey = "a6949959005165748491-4c44db84b080b18aac084226fdc9fd4841eaf6692814df8f0607913953a8af0f"
+}
+
+//// Disable the section below (from here to >) to prevent the automatic execution of `./gradlew uploadStrings`, which helps conserve translation usage count and ensure uploaded strings translation completed before download
+//afterEvaluate {
+//    tasks.named("localazyDownloadStringsDebug") {
+//        dependsOn("uploadStrings")
+//    }
+//}
+//// < End of the section to disable auto-run.

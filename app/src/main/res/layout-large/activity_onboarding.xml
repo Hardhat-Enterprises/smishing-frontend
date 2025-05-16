@@ -40,12 +40,26 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
+        android:id="@+id/btn_change_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_language_globe"
+        android:drawableRight="@drawable/ic_caret_down"
+        android:maxWidth="200dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+        app:layout_constraintEnd_toStartOf="@+id/skipButton"
+        app:layout_constraintStart_toEndOf="@+id/logoImage"
+        app:layout_constraintTop_toTopOf="@+id/viewPager"
+        app:layout_constraintVertical_bias="0.06999999" />
+
+    <Button
         android:id="@+id/skipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
         android:background="@android:color/transparent"
-        android:text="Skip"
+        android:text="@string/skip"
         android:textColor="@color/grey"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +72,7 @@
         android:layout_margin="@dimen/margin_xlarge"
         android:background="@drawable/buttons_rounded"
         android:backgroundTint="@color/baby_blue"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="@color/navy_blue"
         android:textSize="@dimen/text_size_medium"
         android:elevation="@dimen/elevation_high"

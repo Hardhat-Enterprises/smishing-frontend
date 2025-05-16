@@ -57,7 +57,7 @@
         android:id="@+id/scanningText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scanning..."
+        android:text="@string/scanning"
         android:textColor="#E63B3B3B"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -108,7 +108,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Age Group"
+                        android:text="@string/age_group"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -116,7 +116,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Applying age-based risk adjustments."
+                        android:text="@string/applying_age_based_risk_adjustments"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -148,7 +148,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Default SMS App Check"
+                        android:text="@string/default_sms_app_check"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -156,7 +156,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if your SMS app is a trusted provider like Google or Samsung Messages."
+                        android:text="@string/checking_if_your_sms_app_is_a_trusted_provider_like_google_or_samsung_messages"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -188,7 +188,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Security App Installed"
+                        android:text="@string/security_app_installed"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -196,7 +196,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if trusted security apps like Norton or Bitdefender are installed."
+                        android:text="@string/checking_if_trusted_security_apps_like_norton_or_bitdefender_are_installed"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -228,7 +228,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Spam Filter Installed"
+                        android:text="@string/spam_filter_installed"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -236,7 +236,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if your phone has spam protection like Google Messages."
+                        android:text="@string/checking_if_your_phone_has_spam_protection_like_google_messages"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -268,7 +268,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Device Lock Security"
+                        android:text="@string/device_lock_security"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -276,7 +276,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if your device has a secure lock like PIN or password."
+                        android:text="@string/checking_if_your_device_has_a_secure_lock_like_pin_or_password"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -308,7 +308,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unknown App Installation"
+                        android:text="@string/unknown_app_installation"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -316,7 +316,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if your device allows app installs from unknown sources."
+                        android:text="@string/checking_if_your_device_allows_app_installs_from_unknown_sources"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -348,7 +348,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SMS Behaviour"
+                        android:text="@string/sms_behaviour"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -356,7 +356,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Checking if your phone receives suspicious SMS messages."
+                        android:text="@string/checking_if_your_phone_receives_suspicious_sms_messages"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>

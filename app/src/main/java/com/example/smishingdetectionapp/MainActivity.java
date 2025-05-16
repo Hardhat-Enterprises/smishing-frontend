@@ -2,6 +2,11 @@ package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import java.time.LocalDate;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
@@ -37,10 +42,15 @@ public class MainActivity extends SharedActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+      
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
+            if (checkSelfPermission(android.Manifest.permission.FOREGROUND_SERVICE_DATA_SYNC) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.FOREGROUND_SERVICE_DATA_SYNC}, 1);
+            }
+        }
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_report, R.id.nav_news, R.id.nav_settings)
-                .build();
+                R.id.nav_home, R.id.nav_report, R.id.nav_news, R.id.nav_settings).build();
 
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog();
