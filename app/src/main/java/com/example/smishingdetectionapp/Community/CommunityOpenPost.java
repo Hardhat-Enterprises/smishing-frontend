@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.SettingsActivity;
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -31,13 +33,15 @@ import java.util.Random;
 
 public class CommunityOpenPost extends AppCompatActivity {
 
-    private TextView titleText, descText, usernameText, timestampText, likesText, commentsText;
+    private TextView titleText, descText, usernameText, timestampText, likesText, commentsText, shareText;
     private EditText commentInput;
     private Button addCommentBtn;
     private ImageButton backButton;
-    private ImageView likeIcon;
+    private ImageView likeIcon, shareIcon;
+
     private RecyclerView commentRecycler;
     private TabLayout tabLayout;
+
     private BottomNavigationView bottomNav;
     private List<CommunityComment> commentList = new ArrayList<>();
     private CommunityDatabaseAccess dbAccess;
@@ -65,6 +69,26 @@ public class CommunityOpenPost extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         likeIcon = findViewById(R.id.likeIcon);
         backButton = findViewById(R.id.community_back);
+
+        shareText = findViewById(R.id.shareText);
+        shareIcon = findViewById(R.id.shareIcon);
+
+        View.OnClickListener shareClick = v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            String textToShare = usernameText.getText().toString()
+                    + " wrote:\n\n"
+                    + descText.getText().toString();
+            shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+            startActivity(Intent.createChooser(shareIntent, "Share post via"));
+
+        };
+
+        shareIcon.setOnClickListener(shareClick);
+        shareText.setOnClickListener(shareClick);
+
+
+
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
@@ -139,7 +163,16 @@ public class CommunityOpenPost extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                handleTabSelection(tab.getPosition());
+                int position = tab.getPosition();
+                if (position == 0) {
+                    startActivity(new Intent(CommunityOpenPost.this, CommunityHomeActivity.class));
+                    overridePendingTransition(0,0);
+                    finish();
+                } else if (position == 2) {
+                    startActivity(new Intent(CommunityOpenPost.this, CommunityReportActivity.class));
+                    overridePendingTransition(0,0);
+                    finish();
+                }
             }
 
             @Override
@@ -166,6 +199,8 @@ public class CommunityOpenPost extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 startActivity(new Intent(this, MainActivity.class));
+            } else if (id == R.id.nav_report) {               // ← NEW
+                startActivity(new Intent(this, CommunityReportActivity.class));
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(this, NewsActivity.class));
             } else if (id == R.id.nav_settings) {

@@ -103,6 +103,7 @@ public class CommunityPostActivity extends AppCompatActivity {
             @Override public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
                     startActivity(new Intent(CommunityPostActivity.this, CommunityHomeActivity.class));
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (tab.getPosition() == 2) {
                     Intent intent = new Intent(CommunityPostActivity.this, CommunityReportActivity.class);
