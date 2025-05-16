@@ -3,10 +3,10 @@ package com.example.smishingdetectionapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationManagerCompat;
@@ -19,6 +19,7 @@ import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
+import com.example.smishingdetectionapp.RadarActivity;
 import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -69,8 +70,9 @@ public class MainActivity extends SharedActivity {
         });
 
         Button debug_btn = findViewById(R.id.debug_btn);
-        debug_btn.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, DebugActivity.class)));
+        debug_btn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, DebugActivity.class));
+        });
 
         Button detections_btn = findViewById(R.id.detections_btn);
         detections_btn.setOnClickListener(v -> {
@@ -91,11 +93,19 @@ public class MainActivity extends SharedActivity {
             finish();
         });
 
+        Button radarBtn = findViewById(R.id.radar_btn);
+        radarBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, RadarActivity.class));
+        });
+
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
 
+        TextView infoText = findViewById(R.id.information_text);
         TextView total_count = findViewById(R.id.total_counter);
+
+        infoText.setText("Welcome to Smishing Detection! Your real-time tool to deter and detect smishing attacks.\nYour app is ready to smish.");
         total_count.setText("" + databaseAccess.getCounter());
 
         databaseAccess.close();
