@@ -53,6 +53,10 @@ public class MainActivity extends SharedActivity {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 return true;
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
             } else if (id == R.id.nav_report) {
                 startActivity(new Intent(getApplicationContext(), CommunityReportActivity.class));
                 overridePendingTransition(0, 0);

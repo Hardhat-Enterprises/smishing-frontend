@@ -73,21 +73,17 @@ public class NewsActivity extends SharedActivity implements SelectListener {
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
-<<<<<<< HEAD
+
             } else if (id == R.id.nav_dashboard) {
                 startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
-=======
-
             } else if (menuItem.getItemId() == R.id.nav_report) {
                 startActivity(new Intent(this, CommunityReportActivity.class));
                 overridePendingTransition(0,0);
                 finish();
                 return true;
-                
->>>>>>> upstream/dev
+
             } else if (id == R.id.nav_news) {
                 nav.setActivated(true);
                 return true;
