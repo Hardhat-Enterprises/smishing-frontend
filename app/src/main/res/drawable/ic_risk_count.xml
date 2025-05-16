@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Shield base -->
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M12,1L3,5v6c0,5.6 3.84,10.74 9,12 5.16,-1.26 9,-6.4 9,-12V5l-9,-4z" />
+
+    <!-- Alert exclamation mark -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M13,14h-2v-5h2v5zm0,4h-2v-2h2v2z" />
+</vector>
