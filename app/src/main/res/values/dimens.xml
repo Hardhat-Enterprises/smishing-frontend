@@ -5,5 +5,155 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="bottom_navigation_height">56dp</dimen>
-</resources>
+    <dimen name="bottom_navigation_height">60dp</dimen>  <!-- 60dp -->
+
+    <!-- Universal Dimensions (Commonly used across the app) -->
+    <!-- Margins -->
+    <dimen name="margin_xsmall">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+    <dimen name="margin_xxlarge">50dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_xsmall">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+    <dimen name="padding_xxlarge">48dp</dimen>
+    
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_xsmall">10sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_xxlarge">32sp</dimen>
+
+    <!-- Element Sizes -->
+    <dimen name="element_height_small">40dp</dimen>
+    <dimen name="element_height_medium">48dp</dimen>
+    <dimen name="element_height_large">56dp</dimen>
+    <dimen name="element_height_xlarge">100dp</dimen>
+    <dimen name="element_width_small">100dp</dimen>
+    <dimen name="element_width_medium">200dp</dimen>
+    <dimen name="element_width_large">300dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="icon_size_large">32dp</dimen>
+    <dimen name="icon_size_xlarge">48dp</dimen>
+
+    <!-- Border Radius -->
+    <dimen name="border_radius_small">4dp</dimen>
+    <dimen name="border_radius_medium">8dp</dimen>
+    <dimen name="border_radius_large">16dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_small">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_large">8dp</dimen>
+
+    <!-- Specific Use Cases (Login Screen, Button Sizes, etc.) -->
+    <!-- Login Screen -->
+    <dimen name="login_logo_size">120dp</dimen>
+    <dimen name="login_input_height">48dp</dimen>
+    <dimen name="login_input_width">280dp</dimen>
+    <dimen name="login_button_height">48dp</dimen>
+    <dimen name="login_button_width">200dp</dimen>
+
+    <!-- Home Screen -->
+    <dimen name="detections_tv_height">100dp</dimen>
+
+    <!-- Intro Screen -->
+    <dimen name="margin_top">100dp</dimen>
+    <dimen name="intro_image_height">360dp</dimen>
+
+    <!-- Buttons -->
+    <dimen name="button_height_small">40dp</dimen>
+    <dimen name="button_height_medium">48dp</dimen>
+    <dimen name="button_height_large">56dp</dimen>
+    <dimen name="button_width_small">100dp</dimen>
+    <dimen name="button_width_medium">200dp</dimen>
+    <dimen name="button_width_large">300dp</dimen>
+    <dimen name="button_primary_height">48dp</dimen>
+    <dimen name="button_secondary_height">40dp</dimen>
+    <dimen name="button_tertiary_height">32dp</dimen>
+
+    <!-- Onboarding Sreen -->
+    <dimen name="onborading_logo_size">80dp</dimen>
+    <dimen name="dot_size">12dp</dimen>
+    <dimen name="elevation_high">100dp</dimen>
+    <dimen name="translation_z">5dp</dimen>
+
+    <!-- Logo -->
+    <dimen name="logo_width">112dp</dimen>
+    <dimen name="logo_height">106dp</dimen>
+
+    <!-- Images -->
+    <dimen name="image_size_small">80dp</dimen>
+    <dimen name="image_size_medium">120dp</dimen>
+    <dimen name="image_size_large">250dp</dimen>
+    <dimen name="image_size_xlarge">200dp</dimen>
+
+    <dimen name="toolbar_height">56dp</dimen>
+
+    <dimen name="actionbar_height">56dp</dimen>
+
+    <!-- Nav -->
+    <dimen name="nav_drawer_width">280dp</dimen>
+    <dimen name="nav_bar_height">48dp</dimen>
+    <!-- Card -->
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <!-- Dialog -->
+    <dimen name="dialog_width">300dp</dimen>
+    <dimen name="dialog_height">400dp</dimen>
+    <!--  Grid -->
+    <dimen name="grid_item_width">100dp</dimen>
+    <dimen name="grid_item_height">100dp</dimen>
+    <dimen name="grid_item_spacing">8dp</dimen>
+
+    <dimen name="fab_size">56dp</dimen>
+
+    <!-- Dynamic Screen Size Handling -->
+    <!-- Define sizes for different screen densities or sizes -->
+    <!-- These can be overridden in separate values folders for different configurations -->
+
+
+     <!-- Dynamic Screen Size Handling - News Screen and Item List -->
+    <dimen name="icon_size_micro">12sp</dimen>
+    <dimen name="icon_size_headline">28sp</dimen>
+    <dimen name="icon_size_display">34sp</dimen>
+
+    <dimen name="margin_tablet">120dp</dimen>
+    <dimen name="padding_tablet">56dp</dimen>
+<!-- Text sizes -->
+    <dimen name="text_size_micro">12sp</dimen>
+    <dimen name="text_size_headline">28sp</dimen>
+    <dimen name="text_size_display">34sp</dimen>
+
+    <!-- Margins and paddings -->
+    <dimen name="margin_xxsmall">2dp</dimen>
+    <dimen name="padding_xxsmall">2dp</dimen>
+
+    <!-- Common component sizes -->
+    <dimen name="divider_height">1dp</dimen>
+
+    <!-- Component spacing -->
+    <dimen name="list_item_height_small">48dp</dimen>
+    <dimen name="list_item_height_medium">64dp</dimen>
+    <dimen name="list_item_height_large">80dp</dimen>
+
+    <!-- Specific UI elements -->
+    <dimen name="default_corner_radius">4dp</dimen>
+    <dimen name="input_field_height">56dp</dimen>
+    <dimen name="progress_bar_size_small">24dp</dimen>
+    <dimen name="progress_bar_size_medium">48dp</dimen>
+    <dimen name="progress_bar_size_large">56dp</dimen>
+
+  </resources>

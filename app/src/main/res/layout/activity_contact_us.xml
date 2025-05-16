@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header Background -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/baby_blue"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Back Button -->
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="Back"/>
+
+
+
+            <!-- App Logo -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/new_logo"
+                android:contentDescription="@string/app_logo_description" />
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact Us"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Would you like more information about our services? Ask us all your questions, we will answer you as soon as possible."
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+                android:paddingTop="8dp"
+                android:paddingHorizontal="12dp" />
+        </LinearLayout>
+
+        <!-- Content Area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Heading -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send us a message"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Business Email -->
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Business Email *"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="12dp" />
+
+            <!-- First Name -->
+            <EditText
+                android:id="@+id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First name *"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Last Name -->
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last name *"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Company -->
+            <EditText
+                android:id="@+id/company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Company *"
+                android:inputType="text"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Phone -->
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Request Type Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your request *"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Request Checkboxes -->
+            <CheckBox
+                android:id="@+id/checkbox_fake_sms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report a suspicious SMS"
+                android:minHeight="48dp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_feature_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request a new detection feature"
+                android:minHeight="48dp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send feedback about the app"
+                android:minHeight="48dp" />
+
+            <CheckBox
+                android:id="@+id/checkbox_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other inquiries"
+                android:minHeight="48dp" />
+
+            <!-- Message Box -->
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Message *"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:layout_marginTop="16dp" />
+
+            <!-- Privacy Note -->
+            <TextView
+                android:id="@+id/privacyNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We respect your privacy and will only use your information to respond to your request. For more details, read our Privacy Policy."
+                android:textSize="12sp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/submitContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send My Message"
+                android:textStyle="bold"
+                android:backgroundTint="@color/baby_blue"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="24dp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

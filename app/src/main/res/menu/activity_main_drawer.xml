@@ -10,6 +10,10 @@
             android:icon="@drawable/ic_monitoring"
                 android:title="Analytics Dashboard" />
         <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/report_48"
+            android:title="@string/menu_report" />
+        <item
             android:id="@+id/nav_news"
             android:title="@string/menu_news"
             android:icon="@drawable/icons8_news_48" />

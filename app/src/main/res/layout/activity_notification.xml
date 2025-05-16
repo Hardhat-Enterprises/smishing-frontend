@@ -17,13 +17,13 @@
         android:id="@+id/HardhatLogo"
         android:layout_width="112dp"
         android:layout_height="106dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         android:contentDescription="@string/logo_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hardhat_logo" />
+        app:srcCompat="@drawable/new_logo" />
 
     <!--Back button-->
     <ImageButton
@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
         android:text="@string/notification_header"
+        android:layout_marginTop="20dp"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +87,8 @@
         android:paddingVertical="8dp"
         android:text="@string/smishing_detection_notification_title"
         android:textSize="20sp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +104,8 @@
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintTop_toBottomOf="@+id/smishing_notification_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,6 +144,8 @@
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintTop_toBottomOf="@+id/push_notifications_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +161,8 @@
         android:paddingVertical="8dp"
         android:text="@string/incident_reports"
         android:textSize="20sp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,6 +204,8 @@
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintTop_toBottomOf="@+id/system_maintenance_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -209,6 +220,8 @@
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintTop_toBottomOf="@+id/update_notification_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -223,6 +236,8 @@
         android:textSize="20sp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
+        android:thumbTint="#567BE6"
+        android:trackTint="#567BE6"
         app:layout_constraintTop_toBottomOf="@+id/backup_reminder_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -251,7 +266,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
+    <!-- DEBUG ONLY — Test Notification Button
+         This button sends mock detection and news notifications.
+         Remove before production.
+    -->
+    <!-- TODO: Remove before production -->
+    <!-- This button is used to test notification types in debug mode -->
+    <!--Note: Pressing this button will send one notification of each type. Used for testing the notification Settings-->
+    <Button
+        android:id="@+id/button_test_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Test Notifications"
+        android:textSize="15sp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF9800"
+        android:textColor="#FFFFFF"
+        android:contentDescription="Developer-only test button to simulate detection and news notifications"
+        app:layout_constraintTop_toBottomOf="@id/open_notification_settings_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -41,6 +41,13 @@ public class ChatAssistantActivity extends AppCompatActivity {
             initializeViews();
             setupRecyclerView();
             setupClickListeners();
+
+        // Send initial messages from BOT to USER to prompt a reply
+            ChatMessage welcomeMessage = new ChatMessage("Hello! I’m your assistant here to help protect you from nasty scams.", ChatMessage.BOT_MESSAGE);
+            ChatMessage followUpMessage = new ChatMessage("I can help you with 'reports' or 'detections'. Try asking for 'today's reports' or 'all detections.", ChatMessage.BOT_MESSAGE);
+            chatAdapter.addMessage(welcomeMessage);
+            chatAdapter.addMessage(followUpMessage);
+            chatRecyclerView.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
             
 
         } catch (Exception e) {

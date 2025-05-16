@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -19,17 +22,37 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/hardhat_logo"
+        android:icon="@drawable/new_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/hardhat_logo"
+        android:roundIcon="@drawable/new_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmishingDetectionApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <!-- Splash Activity (first screen that will show) -->
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Changed the round icons for app -->
         <activity
             android:name=".dashboard.DashboardActivity"
             android:exported="true" />
@@ -77,6 +100,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.onboarding.LoginCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewsActivity"
             android:exported="false" />
         <activity
@@ -85,25 +114,39 @@
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
+        <activity
+            android:name=".news.SavedNewsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ContactUsActivity"
+            />
+        <activity android:name=".ui.Submissionscreen" android:exported="false" />
+
+
+
+
+
+
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
-        <activity android:name=".QuizesActivity" /> <!-- Your Reports Activity -->
+        <activity android:name=".QuizesActivity" />
+
+        <!-- Your Reports Activity-->
         <activity
             android:name=".detections.YourReportsActivity"
             android:exported="false" />
+
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" /> <!-- Set LoginActivity as the launcher activity -->
+            android:exported="false" />
+        <!-- Set LoginActivity is not the launcher activity -->
+
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"   />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- MainActivity is not the launcher anymore -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -111,13 +154,75 @@
         <activity
             android:name=".FeedbackActivity"
             android:exported="false" />
-        <activity
-            android:name=".ForumActivity"
-            android:exported="false" />
+
+        <activity android:name="Community.CommunityHomeActivity" />
+        <activity android:name="Community.CommunityOpenPost" />
+
+
         <activity
             android:name=".chat.ChatAssistantActivity"
             android:exported="false"
             android:label="@string/chat_assistant_page" />
+        <activity
+            android:name=".FaqActivity"
+            android:exported="false" />
+
+
+        <activity android:name=".Community.CommunityHomeActivity" />
+        <activity android:name=".Community.CommunityOpenPost" />
+        <activity android:name=".Community.CommunityNewPost" />
+        <activity android:name=".Community.CommunityPostActivity" />
+
+
+        <!-- Community Report page -->
+        <activity android:name=".Community.CommunityReportActivity"
+            android:label="Community – Report"/>
+        <activity
+            android:name=".riskmeter.RiskScannerTCActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskScannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".riskmeter.RiskResultActivity"
+            android:exported="true" />
+        <!-- File Provider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.smishingdetectionapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <activity android:name=".TopicDetailActivity" />
+
+        <receiver android:name=".ui.SmishingWidgetSmall" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_small_info" />
+        </receiver>
+
+        <receiver android:name=".ui.SmishingWidgetMedium" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_medium_info" />
+        </receiver>
+
+        <receiver android:name=".ui.SmishingWidgetLarge" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_large_info" />
+        </receiver>
+        <activity android:name=".FeedbackHistoryActivity" android:exported="false"/>
     </application>
+
 
 </manifest>
