@@ -10,9 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.compose.ui.platform.ComposeView;
 
-import com.example.smishingdetectionapp.CommunityReportActivity;
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
-import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

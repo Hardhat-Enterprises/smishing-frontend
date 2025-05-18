@@ -295,6 +295,15 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name=".news.SavedNewsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.ContactUsActivity"
+            />
+        <activity android:name=".ui.Submissionscreen" android:exported="false" />
+
+
+
+
+
 
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
@@ -323,8 +332,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name=".FeedbackActivity"
             android:exported="false" />
 
-        <activity android:name=".CommunityHomeActivity" />
-        <activity android:name=".CommunityOpenPost" />
+        <activity android:name="Community.CommunityHomeActivity" />
+        <activity android:name="Community.CommunityOpenPost" />
 
 
         <activity
@@ -336,14 +345,14 @@ xmlns:tools="http://schemas.android.com/tools">
             android:exported="false" />
 
 
-        <activity android:name=".CommunityNewPost" />
+        <activity android:name=".Community.CommunityHomeActivity" />
+        <activity android:name=".Community.CommunityOpenPost" />
+        <activity android:name=".Community.CommunityNewPost" />
+        <activity android:name=".Community.CommunityPostActivity" />
 
-        <activity
-            android:name=".CommunityPostActivity"
-            android:exported="false" />
 
         <!-- Community Report page -->
-        <activity android:name=".CommunityReportActivity"
+        <activity android:name=".Community.CommunityReportActivity"
             android:label="Community – Report"/>
         <activity
             android:name=".riskmeter.RiskScannerTCActivity"

@@ -26,14 +26,11 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.smishingdetectionapp.CommunityReportActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
-import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 
 import com.example.smishingdetectionapp.recyclebin.RecycleBinActivity;
@@ -53,18 +50,14 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.io.File;
+
 import java.util.Objects;
 
 import android.os.Environment;

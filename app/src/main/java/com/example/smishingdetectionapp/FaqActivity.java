@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -61,23 +62,33 @@ public class FaqActivity extends AppCompatActivity {
         faqAdapter = new FaqAdapter(faqList);
         faqRecyclerView.setAdapter(faqAdapter);
 
-        // Bottom navigation logic
+        // navigation bar
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-        nav.setSelectedItemId(R.id.nav_settings); // Highlight current tab
-
-        nav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-
+        nav.setSelectedItemId(R.id.nav_home);
+        nav.setOnItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
+
+            } else if (id == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
             } else if (id == R.id.nav_news) {
-                startActivity(new Intent(getApplicationContext(), NewsActivity.class));
+                startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             } else if (id == R.id.nav_settings) {
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             }

@@ -9,6 +9,7 @@
         <dimen name="text_size_xxlarge">24sp</dimen>
         <dimen name="text_size_headline">28sp</dimen>
         <dimen name="text_size_display">34sp</dimen>
+        <dimen name="text_size_xdisplay">50sp</dimen>
 
         <!-- Margins and paddings -->
         <dimen name="margin_xxsmall">2dp</dimen>
@@ -40,6 +41,8 @@
         <dimen name="button_width_small">112dp</dimen>
         <dimen name="button_width_medium">596dp</dimen>
         <dimen name="button_width_large">1200dp</dimen>
+
+        <dimen name="button_width_half">617dp</dimen>
 
         <dimen name="icon_size_small">16dp</dimen>
         <dimen name="icon_size_medium">24dp</dimen>

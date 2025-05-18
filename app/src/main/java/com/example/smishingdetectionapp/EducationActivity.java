@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EducationActivity extends AppCompatActivity {
@@ -70,6 +71,13 @@ public class EducationActivity extends AppCompatActivity {
         Button quizButton = findViewById(R.id.quiz_button);
         quizButton.setOnClickListener(v -> {
             Intent intent = new Intent(EducationActivity.this, QuizesActivity.class);
+            startActivity(intent);
+        });
+        // Quick guide button
+        Button tutorialBtn = findViewById(R.id.tutorialBtn);
+        tutorialBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EducationActivity.this, MainActivity.class);
+            intent.putExtra("showGuide", true); 
             startActivity(intent);
         });
     }

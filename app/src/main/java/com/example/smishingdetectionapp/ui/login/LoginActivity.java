@@ -2,11 +2,13 @@ package com.example.smishingdetectionapp.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.text.InputType;
 //import android.text.method.HideReturnsTransformationMethod;
 //import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
+    //private Object BuildConfig;
     private String BASE_URL = BuildConfig.SERVERIP;
     private boolean isPasswordVisible = false;
 
@@ -61,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // BLOCKING screenshots and screen recording
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
 
         // Inflate layout
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -94,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         final SignInButton googleBtn = binding.googleBtn;
         final Button registerButton = binding.registerButton;
         final ImageButton togglePasswordVisibility = binding.togglePasswordVisibility;
-        final Button togglePinLogin = binding.togglePinLogin;  // Added missing reference for togglePinLogin button
+        final Button togglePinLogin = binding.togglePinLogin;
 
         // Toggle functionality for PIN and Password login
         togglePinLogin.setOnClickListener(v -> {
@@ -270,61 +277,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    private void loginWithPin(String pin) {
-        // Open the database
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-        // Validate the PIN
-        boolean isValid = databaseAccess.validatePin(pin);
-
-        if (isValid) {
-            // PIN is valid
-            Toast.makeText(LoginActivity.this, "PIN verified successfully", Toast.LENGTH_SHORT).show();
-            navigateToMainActivity();
-        } else {
-            // Invalid PIN
-            Toast.makeText(LoginActivity.this, "Invalid PIN. Please try again.", Toast.LENGTH_LONG).show();
-        }
-
-        // Close the database
-        databaseAccess.close();
-    }
-
-     */
-
     private void loginWithPin(String pin) {
         // For testing purposes, simulate a successful PIN login
         Toast.makeText(LoginActivity.this, "PIN verified successfully (bypassed for testing)", Toast.LENGTH_SHORT).show();
         navigateToMainActivity();
     }
 
-
-    /*
-    private void loginWithPassword(String email, String password) {
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-        boolean isValid = databaseAccess.validateLogin(email, password);
-
-        if (isValid) {
-            navigateToMainActivity();
-        } else {
-            Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
-        }
-
-        databaseAccess.close();
-    }
-
-     */
-
     private void loginWithPassword(String email, String password) {
         // For testing purposes, simulate a successful login
         Toast.makeText(LoginActivity.this, "Login successful (bypassed for testing)", Toast.LENGTH_SHORT).show();
         navigateToMainActivity();
     }
-
 
     private void handleLoginDialog() {
         final EditText usernameEditText = binding.email;
@@ -371,5 +334,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reapply the secure flag when activity resumes
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
     }
 }

@@ -1,16 +1,26 @@
-package com.example.smishingdetectionapp;
+package com.example.smishingdetectionapp.Community;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smishingdetectionapp.MainActivity;
+import com.example.smishingdetectionapp.NewsActivity;
+import com.example.smishingdetectionapp.R;
+import com.example.smishingdetectionapp.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageButton;
-import com.example.smishingdetectionapp.CommunityReportActivity;
-import com.example.smishingdetectionapp.CommunityPostActivity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.graphics.Typeface;
+
+import java.util.List;
+
 public class CommunityHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +73,12 @@ public class CommunityHomeActivity extends AppCompatActivity {
 
         // Back Button
         ImageButton community_back = findViewById(R.id.community_back);
-        // Check if the back button is initialized properly
         if (community_back != null) {
-            // Set an onClick listener to handle the back button's behavior
             community_back.setOnClickListener(v -> {
-                // Start SettingsActivity when back button is pressed
                 startActivity(new Intent(this, SettingsActivity.class));
-                // Close the current activity
                 finish();
             });
         } else {
-            // Log an error if the back button is null
             Log.e("NotificationActivity", "Back button is null");
         }
 
@@ -88,10 +93,10 @@ public class CommunityHomeActivity extends AppCompatActivity {
                 return true;
 
             } else if (id == R.id.nav_report) {
-                Intent i= new Intent(this,CommunityReportActivity.class);
+                Intent i = new Intent(this, CommunityReportActivity.class);
                 i.putExtra("source", "home");
                 startActivity(i);
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
 
@@ -108,5 +113,72 @@ public class CommunityHomeActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        loadTrendingPost();
+    }
+
+    // Display the top post in card view
+    private void loadTrendingPost() {
+        CommunityDatabaseAccess dbAccess = new CommunityDatabaseAccess(this);
+        dbAccess.open();
+        List<CommunityPost> topPosts = dbAccess.getTopLikedPosts();
+        dbAccess.close();
+
+        LinearLayout container = findViewById(R.id.topPostContainer);
+        if (container == null) return;
+
+        if (topPosts != null && !topPosts.isEmpty()) {
+            container.removeAllViews();
+            container.setVisibility(View.VISIBLE);
+
+            for (CommunityPost post : topPosts) {
+                LinearLayout cardLayout = new LinearLayout(this);
+                cardLayout.setOrientation(LinearLayout.VERTICAL);
+                cardLayout.setPadding(24, 24, 24, 24);
+                cardLayout.setBackgroundResource(R.drawable.rounded_lightblue_card);
+                cardLayout.setElevation(2);
+
+                LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                cardParams.setMargins(0, 0, 0, 12);  // space between cards
+                cardLayout.setLayoutParams(cardParams);
+
+                // Post title
+                TextView title = new TextView(this);
+                title.setText(post.getPosttitle());
+                title.setTextSize(18);
+                title.setTypeface(null, Typeface.BOLD);
+                title.setTextColor(getResources().getColor(R.color.black));
+                title.setPadding(0, 0, 0, 8);
+
+                // Post description
+                TextView description = new TextView(this);
+                description.setText(post.getPostdescription());
+                description.setTextSize(14);
+                description.setTextColor(getResources().getColor(R.color.black));
+                title.setPadding(0, 0, 0, 8);
+
+                cardLayout.addView(title);
+                cardLayout.addView(description);
+
+                // Link to individual open post
+                cardLayout.setOnClickListener(v -> {
+                    Intent intent = new Intent(this, CommunityOpenPost.class);
+                    intent.putExtra("postId", post.getId());
+                    intent.putExtra("username", post.getUsername());
+                    intent.putExtra("date", post.getDate());
+                    intent.putExtra("posttitle", post.getPosttitle());
+                    intent.putExtra("postdescription", post.getPostdescription());
+                    intent.putExtra("likes", post.getLikes());
+                    intent.putExtra("comments", post.getComments());
+                    intent.putExtra("position", 0);
+                    startActivity(intent);
+                });
+
+                container.addView(cardLayout);
+            }
+        }
     }
 }

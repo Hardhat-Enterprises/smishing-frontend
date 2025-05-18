@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CommunityHomeActivity">
+    tools:context=".Community.CommunityHomeActivity">
 
     <!-- Community Header -->
     <LinearLayout
@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/black"
+            app:tabIndicatorColor="@color/navy_blue"
             app:tabSelectedTextColor="@color/navy_blue"
             app:tabBackground="@color/white"/>
     </LinearLayout>
@@ -177,29 +178,14 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Trending Post -->
+            <!-- Top Post -->
             <LinearLayout
+                android:id="@+id/topPostContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@drawable/rounded_lightblue_card"
-                android:elevation="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Is this legit: 0280 067 670?"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="This number keeps calling me. Why is it ..."
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                android:visibility="gone"
+                android:layout_marginTop="8dp">
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

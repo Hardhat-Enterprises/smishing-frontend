@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
