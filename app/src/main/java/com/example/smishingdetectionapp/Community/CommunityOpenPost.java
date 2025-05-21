@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.NewsActivity;
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.SettingsActivity;
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -31,13 +33,15 @@ import java.util.Random;
 
 public class CommunityOpenPost extends AppCompatActivity {
 
-    private TextView titleText, descText, usernameText, timestampText, likesText, commentsText;
+    private TextView titleText, descText, usernameText, timestampText, likesText, commentsText, shareText;
     private EditText commentInput;
     private Button addCommentBtn;
     private ImageButton backButton;
-    private ImageView likeIcon;
+    private ImageView likeIcon, shareIcon;
+
     private RecyclerView commentRecycler;
     private TabLayout tabLayout;
+
     private BottomNavigationView bottomNav;
     private List<CommunityComment> commentList = new ArrayList<>();
     private CommunityDatabaseAccess dbAccess;
@@ -65,6 +69,26 @@ public class CommunityOpenPost extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         likeIcon = findViewById(R.id.likeIcon);
         backButton = findViewById(R.id.community_back);
+
+        shareText = findViewById(R.id.shareText);
+        shareIcon = findViewById(R.id.shareIcon);
+
+        View.OnClickListener shareClick = v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            String textToShare = usernameText.getText().toString()
+                    + " wrote:\n\n"
+                    + descText.getText().toString();
+            shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare);
+            startActivity(Intent.createChooser(shareIntent, "Share post via"));
+
+        };
+
+        shareIcon.setOnClickListener(shareClick);
+        shareText.setOnClickListener(shareClick);
+
+
+
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
@@ -110,58 +134,53 @@ public class CommunityOpenPost extends AppCompatActivity {
         addCommentBtn.setOnClickListener(v -> {
             String commentTextStr = commentInput.getText().toString().trim();
             if (!commentTextStr.isEmpty()) {
-                // Get current timestamp
                 String timestamp = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-                // assign unique user ID
                 String userId = getOrCreateUserId();
 
-                // Create and insert new comment
                 CommunityComment newComment = new CommunityComment(-1, postId, userId, timestamp, commentTextStr);
                 dbAccess.insertComment(newComment);
 
-                // Update local list and adapter
                 commentList.add(newComment);
                 adapter.notifyItemInserted(commentList.size() - 1);
 
-                // Clear input
                 commentInput.setText("");
 
-                // Update comment count
                 commentCount++;
                 commentsText.setText(commentCount + " comments");
                 dbAccess.updatePostComments(postId, commentCount);
-
             } else {
                 Toast.makeText(this, "Please tell us something", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Tab navigation
         tabLayout.addTab(tabLayout.newTab().setText("Trending"));
         tabLayout.addTab(tabLayout.newTab().setText("Posts"));
         tabLayout.addTab(tabLayout.newTab().setText("Report"));
-        tabLayout.clearOnTabSelectedListeners();
+
         tabLayout.getTabAt(1).select();
 
+        // allow posts tab to be relinked to post page instead of current page
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 if (position == 0) {
                     startActivity(new Intent(CommunityOpenPost.this, CommunityHomeActivity.class));
+                    overridePendingTransition(0,0);
                     finish();
                 } else if (position == 2) {
-                    Toast.makeText(CommunityOpenPost.this, "Report page coming soon :)", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CommunityOpenPost.this, CommunityReportActivity.class));
+                    overridePendingTransition(0,0);
+                    finish();
                 }
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                handleTabSelection(tab.getPosition());
             }
         });
 
@@ -175,12 +194,13 @@ public class CommunityOpenPost extends AppCompatActivity {
             Log.e("CommunityOpenPost", "Back button is null");
         }
 
-        // Bottom navigation
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
                 startActivity(new Intent(this, MainActivity.class));
+            } else if (id == R.id.nav_report) {               // ← NEW
+                startActivity(new Intent(this, CommunityReportActivity.class));
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(this, NewsActivity.class));
             } else if (id == R.id.nav_settings) {
@@ -193,6 +213,21 @@ public class CommunityOpenPost extends AppCompatActivity {
             finish();
             return true;
         });
+    }
+
+    private void handleTabSelection(int position) {
+        Intent intent;
+        if (position == 0) {
+            intent = new Intent(CommunityOpenPost.this, CommunityHomeActivity.class);
+        } else if (position == 1) {
+            intent = new Intent(CommunityOpenPost.this, CommunityPostActivity.class);
+        } else {
+            intent = new Intent(CommunityOpenPost.this, CommunityReportActivity.class);
+        }
+        intent.putExtra("source", "openpost");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private String getOrCreateUserId() {

@@ -40,6 +40,7 @@ public class CommunityPostActivity extends AppCompatActivity {
         dbAccess = new CommunityDatabaseAccess(this);
         dbAccess.open();
 
+        // Pre-loaded post
         if (dbAccess.isEmpty()) {
             int id1 = (int) dbAccess.insertPost(new CommunityPost(-1, "User1", "2025-05-11",
                     "Is this legit: 0280067670?",
@@ -103,6 +104,7 @@ public class CommunityPostActivity extends AppCompatActivity {
             @Override public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
                     startActivity(new Intent(CommunityPostActivity.this, CommunityHomeActivity.class));
+                    overridePendingTransition(0, 0);
                     finish();
                 } else if (tab.getPosition() == 2) {
                     Intent intent = new Intent(CommunityPostActivity.this, CommunityReportActivity.class);

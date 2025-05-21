@@ -2,12 +2,13 @@ package com.example.smishingdetectionapp.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.text.InputType;
 //import android.text.method.HideReturnsTransformationMethod;
 //import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
+    //private Object BuildConfig;
     private String BASE_URL = BuildConfig.SERVERIP;
     private boolean isPasswordVisible = false;
 
@@ -61,6 +63,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // BLOCKING screenshots and screen recording
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
 
         // Inflate layout
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -91,9 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         final SignInButton googleBtn = binding.googleBtn;
         final Button registerButton = binding.registerButton;
         final ImageButton togglePasswordVisibility = binding.togglePasswordVisibility;
-        final Button togglePinLogin = binding.togglePinLogin;  // Added missing reference for togglePinLogin button
-        final Button guestLoginButton = binding.guestLoginButton;
-
+        final Button togglePinLogin = binding.togglePinLogin;
 
         // Toggle functionality for PIN and Password login
         togglePinLogin.setOnClickListener(v -> {
@@ -144,22 +148,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, RegisterMain.class));
             finish();
         });
-
-        // Handle Guest Login button click
-        guestLoginButton.setOnClickListener(v -> {
-            // Save isGuest = true
-            SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-            prefs.edit()
-                    .putBoolean("isGuest", true)
-                    .remove("isLoggedIn") // Ensure clean state
-                    .apply();
-
-            Toast.makeText(LoginActivity.this, "Guest mode activated", Toast.LENGTH_SHORT).show();
-
-            // Go to MainActivity
-            navigateToMainActivity();
-        });
-
 
         // Handle Google Sign-In setup
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -285,67 +273,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    private void loginWithPin(String pin) {
-        // Open the database
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-        // Validate the PIN
-        boolean isValid = databaseAccess.validatePin(pin);
-
-        if (isValid) {
-            // PIN is valid
-            Toast.makeText(LoginActivity.this, "PIN verified successfully", Toast.LENGTH_SHORT).show();
-            navigateToMainActivity();
-        } else {
-            // Invalid PIN
-            Toast.makeText(LoginActivity.this, "Invalid PIN. Please try again.", Toast.LENGTH_LONG).show();
-        }
-
-        // Close the database
-        databaseAccess.close();
-    }
-
-     */
-
     private void loginWithPin(String pin) {
         // For testing purposes, simulate a successful PIN login
         Toast.makeText(LoginActivity.this, "PIN verified successfully (bypassed for testing)", Toast.LENGTH_SHORT).show();
         navigateToMainActivity();
     }
 
-
-    /*
-    private void loginWithPassword(String email, String password) {
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-        boolean isValid = databaseAccess.validateLogin(email, password);
-
-        if (isValid) {
-            navigateToMainActivity();
-        } else {
-            Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
-        }
-
-        databaseAccess.close();
-    }
-
-     */
-
     private void loginWithPassword(String email, String password) {
         // For testing purposes, simulate a successful login
         Toast.makeText(LoginActivity.this, "Login successful (bypassed for testing)", Toast.LENGTH_SHORT).show();
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        prefs.edit()
-                .putBoolean("isLoggedIn", true)
-                .remove("isGuest") // Remove guest if any
-                .apply();
-
         navigateToMainActivity();
     }
-
 
     private void handleLoginDialog() {
         final EditText usernameEditText = binding.email;
@@ -375,10 +313,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isUserLoggedIn() {
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        return prefs.getBoolean("isLoggedIn", false);
+        // Placeholder for checking login state
+        return false;
     }
-
 
     private void navigateToMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -393,5 +330,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reapply the secure flag when activity resumes
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
     }
 }

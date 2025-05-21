@@ -276,6 +276,7 @@
     <string name="community_comments">Comments</string>
     <string name="add_community_comment">Add a comment...</string>
     <string name="submit_community_comment">Submit Comment</string>
+    <string name="share_post">share post</string>
 
     <string name="confirm_delete_account_title">Hello there</string>
     <string name="delete_account_warning_message">
@@ -385,6 +386,35 @@
     <string name="word_count_format">Words: %1$d / %2$d</string>
     <string name="feedback_success">Feedback submitted successfully!</string>
     <string name="open_link_checker">Open Safe Link Checker</string>
+    <!-- Contact Us Strings -->
+    <string name="contact_us">Contact Us</string>
+    <string name="app_logo">App Logo</string>
+
+
+    <string name="contact_subtext">Would you like more information about our services? Ask us all your questions, we will answer you as soon as possible.</string>
+    <string name="send_message_title">Send us a message</string>
+
+    <!-- Required Field Hints with proper escaping -->
+    <string name="business_email_hint">Business Email *</string>
+    <string name="first_name_hint">First Name *</string>
+    <string name="last_name_hint">Last Name *</string>
+    <string name="company_hint">Company *</string>
+    <string name="phone_hint">Phone *</string>
+    <string name="message_hint">Message *</string>
+
+    <!-- Checkboxes -->
+    <string name="your_request">Your request <font color='#FF0000'>*</font></string>
+    <string name="checkbox_fake_sms">Report a suspicious SMS</string>
+    <string name="checkbox_feature_request">Request a new detection feature</string>
+    <string name="checkbox_feedback">Send feedback about the app</string>
+    <string name="checkbox_other">Other inquiries</string>
+
+    <!-- Button -->
+    <string name="send_message_button">Send My Message</string>
+
+    <!-- Privacy Note -->
+    <string name="privacy_note">Vaadata processes your personal data in order to send you the requested resource and to send you news and information relating to security and penetration testing. You can unsubscribe at any time via the unsubscribe links. For further information, please consult our Privacy Policy.</string>
+
 
 
     <!-- feedback page  -->

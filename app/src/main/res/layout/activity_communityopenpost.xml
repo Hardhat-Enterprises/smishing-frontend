@@ -157,6 +157,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp" />
+
+
+                <ImageView
+                    android:id="@+id/shareIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/share_android_svgrepo_com"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/share_post" />
+
+                <TextView
+                    android:id="@+id/shareText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/share_post"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="4dp"/>
+
+
             </LinearLayout>
 
             <TextView

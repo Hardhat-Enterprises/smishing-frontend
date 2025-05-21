@@ -111,6 +111,15 @@
             android:name=".news.SavedNewsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.ContactUsActivity"
+            />
+        <activity android:name=".ui.Submissionscreen" android:exported="false" />
+
+
+
+
+
 
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
