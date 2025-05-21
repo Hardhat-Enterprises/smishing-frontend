@@ -90,6 +90,13 @@ public class MainActivity extends SharedActivity {
             startActivity(new Intent(this, RiskScannerTCActivity.class));
             finish();
         });
+        Button questionOfTheDayButton = findViewById(R.id.qotd_btn);
+
+        questionOfTheDayButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            startActivity(intent);
+        });
+
 
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
@@ -221,4 +228,5 @@ public class MainActivity extends SharedActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
+
 }

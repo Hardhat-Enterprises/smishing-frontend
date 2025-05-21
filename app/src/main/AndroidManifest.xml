@@ -125,6 +125,8 @@
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />
         <activity android:name=".QuizesActivity" />
+        <activity android:name=".QuestionActivity" />
+
 
         <!-- Your Reports Activity-->
         <activity
