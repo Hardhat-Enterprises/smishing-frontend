@@ -307,6 +307,7 @@
     <string name="reporting_activity_btnSelectImage">Select Image (optional)</string>
     <string name="reporting_activity_btnSubmitReport">SUBMIT</string>
 
+
     <string name="alert">triangle with exclamation mark</string>
 
     <!-- Account / Sorting -->
@@ -415,6 +416,16 @@
     <string name="privacy_note">Vaadata processes your personal data in order to send you the requested resource and to send you news and information relating to security and penetration testing. You can unsubscribe at any time via the unsubscribe links. For further information, please consult our Privacy Policy.</string>
 
 
+
+    <string name="alert_text">This is a placeholder alert message.</string>
+    <string name="news_list_description">Scrollable list of news articles</string>
+    <string name="title_smish_or_safe">Smish or Safe?</string>
+    <string name="hint_input_message">Paste the suspicious message here</string>
+    <string name="btn_analyze">Analyze Message</string>
+    <string name="label_risk_level">Risk Level: -</string>
+    <string name="no_analysis">No analysis yet.</string>
+    <string name="tip_message">Tip: Avoid clicking links in suspicious messages.</string>
+    <string name="logo_desc">App Logo</string>
 
     <!-- feedback page  -->
     <string name="enter_name">Your name</string>
