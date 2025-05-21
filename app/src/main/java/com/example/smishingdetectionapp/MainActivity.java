@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.smishingdetectionapp.dashboard.DashboardActivity;
 import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
@@ -51,6 +52,10 @@ public class MainActivity extends SharedActivity {
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
+                return true;
+            } else if (id == R.id.nav_dashboard) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.nav_report) {
                 startActivity(new Intent(getApplicationContext(), CommunityReportActivity.class));
