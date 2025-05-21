@@ -23,6 +23,10 @@ import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
@@ -84,6 +88,25 @@ public class MainActivity extends SharedActivity {
             Intent intent = new Intent(MainActivity.this, EducationActivity.class);
             startActivity(intent);
         });
+        // ✅ Safe Link Checker button logic
+        ImageButton buttonSafeLinkMini = findViewById(R.id.buttonSafeLinkMini);
+
+// Show tooltip-style Toast on touch
+        buttonSafeLinkMini.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Toast.makeText(this, "🛡️ Safe Link Checker: Tap to scan a link", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            return false; // Ensure normal click still works
+        });
+
+// Normal click launches the feature
+        buttonSafeLinkMini.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, com.example.smishingdetectionapp.ui.SafeLinkCheckerActivity.class);
+            startActivity(intent);
+        });
+
 
         Button scanner_btn = findViewById(R.id.scanner_btn);
         scanner_btn.setOnClickListener(v -> {

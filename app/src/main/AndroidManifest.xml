@@ -166,6 +166,12 @@
         <activity android:name=".Community.CommunityNewPost" />
         <activity android:name=".Community.CommunityPostActivity" />
 
+        <activity
+            android:name=".ui.SafeLinkCheckerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SmishingDetectionApp"/>
+
+
 
         <!-- Community Report page -->
         <activity android:name=".Community.CommunityReportActivity"
