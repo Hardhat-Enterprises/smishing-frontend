@@ -41,19 +41,79 @@
             </intent-filter>
         </activity>
 
-        <!-- Core & Feature Activities -->
-        <activity android:name=".MainActivity" android:exported="true" android:theme="@style/Theme.SmishingDetectionApp.NoActionBar" />
-        <activity android:name=".SettingsActivity" android:exported="false" />
-        <activity android:name=".FeedbackActivity" android:exported="false" />
-        <activity android:name=".FeedbackHistoryActivity" android:exported="false" />
-        <activity android:name=".HelpActivity" android:exported="false" />
-        <activity android:name=".NotificationActivity" android:exported="false" />
-        <activity android:name=".AboutMeActivity" android:exported="false" />
-        <activity android:name=".DebugActivity" android:exported="false" />
-        <activity android:name=".TermsAndConditionsActivity" android:exported="false" />
-        <activity android:name=".SMSMessageDetailActivity" android:exported="false" />
-        <activity android:name=".SmsActivity" android:exported="false" />
-        <activity android:name=".SmishingRulesActivity" android:exported="false" />
+        <!-- Changed the round icons for app -->
+        <activity
+            android:name=".TermsAndConditionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SmsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SMSMessageDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutMeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DebugActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SmishingRulesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Register.RegisterMain"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Register.EmailVerify"
+            android:exported="true" />
+        <activity
+            android:name=".ui.account.AccountActivity"
+            android:exported="true" />
+        <activity android:name=".ui.account.PopupDEL" />
+        <activity
+            android:name=".detections.DetectionsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.onboarding.LoginCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".news.SavedNewsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ContactUsActivity"
+            />
+        <activity android:name=".ui.Submissionscreen" android:exported="false" />
+
+
+
+
+
+
         <activity android:name=".EducationActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".QuizResultActivity" />

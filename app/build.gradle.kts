@@ -122,7 +122,7 @@ dependencies {
     implementation("com.itextpdf:itextg:5.5.10")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.android.material:material:1.10.0")
-
+    implementation("com.getkeepsafe.taptargetview:taptargetview:1.13.3")
 
 }
 

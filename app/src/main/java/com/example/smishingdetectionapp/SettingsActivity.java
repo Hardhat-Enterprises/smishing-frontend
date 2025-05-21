@@ -25,6 +25,7 @@ import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.util.concurrent.Executor;
 import android.widget.ScrollView;
@@ -34,6 +35,10 @@ import android.view.ViewGroup;
 import androidx.preference.PreferenceManager;
 import android.content.SharedPreferences;
 import android.widget.Switch;
+import com.example.smishingdetectionapp.ui.ContactUsActivity;
+import com.google.android.material.button.MaterialButton;
+
+
 
 public class SettingsActivity extends AppCompatActivity {
     private SeekBar seekBarFontScale;
@@ -163,6 +168,7 @@ public class SettingsActivity extends AppCompatActivity {
                 i.putExtra("source", "home");
                 startActivity(i);
                 overridePendingTransition(0,0);
+                finish();
                 return true;
 
             } else if (id == R.id.nav_news) {
@@ -185,6 +191,12 @@ public class SettingsActivity extends AppCompatActivity {
         Button accountBtn = findViewById(R.id.accountBtn);
         accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
 
+        //Notification button to switch to notification page
+        Button notificationBtn = findViewById(R.id.notificationBtn);
+        notificationBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, NotificationActivity.class));
+        });
+
         //Filtering button to switch to Smishing rules page
         ImageView filteringBtn = findViewById(R.id.imageView7);
         if (filteringBtn != null) {
@@ -196,9 +208,9 @@ public class SettingsActivity extends AppCompatActivity {
         // Report button to switch to reporting page
         Button reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, ReportingActivity.class));
+            startActivity(new Intent(this, CommunityReportActivity.class));
         });
-        //Notification button to switch to notification page
+
 
         // Help button to switch to Help page
         Button helpBtn = findViewById(R.id.helpBtn);
@@ -219,6 +231,14 @@ public class SettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(SettingsActivity.this, AboutUsActivity.class);
             startActivity(intent);
         });
+
+        MaterialButton contactUsButton = findViewById(R.id.contactUsBtn);
+        contactUsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, ContactUsActivity.class);
+            startActivity(intent);
+        });
+
+
 
         Button chatAssistantBtn = findViewById(R.id.chatAssistantBtn);
         chatAssistantBtn.setOnClickListener(v -> {

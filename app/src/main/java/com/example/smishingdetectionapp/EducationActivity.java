@@ -76,10 +76,16 @@ public class EducationActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ Launch case studies activity
+        //  Launch case studies activity
         Button caseStudiesButton = findViewById(R.id.btn_case_studies);
         caseStudiesButton.setOnClickListener(v -> {
             Intent intent = new Intent(EducationActivity.this, CaseStudiesActivity.class);
+          
+        // Quick guide button
+        Button tutorialBtn = findViewById(R.id.tutorialBtn);
+        tutorialBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EducationActivity.this, MainActivity.class);
+            intent.putExtra("showGuide", true); 
             startActivity(intent);
         });
     }

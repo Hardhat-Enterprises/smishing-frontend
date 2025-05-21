@@ -266,7 +266,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
+    <!-- DEBUG ONLY — Test Notification Button
+         This button sends mock detection and news notifications.
+         Remove before production.
+    -->
+    <!-- TODO: Remove before production -->
+    <!-- This button is used to test notification types in debug mode -->
+    <!--Note: Pressing this button will send one notification of each type. Used for testing the notification Settings-->
+    <Button
+        android:id="@+id/button_test_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Test Notifications"
+        android:textSize="15sp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF9800"
+        android:textColor="#FFFFFF"
+        android:contentDescription="Developer-only test button to simulate detection and news notifications"
+        app:layout_constraintTop_toBottomOf="@id/open_notification_settings_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

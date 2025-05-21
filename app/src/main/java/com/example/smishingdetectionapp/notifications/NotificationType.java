@@ -7,16 +7,16 @@ import android.content.SharedPreferences;
 
 public class NotificationType {
 
-    private Context context; // application context
-    private String channelID; // channel ID for the notification channel
+    private final Context context; // application context
+    private final String channelID; // channel ID for the notification channel
 
-    private String channelName; // name of the notification channel
-    private String channelDesc; // description of the notification channel
-    private String key; // key for the notificationType for saving enabled preference
+    private final String channelName; // name of the notification channel
+    private final String channelDesc; // description of the notification channel
+    private final String key; // key for the notificationType for saving enabled preference
     private boolean isEnabled; // to determine and set whether the notification type is enabled/disabled
     private static int importance; // importance level for the notification channel - determines how intrusive notifications are
 
-
+    private static final String PREFS_FILE = "notification_settings";
 
     // NotificationType object constructor
     public NotificationType(Context context, int keyString, int channelIDString, int channelNameString, int channelDescString, int importance)
@@ -28,7 +28,7 @@ public class NotificationType {
         this.channelName = context.getString(channelNameString);
         this.channelDesc = context.getString(channelDescString);
         this.importance = importance;
-        this.isEnabled = loadEnabledState(key);
+        this.isEnabled = loadEnabledState();
     }
 
     //
@@ -56,16 +56,14 @@ public class NotificationType {
         saveEnabledState();
     }
 
-    // returns boolean value of key saved in SharedPreferences
-    private boolean loadEnabledState(String key) {
-        SharedPreferences prefs = context.getSharedPreferences(key, Context.MODE_PRIVATE);
-        // default to true if not found
-        return prefs.getBoolean(key, true);
+    private boolean loadEnabledState() {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+        return prefs.getBoolean(this.key, true);
     }
 
     // saves "isEnabled" value of the notificationType to Shared Preferences
     private void saveEnabledState() {
-        SharedPreferences prefs = context.getSharedPreferences(this.key, Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(this.key, this.isEnabled);
         editor.apply();
@@ -73,7 +71,7 @@ public class NotificationType {
 
     // factory method for SmishDetectionAlert notification type
     public static NotificationType createSmishDetectionAlert(Context context) {
-        return new NotificationType(context, smish_pref_key , detection_channel_id, detection_channel_name, detection_channel_desc, NotificationManager.IMPORTANCE_HIGH);
+        return new NotificationType(context, smish_pref_key, detection_channel_id, detection_channel_name, detection_channel_desc, NotificationManager.IMPORTANCE_HIGH);
     }
     // factory method for SpamDetectionAlert notification type
     public static NotificationType createSpamDetectionAlert(Context context) {

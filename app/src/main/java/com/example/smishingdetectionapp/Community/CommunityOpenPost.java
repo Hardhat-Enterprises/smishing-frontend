@@ -110,58 +110,44 @@ public class CommunityOpenPost extends AppCompatActivity {
         addCommentBtn.setOnClickListener(v -> {
             String commentTextStr = commentInput.getText().toString().trim();
             if (!commentTextStr.isEmpty()) {
-                // Get current timestamp
                 String timestamp = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-                // assign unique user ID
                 String userId = getOrCreateUserId();
 
-                // Create and insert new comment
                 CommunityComment newComment = new CommunityComment(-1, postId, userId, timestamp, commentTextStr);
                 dbAccess.insertComment(newComment);
 
-                // Update local list and adapter
                 commentList.add(newComment);
                 adapter.notifyItemInserted(commentList.size() - 1);
 
-                // Clear input
                 commentInput.setText("");
 
-                // Update comment count
                 commentCount++;
                 commentsText.setText(commentCount + " comments");
                 dbAccess.updatePostComments(postId, commentCount);
-
             } else {
                 Toast.makeText(this, "Please tell us something", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Tab navigation
         tabLayout.addTab(tabLayout.newTab().setText("Trending"));
         tabLayout.addTab(tabLayout.newTab().setText("Posts"));
         tabLayout.addTab(tabLayout.newTab().setText("Report"));
-        tabLayout.clearOnTabSelectedListeners();
+
         tabLayout.getTabAt(1).select();
 
+        // allow posts tab to be relinked to post page instead of current page
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                if (position == 0) {
-                    startActivity(new Intent(CommunityOpenPost.this, CommunityHomeActivity.class));
-                    finish();
-                } else if (position == 2) {
-                    Toast.makeText(CommunityOpenPost.this, "Report page coming soon :)", Toast.LENGTH_SHORT).show();
-                }
+                handleTabSelection(tab.getPosition());
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                handleTabSelection(tab.getPosition());
             }
         });
 
@@ -175,7 +161,6 @@ public class CommunityOpenPost extends AppCompatActivity {
             Log.e("CommunityOpenPost", "Back button is null");
         }
 
-        // Bottom navigation
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -193,6 +178,21 @@ public class CommunityOpenPost extends AppCompatActivity {
             finish();
             return true;
         });
+    }
+
+    private void handleTabSelection(int position) {
+        Intent intent;
+        if (position == 0) {
+            intent = new Intent(CommunityOpenPost.this, CommunityHomeActivity.class);
+        } else if (position == 1) {
+            intent = new Intent(CommunityOpenPost.this, CommunityPostActivity.class);
+        } else {
+            intent = new Intent(CommunityOpenPost.this, CommunityReportActivity.class);
+        }
+        intent.putExtra("source", "openpost");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private String getOrCreateUserId() {

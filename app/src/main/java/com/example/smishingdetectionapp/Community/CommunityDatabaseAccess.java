@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.smishingdetectionapp.Community.CommunityDatabase;
+import com.example.smishingdetectionapp.Community.CommunityPost;
+
 public class CommunityDatabaseAccess {
     private SQLiteDatabase database;
     private CommunityDatabase dbHelper;
@@ -108,7 +111,7 @@ public class CommunityDatabaseAccess {
         return empty;
     }
 
-    // Comments section
+    // comments section
     public void insertComment(CommunityComment comment) {
         ContentValues values = new ContentValues();
         values.put(CommunityDatabase.COL_POST_ID, comment.getPostId());
@@ -149,4 +152,40 @@ public class CommunityDatabaseAccess {
                 CommunityDatabase.COL_COMMENT_ID + "=?", new String[]{String.valueOf(commentId)});
     }
 
+    // get most liked post(s)
+    public List<CommunityPost> getTopLikedPosts() {
+        List<CommunityPost> posts = new ArrayList<>();
+        SQLiteDatabase db = this.database;
+
+        // Step 1: Get the max likes
+        Cursor maxCursor = db.rawQuery("SELECT MAX(likes) FROM posts", null);
+        int maxLikes = 0;
+        if (maxCursor.moveToFirst()) {
+            maxLikes = maxCursor.getInt(0);
+        }
+        maxCursor.close();
+
+        // Step 2: Get all posts with that like count
+        Cursor cursor = db.rawQuery(
+                "SELECT id, username, date, title AS posttitle, description AS postdescription, likes, comments FROM posts WHERE likes = ?",
+                new String[]{String.valueOf(maxLikes)}
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                CommunityPost post = new CommunityPost(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("date")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("posttitle")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("postdescription")),
+                        cursor.getInt(cursor.getColumnIndexOrThrow("likes")),
+                        cursor.getInt(cursor.getColumnIndexOrThrow("comments"))
+                );
+                posts.add(post);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return posts;
+    }
 }
