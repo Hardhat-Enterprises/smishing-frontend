@@ -1,10 +1,20 @@
 package com.example.smishingdetectionapp.detections;
 
+import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,16 +23,31 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
+
+import com.example.smishingdetectionapp.recyclebin.RecycleBinActivity;
+import com.example.smishingdetectionapp.recyclebin.RecycleBinManager;
+import com.example.smishingdetectionapp.ui.WidgetDataManager;
+
 import com.example.smishingdetectionapp.SettingsActivity;
 import com.example.smishingdetectionapp.ui.WidgetDataManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -33,13 +58,18 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.util.Objects;
+
 import android.os.Environment;
 import android.media.MediaScannerConnection;
+
+import org.json.JSONObject;
 
 public class DetectionsActivity extends AppCompatActivity {
 
     private ListView detectionLV;
     DatabaseAccess databaseAccess;
+    private static final int IMPORT_FILE_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +120,39 @@ public class DetectionsActivity extends AppCompatActivity {
         databaseAccess.open();
         refreshList();
 
+
+        EditText detSearch = findViewById(R.id.searchTextBox);
+
+        //populate data
+        String searchQuery = ("SELECT * FROM Detections");
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+
         // Update widget SharedPreferences with real data
         int detectionCount = databaseAccess.getCounter();
         WidgetDataManager.updateDetectionCount(this, detectionCount);
         WidgetDataManager.updateSafeDayStreak(this);
 
         Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+
         DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
 
-        EditText detSearch = findViewById(R.id.searchTextBox);
+        Button importButton = findViewById(R.id.importButton);
+        importButton.setOnClickListener(v -> openFilePicker());
+
+        ImageButton imgBtnRecyclebin = findViewById(R.id.btnRecyclebin);
+
+        imgBtnRecyclebin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetectionsActivity.this, RecycleBinActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         detSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -172,7 +223,7 @@ public class DetectionsActivity extends AppCompatActivity {
 
             cancel.setOnClickListener(v1 -> bottomSheetDialog.dismiss());
             confirm.setOnClickListener(v12 -> {
-                DeleteRow(String.valueOf(id));
+                DeleteRowNew(String.valueOf(id));
                 refreshList();
                 bottomSheetDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Detection Deleted!", Toast.LENGTH_SHORT).show();
@@ -183,12 +234,14 @@ public class DetectionsActivity extends AppCompatActivity {
         //export pdf
         Button exportBtn = findViewById(R.id.exportPdfBtn);
         exportBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                exportDetectionsToPDF();
+                exportDetectionsToCSV();
             }
         });
     }
+
     public void searchDB(String search) {
         String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
@@ -196,6 +249,7 @@ public class DetectionsActivity extends AppCompatActivity {
         detectionLV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
     public void sortONDB() {
         String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
         Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
@@ -221,52 +275,168 @@ public class DetectionsActivity extends AppCompatActivity {
 
     public void DeleteRow(String id) {
         DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
+
     }
 
-    private void exportDetectionsToPDF() {
-        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "No detections to export", Toast.LENGTH_SHORT).show();
+    public void sortNODB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void refreshList(){
+        String searchQuery = ("SELECT * FROM Detections");
+
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void DeleteRowNew(String id) {
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections WHERE _id = ?", new String[]{id});
+        if (cursor.moveToFirst()) {
+            JSONObject detection = new JSONObject();
+            try {
+                detection.put("Phone_Number", cursor.getString(cursor.getColumnIndexOrThrow("Phone_Number")));
+                detection.put("Message", cursor.getString(cursor.getColumnIndexOrThrow("Message")));
+                detection.put("Date", cursor.getString(cursor.getColumnIndexOrThrow("Date")));
+                RecycleBinManager rbManager = new RecycleBinManager(this);
+                rbManager.addToRecycleBin(detection);
+            } catch (Exception e) {
+                Log.e("DeleteRow", "Error adding to recycle bin", e);
+            }
+        }
+        cursor.close();
+        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private void exportDetectionsToCSV() {
+        String csvHeader = "ID,Phone Number,Message,Date";
+        String fileName = "detections_export.csv";
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
+        contentValues.put(MediaStore.Downloads.MIME_TYPE, "text/csv");
+        contentValues.put(MediaStore.Downloads.IS_PENDING, 1);
+
+        ContentResolver resolver = getContentResolver();
+        Uri collection = MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+        Uri fileUri = resolver.insert(collection, contentValues);
+
+        if (fileUri == null) {
+            Toast.makeText(this, "Failed to create file", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Create the document
-        Document document = new Document();
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "detections_report.pdf");
-        String filePath = file.getAbsolutePath();
+        try (OutputStream outputStream = resolver.openOutputStream(fileUri);
+             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
 
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
-            document.open();
-            document.add(new Paragraph("Smishing Detections Report\n\n"));
+            writer.write(csvHeader);
+            writer.newLine();
 
-            while (cursor.moveToNext()) {
-                String phone = cursor.getString(cursor.getColumnIndexOrThrow("Phone_Number"));
-                String message = cursor.getString(cursor.getColumnIndexOrThrow("Message"));
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("Date"));
+            Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+            if (cursor.moveToFirst()) {
+                do {
+                    String id = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                    String number = cursor.getString(cursor.getColumnIndexOrThrow("Phone_Number"));
+                    String message = cursor.getString(cursor.getColumnIndexOrThrow("Message")).replace(",", " ");
+                    String date = cursor.getString(cursor.getColumnIndexOrThrow("Date"));
 
-                document.add(new Paragraph("Phone: " + phone));
-                document.add(new Paragraph("Message: " + message));
-                document.add(new Paragraph("Date: " + date));
-                document.add(new Paragraph("\n"));
+                    writer.write(id + "," + number + "," + message + "," + date);
+                    writer.newLine();
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            writer.flush();
+
+            // Mark as not pending so it's visible to the user
+            contentValues.clear();
+            contentValues.put(MediaStore.Downloads.IS_PENDING, 0);
+            resolver.update(fileUri, contentValues, null, null);
+
+            Toast.makeText(this, "CSV exported to Downloads!", Toast.LENGTH_LONG).show();
+
+        } catch (IOException e) {
+            Toast.makeText(this, "Export failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void openFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*"); // Show all file types
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        String[] mimeTypes = {"text/csv", "application/csv", "text/comma-separated-values", "application/vnd.ms-excel"};
+
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+
+        startActivityForResult(Intent.createChooser(intent, "Select CSV File"), IMPORT_FILE_REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMPORT_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri fileUri = data.getData();
+            if (fileUri != null) {
+                importDataFromFile(fileUri);
+            }
+        }
+    }
+
+    private void importDataFromFile(Uri fileUri)
+    {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(fileUri), "UTF-8"))) {
+            String line;
+            int lineNumber = 0;
+            boolean isHeader = true;
+
+            DatabaseAccess dbAccess = DatabaseAccess.getInstance(this);
+            dbAccess.open();
+
+            dbAccess.deleteAllDetections();
+
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                if (isHeader) {
+                    isHeader = false;
+                    continue;
+                }
+
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    try {
+                        // Extract data from the CSV
+                        String phone = parts[1].trim();
+                        String message = parts[2].trim();
+                        String date = parts[3].trim();
+
+                        dbAccess.insertDetection(phone, message, date);
+
+                    } catch (Exception e) {
+                        Log.e("ImportError", "Error processing line " + lineNumber + ": " + e.getMessage());
+                    }
+                } else {
+                    Log.w("ImportWarning", "Skipping invalid line " + lineNumber + ": " + line);
+                }
             }
 
-            document.close();
+            dbAccess.close();
 
-            MediaScannerConnection.scanFile(
-                    this,
-                    new String[] { file.getAbsolutePath() },
-                    new String[] { "application/pdf" },
-                    null
-            );
-
-            Toast.makeText(this, "PDF exported to: " + filePath, Toast.LENGTH_LONG).show();
-
-            Toast.makeText(this, "PDF exported to: " + filePath, Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
+            Toast.makeText(this, "Import successful", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException e)
+        {
+            Toast.makeText(this, "Import failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
-            Toast.makeText(this, "Failed to export PDF", Toast.LENGTH_SHORT).show();
         }
     }
 
 }
+
+

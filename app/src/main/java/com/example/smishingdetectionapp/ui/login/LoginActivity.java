@@ -29,6 +29,7 @@ import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.SharedActivity;
 import com.example.smishingdetectionapp.databinding.ActivityLoginBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
+import com.example.smishingdetectionapp.recyclebin.RecycleBinManager;
 import com.example.smishingdetectionapp.ui.Register.RegisterMain;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
         // Inflate layout
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        RecycleBinManager rbManager = new RecycleBinManager(this);
+        rbManager.purgeOldDetections();
 
         // Initialize Retrofit
         retrofit = new Retrofit.Builder()
