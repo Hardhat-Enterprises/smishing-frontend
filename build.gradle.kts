@@ -4,11 +4,15 @@ buildscript {
         mavenCentral()
         google()
         // Add other repositories here
+        maven {
+            setUrl("https://maven.localazy.com/repository/release/")
+        }
     }
     dependencies {
         classpath("com.chaquo.python:gradle:15.0.1")
 
         // Add other classpaths here
+        classpath("com.localazy:gradle:2.0.3")
     }
 }
 

@@ -139,11 +139,11 @@ public class RiskScannerLogic {
     private static void updateRiskLevel(TextView riskLevelText, int totalScore) {
         String riskLevel;
         if (totalScore <= 30) {
-            riskLevel = "Low Risk";
+            riskLevel = riskLevelText.getContext().getString(R.string.low_risk);
         } else if (totalScore <= 60) {
-            riskLevel = "Moderate Risk";
+            riskLevel = riskLevelText.getContext().getString(R.string.moderate_risk);
         } else {
-            riskLevel = "High Risk";
+            riskLevel = riskLevelText.getContext().getString(R.string.high_risk);
         }
         riskLevelText.setText(riskLevel);
     }

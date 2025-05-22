@@ -36,9 +36,9 @@
 
             // TabLayout: add 3 tabs and select “Report”
             TabLayout tabLayout = findViewById(R.id.tabLayout);
-            tabLayout.addTab(tabLayout.newTab().setText("Trending"));
-            tabLayout.addTab(tabLayout.newTab().setText("Posts"));
-            tabLayout.addTab(tabLayout.newTab().setText("Report"));
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.trending)));
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.posts)));
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.report)));
             tabLayout.getTabAt(2).select();
 
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

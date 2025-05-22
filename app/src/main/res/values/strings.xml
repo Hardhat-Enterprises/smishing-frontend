@@ -90,7 +90,6 @@
 </string>
 
 
-
     <!-- Password Change Window Strings -->
     <string name="change_password_page">Change Password</string>
     <string name="current_password">Current Password</string>
@@ -218,7 +217,6 @@
     <string name="title_activity_signup">SignupActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
     <!-- Added strings -->
@@ -440,6 +438,76 @@
     <string name="please_scroll_to_the_bottom_to_proceed">Please scroll to bottom to proceed.</string>
     <string name="accept_and_go_back_to_registration">Accept and Proceed with Registration.</string>
 
+    <string name="select_language">Select Language</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="lets_get_started">Let\'s Get Started</string>
+    <string name="onboard_slide_1_title">Intelligent Scam Detection System</string>
+    <string name="onboard_slide_1_desc">Stay alert! Instantly identify and block suspicious messages before they reach you..</string>
+    <string name="onboard_slide_2_title">Real-Time Cyber New Alerts</string>
+    <string name="onboard_slide_2_desc">Get the latest updates on scams, breaches, and cybersecurity trends—right in your pocket.</string>
+    <string name="onboard_slide_3_title">Safe browsing</string>
+    <string name="onboard_slide_3_desc">Protects you from malicious links and attachments. Adjust the sensitivity and criteria for spam detection.</string>
+    <string name="create_your_account">Create Your Account</string>
+    <string name="join_in_on_the_journey_to_better_cybersecurity">Join in on the Journey to Better Cybersecurity</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="click_here_for_terms_and_conditions">Click here for Terms and Conditions</string>
+    <string name="i_accept_the_terms_and_conditions">I accept the Terms and Conditions</string>
+    <string name="password_must_be_minimum_8_characters_with_an_uppercase_and_a_special_character">Password must be minimum 8 characters, with an uppercase and a special character.</string>
+    <string name="or">or</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="button">Button</string>
+    <string name="welcome_to_smishing_detection_your_real_time_tool_to_deter_and_detect_any_smishing_attacks_your_app_is_ready_to_smish">Welcome to Smishing Detection! Your real-time tool to deter and detect any smishing attacks. Your app is ready to smish.</string>
+    <string name="risk_scanner">Risk Scanner</string>
+    <string name="adjust_text_size">Adjust Text Size</string>
+    <string name="get_your_personal_risk_score_based_on_sms_habits_security_practices_and_other_risk_parameters">Get your personal risk score based on SMS habits, security practices, and other risk parameters.</string>
+    <string name="protecting_privacy">Protecting Privacy</string>
+    <string name="all_responses_will_be_anonymised_and_will_not_be_stored_or_shared_without_your_consent">All responses will be anonymised and will not be stored or shared without your consent.</string>
+    <string name="ethical_considerations">Ethical Considerations</string>
+    <string name="this_scanner_uses_age_based_risk_adjustments_informed_by_cybersecurity_research_not_personal_judgments">This scanner uses age-based risk adjustments informed by cybersecurity research — not personal judgments.</string>
+    <string name="user_agreement">User Agreement</string>
+    <string name="by_clicking_scan_n_you_accept_the_above_conditions_n_this_is_a_generalised_estimate_not_a_guaranteed_assessment">By clicking ‘Scan’:\n• You accept the above conditions.\n• This is a generalised estimate, not a guaranteed assessment.</string>
+    <string name="risky_sms_patterns">Risky SMS Patterns</string>
+    <string name="do_not_detect_suspicious_message_patterns_from_my_device">Do not detect suspicious message patterns from my device.</string>
+    <string name="age_based_adjustments">Age-based Adjustments</string>
+    <string name="do_not_apply_risk_adjustment_based_on_age_informed_trends">Do not apply risk adjustment based on age-informed trends.</string>
+    <string name="security_habits">Security Habits</string>
+    <string name="do_not_check_for_security_apps_installation_and_spam_filter_enabling">Do not check for security apps installation and spam filter enabling.</string>
+    <string name="scan">SCAN</string>
+    <string name="smishing_risk_scanner">SMISHING RISK SCANNER</string>
+
+    <string name="moderate_risk">Moderate Risk</string>
+    <string name="high_risk">High Risk</string>
+    <string name="low_risk">"Low Risk</string>
+    <string name="age_group">Age Group</string>
+    <string name="applied_age_based_risk_adjustments">Applied age-based risk adjustments.</string>
+    <string name="default_sms_app_check">Default SMS App Check</string>
+    <string name="checked_if_your_sms_app_is_a_trusted_provider_like_google_or_samsung_messages">Checked if your SMS app is a trusted provider like Google or Samsung Messages.</string>
+    <string name="security_app_installed">Security App Installed</string>
+    <string name="checked_if_trusted_security_apps_like_norton_or_bitdefender_are_installed">Checked if trusted security apps like Norton or Bitdefender are installed.</string>
+    <string name="spam_filter_installed">Spam Filter Installed</string>
+    <string name="checked_if_your_phone_has_spam_protection_like_google_messages">Checked if your phone has spam protection like Google Messages.</string>
+    <string name="device_lock_security">Device Lock Security</string>
+    <string name="checked_if_your_device_has_a_secure_lock_like_pin_or_password">Checked if your device has a secure lock like PIN or password.</string>
+    <string name="unknown_app_installation">Unknown App Installation</string>
+    <string name="checked_if_your_device_allows_app_installs_from_unknown_sources">Checked if your device allows app installs from unknown sources.</string>
+    <string name="sms_behaviour">SMS Behaviour</string>
+    <string name="checked_if_your_phone_receives_suspicious_sms_messages">Checked if your phone receives suspicious SMS messages.</string>
+    <string name="placeholder">placeholder</string>
+    <string name="view_risk_analysis_details">View Risk Analysis Details</string>
+    <string name="applying_age_based_risk_adjustments">Applying age-based risk adjustments.</string>
+    <string name="checking_if_your_phone_has_spam_protection_like_google_messages">Checking if your phone has spam protection like Google Messages.</string>
+    <string name="checking_if_your_device_has_a_secure_lock_like_pin_or_password">Checking if your device has a secure lock like PIN or password.</string>
+    <string name="checking_if_your_device_allows_app_installs_from_unknown_sources">Checking if your device allows app installs from unknown sources.</string>
+    <string name="checking_if_your_phone_receives_suspicious_sms_messages">Checking if your phone receives suspicious SMS messages.</string>
+    <string name="scanning">Scanning...</string>
+    <string name="checking_if_your_sms_app_is_a_trusted_provider_like_google_or_samsung_messages">Checking if your SMS app is a trusted provider like Google or Samsung Messages.</string>
+    <string name="checking_if_trusted_security_apps_like_norton_or_bitdefender_are_installed">Checking if trusted security apps like Norton or Bitdefender are installed.</string>
+    <string name="enable_clipboard_monitor">Enable Clipboard Monitor</string>
+    <string name="previous">Previous</string>
+
     <string name="label_username">👤 Username</string>
     <string name="label_feedback_message">💬 Feedback message</string>
     <string name="options_menu">More options</string>
@@ -455,6 +523,7 @@
 <string name="rating_good">🙂 Good</string>
 <string name="rating_excellent">🤩 Excellent</string>
     <!--Communsearch-->
+
     <string-array name="search_fields">
         <item>All</item>
         <item>Username</item>
@@ -464,5 +533,14 @@
         <item>Likes</item>
         <item>Comments</item>
     </string-array>
-
+    <string name="other_services">Other Services</string>
+    <string name="go_to_clipboard_history">Go to clipboard history</string>
+    <string name="keeping_you_and_your_loved_ones_safe">keeping you and your loved ones safe</string>
+    <string name="be_a_part_of_the_solution">Be a Part of the Solution</string>
+    <string name="every_report_helps_us_fight_smishing_better">Every report helps us fight smishing better</string>
+    <string name="content_of_message">Content of Message</string>
+    <string name="report_amp_protect"><![CDATA[Report & Protect]]></string>
+    <string name="trending">Trending</string>
+    <string name="posts">Posts</string>
+    <string name="report">Report</string>
 </resources>

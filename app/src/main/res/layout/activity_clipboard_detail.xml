@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title label -->
+        <TextView
+            android:id="@+id/labelText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Text:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <!-- Full clipboard text -->
+        <TextView
+            android:id="@+id/fullTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="#000000"
+            android:paddingBottom="24dp" />
+
+        <!-- Timestamp label -->
+        <TextView
+            android:id="@+id/detectedAtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#888888"
+            android:text="Detected On: " />
+
+    </LinearLayout>
+</ScrollView>

@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
-        android:text="Password must be minimum 8 characters, with an uppercase and a special character."
+        android:text="@string/password_must_be_minimum_8_characters_with_an_uppercase_and_a_special_character"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +171,7 @@
             android:id="@+id/terms_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I accept the Terms and Conditions"
+            android:text="@string/i_accept_the_terms_and_conditions"
             android:textColor="@color/black" />
     </LinearLayout>
 

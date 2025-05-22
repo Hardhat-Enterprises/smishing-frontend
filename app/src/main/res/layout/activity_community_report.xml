@@ -21,7 +21,7 @@
             android:id="@+id/communityTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Community"
+            android:text="@string/community"
             android:textColor="@color/navy_blue"
             android:textSize="58sp"
             android:textStyle="bold" />
@@ -30,7 +30,7 @@
             android:id="@+id/communitySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="keeping you and your loved ones safe"
+            android:text="@string/keeping_you_and_your_loved_ones_safe"
             android:textColor="@color/navy_blue"
             android:textSize="14sp" />
     </LinearLayout>
@@ -81,7 +81,7 @@
                 android:id="@+id/tvReportTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Be a Part of the Solution"
+                android:text="@string/be_a_part_of_the_solution"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -92,7 +92,7 @@
                 android:id="@+id/tvReportSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Every report helps us fight smishing better"
+                android:text="@string/every_report_helps_us_fight_smishing_better"
                 android:textSize="14sp"
                 android:textAlignment="center"
                 android:layout_marginBottom="16dp"/>
@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textStyle="bold"
                 android:paddingBottom="4dp"/>
             <EditText
@@ -117,7 +117,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Content of Message"
+                android:text="@string/content_of_message"
                 android:textStyle="bold"
                 android:paddingBottom="4dp"/>
             <EditText
@@ -135,7 +135,7 @@
                 android:id="@+id/btnReportProtect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Report &amp; Protect"
+                android:text="@string/report_amp_protect"
                 android:textStyle="bold"
                 android:backgroundTint="@color/baby_blue"/>
         </LinearLayout>

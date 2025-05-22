@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:text="SMISHING RISK SCANNER"
+                android:text="@string/smishing_risk_scanner"
                 android:textColor="#3C3C3C"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Get your personal risk score based on SMS habits, security practices, and other risk parameters."
+                android:text="@string/get_your_personal_risk_score_based_on_sms_habits_security_practices_and_other_risk_parameters"
                 android:textColor="#7A7A7A"
                 android:textSize="12sp" />
 
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="Protecting Privacy"
+                android:text="@string/protecting_privacy"
                 android:textColor="#3C3C3C"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="All responses will be anonymised and will not be stored or shared without your consent."
+                android:text="@string/all_responses_will_be_anonymised_and_will_not_be_stored_or_shared_without_your_consent"
                 android:textColor="#7A7A7A"
                 android:textSize="12sp" />
 
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="Ethical Considerations"
+                android:text="@string/ethical_considerations"
                 android:textColor="#3C3C3C"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -112,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="This scanner uses age-based risk adjustments informed by cybersecurity research — not personal judgments."
+                android:text="@string/this_scanner_uses_age_based_risk_adjustments_informed_by_cybersecurity_research_not_personal_judgments"
                 android:textColor="#7A7A7A"
                 android:textSize="12sp" />
 
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="User Agreement"
+                android:text="@string/user_agreement"
                 android:textColor="#3C3C3C"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -128,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="By clicking ‘Scan’:\n• You accept the above conditions.\n• This is a generalised estimate, not a guaranteed assessment."
+                android:text="@string/by_clicking_scan_n_you_accept_the_above_conditions_n_this_is_a_generalised_estimate_not_a_guaranteed_assessment"
                 android:textColor="#7A7A7A"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -174,7 +174,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Risky SMS Patterns"
+                        android:text="@string/risky_sms_patterns"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -182,7 +182,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Do not detect suspicious message patterns from   my device."
+                        android:text="@string/do_not_detect_suspicious_message_patterns_from_my_device"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -217,7 +217,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Age-based Adjustments"
+                        android:text="@string/age_based_adjustments"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -225,7 +225,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Do not apply risk adjustment based on age-informed trends."
+                        android:text="@string/do_not_apply_risk_adjustment_based_on_age_informed_trends"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -259,7 +259,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Security Habits"
+                        android:text="@string/security_habits"
                         android:textColor="#3C3C3C"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -267,7 +267,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:text="Do not check for security apps installation and    spam filter enabling."
+                        android:text="@string/do_not_check_for_security_apps_installation_and_spam_filter_enabling"
                         android:textColor="#7A7A7A"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -289,7 +289,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#4B74F0"
-        android:text="SCAN"
+        android:text="@string/scan"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
