@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/backbuton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@null"
+        android:importantForAccessibility="no"
+        android:src="@drawable/back_button" />
+
+    <ImageView
+        android:layout_width="393dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/logo_description"
+        android:elevation="10dp"
+        android:src="@drawable/smishing_detection_logo" />
+
+    <EditText
+        android:id="@+id/editTextDomain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter domain" />
+
+    <Button
+        android:id="@+id/buttonScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Scan Domain" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/verdictTextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:id="@+id/verdictIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/buttonVTDetails"
+        android:text="View VirusTotal Report"
+        android:visibility="gone"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonGSBDetails"
+        android:text="View Google Safe Browsing Report"
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

@@ -59,6 +59,12 @@ public class EducationActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
+        // Launch Scan URL Activity
+        Button scanUrlButton = findViewById(R.id.scan_url_button);
+        scanUrlButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EducationActivity.this, VirusTotalScanner.class);
+            startActivity(intent);
+        });
 
         // Setup embedded YouTube WebView
         WebView youtubeWebView = findViewById(R.id.youtubeWebView);
