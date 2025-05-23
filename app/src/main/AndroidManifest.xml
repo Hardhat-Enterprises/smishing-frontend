@@ -86,6 +86,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".RadarActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="true" />
         <activity

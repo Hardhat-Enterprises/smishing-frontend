@@ -8,7 +8,12 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +24,11 @@ public class FeedbackActivity extends AppCompatActivity {
 
     private static final int WORD_LIMIT = 150;
     private TextView wordCountText, wordLimitWarning, ratingPopup;
+    private EditText nameInput, feedbackInput;
+    private RatingBar ratingBar;
+    private Button submitFeedbackButton;
+    private int editingIndex = -1;
+    private String originalEntry = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +72,10 @@ public class FeedbackActivity extends AppCompatActivity {
 
 
         ImageButton report_back = findViewById(R.id.feedback_back);
-        EditText nameInput = findViewById(R.id.nameInput);
-        EditText feedbackInput = findViewById(R.id.feedbackInput);
-        RatingBar ratingBar = findViewById(R.id.ratingBar);
-        Button submitFeedbackButton = findViewById(R.id.submitFeedbackButton);
+        nameInput = findViewById(R.id.nameInput);
+        feedbackInput = findViewById(R.id.feedbackInput);
+        ratingBar = findViewById(R.id.ratingBar);
+        submitFeedbackButton = findViewById(R.id.submitFeedbackButton);
         Button viewHistoryButton = findViewById(R.id.viewHistoryButton);
         ratingPopup = findViewById(R.id.ratingPopup);
         wordCountText = findViewById(R.id.wordCountText);
@@ -79,21 +89,20 @@ public class FeedbackActivity extends AppCompatActivity {
                 InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         feedbackInput.setGravity(Gravity.TOP | Gravity.START);
 
-        wordCountText.setText(getString(R.string.word_count_format, 0, WORD_LIMIT));
+        wordCountText.setText("Words: 0 / " + WORD_LIMIT);
         submitFeedbackButton.setEnabled(false);
         submitFeedbackButton.setAlpha(0.5f);
 
         TextWatcher textWatcher = new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void afterTextChanged(Editable s) {}
 
-            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String userName = nameInput.getText().toString().trim();
                 String userFeedback = feedbackInput.getText().toString().trim();
                 int wordCount = userFeedback.isEmpty() ? 0 : userFeedback.split("\\s+").length;
 
-                wordCountText.setText(getString(R.string.word_count_format, wordCount, WORD_LIMIT));
+                wordCountText.setText("Words: " + wordCount + " / " + WORD_LIMIT);
 
                 if (wordCount > WORD_LIMIT) {
                     wordCountText.setTextColor(0xFFFF4444);
@@ -113,17 +122,15 @@ public class FeedbackActivity extends AppCompatActivity {
         feedbackInput.addTextChangedListener(textWatcher);
 
         ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-            int stars = (int) rating;
-
             String message = "";
-            switch (stars) {
+            switch ((int) rating) {
                 case 1: message = "😞 Very Bad"; break;
                 case 2: message = "😕 Bad"; break;
                 case 3: message = "😐 Okay"; break;
                 case 4: message = "🙂 Good"; break;
                 case 5: message = "🤩 Excellent"; break;
+                default: message = "";
             }
-
             showRatingPopup(message);
         });
 
@@ -131,21 +138,41 @@ public class FeedbackActivity extends AppCompatActivity {
             String name = nameInput.getText().toString().trim();
             String feedback = feedbackInput.getText().toString().trim();
             float rating = ratingBar.getRating();
+            String entry = name + "|" + feedback + "|" + rating;
 
-            com.example.smishingdetectionapp.FeedbackMemoryStore.addFeedback(name + "|" + feedback + "|" + rating);
+            if (editingIndex >= 0 && originalEntry != null) {
+                FeedbackMemoryStore.updateFeedback(originalEntry, entry);
+                Toast.makeText(FeedbackActivity.this, "Feedback updated", Toast.LENGTH_SHORT).show();
+            } else {
+                FeedbackMemoryStore.addFeedback(entry);
+                Toast.makeText(FeedbackActivity.this, R.string.feedback_success, Toast.LENGTH_SHORT).show();
+            }
 
             nameInput.setText("");
             feedbackInput.setText("");
             ratingBar.setRating(0);
-            wordCountText.setText(getString(R.string.word_count_format, 0, WORD_LIMIT));
+            wordCountText.setText("Words: 0 / " + WORD_LIMIT);
             wordCountText.setTextColor(0xFF888888);
             wordLimitWarning.setVisibility(View.GONE);
-            Toast.makeText(this, R.string.feedback_success, Toast.LENGTH_LONG).show();
+            submitFeedbackButton.setEnabled(false);
+            submitFeedbackButton.setAlpha(0.5f);
+            editingIndex = -1;
+            originalEntry = null;
         });
 
         viewHistoryButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, FeedbackHistoryActivity.class));
+            startActivity(new Intent(FeedbackActivity.this, FeedbackHistoryActivity.class));
         });
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("editName") && intent.hasExtra("editMessage") && intent.hasExtra("editRating") && intent.hasExtra("originalEntry")) {
+            nameInput.setText(intent.getStringExtra("editName"));
+            feedbackInput.setText(intent.getStringExtra("editMessage"));
+            ratingBar.setRating(Float.parseFloat(intent.getStringExtra("editRating")));
+            originalEntry = intent.getStringExtra("originalEntry");
+            editingIndex = FeedbackMemoryStore.getFeedbackHistory().indexOf(originalEntry);
+            submitFeedbackButton.setText("Update Feedback");
+        }
     }
 
     private void showRatingPopup(String message) {
@@ -164,8 +191,7 @@ public class FeedbackActivity extends AppCompatActivity {
                                 .setDuration(300)
                                 .withEndAction(() -> ratingPopup.setVisibility(View.GONE))
                                 .start(),
-                        1500
-                ))
+                        1500))
                 .start();
     }
 }

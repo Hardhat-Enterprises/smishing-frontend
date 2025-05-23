@@ -55,6 +55,15 @@ public class CommunityPostAdapter extends RecyclerView.Adapter<CommunityPostAdap
         holder.likes.setText(String.valueOf(post.getLikes()));
         holder.comments.setText(String.valueOf(post.getComments()));
 
+        // share button listener
+        holder.shareIcon.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            String shareText = post.getUsername() + " wrote:\n\n" + post.getPostdescription();
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+            v.getContext().startActivity(Intent.createChooser(shareIntent, "Share post via"));
+        });
+
         // Allow deletion only if current user posted comment or post
         if (post.getUsername().equals(currentUserId)) {
             holder.deleteIcon.setVisibility(View.VISIBLE);
@@ -152,7 +161,7 @@ public class CommunityPostAdapter extends RecyclerView.Adapter<CommunityPostAdap
 
     static class PostViewHolder extends RecyclerView.ViewHolder {
         TextView username, date, posttitle, postdescription, likes, comments;
-        ImageView userIcon, likeIcon, commentIcon, deleteIcon;
+        ImageView userIcon, likeIcon, commentIcon, deleteIcon, shareIcon;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -166,6 +175,7 @@ public class CommunityPostAdapter extends RecyclerView.Adapter<CommunityPostAdap
             likeIcon = itemView.findViewById(R.id.likeIcon);
             commentIcon = itemView.findViewById(R.id.commentIcon);
             deleteIcon = itemView.findViewById(R.id.deleteIcon);
+            shareIcon = itemView.findViewById(R.id.shareIcon);
         }
     }
 }

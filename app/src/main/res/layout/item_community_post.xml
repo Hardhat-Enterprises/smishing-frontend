@@ -95,6 +95,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp" />
+
+            <!--Share button-->
+
+            <ImageView
+                android:id="@+id/shareIcon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/share_android_svgrepo_com"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/share_post" />
+
+
         </LinearLayout>
 
         <!-- Divider -->
