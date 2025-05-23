@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
 
@@ -46,8 +47,8 @@
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".HelpActivity" android:exported="false" />
         <activity android:name=".TermsAndConditionsActivity" android:exported="false" />
-        <activity android:name=".ReportingActivity" android:exported="false" />
         <activity android:name=".SignupActivity" android:exported="false" />
+        <activity android:name=".SettingsActivity" android:exported="false" />
 
         <!-- News -->
         <activity android:name=".NewsActivity" android:exported="false" />
@@ -112,6 +113,10 @@
         <activity android:name=".Community.CommunityNewPost" />
         <activity android:name=".Community.CommunityPostActivity" />
         <activity android:name=".Community.CommunityReportActivity" android:label="Community – Report" />
+
+        <!-- Feedback -->
+        <activity android:name=".FeedbackActivity" android:exported="false" />
+        <activity android:name=".FeedbackHistoryActivity" android:exported="false"/>
 
         <!-- Radar -->
         <activity android:name=".RadarActivity" android:exported="true" />
