@@ -1,16 +1,22 @@
 package com.example.smishingdetectionapp;
 
 import android.app.Dialog;
-import android.view.View;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,45 +24,34 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import com.example.smishingdetectionapp.Community.CommunityHomeActivity;
 import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.chat.ChatAssistantActivity;
+import com.example.smishingdetectionapp.ui.ContactUsActivity;
 import com.example.smishingdetectionapp.ui.account.AccountActivity;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.concurrent.Executor;
-import android.widget.ScrollView;
-import android.graphics.Typeface;
-import android.view.ViewGroup;
-
-import androidx.preference.PreferenceManager;
-import android.content.SharedPreferences;
-import android.widget.Switch;
-import com.example.smishingdetectionapp.ui.ContactUsActivity;
-import com.google.android.material.button.MaterialButton;
-
-
 
 public class SettingsActivity extends AppCompatActivity {
     private SeekBar seekBarFontScale;
-    private TextView preview;
-    private static final int TIMEOUT_MILLIS = 10000; // 30 seconds timeout
-    private boolean isAuthenticated = false;
-    private BiometricPrompt biometricPrompt; // To cancel authentication
-    private Button buttonIncreaseTextSize, buttonDecreaseTextSize, dialogCancel, dialogSignout;
     private TextView textScaleLabel;
-    private float textScale; // between 0.8f and 1.5f, for example
+    private float textScale;
     private Dialog dialog;
+    private Button dialogCancel, dialogSignout;
+    private static final int TIMEOUT_MILLIS = 10000;
+    private boolean isAuthenticated = false;
+    private BiometricPrompt biometricPrompt;
     private static final String KEY_SCROLL_POSITION = "scroll_position";
     private int savedPosition = 0;
     private ScrollView scrollView;
     private SharedPreferences prefs;
-    private boolean isColdStart = true;
     private Switch darkModeSwitch;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,76 +62,45 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         darkModeSwitch = findViewById(R.id.dark_mode_switch);
-
         boolean isDarkMode = prefs.getBoolean("dark_mode", false);
         darkModeSwitch.setChecked(isDarkMode);
-
         AppCompatDelegate.setDefaultNightMode(
-                isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
-        );
-
+                isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppCompatDelegate.setDefaultNightMode(
-                    isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
-            );
-
+                    isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
             prefs.edit().putBoolean("dark_mode", isChecked).apply();
-
-            // Optional: recreate activity to apply theme changes immediately
             recreate();
         });
-
 
         textScaleLabel = findViewById(R.id.textScaleLabel);
         seekBarFontScale = findViewById(R.id.seekBarFontScale);
         textScale = PreferencesUtil.getTextScale(this);
         updateScaleLabel();
-
-
-
-// Set current SeekBar position
         seekBarFontScale.setProgress((int) (textScale * 10));
-
         seekBarFontScale.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float newScale = progress / 10f;
-
-                // Clamp between 0.8f and 1.5f
-                if (newScale < 0.8f) newScale = 0.8f;
-                if (newScale > 1.5f) newScale = 1.5f;
-
+            @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float newScale = Math.max(0.8f, Math.min(progress / 10f, 1.5f));
                 textScale = newScale;
                 PreferencesUtil.setTextScale(SettingsActivity.this, textScale);
                 updateScaleLabel();
                 applyFontScale();
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        if (isBold) {
-            applyBoldToAllSwitches(findViewById(R.id.settingsScroll));
-        }
-        if (isBold) {
-            applyBoldToAllWidgets(findViewById(R.id.settingsScroll));
-        }
-
         scrollView = findViewById(R.id.settingsScroll);
+        if (isBold) {
+            applyBoldToAllSwitches(scrollView);
+            applyBoldToAllWidgets(scrollView);
+        }
 
-        //Cold start/ navigation icon
         boolean isFromNav = getIntent().getBooleanExtra("from_navigation", false);
-        boolean isCold = prefs.getBoolean("cold_start", true);
-
-        if (isFromNav || isCold) {
+        boolean isColdStart = prefs.getBoolean("cold_start", true);
+        if (isFromNav || isColdStart) {
             scrollView.post(() -> scrollView.scrollTo(0, 0));
-            prefs.edit().putBoolean("cold_start", false).apply();  // 冷启动处理完毕
+            prefs.edit().putBoolean("cold_start", false).apply();
         } else {
             restoreScrollPosition();
         }
@@ -151,164 +115,88 @@ public class SettingsActivity extends AppCompatActivity {
             });
         }
 
+        setupBottomNavigation();
+        setupButtons();
+        setupScrollToTop();
+    }
+
+    private void setupBottomNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-
         nav.setSelectedItemId(R.id.nav_settings);
-
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
-
-            } else if (menuItem.getItemId() == R.id.nav_report) {
-                Intent i = new Intent(this, CommunityReportActivity.class);
-                i.putExtra("source", "home");
-                startActivity(i);
-                overridePendingTransition(0,0);
-                finish();
-                return true;
-
+            } else if (id == R.id.nav_report) {
+                startActivity(new Intent(this, CommunityReportActivity.class));
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
             } else if (id == R.id.nav_settings) {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 intent.putExtra("from_navigation", true);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
             }
-            return false;
+            overridePendingTransition(0, 0);
+            finish();
+            return true;
         });
+    }
 
-        // Account button to switch to account page with biometric authentication
-        Button accountBtn = findViewById(R.id.accountBtn);
-        accountBtn.setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
-
-        //Notification button to switch to notification page
-        Button notificationBtn = findViewById(R.id.notificationBtn);
-        notificationBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, NotificationActivity.class));
-        });
-
-        //Filtering button to switch to Smishing rules page
-        ImageView filteringBtn = findViewById(R.id.imageView7);
-        if (filteringBtn != null) {
-            filteringBtn.setOnClickListener(v -> {
-                startActivity(new Intent(this, SmishingRulesActivity.class));
-            });
-        }
-
-        // Report button to switch to reporting page
-        Button reportBtn = findViewById(R.id.reportBtn);
-        reportBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, CommunityReportActivity.class));
-        });
-
-
-        // Help button to switch to Help page
-        Button helpBtn = findViewById(R.id.helpBtn);
-        helpBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, HelpActivity.class));
-        });
-
-        // About Me button to switch to AboutMeActivity
-        Button aboutMeButton = findViewById(R.id.aboutMeBtn);
-        aboutMeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, AboutMeActivity.class);
-            startActivity(intent);
-        });
-
-
-        Button aboutUsBtn = findViewById(R.id.aboutUsBtn);
-        aboutUsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, AboutUsActivity.class);
-            startActivity(intent);
-        });
-
-        MaterialButton contactUsButton = findViewById(R.id.contactUsBtn);
-        contactUsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, ContactUsActivity.class);
-            startActivity(intent);
-        });
-
-
-
-        Button chatAssistantBtn = findViewById(R.id.chatAssistantBtn);
-        chatAssistantBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, ChatAssistantActivity.class);
-            startActivity(intent);
-        });
-
-        //Feedback Button to switch to Feedback page
-        Button feedbackBtn = findViewById(R.id.feedbackBtn);
-        feedbackBtn.setOnClickListener(v -> {
-            startActivity(new Intent(this, FeedbackActivity.class));
-        });
-
-        //Community Button to switch to Community page
-        Button communityBtn = findViewById(R.id.communityBtn);
-        communityBtn.setOnClickListener(v -> {
+    private void setupButtons() {
+        findViewById(R.id.accountBtn).setOnClickListener(v -> triggerBiometricAuthenticationWithTimeout());
+        findViewById(R.id.imageView7).setOnClickListener(v -> startActivity(new Intent(this, SmishingRulesActivity.class)));
+        findViewById(R.id.reportBtn).setOnClickListener(v -> startActivity(new Intent(this, ReportingActivity.class)));
+        findViewById(R.id.helpBtn).setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        findViewById(R.id.aboutMeBtn).setOnClickListener(v -> startActivity(new Intent(this, AboutMeActivity.class)));
+        findViewById(R.id.aboutUsBtn).setOnClickListener(v -> startActivity(new Intent(this, AboutUsActivity.class)));
+        findViewById(R.id.chatAssistantBtn).setOnClickListener(v -> startActivity(new Intent(this, ChatAssistantActivity.class)));
+        findViewById(R.id.feedbackBtn).setOnClickListener(v -> startActivity(new Intent(this, FeedbackActivity.class)));
+        findViewById(R.id.communityBtn).setOnClickListener(v -> {
             Intent i = new Intent(this, CommunityHomeActivity.class);
             i.putExtra("source", "settings");
             startActivity(i);
         });
+        MaterialButton contactUsButton = findViewById(R.id.contactUsBtn);
+        contactUsButton.setOnClickListener(view -> startActivity(new Intent(this, ContactUsActivity.class)));
 
         Button signoutBtn = findViewById(R.id.buttonSignOut);
-        Intent intent = new Intent(this, LoginActivity.class);
         dialog = new Dialog(SettingsActivity.this);
         dialog.setContentView(R.layout.dialog_signout);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialogCancel = dialog.findViewById(R.id.signoutCancelBtn);
         dialogSignout = dialog.findViewById(R.id.signoutBtn);
-
-        dialogCancel.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
+        dialogCancel.setOnClickListener(v -> dialog.dismiss());
         dialogSignout.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         });
-
-        signoutBtn.setOnClickListener(v -> {
-            dialog.show();
-        });
-        if (isTaskRoot()) {
-            prefs.edit().putBoolean("cold_start", true).apply();
-            prefs.edit().remove("scroll_pos").apply();
-        }
-
-
+        signoutBtn.setOnClickListener(v -> dialog.show());
     }
 
-    // Trigger biometric authentication with timeout
-    private void triggerBiometricAuthenticationWithTimeout() {
-        int authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG
-                | BiometricManager.Authenticators.DEVICE_CREDENTIAL;
+    private void setupScrollToTop() {
+        FloatingActionButton scrollToTopFab = findViewById(R.id.scrollToTopFab);
+        scrollToTopFab.setOnClickListener(v -> scrollView.smoothScrollTo(0, 0));
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            if (scrollView.getScrollY() > 300) scrollToTopFab.show();
+            else scrollToTopFab.hide();
+        });
+    }
 
+    private void triggerBiometricAuthenticationWithTimeout() {
+        int authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL;
         BiometricManager bm = BiometricManager.from(this);
         switch (bm.canAuthenticate(authenticators)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-                // safe to ask for biometrics / device PIN
                 biometricPrompt = getPrompt();
                 biometricPrompt.authenticate(buildPromptInfo(authenticators));
                 startTimeoutTimer();
                 break;
-
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                // nothing enrolled → just open the Account screen (or send user to settings)
                 openAccountActivity();
                 break;
-
             default:
-                // sensor missing, locked out, etc. → fall back or notify
                 notifyUser("Biometric authentication unavailable");
                 openAccountActivity();
                 break;
@@ -323,159 +211,96 @@ public class SettingsActivity extends AppCompatActivity {
                 .build();
     }
 
-    // BiometricPrompt setup
     private BiometricPrompt getPrompt() {
         Executor executor = ContextCompat.getMainExecutor(this);
-        BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
+        return new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 notifyUser("Authentication Error: " + errString);
                 redirectToSettingsActivity();
             }
-
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
+            @Override public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 notifyUser("Authentication Succeeded!");
-                isAuthenticated = true; // Mark as authenticated
-                openAccountActivity(); // Proceed to AccountActivity
+                isAuthenticated = true;
+                openAccountActivity();
             }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
+            @Override public void onAuthenticationFailed() {
                 notifyUser("Authentication Failed");
             }
-        };
-
-        return new BiometricPrompt(this, executor, callback);
+        });
     }
 
-    // Start a timeout timer for authentication
     private void startTimeoutTimer() {
         new Handler().postDelayed(() -> {
-            if (!isAuthenticated) { // If authentication hasn't occurred within the timeout
+            if (!isAuthenticated) {
                 notifyUser("Authentication timed out. Redirecting to Settings...");
-                biometricPrompt.cancelAuthentication(); // Cancel the ongoing authentication
-                redirectToSettingsActivity(); // Redirect to SettingsActivity on timeout
+                biometricPrompt.cancelAuthentication();
+                redirectToSettingsActivity();
             }
         }, TIMEOUT_MILLIS);
     }
 
-    // Redirect to SettingsActivity
     private void redirectToSettingsActivity() {
-        Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
-        startActivity(intent);
-        finish(); // Ensure the current activity is closed
+        startActivity(new Intent(this, SettingsActivity.class));
+        finish();
     }
 
-    // Open AccountActivity
     private void openAccountActivity() {
-        Intent intent = new Intent(SettingsActivity.this, AccountActivity.class);
-        startActivity(intent);
-        finish(); // Close SettingsActivity if AccountActivity is opened
+        startActivity(new Intent(this, AccountActivity.class));
+        finish();
     }
 
-    // Show a toast message
     private void notifyUser(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    // Notification button to switch to notification page
-    public void openNotificationsActivity(View view) {
-        Intent intent = new Intent(this, NotificationActivity.class);
-        startActivity(intent);
-    }
-
     private void applyBoldToAllSwitches(View root) {
-        if (!(root instanceof ViewGroup)) return;
-
-        ViewGroup group = (ViewGroup) root;
-        for (int i = 0; i < group.getChildCount(); i++) {
-            View child = group.getChildAt(i);
-
-            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
-                ((TextView) child).setTypeface(null, Typeface.BOLD);
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                View child = group.getChildAt(i);
+                if (child instanceof Switch) ((TextView) child).setTypeface(null, Typeface.BOLD);
+                applyBoldToAllSwitches(child);
             }
-
-            applyBoldToAllSwitches(child);
         }
     }
 
     private void applyBoldToAllWidgets(View root) {
-        if (!(root instanceof ViewGroup)) return;
-
-        ViewGroup group = (ViewGroup) root;
-        for (int i = 0; i < group.getChildCount(); i++) {
-            View child = group.getChildAt(i);
-
-            // ✅ Bold Switch labels
-            if (child instanceof android.widget.Switch || child instanceof androidx.appcompat.widget.SwitchCompat) {
-                ((TextView) child).setTypeface(null, Typeface.BOLD);
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                View child = group.getChildAt(i);
+                if (child instanceof Button || child instanceof Switch) {
+                    ((TextView) child).setTypeface(null, Typeface.BOLD);
+                }
+                applyBoldToAllWidgets(child);
             }
-
-            // ✅ Bold Buttons (MaterialButton, Button, etc.)
-            if (child instanceof android.widget.Button ||
-                    child instanceof com.google.android.material.button.MaterialButton) {
-                ((TextView) child).setTypeface(null, Typeface.BOLD);
-            }
-
-            // Recursively apply to nested children
-            applyBoldToAllWidgets(child);
         }
     }
 
     private void applyFontScale() {
-        Configuration configuration = getResources().getConfiguration();
-        configuration = new Configuration(configuration); // make a copy
+        Configuration configuration = new Configuration(getResources().getConfiguration());
         configuration.fontScale = textScale;
-
         getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
-
-        // Refresh the layout
         recreate();
     }
 
-    private void saveAndApplyScale() {
-        PreferencesUtil.setTextScale(this, textScale);
-        updateScaleLabel();
-        applyFontScale();
-    }
-
     private void updateScaleLabel() {
-        int percentage = (int) (textScale * 100);
-        textScaleLabel.setText(percentage + "%");
-    }
-
-    @Override
-    public void onBackPressed() {
-        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-        nav.setSelectedItemId(R.id.nav_home);
-        finish();
-        super.onBackPressed();
+        textScaleLabel.setText((int) (textScale * 100) + "%");
     }
 
     private void saveScrollPosition() {
         if (scrollView != null) {
             int scrollY = scrollView.getScrollY();
-            PreferenceManager.getDefaultSharedPreferences(this)
-                    .edit()
-                    .putInt("scroll_pos", scrollY)
-                    .apply();
+            prefs.edit().putInt("scroll_pos", scrollY).apply();
         }
     }
 
     private void restoreScrollPosition() {
         savedPosition = prefs.getInt("scroll_pos", 0);
-
         if (isTaskRoot()) {
             savedPosition = 0;
         }
-
-        scrollView.post(() ->
-                scrollView.scrollTo(0, savedPosition)
-        );
+        scrollView.post(() -> scrollView.scrollTo(0, savedPosition));
     }
 
     @Override
@@ -492,4 +317,3 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 }
-

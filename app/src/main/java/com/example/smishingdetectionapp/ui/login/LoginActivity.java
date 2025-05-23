@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.text.InputType;
+import android.widget.CheckBox;
+
 //import android.text.method.HideReturnsTransformationMethod;
 //import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -93,10 +95,12 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.email;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.loginButton;
+        final CheckBox robotCheckBox = findViewById(R.id.robot_CheckBox);
         final ProgressBar loadingProgressBar = binding.progressbar;
         final SignInButton googleBtn = binding.googleBtn;
         final Button registerButton = binding.registerButton;
         final ImageButton togglePasswordVisibility = binding.togglePasswordVisibility;
+        final CheckBox humancheckbox = findViewById(R.id.robot_CheckBox);
         final Button togglePinLogin = binding.togglePinLogin;
 
         // Toggle functionality for PIN and Password login
@@ -122,18 +126,24 @@ public class LoginActivity extends AppCompatActivity {
             passwordEditText.requestFocus();
         });
 
+
         // Handle login button click
         loginButton.setOnClickListener(v -> {
             String input = passwordEditText.getText().toString();
+
+            //  Check if user confirmed they're not a robot
+            if (!robotCheckBox.isChecked()) {
+                Toast.makeText(this, "Please confirm you're not a robot", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (isPinLogin) {
-                // Handle PIN login
                 if (input.length() != 6) {
                     passwordEditText.setError("PIN must be 6 digits");
                     return;
                 }
                 loginWithPin(input);
             } else {
-                // Handle password login
                 String email = usernameEditText.getText().toString();
                 if (email.isEmpty() || input.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Email and Password must not be empty", Toast.LENGTH_SHORT).show();
@@ -142,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginWithPassword(email, input);
             }
         });
+
 
         // Handle register button click
         registerButton.setOnClickListener(v -> {
