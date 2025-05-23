@@ -91,11 +91,6 @@ public class NewsActivity extends SharedActivity implements SelectListener {
             return false;
         });
 
-
- 
-
-        // Fetch articles
-        // Initialize ProgressBar and set it visible before fetching data
         
         progressBar.setVisibility(View.VISIBLE);
 
@@ -106,32 +101,7 @@ public class NewsActivity extends SharedActivity implements SelectListener {
         adapter = new NewsAdapter(this, this);
         recyclerView.setAdapter(adapter);
         
-        fetchArticles();    // first load
-        
-        /*
-        manager = new NewsRequestManager(this);
-        manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
-            @Override
-            public void onFetchData(List<RSSFeedModel.Article> list, String message) {
-                adapter.submitList(list); // Only update data, don't reassign adapter
-                progressBar.setVisibility(View.GONE); // Hide ProgressBar after fetching data
-
-            }
-
-            @Override
-            public void onError(String message) {
-                errorMessage.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-            }
-
-            private void showNews(List<RSSFeedModel.Article> list) {
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new GridLayoutManager(NewsActivity.this, 1));
-                adapter = new NewsAdapter(NewsActivity.this, list, NewsActivity.this);
-                recyclerView.setAdapter(adapter);
-            }
-
-        });*/
+        fetchArticles();
 
         // Refresh button click
         refreshButton.setOnClickListener(v -> {
@@ -162,12 +132,15 @@ public class NewsActivity extends SharedActivity implements SelectListener {
     /** Fetch RSS feed */
     private void fetchArticles() {
         progressBar.setVisibility(View.VISIBLE);
+        errorMessage.setVisibility(View.GONE);
+
         manager = new NewsRequestManager(this);
         manager.fetchRSSFeed(new OnFetchDataListener<RSSFeedModel.Feed>() {
             @Override
             public void onFetchData(List<RSSFeedModel.Article> list, String msg) {
                 adapter.submitList(list);
                 progressBar.setVisibility(View.GONE);
+                errorMessage.setVisibility(View.GONE);
 
                 //for notification function
                 if (list != null && !list.isEmpty()) {

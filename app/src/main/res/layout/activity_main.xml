@@ -18,6 +18,7 @@
         app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
+        app:itemPaddingBottom="10dp"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
         app:labelVisibilityMode="labeled"
