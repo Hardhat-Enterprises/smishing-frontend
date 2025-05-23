@@ -2,9 +2,6 @@ package com.example.smishingdetectionapp.detections;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,31 +13,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
+import com.example.smishingdetectionapp.SettingsActivity;
 import com.example.smishingdetectionapp.ui.WidgetDataManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.io.File;
+
 import android.os.Environment;
 import android.media.MediaScannerConnection;
 
@@ -49,52 +41,43 @@ public class DetectionsActivity extends AppCompatActivity {
     private ListView detectionLV;
     DatabaseAccess databaseAccess;
 
-    public void searchDB(String search) {
-        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-
-    public void sortONDB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void sortNODB() {
-        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
-        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void refreshList() {
-        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
-        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
-        detectionLV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void DeleteRow(String id) {
-        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detections);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        nav.setSelectedItemId(R.id.nav_home);
+        nav.setOnItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_news) {
+                startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
+            return false;
         });
+
 
         ImageButton detections_back = findViewById(R.id.detections_back);
         detections_back.setOnClickListener(v -> {
@@ -205,8 +188,39 @@ public class DetectionsActivity extends AppCompatActivity {
                 exportDetectionsToPDF();
             }
         });
+    }
+    public void searchDB(String search) {
+        String searchQuery = "SELECT * FROM Detections WHERE Phone_Number LIKE '%" + search + "%' OR Message LIKE '%" + search + "%' OR Date LIKE '%" + search + "%'";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+    public void sortONDB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date ASC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
+    public void sortNODB() {
+        String searchQuery = "SELECT * FROM Detections ORDER BY Date DESC";
+        Cursor cursor = DatabaseAccess.db.rawQuery(searchQuery, null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
+    public void refreshList() {
+        Cursor cursor = DatabaseAccess.db.rawQuery("SELECT * FROM Detections", null);
+        DisplayDataAdapterView adapter = new DisplayDataAdapterView(this, cursor);
+        detectionLV.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void DeleteRow(String id) {
+        DatabaseAccess.db.delete("Detections", "_id = ?", new String[]{id});
     }
 
     private void exportDetectionsToPDF() {

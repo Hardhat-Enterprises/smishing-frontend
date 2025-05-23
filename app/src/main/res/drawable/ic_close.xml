@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Outer circle -->
+    <path
+        android:pathData="M12,2
+                          A10,10 0 1,1 11.999,2"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.5"
+        android:fillColor="#00000000" />
+
+    <!-- Diagonal line from top-left to bottom-right -->
+    <path
+        android:pathData="M8,8 L16,16"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeLineCap="round" />
+
+    <!-- Diagonal line from bottom-left to top-right -->
+    <path
+        android:pathData="M8,16 L16,8"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeLineCap="round" />
+</vector>

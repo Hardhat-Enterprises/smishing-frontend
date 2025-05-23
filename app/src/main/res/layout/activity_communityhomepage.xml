@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CommunityHomeActivity">
+    tools:context=".Community.CommunityHomeActivity">
 
     <!-- Community Header -->
     <LinearLayout
@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/black"
+            app:tabIndicatorColor="@color/navy_blue"
             app:tabSelectedTextColor="@color/navy_blue"
             app:tabBackground="@color/white"/>
     </LinearLayout>
@@ -76,7 +77,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Top Reported Numbers -->
+            <!-- Top Reported Numbers Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,89 +87,16 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp" />
 
-            <!-- Trending Number 1 -->
+            <!-- Top 3 Reported Numbers -->
             <LinearLayout
+                android:id="@+id/topReportedContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="18dp"
-                android:background="@drawable/rounded_lightblue_card"
-                android:layout_marginBottom="10dp"
-                android:elevation="2dp">
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
 
-                <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:contentDescription="@string/alert"
-                    android:src="@drawable/alert" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0400 255 019"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="last reported 12 April 2025"
-                        android:textStyle="italic"
-                        android:textSize="14sp"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Trending Number 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="@drawable/rounded_lightblue_card"
-                android:layout_marginBottom="10dp"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:src="@drawable/alert" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0280 067 670"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="last reported 11 April 2025"
-                        android:textStyle="italic"
-                        android:textSize="14sp"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Top Post-->
+            <!-- Top Post Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,29 +105,14 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Trending Post -->
+            <!-- Top Post -->
             <LinearLayout
+                android:id="@+id/topPostContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@drawable/rounded_lightblue_card"
-                android:elevation="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Is this legit: 0280 067 670?"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="This number keeps calling me. Why is it ..."
-                    android:textSize="14sp"
-                    android:textColor="@color/black" />
+                android:visibility="gone"
+                android:layout_marginTop="8dp">
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -222,8 +135,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/baby_blue"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
-        app:menu="@menu/activity_main_drawer" />
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
+        app:itemPaddingBottom="10dp"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:menu="@menu/activity_main_drawer" >
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

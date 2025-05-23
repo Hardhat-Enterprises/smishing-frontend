@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/black"
+            app:tabIndicatorColor="@color/navy_blue"
             app:tabSelectedTextColor="@color/navy_blue"
             app:tabBackground="@color/white" />
     </LinearLayout>
@@ -153,8 +154,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/baby_blue"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/baby_blue"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
-        app:menu="@menu/activity_main_drawer"/>
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
+        app:itemPaddingBottom="10dp"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:menu="@menu/activity_main_drawer" >
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

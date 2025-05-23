@@ -2,16 +2,12 @@ package com.example.smishingdetectionapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import java.time.LocalDate;
-
-
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
 import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
@@ -19,18 +15,22 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
 import com.example.smishingdetectionapp.databinding.ActivityMainBinding;
 import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.detections.DetectionsActivity;
+import com.example.smishingdetectionapp.RadarActivity;
 import com.example.smishingdetectionapp.riskmeter.RiskScannerTCActivity;
-
 import com.example.smishingdetectionapp.notifications.NotificationPermissionDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
+
 public class MainActivity extends SharedActivity {
     private AppBarConfiguration mAppBarConfiguration;
-    private boolean isBackPressed;
-
+    private boolean isBackPressed = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -39,7 +39,8 @@ public class MainActivity extends SharedActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_news, R.id.nav_settings)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_report, R.id.nav_news, R.id.nav_settings)
                 .build();
 
         if (!areNotificationsEnabled()) {
@@ -47,12 +48,14 @@ public class MainActivity extends SharedActivity {
         }
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
-
         nav.setSelectedItemId(R.id.nav_home);
         nav.setOnItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
-                nav.setActivated(true);
+                return true;
+            } else if (id == R.id.nav_report) {
+                startActivity(new Intent(getApplicationContext(), CommunityReportActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.nav_news) {
                 startActivity(new Intent(getApplicationContext(), NewsActivity.class));
@@ -67,12 +70,14 @@ public class MainActivity extends SharedActivity {
         });
 
         Button debug_btn = findViewById(R.id.debug_btn);
-        debug_btn.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, DebugActivity.class)));
+        debug_btn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, DebugActivity.class));
+        });
 
         Button detections_btn = findViewById(R.id.detections_btn);
         detections_btn.setOnClickListener(v -> {
             startActivity(new Intent(this, DetectionsActivity.class));
+            finish();
         });
 
 
@@ -82,53 +87,128 @@ public class MainActivity extends SharedActivity {
             startActivity(intent);
         });
 
-
         Button scanner_btn = findViewById(R.id.scanner_btn);
         scanner_btn.setOnClickListener(v -> {
             startActivity(new Intent(this, RiskScannerTCActivity.class));
-
+            finish();
         });
 
+        Button radarBtn = findViewById(R.id.radar_btn);
+        radarBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, RadarActivity.class));
+        });
 
         // Database connection
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.open();
-        //setting counter from result
-        TextView total_count;
-        total_count = findViewById(R.id.total_counter);
-        total_count.setText(""+databaseAccess.getCounter());
 
+        TextView infoText = findViewById(R.id.information_text);
+        TextView total_count = findViewById(R.id.total_counter);
 
-        //closing the connection
-        //databaseAccess.close();
-        //TODO: Add functionality for new detections.
+        infoText.setText("Welcome to Smishing Detection! Your real-time tool to deter and detect smishing attacks.\nYour app is ready to smish.");
+        total_count.setText("" + databaseAccess.getCounter());
 
-        //Setting counter from the result
-        //TextView total_count = findViewById(R.id.total_counter);
-        //total_count.setText("" + databaseAccess.getCounter());
-
-        // Closing the connection
         databaseAccess.close();
 
+        // TapTargetView guide started in Learn more about smishing > quick guide
+        boolean showGuideNow = getIntent().getBooleanExtra("showGuide", false);
+
+        if (showGuideNow) {
+            findViewById(R.id.debug_btn).post(() -> {
+                new TapTargetSequence(MainActivity.this)
+                    .targets(
+                    TapTarget.forView(findViewById(R.id.new_detections_container), "New Detections", "This shows any newly detected smishing attempts on your device.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(40)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+        
+                    TapTarget.forView(findViewById(R.id.total_detections_container), "Total Detections", "This shows the total number of smishing attempts detected on your device.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(40)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+
+                    TapTarget.forView(findViewById(R.id.detections_btn), "View Detections", "Tap here to view detailed records of detected smishing attempts made on your device.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(31)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+        
+                    TapTarget.forView(findViewById(R.id.scanner_btn), "Risk Scanner", "Tap here to scan your device and assess how vulnerable it may be to smishing attacks.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(31)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+        
+                    TapTarget.forView(findViewById(R.id.fragment_container), "Learn More", "Tap here to explore tips and tutorials to understand smishing and stay safe.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(23)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+        
+                    TapTarget.forView(findViewById(R.id.bottom_navigation), "Navigation Bar", "This is the navigation bar. Use it to switch between the Home screen, the Report page to report potential smishing attempts, the News section for the latest smishing updates, and the Settings page.")
+                        .outerCircleColor(R.color.navy_blue)
+                        .targetCircleColor(android.R.color.white)
+                        .targetRadius(30)
+                        .titleTextSize(22)
+                        .descriptionTextSize(18)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true)
+
+                    )
+                .listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        Toast.makeText(MainActivity.this, "You're all set to smish!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {}
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        Toast.makeText(MainActivity.this, "Guide cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .start();
+            });
+        }
     }
-    //tap again to exit override. only closes app if back pressed while alert is on screen
+
+    // Press back twice to exit
     @Override
     public void onBackPressed() {
-        if(isBackPressed)
-        {
+        if (isBackPressed) {
             super.onBackPressed();
             return;
         }
+
         Toast.makeText(this, "press back again to exit", Toast.LENGTH_SHORT).show();
         isBackPressed = true;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                isBackPressed = false;
-            }
-        }, 2000);
-
+        new Handler().postDelayed(() -> isBackPressed = false, 2000);
     }
 
     private boolean areNotificationsEnabled() {

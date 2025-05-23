@@ -11,6 +11,7 @@
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
                     android:id="@+id/text_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold"
                     android:textColor="@color/navy_blue"
                     android:maxLines="2"
@@ -61,30 +62,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:textColor="#9E9E9E"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_xsmall"/>
             </LinearLayout>
 
             <!-- Right-arrow icon -->
             <ImageView
-                android:id="@+id/icon_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                  android:id="@+id/icon_arrow"
+                android:layout_width="@dimen/icon_size_display"
+                android:layout_height="@dimen/icon_size_display"
                 android:paddingStart="8dp"
                 android:contentDescription="@string/baseline_keyboard_arrow_right_24"
                 android:src="@drawable/baseline_keyboard_arrow_right_24"
                 app:tint="#9E9E9E" />
+
         </LinearLayout>
 
         <!-- ───── Description (below row) ───── -->
         <TextView
-            android:id="@+id/text_description"
+           android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:ellipsize="end"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/black"
             android:lineSpacingExtra="2dp"
             android:maxLines="3"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:ellipsize="end" />
+      
     </LinearLayout>
 </androidx.cardview.widget.CardView>

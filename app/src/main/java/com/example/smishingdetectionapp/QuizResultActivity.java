@@ -14,6 +14,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.example.smishingdetectionapp.Community.CommunityReportActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,6 +30,39 @@ public class QuizResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_results);
+
+        // navigation bar
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        nav.setSelectedItemId(R.id.nav_home);
+        nav.setOnItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_report) {
+                Intent i = new Intent(this, CommunityReportActivity.class);
+                i.putExtra("source", "home");
+                startActivity(i);
+                overridePendingTransition(0,0);
+                finish();
+                return true;
+
+            } else if (id == R.id.nav_news) {
+                startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
+            return false;
+        });
 
         // Get data from Intent
         int score = getIntent().getIntExtra("score", 0);

@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/new_logo"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
             android:layout_marginEnd="12dp"
             android:contentDescription="@string/hardhat_logo_alt"
             app:srcCompat="@drawable/new_logo" />
@@ -34,12 +34,12 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/menu_Cyber_news"
+            android:textSize="@dimen/text_size_large"
             android:textColor="@color/navy_blue"
-            android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- ───── RecyclerView (fills space above buttons) ───── -->
+    <!-- ───── RecyclerView (fills space above buttons [android:textSize="24sp"]) ───── -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/news_recycler_view"
         android:layout_width="match_parent"
@@ -51,18 +51,19 @@
 
     <!-- ───── Refresh button (full-width) ───── -->
     <Button
-        android:id="@+id/refreshButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="6dp"
-        android:paddingVertical="10dp"
-        android:text="@string/refresh"
-        android:textColor="@color/navy_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_saved_news" />
+    android:id="@+id/refreshButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="6dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:text="@string/refresh"
+    android:textColor="@color/navy_blue"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/btn_saved_news" />
 
     <!-- ───── Saved-news button (full-width, above nav) ───── -->
     <Button
@@ -79,6 +80,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
 
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Failed to load news. Please try again."
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/topHeaderContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <!-- ───── ProgressBar centred on RecyclerView ───── -->
     <ProgressBar
         android:id="@+id/progressBar"
@@ -93,15 +108,22 @@
     <!-- ───── Bottom navigation ───── -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:theme="@style/Theme.SmishingDetectionApp"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
         app:itemBackground="@color/baby_blue"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_main_drawer" />
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:itemIconSize="25dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
+        app:itemPaddingBottom="10dp"
+        android:theme="@style/Theme.SmishingDetectionApp"
+        app:menu="@menu/activity_main_drawer" >
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

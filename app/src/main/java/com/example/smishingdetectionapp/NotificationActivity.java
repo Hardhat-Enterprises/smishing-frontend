@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,9 +18,13 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -91,6 +97,10 @@ public class NotificationActivity extends SharedActivity {
         // Setup for button that takes you to notification settings in your device
         Button settingsButton = findViewById(R.id.open_notification_settings_button);
         settingsButton.setOnClickListener(v -> {
+//            // Show test notification
+//            showNotification("Test Notification", "This is a test notification triggered by the settings button.");
+
+            // Open system notification settings
             Intent intent = new Intent();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
@@ -100,10 +110,65 @@ public class NotificationActivity extends SharedActivity {
                 intent.setData(Uri.fromParts("package", getPackageName(), null));
             }
             startActivity(intent);
-
         });
 
+        // Delete this button before prod
+        Button testNotificationButton = findViewById(R.id.button_test_notifications);
+            testNotificationButton.setOnClickListener(v -> {
+                sendAllTestNotifications();
+            });
+        }
+
+    private void sendAllTestNotifications() {
+        Context context = this;
+
+        sendNotification(context, NotificationType.createSmishDetectionAlert(context), "Smishing Alert", "This is a test smishing notification.");
+        sendNotification(context, NotificationType.createSpamDetectionAlert(context), "Spam Alert", "This is a test spam notification.");
+        sendNotification(context, NotificationType.createNewsAlert(context), "News Update", "This is a test news update.");
+        sendNotification(context, NotificationType.createIncidentAlert(context), "Incident Report", "This is a test incident alert.");
+        sendNotification(context, NotificationType.createUpdateNotification(context), "App Update", "This is a test update notification.");
+        sendNotification(context, NotificationType.createBackupNotification(context), "Backup Complete", "This is a test backup notification.");
+        sendNotification(context, NotificationType.createPasswordNotification(context), "Password Reminder", "This is a test password-related notification.");
     }
+
+    private void sendNotification(Context context, NotificationType type, String title, String message) {
+        if (!type.getEnabled()) {
+            Log.d("Notification", "Notification disabled for: " + type.getChannelID());
+            return;
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Create the notification channel if needed
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    type.getChannelID(),
+                    type.getChannelName(),
+                    type.getImportance()
+            );
+            channel.setDescription(type.getChannelDesc());
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, type.getChannelID())
+                .setSmallIcon(R.drawable.new_logo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(type.getImportance())
+                .setAutoCancel(true); // optional: cancel on click
+
+        // Check permission for Android 13+
+        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, "Notification permission not granted", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int notificationId = (title + type.getChannelID()).hashCode(); // unique per type
+        NotificationManagerCompat.from(context).notify(notificationId, builder.build());
+    }
+
+
 
     // method to setup switch with a notificationType object.
     private void setupSwitch(Switch switchButton, NotificationType notificationType) {
@@ -121,8 +186,28 @@ public class NotificationActivity extends SharedActivity {
             Log.e("NotificationActivity","Switch button is Null");
         }
     }
+
+//    private void showNotification(String title, String message) {
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        String channelId = "my_channel_id";
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel channel = new NotificationChannel(
+//                    channelId,
+//                    "Default Channel",
+//                    NotificationManager.IMPORTANCE_HIGH
+//            );
+//            channel.setDescription("Used for app alerts");
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+//                .setSmallIcon(R.drawable.new_logo)  // logo
+//                .setContentTitle(title)
+//                .setContentText(message)
+//                .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                .setAutoCancel(true);
+//
+//        notificationManager.notify(1, builder.build());
+//    }
 }
-
-
-
-

@@ -18,6 +18,7 @@
         app:itemTextColor="@color/black"
         app:itemIconSize="25dp"
         app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
         app:itemPaddingBottom="10dp"
         android:theme="@style/Theme.SmishingDetectionApp"
         app:menu="@menu/activity_main_drawer" />
@@ -123,152 +124,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-
-            <!-- Divider -->
-            <View
-                android:id="@+id/divider2"
+            <!-- Notification Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/notificationBtn"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/navy_blue"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:padding="12dp"
+                android:text="Notification Settings"
                 app:layout_constraintTop_toBottomOf="@id/passwordBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="8dp" />
-
-
-            <!-- Notifications Header -->
-            <TextView
-                android:id="@+id/notifications_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/notifications_text"
-                android:textStyle="bold"
-                android:textColor="@color/navy_blue"
-                android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <!-- Notification Switches -->
-            <Switch
-                android:id="@+id/smishing_notification_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:text="@string/smishing_detection_notification_title"
-                app:layout_constraintTop_toBottomOf="@id/notifications_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <Switch
-                android:id="@+id/spam_notification_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:text="@string/spam_detection_notification_title"
-                app:layout_constraintTop_toBottomOf="@id/smishing_notification_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <Switch
-                android:id="@+id/news_notification_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:text="@string/news_notification_title"
-                app:layout_constraintTop_toBottomOf="@id/spam_notification_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <Switch
-                android:id="@+id/incident_report_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="28dp"
-                android:paddingVertical="8dp"
-                android:text="@string/incident_reports"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/news_notification_switch"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-          
-            <Switch
-                android:id="@+id/update_notification_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/update_notifications"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/incident_report_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-
-            <Switch
-                android:id="@+id/backup_reminder_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/backup_reminder"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/update_notification_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-
-            <Switch
-                android:id="@+id/password_security_check_switch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/password_security_check"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                app:layout_constraintTop_toBottomOf="@+id/backup_reminder_switch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_notification_settings_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                android:text="@string/open_notification_settings"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password_security_check_switch"
-                tools:layout_editor_absoluteX="28dp" />
-
 
             <View
                 android:id="@+id/divider3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
-                app:layout_constraintTop_toBottomOf="@+id/open_notification_settings_button" />
-
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notificationBtn" />
 
             <TextView
                 android:id="@+id/filtering_text"
@@ -296,7 +175,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filtering_text" />
-          
+
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/OldToNewRB"
                 android:layout_width="wrap_content"
@@ -326,10 +205,11 @@
                 android:id="@+id/divider4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NewToOldRB" />
 
 
@@ -463,10 +343,11 @@
                 android:id="@+id/divider5"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fontSizeControls" />
 
             <TextView
@@ -523,11 +404,13 @@
                 android:id="@+id/divider6"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
                 android:background="@color/navy_blue"
-                app:layout_constraintEnd_toEndOf="@id/incident_report_switch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/spam_notification_switch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportBtn" />
+
 
 
             <TextView
@@ -633,20 +516,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/feedbackBtn" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/share_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="16dp"
-                android:text="Share App"
-                android:backgroundTint="@color/baby_blue"
-                android:textColor="@color/black"
-                android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/buttonSignOut"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/contactUsBtn"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="28dp"
+    android:layout_marginEnd="28dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:drawablePadding="8dp"
+    android:focusable="true"
+    android:gravity="start|center_vertical"
+    android:padding="12dp"
+    android:text="Contact Us"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/aboutUsBtn" />
+
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/share_button"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="28dp"
+    android:layout_marginEnd="28dp"
+    android:layout_marginTop="12dp"
+    android:text="Share App"
+    android:backgroundTint="@color/baby_blue"
+    android:textColor="@color/black"
+    android:padding="12dp"
+    app:layout_constraintTop_toBottomOf="@id/contactUsBtn"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
 
 
 
@@ -662,7 +563,7 @@
                 android:text="@string/sign_outBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/aboutUsBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/contactUsBtn" />
 
 
 
@@ -724,7 +625,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/passwordBtn"
                 app:layout_constraintTop_toTopOf="@+id/passwordBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
-          
+
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
@@ -735,7 +636,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/communityBtn"
                 app:layout_constraintTop_toTopOf="@+id/communityBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
-          
+
             <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="wrap_content"
@@ -746,7 +647,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/aboutMeBtn"
                 app:layout_constraintTop_toTopOf="@+id/aboutMeBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
-          
+
             <ImageView
                 android:id="@+id/imageView13"
                 android:layout_width="wrap_content"
@@ -781,6 +682,18 @@
                 app:layout_constraintEnd_toEndOf="@+id/chatAssistantBtn"
                 app:layout_constraintTop_toTopOf="@+id/chatAssistantBtn"
                 app:srcCompat="@drawable/outline_arrow_outward_24" />
+
+            <ImageView
+                android:id="@+id/imageViewContactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="Contact Us Icon"
+                app:layout_constraintEnd_toEndOf="@+id/contactUsBtn"
+                app:layout_constraintTop_toTopOf="@+id/contactUsBtn"
+                app:srcCompat="@drawable/outline_arrow_outward_24" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
