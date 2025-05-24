@@ -46,6 +46,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.HashMap;
 
+/**
+ Updated by Abdul Mueez on 05/24/2025
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
