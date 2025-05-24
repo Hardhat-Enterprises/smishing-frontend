@@ -12,12 +12,14 @@ class LoginFormState {
     private Integer passwordError;
     private boolean isDataValid;
 
+    // Constructor for when there are validation errors
     LoginFormState(@Nullable Integer usernameError, @Nullable Integer passwordError) {
         this.usernameError = usernameError;
         this.passwordError = passwordError;
-        this.isDataValid = false;
+        this.isDataValid = usernameError == null && passwordError == null;
     }
 
+    // Constructor for explicitly setting data validity
     LoginFormState(boolean isDataValid) {
         this.usernameError = null;
         this.passwordError = null;

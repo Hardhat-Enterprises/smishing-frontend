@@ -2,13 +2,9 @@ package com.example.smishingdetectionapp.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.text.InputType;
-//import android.text.method.HideReturnsTransformationMethod;
-//import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,9 +22,7 @@ import com.example.smishingdetectionapp.DataBase.DBresult;
 import com.example.smishingdetectionapp.DataBase.Retrofitinterface;
 import com.example.smishingdetectionapp.MainActivity;
 import com.example.smishingdetectionapp.R;
-import com.example.smishingdetectionapp.SharedActivity;
 import com.example.smishingdetectionapp.databinding.ActivityLoginBinding;
-import com.example.smishingdetectionapp.detections.DatabaseAccess;
 import com.example.smishingdetectionapp.ui.Register.RegisterMain;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -37,6 +31,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,20 +41,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.HashMap;
-
-/**
- Updated by Abdul Mueez on 05/24/2025
- */
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
     private Retrofit retrofit;
     private Retrofitinterface retrofitinterface;
-    //private Object BuildConfig;
     private String BASE_URL = BuildConfig.SERVERIP;
-    private boolean isPasswordVisible = false;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -66,10 +56,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // BLOCKING screenshots and screen recording
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE);
 
         // Inflate layout
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -88,8 +74,9 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // ViewModel setup
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        // ViewModel setup - Updated to use AndroidViewModel
+        loginViewModel = new ViewModelProvider(this,
+                new LoginViewModelFactory(getApplication()))
                 .get(LoginViewModel.class);
 
         // View bindings
@@ -104,9 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // Toggle functionality for PIN and Password login
         togglePinLogin.setOnClickListener(v -> {
-            passwordEditText.setText("");
-
-
             if (isPinLogin) {
                 // Switch to password login
                 passwordEditText.setHint("Password");
@@ -122,16 +106,17 @@ public class LoginActivity extends AppCompatActivity {
                 togglePinLogin.setText("Login with Password");
                 isPinLogin = true;
             }
-            passwordEditText.requestFocus();
         });
 
         // Handle login button click
         loginButton.setOnClickListener(v -> {
+            loadingProgressBar.setVisibility(View.VISIBLE);
             String input = passwordEditText.getText().toString();
             if (isPinLogin) {
                 // Handle PIN login
                 if (input.length() != 6) {
                     passwordEditText.setError("PIN must be 6 digits");
+                    loadingProgressBar.setVisibility(View.GONE);
                     return;
                 }
                 loginWithPin(input);
@@ -140,9 +125,11 @@ public class LoginActivity extends AppCompatActivity {
                 String email = usernameEditText.getText().toString();
                 if (email.isEmpty() || input.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Email and Password must not be empty", Toast.LENGTH_SHORT).show();
+                    loadingProgressBar.setVisibility(View.GONE);
                     return;
                 }
-                loginWithPassword(email, input);
+                // Use the new login method with repository pattern
+                loginViewModel.login(email, input);
             }
         });
 
@@ -185,6 +172,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Observe LoginResponse - NEW
+        loginViewModel.getLoginResponse().observe(this, response -> {
+            loadingProgressBar.setVisibility(View.GONE);
+            if (response != null && response.isSuccess()) {
+                // Handle successful login
+                Toast.makeText(LoginActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                // Save token if provided
+                // if (response.getToken() != null && !response.getToken().isEmpty()) {
+                //     saveAuthToken(response.getToken());
+                // }
+                navigateToMainActivity();
+            }
+        });
+
+        // Observe error messages - NEW
+        loginViewModel.getError().observe(this, error -> {
+            loadingProgressBar.setVisibility(View.GONE);
+            if (error != null) {
+                Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        // Observe legacy LoginResult (for compatibility)
         loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
@@ -203,49 +213,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        /*
         // Password visibility toggle
         togglePasswordVisibility.setOnClickListener(v -> {
-            // Check the current input type to determine if the password is visible
-            int currentInputType = passwordEditText.getInputType();
-
-            if (currentInputType == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-                // If the password is currently hidden (password transformation is applied), show the password
-                passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD); // Show the password
-                togglePasswordVisibility.setImageResource(R.drawable.visibility);  // Open eye icon
-            } else {
-                // If the password is currently visible, hide the password
-                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD); // Hide the password
-                togglePasswordVisibility.setImageResource(R.drawable.visibilityoff);  // Closed eye icon
-            }
-
-            // Move the cursor to the end
-            passwordEditText.setSelection(passwordEditText.getText().length());
-        });
-
-    }*/
-
-        togglePasswordVisibility.setOnClickListener(v -> {
+            boolean isPasswordVisible = passwordEditText.getTransformationMethod() == null;
             if (isPasswordVisible) {
-                // Hide password
                 passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                togglePasswordVisibility.setImageResource(R.drawable.visibilityoff); // lighter icon
-                isPasswordVisible = false;
+                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility);
             } else {
-                // Show password
                 passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-                togglePasswordVisibility.setImageResource(R.drawable.visibility); // darker icon
-                isPasswordVisible = true;
+                togglePasswordVisibility.setImageResource(R.drawable.ic_passwords_visibility);
             }
-
-            // cursor stays at end of input
             passwordEditText.setSelection(passwordEditText.getText().length());
         });
-
-
     }
-    //
 
     // Google Sign-In
     void signInGoogle() {
@@ -282,12 +262,13 @@ public class LoginActivity extends AppCompatActivity {
         navigateToMainActivity();
     }
 
+    // The old method is no longer used directly but kept for compatibility
     private void loginWithPassword(String email, String password) {
-        // For testing purposes, simulate a successful login
-        Toast.makeText(LoginActivity.this, "Login successful (bypassed for testing)", Toast.LENGTH_SHORT).show();
-        navigateToMainActivity();
+        // Now redirects to the ViewModel login method
+        loginViewModel.login(email, password);
     }
 
+    // Legacy method kept for compatibility
     private void handleLoginDialog() {
         final EditText usernameEditText = binding.email;
         final EditText passwordEditText = binding.password;
@@ -335,11 +316,4 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Reapply the secure flag when activity resumes
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE);
-    }
 }

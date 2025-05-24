@@ -1,256 +1,138 @@
 package com.example.smishingdetectionapp.ui.Register;
 
-import android.content.res.Configuration;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.smishingdetectionapp.BuildConfig;
-import com.example.smishingdetectionapp.DataBase.Retrofitinterface;
-import com.example.smishingdetectionapp.DataBase.SignupResponse;
 import com.example.smishingdetectionapp.R;
 import com.example.smishingdetectionapp.TermsAndConditionsActivity;
-import com.example.smishingdetectionapp.databinding.ActivitySignupBinding;
 import com.example.smishingdetectionapp.ui.login.LoginActivity;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.HashMap;
-import java.util.Random;
-import java.util.regex.Pattern;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class RegisterMain extends AppCompatActivity {
 
-    private static final int TERMS_REQUEST_CODE = 1001;  // Unique request code for terms acceptance
-    private ActivitySignupBinding binding;
-    private Retrofit retrofit;
-    private Retrofitinterface retrofitinterface;
-    private String BASE_URL = BuildConfig.SERVERIP;
-    private CheckBox termsCheckBox;
+    private RegisterViewModel registerViewModel;
+
+    private String email;
+    private String BASE_URL = "http://10.0.2.2:5000/"; // Backend URL for local testing on emulator
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
 
-        // Set up view binding
-        binding = ActivitySignupBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        // Initialize ViewModel
+        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
-        // Initialize Retrofit
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        retrofitinterface = retrofit.create(Retrofitinterface.class);
-
-        // Set up back button
+        // Set up UI components
         ImageButton backButton = findViewById(R.id.signup_back);
+        TextView termsTextView = findViewById(R.id.terms_condition_checkbox);
+        Button registerButton = findViewById(R.id.registerBtn);
+
+        // Back Button
         backButton.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
-        // Link Terms and Conditions
-        TextView termsTextView = findViewById(R.id.terms_text);
-        termsCheckBox = findViewById(R.id.terms_condition_checkbox);
+        // Terms and Conditions click
         termsTextView.setOnClickListener(v -> {
+            // Enable the Register button once the terms are clicked
+            registerButton.setEnabled(true);
             Intent intent = new Intent(RegisterMain.this, TermsAndConditionsActivity.class);
-            startActivityForResult(intent, TERMS_REQUEST_CODE);
+            startActivityForResult(intent, 1001);
         });
 
-        // Set up register button
-        // Test registration flow
-        Button registerButton = findViewById(R.id.registerBtn);
-        registerButton.setEnabled(false);
-
-        // Set up registration logic
+        // Register Button - Handle user signup
         registerButton.setOnClickListener(v -> {
-            String fullName = binding.fullNameInput.getText().toString();
-            String phoneNumber = binding.pnInput.getText().toString();
-            String email = binding.emailInput.getText().toString();
-            String password = binding.pwInput.getText().toString();
+            EditText fullNameEditText = findViewById(R.id.full_name_input);
+            EditText phoneNumberEditText = findViewById(R.id.pnInput);
+            EditText emailEditText = findViewById(R.id.emailInput);
+            EditText pinEditText = findViewById(R.id.pinInput);
+            EditText passwordEditText = findViewById(R.id.pwInput);
+
+            String fullName = fullNameEditText.getText().toString(); // Get the text entered by the user
+            String phoneNumber = phoneNumberEditText.getText().toString(); // Get the text entered by the user
+            email = emailEditText.getText().toString(); // Get the text entered by the user
+            String password = passwordEditText.getText().toString(); // Get the text entered by the user
 
             if (validateInput(fullName, phoneNumber, email, password)) {
-                validateAndCheckEmail(fullName, phoneNumber, email, password);
+                registerViewModel.registerUser(fullName, phoneNumber, email, password);
             }
         });
 
-        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-
-        if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
-            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.black));
-            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.white));
-            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.white));
-            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.white));
-            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.white));
-            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.white));
-        } else {
-            binding.getRoot().setBackgroundColor(ContextCompat.getColor(this, R.color.white));
-            binding.fullNameInput.setTextColor(ContextCompat.getColor(this, R.color.black));
-            binding.emailInput.setTextColor(ContextCompat.getColor(this, R.color.black));
-            binding.pnInput.setTextColor(ContextCompat.getColor(this, R.color.black));
-            binding.pwInput.setTextColor(ContextCompat.getColor(this, R.color.black));
-            binding.pw2Input.setTextColor(ContextCompat.getColor(this, R.color.black));
-        }
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Check if we are handling the result from the Terms and Conditions activity
-        if (requestCode == TERMS_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // Terms accepted, enable the register button
-                Button registerButton = findViewById(R.id.registerBtn);
-                registerButton.setEnabled(true);
-                termsCheckBox.setChecked(true);
+        // Observe registration result from ViewModel
+        registerViewModel.getSignupResponse().observe(this, signupResponse -> {
+            if (signupResponse != null && signupResponse.isSuccess()) {
+                Snackbar.make(findViewById(android.R.id.content), "Signup successful. Please verify your email.", Snackbar.LENGTH_LONG).show();
+                // Navigate to verification screen (if needed)
+                Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
+                intent.putExtra("email", email);
+                startActivity(intent);
+                finish();
             } else {
-                termsCheckBox.setChecked(false);
-                findViewById(R.id.registerBtn).setEnabled(false);
+                Snackbar.make(findViewById(android.R.id.content), "Signup failed. Please try again.", Snackbar.LENGTH_LONG).show();
             }
-        }
-    }
+        });
 
-    private String generateVerificationCode() {
-        Random random = new Random();
-        int code = 100000 + random.nextInt(900000); // Generate a random 6-digit code
-        return String.valueOf(code);
-    }
-
-    private void sendVerificationEmail(String email, String verificationCode) {
-        String subject = "Your Verification Code";
-        String message = "Your verification code is: " + verificationCode;
-
-        JavaMailAPI javaMailAPI = new JavaMailAPI(this, email, subject, message);
-        javaMailAPI.execute();
+        // Observe error message from ViewModel
+        registerViewModel.getError().observe(this, error -> {
+            if (error != null) {
+                Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
     private boolean validateInput(String fullName, String phoneNumber, String email, String password) {
         if (TextUtils.isEmpty(fullName)) {
-            Snackbar.make(binding.getRoot(), "Please enter your full name.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "Please enter your full name.", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
-        if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid phone number.", Snackbar.LENGTH_LONG).show();
+        if (!isValidPhoneNumber(phoneNumber)) {
+            Snackbar.make(findViewById(android.R.id.content), "Please enter a valid phone number.", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
         if (!isValidEmailAddress(email)) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid email address.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "Please enter a valid email address.", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
-        String confirmPassword = binding.pw2Input.getText().toString();
+        String confirmPassword = ((EditText) findViewById(R.id.pw2Input)).getText().toString(); // Fixed here
         if (password.length() < 8) {
-            Snackbar.make(binding.getRoot(), "Password must be at least 8 characters long.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "Password must be at least 8 characters long.", Snackbar.LENGTH_LONG).show();
             return false;
         }
         if (!password.equals(confirmPassword)) {
-            Snackbar.make(binding.getRoot(), "Passwords do not match.", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "Passwords do not match.", Snackbar.LENGTH_LONG).show();
             return false;
         }
-        if (!password.matches(".*\\d.*")) {
-            Snackbar.make(binding.getRoot(), "Password must include a number.", Snackbar.LENGTH_LONG).show();
-            return false;
-        }
-        if (!password.matches(".*[A-Z].*")) {
-            Snackbar.make(binding.getRoot(), "Password must include an uppercase letter.", Snackbar.LENGTH_LONG).show();
-            return false;
-        }
-        if (!password.matches(".*[a-z].*")) {
-            Snackbar.make(binding.getRoot(), "Password must include a lowercase letter.", Snackbar.LENGTH_LONG).show();
-            return false;
-        }
-        if (!password.matches(".*[!@#$%^&*+=?-].*")) {
-            Snackbar.make(binding.getRoot(), "Password must include a special character.", Snackbar.LENGTH_LONG).show();
-            return false;
-        }
-
         return true;
     }
 
-    /*
-    private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("email", email);
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        // Remove all non-digit characters (e.g., spaces, hyphens, parentheses)
+        String cleanedPhoneNumber = phoneNumber.replaceAll("[^0-9]", "");
 
-        Call<SignupResponse> call = retrofitinterface.checkEmail(map);
-        call.enqueue(new Callback<SignupResponse>() {
-            @Override
-            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
-                if (response.isSuccessful()) {
-                    String verificationCode = generateVerificationCode();
-                    sendVerificationEmail(email, verificationCode);
-
-                    Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
-                    intent.putExtra("fullName", fullName);
-                    intent.putExtra("phoneNumber", phoneNumber);
-                    intent.putExtra("email", email);
-                    intent.putExtra("password", password);
-                    intent.putExtra("code", verificationCode);
-                    startActivity(intent);
-                } else if (response.code() == 409) {
-                    Snackbar.make(binding.getRoot(), "Email already exists.", Snackbar.LENGTH_LONG).show();
-                } else {
-                    Snackbar.make(binding.getRoot(), "Error checking email. Please try again.", Snackbar.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SignupResponse> call, Throwable t) {
-                Snackbar.make(binding.getRoot(), "Network error. Please try again.", Snackbar.LENGTH_LONG).show();
-            }
-        });
+        // Check if the cleaned phone number is valid (only digits)
+        return cleanedPhoneNumber.matches("\\d+");
     }
-     */
-    // Bypassing verification for testing purposes
-    private void validateAndCheckEmail(final String fullName, final String phoneNumber, final String email, final String password) {
-        // Instead of calling the server, simulate a successful email check
-        String verificationCode = generateVerificationCode();
-
-        // Simulate sending the verification code via email
-        sendVerificationEmail(email, verificationCode);
-
-        // Skip the network call and directly navigate to the email verification screen
-        Intent intent = new Intent(RegisterMain.this, EmailVerify.class);
-        intent.putExtra("fullName", fullName);
-        intent.putExtra("phoneNumber", phoneNumber);
-        intent.putExtra("email", email);
-        intent.putExtra("password", password);
-        intent.putExtra("code", verificationCode);
-        startActivity(intent);
-    }
-
 
     private boolean isValidEmailAddress(String email) {
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
+        // Trim leading/trailing spaces
+        String trimmedEmail = email.trim();
 
-            String emailPattern = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-            return Pattern.matches(emailPattern, email) && !email.contains("..") && !email.startsWith(".") && !email.endsWith(".");
-        } catch (AddressException ex) {
-            return false;
-        }
+        // Use the Patterns.EMAIL_ADDRESS matcher to check for a valid email format
+        return Patterns.EMAIL_ADDRESS.matcher(trimmedEmail).matches();
     }
 }
+

@@ -4,70 +4,132 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<LinearLayout
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_large"
+    android:gravity="center">
 
-    <ImageButton
-        android:id="@+id/signup_back"
-        android:layout_width="@dimen/icon_size_large"
-        android:layout_height="@dimen/icon_size_large"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_button" />
+    <TextView
+        android:id="@+id/verificationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verification"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:textColor="@color/navy_blue" />
 
-    <LinearLayout
-        android:id="@+id/mainLayout"
+    <TextView
+        android:id="@+id/instructionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please check your email for the verification code."
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:textColor="@color/grey" />
+
+    <EditText
+        android:id="@+id/verifytext"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_large"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:hint="Enter 6-digit OTP"
+        android:inputType="number"
+        android:maxLength="6"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium"/>
 
-        <TextView
-            android:id="@+id/verificationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Verification"
-            android:textSize="@dimen/text_size_large"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:textColor="@color/navy_blue" />
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_medium"
+        android:text="Verify OTP"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/buttons_rounded"
+        android:backgroundTint="@color/baby_blue"
+        android:textColor="@color/navy_blue" />
 
-        <TextView
-            android:id="@+id/instructionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Please check your email for the verification code."
-            android:textSize="@dimen/text_size_small"
-            android:layout_marginBottom="@dimen/margin_xxlarge"
-            android:textColor="@color/grey" />
-
-        <LinearLayout
-            android:id="@+id/otpContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center" />
-
-        <Button
-            android:id="@+id/continueBtn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height_medium"
-            android:text="Continue"
-            android:layout_marginTop="@dimen/margin_xxlarge"
-            android:background="@drawable/buttons_rounded"
-            android:backgroundTint="@color/baby_blue"
-            android:textColor="@color/navy_blue" />
-
-        <TextView
-            android:id="@+id/resendText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Resend code in 00:20"
-            android:textSize="@dimen/text_size_small"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:textColor="@color/blueColor" />
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/resendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend code in 00:20"
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textColor="@color/blueColor" />
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/signup_back"-->
+<!--        android:layout_width="@dimen/icon_size_large"-->
+<!--        android:layout_height="@dimen/icon_size_large"-->
+<!--        android:layout_marginStart="@dimen/margin_medium"-->
+<!--        android:layout_marginTop="@dimen/margin_medium"-->
+<!--        android:background="@null"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/back_button" />-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/mainLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="@dimen/padding_large"-->
+<!--        android:gravity="center">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/verificationText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Verification"-->
+<!--            android:textSize="@dimen/text_size_large"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginBottom="@dimen/margin_small"-->
+<!--            android:textColor="@color/navy_blue" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/instructionText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Please check your email for the verification code."-->
+<!--            android:textSize="@dimen/text_size_small"-->
+<!--            android:layout_marginBottom="@dimen/margin_xxlarge"-->
+<!--            android:textColor="@color/grey" />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/otpContainer"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/continueBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/button_height_medium"-->
+<!--            android:text="Continue"-->
+<!--            android:layout_marginTop="@dimen/margin_xxlarge"-->
+<!--            android:background="@drawable/buttons_rounded"-->
+<!--            android:backgroundTint="@color/baby_blue"-->
+<!--            android:textColor="@color/navy_blue" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/resendText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Resend code in 00:20"-->
+<!--            android:textSize="@dimen/text_size_small"-->
+<!--            android:layout_marginTop="@dimen/margin_medium"-->
+<!--            android:textColor="@color/blueColor" />-->
+<!--    </LinearLayout>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
